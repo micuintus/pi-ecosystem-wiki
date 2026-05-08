@@ -9,6 +9,8 @@ sources:
   - pi-vitals
   - diegopetrucci-pi-extensions
   - tomsej-pi-ext
+  - aliou-pi-extensions
+  - hjanuschka-shitty-extensions
 tags: [extension, footer, powerline, status-bar]
 entries:
   - id: pi-powerline-footer
@@ -51,6 +53,17 @@ entries:
     npm: pi-powerline
     role: footer-broader-ui
     notes: "Broader Powerline-style UI extensions. Limited public info beyond npm listing."
+  - id: aliou-chrome
+    name: chrome (aliou/pi-extensions)
+    repo: aliou/pi-extensions
+    role: footer-and-header
+    notes: "Two-component TUI chrome: header (path breadcrumb, model, token count) + footer (git branch/status, cost). More opinionated layout than standalone footer extensions. Part of aliou's broader collection, not standalone-installable."
+  - id: hjanuschka-status-widget
+    name: status-widget (shitty-extensions)
+    repo: hjanuschka/shitty-extensions
+    npm: shitty-extensions
+    role: footer-status-indicator
+    notes: "Persistent provider/model status indicator in the footer. Single-purpose component. Installable as part of the shitty-extensions bundle."
 ---
 
 # Pi Footer / Powerline / Status Bar Extensions
@@ -158,6 +171,22 @@ filtering.
 "Powerline-style UI extensions for pi coding agent (custom editor,
 breadcrumb, footer, header)." Broader UI overhaul package; limited
 public info beyond the npm listing.
+
+## chrome (aliou/pi-extensions)
+
+Full TUI chrome — two components that work together: a **header** bar
+(current path breadcrumb, active model, token counter) and a **footer**
+(git branch + status, session cost). More integrated and opinionated than
+the standalone footer packages. Not independently installable; ships
+as part of `aliou/pi-extensions`. Best for users already adopting that
+collection.
+
+## status-widget (hjanuschka/shitty-extensions)
+
+Small single-purpose footer widget showing the current AI provider and
+model status. Useful for quickly seeing which model Pi is using in
+multi-provider setups. Ships as part of `shitty-extensions` (npm:
+`shitty-extensions`), not as a standalone package.
 
 ## Recommendation matrix
 

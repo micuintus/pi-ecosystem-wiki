@@ -7,6 +7,7 @@ sources:
   - pi-todo-md
   - patriceckhart-pi-todo
   - jayshah-pi-agent-extensions
+  - mitsuhiko-agent-stuff
 tags: [extension, todo]
 entries:
   - id: pi-mono-todo
@@ -14,6 +15,12 @@ entries:
     repo: badlogic/pi-mono
     role: reference-impl
     notes: "In-tree reference. Tool-only TODO with details-stored state. /todos slash command opens read-only viewer."
+  - id: mitsuhiko-todos
+    name: "todos.ts (mitsuhiko/agent-stuff)"
+    repo: mitsuhiko/agent-stuff
+    npm: mitsupi
+    role: external-file
+    notes: "File-backed TODO.md with dependency tracking (items declare deps by index; can't complete until deps done). Dependency indices auto-rewrite on remove. TUI viewer via /todos. State persists across session branches."
   - id: pi-todo-md
     name: pi-todo-md
     repo: forjd/pi-todo-md
@@ -55,10 +62,12 @@ state" problem cleanly.
 ## Surveyed extensions
 
 | Extension | Pattern | State location | UI |
-|---|---|---|---|
+|---|---|---|
+---|
 | **`pi-mono/examples/extensions/todo.ts`** | Tool-only (reference impl) | Session JSONL via `tool_result.details` | `/todos` slash command opens read-only viewer |
+| **`mitsuhiko/agent-stuff` — `todos.ts`** | Tool + external file | `TODO.md` in project root | `/todos` slash command; dependency tracking (can’t complete until deps done); TUI viewer |
 | **`forjd/pi-todo-md`** | Tool + repo-local `TODO.md` | `TODO.md` in nearest git root | File visible in editor; LLM uses `todo_md` tool |
-| **`patriceckhart/pi-todo`** | Tool + Apple Reminders sync | macOS Reminders ("pi" list) via Swift+EventKit helper | Interactive TUI for browse/edit |
+| **`patriceckhart/pi-todo`** | Tool + Apple Reminders sync | macOS Reminders (“pi” list) via Swift+EventKit helper | Interactive TUI for browse/edit |
 | **`jayshah5696/pi-agent-extensions`** | Bundle including TODO-related items | varies | varies |
 
 ## Reference implementation pattern

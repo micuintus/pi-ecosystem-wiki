@@ -14,6 +14,8 @@ sources:
   - pi-skills-brave-search
   - joemccann-pi-exa
   - pi-exa-search
+  - ben-vargas-pi-packages
+  - mitsuhiko-agent-stuff
 tags: [extension, web-search, skill]
 entries:
   - id: pi-web-access
@@ -75,6 +77,24 @@ entries:
     npm: pi-exa-search
     role: exa-minimal
     notes: "Exa-only single tool, parallel to @joemccann/pi-exa."
+  - id: ben-vargas-pi-exa-mcp
+    name: "@benvargas/pi-exa-mcp"
+    repo: ben-vargas/pi-packages
+    npm: "@benvargas/pi-exa-mcp"
+    role: exa-mcp
+    notes: "Exa via MCP adapter. Includes Exa code-context search endpoint. CI and tests. Part of ben-vargas individually-publishable suite."
+  - id: ben-vargas-pi-firecrawl
+    name: "@benvargas/pi-firecrawl"
+    repo: ben-vargas/pi-packages
+    npm: "@benvargas/pi-firecrawl"
+    role: scraping-search
+    notes: "Firecrawl-based: scrape, map (site crawl), search. Excels at structured extraction from known URLs, not open-web discovery. CI and tests."
+  - id: mitsuhiko-native-web-search
+    name: "native-web-search (mitsuhiko/agent-stuff)"
+    repo: mitsuhiko/agent-stuff
+    npm: mitsupi
+    role: skill
+    notes: "Skill that delegates to the model's native web search capability when available. No API key required. Falls back gracefully. Part of mitsupi bundle."
 ---
 
 # Pi Web Search Extensions
@@ -116,6 +136,9 @@ counts do. For current vital signs see
 | **`pi-web-extension`** | Brave (HTML scrape), DDG fallback | Turndown to temp file | Prompt steering (auto-detects URLs/search intent), token-aware |
 | **`pi-web-utils`** | Google, DDG, SearXNG, custom (configurable chain) | markdown.new → Readability+Turndown | GitHub clone + local `rg`/`grep` search, configurable engines |
 | **`@aemonculaba/pi-search`** | OpenAI/Codex native `web_search` only | Readability+Turndown, Playwright fallback | Policy injection (blocks bash curl/wget), auth priority chain |
+| **`@benvargas/pi-exa-mcp`** | Exa via MCP adapter | Exa content extraction | Code context search (Exa code search endpoint). CI and tests. Single-purpose, cleanly bounded. |
+| **`@benvargas/pi-firecrawl`** | Firecrawl (scrape, map, search) | Firecrawl structured extraction | Designed for known URLs and site-crawl patterns, not open-web search. CI and tests. |
+| **`native-web-search` (mitsuhiko/agent-stuff)** | Model’s native web search (when available) | — | No API key. Uses whatever native search the active model exposes. Falls back gracefully. Skill pattern, not an extension. |
 | **`brave-search` (skill)** | Brave Search API | Readability+Turndown | Lightweight, headless, requires API key |
 
 ## Market structure
@@ -133,7 +156,9 @@ exists; clear opening for a well-engineered competitor.
 | Free, no API keys | **`pi-free-web-search`** or **`pi-web-extension`** | Browser-scrape fallbacks; no signup. |
 | Codex CLI integration | **`pi-codex-web-search`** | Delegates to the local `codex` CLI; reuses auth. |
 | Exa-only, minimal | **`@joemccann/pi-exa`** or **`pi-exa-search`** | Single tool, just `EXA_API_KEY`. Bypasses heavier extensions. |
-| Skill-first (no extension) | **`brave-search` skill** in [`badlogic/pi-skills`](https://github.com/badlogic/pi-skills) | SKILL.md + bash, no schema registration. Requires Brave API key. |
+| Exa via MCP + code search | **`@benvargas/pi-exa-mcp`** | MCP-native wiring; includes Exa code search. Tested. |
+| Structured site scraping (known URLs) | **`@benvargas/pi-firecrawl`** | Firecrawl excels at known-URL extraction and site-map crawls; not open-web search. |
+| Skill-first, no extension overhead | **`brave-search` skill** or **`native-web-search`** | SKILL.md + bash. `brave-search` needs API key; `native-web-search` needs no key but requires a model with native search. |
 
 ## Author note
 

@@ -2,6 +2,25 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] feat | Ingest personal collections; expand evaluation Tier 2
+
+**Survey page updates (ingestion seeds from the 6 newly catalogued collections):**
+
+- `ecosystem/footer-extensions.md`: added `aliou-chrome` (two-component TUI chrome: header + footer, part of `aliou/pi-extensions`) and `hjanuschka-status-widget` (provider status indicator, part of `shitty-extensions`). Both entries and body sections.
+- `ecosystem/todo-extensions.md`: added `mitsuhiko-todos` (file-backed, dependency tracking, TUI viewer — the most feature-complete TODO extension from the maintainer's own setup).
+- `ecosystem/web-search-extensions.md`: added `@benvargas/pi-exa-mcp` (Exa via MCP, tested), `@benvargas/pi-firecrawl` (structured scraping, tested), `native-web-search` skill (no API key, uses model's native search). Updated both "What each does" table and recommendation matrix.
+- `ecosystem/anthropic-subscription-auth.md`: added `@benvargas/pi-claude-code-use` to the Practical answer routing table as an extension-level OAuth compatibility option (lighter-weight than oh-my-pi fork).
+- `ecosystem/subagent-extensions.md`: added `## Skill complement — obra/superpowers` section documenting the skill-side workflow complement to the extension-side subagent tools.
+
+**`references/evaluation.md` Tier 2 update (non-redundant central quality assessment):**
+
+- Replaced single `qualisero/awesome-pi-agent` row with a broader "Inclusion in curated collections" row.
+- Added weighting table naming 8 curated collections with curator identity, inclusion meaning, and relative weight (Pi maintainer > qualisero > other active collections).
+- Added convergence-signal rule: 3+ independent collections = strong utility evidence regardless of download count.
+- Methodology stays central; survey pages do not repeat it.
+
+Source graph: 123/123.
+
 ## [2026-05-08] feat | Add missing personal collections; stub uncovered niches
 
 Research pass against `qualisero/awesome-pi-agent` and `shaftoe/awesome-pi-coding-agent`.

@@ -14,6 +14,7 @@ sources:
   - drsh4dow-pi-delegate
   - noahsaso-my-pi
   - pi-rfc-552
+  - obra-superpowers
 tags: [extension, subagent]
 entries:
   - id: pi-mono-subagent-example
@@ -148,6 +149,17 @@ The **fast in-process** approach (`tuansondinh/pi-fast-subagent`) is
 gaining traction for short tasks where cold-start dominates wall-clock
 time. The **subprocess** approach is preferred when isolation matters
 (e.g. running untrusted code in a child).
+
+## Skill complement — obra/superpowers
+
+For teams running complex subagent workflows,
+[`obra/superpowers`](https://github.com/obra/superpowers) provides the
+**skill-side** of what these extensions handle on the tool-side:
+`subagent-driven-development`, `dispatching-parallel-agents`, and
+`executing-plans` are skills that define *when* and *how* to spawn
+subagents, leaving the mechanism to whichever extension is installed.
+Compatible with Pi and several other agents; referenced by
+`noahsaso/my-pi` and `mitsuhiko/agent-stuff`.
 
 ## Comparison with other agents
 

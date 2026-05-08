@@ -100,9 +100,30 @@ opinions — that path leads to reviewer hallucination.
 |---|---|---|
 | **GitHub Issues** (already counted in Tier 1) | Read the recent ones. Maintainer response style and time-to-first-comment. Whether closed issues are actually resolved or just abandoned. Recurring complaints. | `gh issue list --repo $REPO --state all --limit 30` and scan |
 | **Pi Discord `#extensions` channel** | Where most user reports land. Already scraped by `qualisero/awesome-pi-agent`'s automation | Discord search, ~30s |
-| **Inclusion in `qualisero/awesome-pi-agent`** | Hand-curated list = distilled sentiment by maintainers who watch Discord | `gh search code --repo qualisero/awesome-pi-agent <name>` |
+| **Inclusion in curated collections** | Named practitioners vouching for an extension with their own workflow on the line. See weighting table below. | `gh search code "<name>" --repo <collection>` per row |
 | **Mentions in other extensions' READMEs** | Peer signal. "Based on X", "fork of X", "inspired by X" = extension authors picking each other | `gh search code "<name>" --filename README.md` |
 | **HN / Reddit / X mentions** | High noise, occasional gold. Time-box and weight low. | Web search, time-boxed to 5min |
+
+### Curated-collection inclusion weights
+
+Each collection below is maintained by a named practitioner who uses Pi
+daily. Inclusion means they evaluated it and kept it in their setup —
+a stronger signal than a star or an awesome-list entry.
+
+| Collection | Curator | Inclusion means | Weight |
+|---|---|---|---|
+| [`mitsuhiko/agent-stuff`](https://github.com/mitsuhiko/agent-stuff) | Pi maintainer | Ships in the reference Pi setup and used in real projects | Highest — maintainer-grade endorsement |
+| [`qualisero/awesome-pi-agent`](https://github.com/qualisero/awesome-pi-agent) | qualisero (list maintainer) | Passed PR review + Discord-sentiment filter | High — community quality gate |
+| [`noahsaso/my-pi`](https://github.com/noahsaso/my-pi) | noahsaso | Used in production subagent/orchestration workflows | High — active, opinionated setup |
+| [`hjanuschka/shitty-extensions`](https://github.com/hjanuschka/shitty-extensions) | hjanuschka | Bundled and shipped on npm; maintained alongside | Medium-high — active bundle maintainer |
+| [`kcosr/pi-extensions`](https://github.com/kcosr/pi-extensions) | kcosr | Semver-tagged, CI; each extension individually justified | Medium-high — engineering-quality bar |
+| [`aliou/pi-extensions`](https://github.com/aliou/pi-extensions) | aliou | Used across a coherent large-scale extension set | Medium |
+| [`ben-vargas/pi-packages`](https://github.com/ben-vargas/pi-packages) | ben-vargas | CI, individual tests, separately published | Medium — good engineering signal |
+| [`tmustier/pi-extensions`](https://github.com/tmustier/pi-extensions) | tmustier | Active personal bundle, qualisero-listed | Medium |
+
+**Convergence signal:** if an extension appears in 3+ curated collections
+independently, treat that as strong evidence of broad utility regardless
+of download count. Use the recipe above to check each collection.
 
 What **not** to do: don't run open-ended sentiment-analysis prompts
 ("is this extension well-liked?"). The model will confabulate. Stick

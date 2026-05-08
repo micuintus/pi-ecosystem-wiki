@@ -9,6 +9,7 @@ sources:
   - pi-mono
   - oh-my-pi
   - anthropic-third-party-end
+  - ben-vargas-pi-packages
 tags: [auth, anthropic, oauth, billing]
 ---
 
@@ -80,6 +81,7 @@ Inferred from oh-my-pi's repo structure; confirmation requires reading
 | Subscription auth in Pi at extra-usage rates | `/login` → Anthropic, accept the warning. Make sure `ANTHROPIC_API_KEY` is unset. |
 | Pay-as-you-go API | Set `ANTHROPIC_API_KEY`. |
 | Enterprise inference | Foundry env vars. |
+| OAuth compatibility patching (without forking) | [`@benvargas/pi-claude-code-use`](https://github.com/ben-vargas/pi-packages) — extension-level OAuth compatibility patch; tracks Claude Code auth changes. Less invasive than oh-my-pi but also less capable. |
 
 ## Caveats
 
