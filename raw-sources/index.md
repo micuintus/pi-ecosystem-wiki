@@ -63,3 +63,12 @@ copied into a dated bucket file.
 | pi-skills-brave-search | repo | https://github.com/badlogic/pi-skills/tree/main/brave-search | skill, web-search |
 | joemccann-pi-exa | repo | https://github.com/joemccann/pi-exa | extension, web-search, exa |
 | pi-exa-search | repo | https://github.com/najibninaba/pi-exa-search | extension, web-search, exa |
+| pi-powerline-footer | repo | https://github.com/nicobailon/pi-powerline-footer | extension, footer, powerline |
+| pi-fancy-footer | repo | https://github.com/mavam/pi-fancy-footer | extension, footer |
+| pi-powerbar | repo | https://github.com/juanibiapina/pi-powerbar | extension, footer, powerline |
+| pi-vitals | repo | https://github.com/mcowger/pi-vitals | extension, footer |
+| diegopetrucci-pi-extensions | repo | https://github.com/diegopetrucci/pi-extensions | extension, collection, footer |
+| tomsej-pi-ext | repo | https://github.com/tomsej/pi-ext | extension, collection, footer |
+| pi-hashline-edit | repo | https://github.com/RimuruW/pi-hashline-edit | extension, edit, hashline |
+| pi-hashline-readmap | repo | https://github.com/coctostan/pi-hashline-readmap | extension, edit, hashline, readmap |
+| oh-my-pi | repo | https://github.com/can1357/oh-my-pi | fork, hashline |

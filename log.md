@@ -2,6 +2,12 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] ingest | Pi Footer, Powerline and Hashline Extensions
+
+- Registered: 9 sources (pi-powerline-footer, pi-fancy-footer, pi-powerbar, pi-vitals, diegopetrucci-pi-extensions, tomsej-pi-ext, pi-hashline-edit, pi-hashline-readmap, oh-my-pi).
+- Compiled: ecosystem/footer-and-hashline-extensions.md (consolidates footer-themes.md and pi-hashline-edit-tools.md from private wiki).
+- Updated: index.md.
+
 ## [2026-05-08] ingest | Pi Web Search Extensions
 
 - Registered: 11 sources (pi-web-access, pi-codex-web-search, pi-free-web-search, pi-web-extension, pi-exa-gh-web-tools, pi-web-utils, aemonculaba-pi-search, pi-skills, pi-skills-brave-search, joemccann-pi-exa, pi-exa-search).
