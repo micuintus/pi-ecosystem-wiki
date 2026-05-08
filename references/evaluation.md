@@ -22,57 +22,86 @@ This page defines the signals and gives copy-pasteable recipes.
 
 | Tier | Cost | What it tells you | When to run |
 |---|---|---|---|
-| **Vital signs** | Two API calls (~1s) | Is it alive? Is anyone using it? | Always, before considering an extension |
-| **Maintenance signals** | A few API calls + light reading (~1min) | Is it likely to keep working as Pi evolves? | When narrowing 2–3 candidates |
-| **Code quality signals** | Clone + inspect (~5–15min) | Is it safe to install? Will it break things? | Before installing into a real workflow |
+| **Project health** | Two API calls (~1s) per source | Is it alive? Is anyone using it? Will it still work next month? | Always, before considering an extension |
+| **Community sentiment** | A few searches + light reading (~5min) | What do real users say? Is the maintainer responsive? | When narrowing 2–3 candidates |
+| **Code quality** | Clone + inspect (~5–15min) | Is it safe to install? Will it break things? | Before installing into a real workflow |
 
 Match the depth to the stakes. Don't audit a one-off TODO widget the way you'd audit something that intercepts every tool call.
 
-## Tier 1 — Vital signs
+## Tier 1 — Project health (highest priority)
 
-The bare minimum. Cheap, scriptable.
+The first filter. Pi's internal API moves fast; an extension that
+hasn't kept up is broken regardless of how popular it once was. Run
+these for every candidate before any deeper evaluation.
 
-| Signal | Why it matters | Source |
-|---|---|---|
-| **Last commit / push date** | Pi's internal API moves fast; extensions break on Pi updates. >6 months stale on a moving target = assume broken. **Single most important filter.** | `gh api repos/<owner>/<repo> --jq .pushed_at` |
-| **GitHub stars** | Hype-biased and lagging, but useful as a tie-breaker between two similar options | same call, `.stargazers_count` |
-| **Weekly npm downloads** | Real adoption signal. Beware: bundle packages (e.g., mitsupi) report combined downloads | `curl -s https://api.npmjs.org/downloads/point/last-week/<pkg> \| jq .downloads` |
-| **Contributors** | Bus factor. 1 contributor = single point of failure | `gh api repos/<owner>/<repo>/contributors --jq 'length'` |
+Ranked by signal strength:
 
-### Maturity tag (derived from last push)
+| Priority | Signal | Why it matters | Source |
+|---|---|---|---|
+| ★★★ | **Last commit / push date** | Single most important filter. >6 months stale on a moving target like Pi = assume broken. | `gh api repos/<owner>/<repo> --jq .pushed_at` |
+| ★★★ | **Weekly npm downloads** | Real adoption. Beware: bundle packages (e.g. mitsupi) report combined counts | `curl -s https://api.npmjs.org/downloads/point/last-week/<pkg> \| jq .downloads` |
+| ★★★ | **Contributors count** | Bus factor. 1 contributor = single point of failure when they lose interest | `gh api repos/<owner>/<repo>/contributors --jq 'length'` |
+| ★★ | **Release cadence** | Tagged releases with semver, monotonic CHANGELOG. Distinguishes published packages from scratch repos. | `gh api repos/<owner>/<repo>/releases --jq 'length'` plus `[0].published_at` |
+| ★★ | **Commit frequency over last 90 days** | One stale commit at the cutoff is worse than steady weekly pushes. Catches "abandoned with one cleanup commit". | `gh api repos/<owner>/<repo>/commits --jq 'length'` (use `since` param) |
+| ★★ | **Open vs closed issues ratio** | Closed > open with recent activity = healthy. Many open issues with no responses = warning. | `gh issue list --state all --json state,createdAt` |
+| ★ | **GitHub stars** | Hype-biased and lagging. Useful as tie-breaker between two similar extensions, not a primary filter. | `gh api repos/<owner>/<repo> --jq .stargazers_count` |
+| ★ | **Forks count** | Forks signal real use (someone wanted to modify it). Also signals fragmentation if many forks have diverged. | `gh api repos/<owner>/<repo> --jq .forks_count` |
+| ★ | **Pi version compatibility stated** | README mentions which `@earendil-works/pi-coding-agent` versions it targets | README scan |
+
+### Maturity tag (derived from last push + commit frequency)
 
 | Tag | Meaning |
 |---|---|
-| `[active]` | Commit within the last month |
-| `[stable]` | Commit within ~6 months, no recent activity |
+| `[active]` | Commit within the last month and >1 commit in the last 90 days |
+| `[stable]` | Commit within ~6 months, low recent activity, but tagged releases |
 | `[experimental]` | Single-author, no releases, recent commits |
 | `[stale]` | No commits in >6 months — assume broken on current Pi |
+| `[abandoned]` | No commits in >12 months, open issues unanswered |
 | `[fork-of-X]` | Soft-forked from another extension — check whether the parent is more active |
 
 ### Fast recipe
 
 ```bash
-# Vital signs for one extension
+# Project-health one-liner for one extension
 REPO=owner/name
 PKG=npm-package-name
 
-gh api repos/$REPO --jq '{stars:.stargazers_count, pushed:.pushed_at, forks:.forks_count}'
-curl -s https://api.npmjs.org/downloads/point/last-week/$PKG | jq .downloads
+gh api "repos/$REPO" --jq '{
+  stars: .stargazers_count,
+  forks: .forks_count,
+  pushed: .pushed_at,
+  open_issues: .open_issues_count,
+  archived: .archived
+}'
+gh api "repos/$REPO/contributors" --jq 'length'
+gh api "repos/$REPO/releases" --jq 'length'
+gh api "repos/$REPO/commits?since=$(date -v-90d -u +%Y-%m-%dT%H:%M:%SZ)" --jq 'length'
+curl -s "https://api.npmjs.org/downloads/point/last-week/$PKG" | jq .downloads
 ```
 
-## Tier 2 — Maintenance signals
+Watch for **`archived: true`** — GitHub's archive flag is an explicit
+"don't use this" signal.
 
-Once you've filtered to a shortlist, check whether the project is built to last.
+## Tier 2 — Community sentiment
 
-| Signal | What "good" looks like | Source |
+What do real users actually say? Stars and downloads measure adoption,
+not satisfaction. A project can be popular and broken at the same time.
+
+Use the **already-aggregated** sources first. Resist generic web
+searches for opinions — that path leads to reviewer hallucination.
+
+| Source | Why it works | Cost |
 |---|---|---|
-| **Release discipline** | Tagged releases with semver, CHANGELOG present | `gh api repos/$REPO/releases` |
-| **Open vs closed issues ratio** | Closed > open, recent issues responded to | `gh issue list --state all --json state` |
-| **Maintainer response time on issues** | Days, not months | Manual scan |
-| **Featured in `qualisero/awesome-pi-agent`** | Curated list = peer-reviewed quality filter | `gh search code --repo qualisero/awesome-pi-agent <name>` |
-| **Pi version compatibility stated** | README mentions which `@earendil-works/pi-coding-agent` versions it targets | README scan |
+| **Pi Discord `#extensions` channel** | Where most user reports land. Already scraped by `qualisero/awesome-pi-agent`'s automation | Discord search, ~30s |
+| **Inclusion in `qualisero/awesome-pi-agent`** | Hand-curated list = distilled sentiment by maintainers who watch Discord | `gh search code --repo qualisero/awesome-pi-agent <name>` |
+| **GitHub Issues tone** | Direct user voice attached to the project. Read: response style on bugs, time-to-first-comment, whether closed issues are actually resolved or just abandoned | `gh issue list --repo $REPO --state all --limit 30` and scan |
+| **Mentions in other extensions' READMEs** | Peer signal. "Based on X", "fork of X", "inspired by X" = extension authors picking each other | `gh search code "<name>" --filename README.md` |
+| **Maintainer response time** | Days = healthy. Months = warning. Years = abandoned | Manual scan of recent issues |
+| **HN / Reddit / X mentions** | High noise, occasional gold. Time-box and weight low. | Web search, time-boxed to 5min |
 
-A project with 1k⭐ but no releases tagged in a year is a worse bet than a 30⭐ project with monthly tagged releases and a CHANGELOG.
+What **not** to do: don't run open-ended sentiment-analysis prompts
+("is this extension well-liked?"). The model will confabulate. Stick
+to concrete sources above.
 
 ## Tier 3 — Code quality signals
 

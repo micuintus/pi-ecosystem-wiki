@@ -2,6 +2,13 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] expand | Project health prioritized + community sentiment tier
+
+- Reframed `references/evaluation.md`. Tier 1 is now "Project Health" with priority-ranked metrics (★★★ last commit, npm downloads, contributors; ★★ release cadence, 90-day commit frequency, issue ratio; ★ stars, forks, version compatibility).
+- Added Tier 2 "Community Sentiment" with concrete cheap sources (Pi Discord, awesome-list inclusion, GitHub Issues tone, README cross-mentions). Explicitly warns against generic web-search sentiment prompts.
+- Added `[abandoned]` maturity tag (>12mo no commits, unanswered issues).
+- Expanded fast recipe to cover all health signals in one block.
+
 ## [2026-05-08] structure | Evaluation framework + entries-frontmatter convention
 
 - Added `references/evaluation.md`: three-tier framework (vital signs / maintenance / code quality) with copy-pasteable `gh` and `npm` recipes. Wiki captures stable identifiers (`repo:`, `npm:`); readers query live data on demand.
