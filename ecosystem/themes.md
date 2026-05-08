@@ -208,5 +208,5 @@ ship only JSON files plus a thin loader.
 ## See also
 
 - [Pi Themes documentation](https://pi.dev/docs/latest/themes) — official format reference
-- [Footer and Hashline Extensions](footer-and-hashline-extensions.md) — visual-layer extensions that compose with themes
+- [Footer / Powerline Extensions](footer-extensions.md) — visual-layer extensions that compose with themes
 - [Pi Ecosystem Catalogs](../references/catalogs.md) — `awesome-pi.site` indexes 131 themes total

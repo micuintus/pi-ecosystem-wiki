@@ -2,6 +2,19 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] refactor | Split footer + hashline surveys
+
+- Split `ecosystem/footer-and-hashline-extensions.md` (legacy lump from the private wiki) into two orthogonal pages: `ecosystem/footer-extensions.md` (visual status-bar layer) and `ecosystem/hashline-edit-extensions.md` (hash-anchored read/edit replacements).
+- The two niches share no design surface; only `oh-my-pi` (a fork) ships both. Cross-referenced from each.
+- Updated `index.md` (added "Tool behavior" section), `ecosystem/tool-rendering-extensions.md`, `ecosystem/themes.md` cross-links.
+
+## [2026-05-08] refactor | Roll entries-frontmatter to remaining surveys; backfill
+
+- Rolled the `entries:` frontmatter convention to subagent-extensions, web-ui-and-remote-access, llm-wiki-skills, web-search-extensions, footer-and-hashline-extensions. Stripped inline metric numbers in favor of pointers to `references/evaluation.md`.
+- Backfilled `pi-powerline-footer` `/vibe` and `workingVibeMode` detail (file vs ai modes; the openai-codex provider-binding gotcha).
+- Added entries for `bruclan/pi-hashline-edit`, `kcosr/codemap`, `Whamp/pi-read-map` to the hashline survey.
+- Folded "one tool, internal routing" guidance from the private `decisions/web-search-provider-strategy.md` into `references/web-search-providers.md`.
+
 ## [2026-05-08] feat | Themes survey
 
 - Added `ecosystem/themes.md`: 5-strategy survey (terminal-ANSI inheritance, single-port, curated bundle, distinct-UI, personal-collection) with 13 entries in frontmatter. Names the canonical implementation for each strategy rather than enumerating all 131 themes the catalogs index.
@@ -64,7 +77,7 @@ Append-only. Newest at top.
 ## [2026-05-08] ingest | Pi Footer, Powerline and Hashline Extensions
 
 - Registered: 9 sources (pi-powerline-footer, pi-fancy-footer, pi-powerbar, pi-vitals, diegopetrucci-pi-extensions, tomsej-pi-ext, pi-hashline-edit, pi-hashline-readmap, oh-my-pi).
-- Compiled: ecosystem/footer-and-hashline-extensions.md (consolidates footer-themes.md and pi-hashline-edit-tools.md from private wiki).
+- Compiled: ecosystem/footer-and-hashline-extensions.md (consolidates footer-themes.md and pi-hashline-edit-tools.md from private wiki). Later split into footer-extensions.md and hashline-edit-extensions.md — see 2026-05-08 refactor entry above.
 - Updated: index.md.
 
 ## [2026-05-08] ingest | Pi Web Search Extensions

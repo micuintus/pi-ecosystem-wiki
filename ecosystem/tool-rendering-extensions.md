@@ -124,9 +124,10 @@ winner.
 ## Tool-rendering vs status-bar extensions
 
 Tool-call rendering (this page) is **inline message-stream UI**.
-Status bars / footers / hash-anchored editor replacements live below
-the input box and are surveyed in
-[Footer and Hashline Extensions](footer-and-hashline-extensions.md).
-Some extensions (e.g. `pi-tool-display`) touch both surfaces in one
+Status bars / footers live below the input box and are surveyed in
+[Footer / Powerline Extensions](footer-extensions.md). Hash-anchored
+`read`/`edit` replacements live in
+[Hashline Edit Extensions](hashline-edit-extensions.md). Some
+extensions (e.g. `pi-tool-display`) touch both surfaces in one
 package, which is why they sometimes show up cross-listed in package
 catalogs.
