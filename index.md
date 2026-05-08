@@ -57,5 +57,6 @@ them.
 
 ## References and catalogs
 
+- [How to Evaluate a Pi Extension](references/evaluation.md) — vital signs, maintenance signals, code-quality recipes (the framework this wiki uses instead of stale numbers)
 - [Pi Ecosystem Catalogs and Awesome-Lists](references/catalogs.md) — Where to look when this wiki doesn't cover your need
 - [Web Search Providers](references/web-search-providers.md) — Backends behind the major AI products

@@ -20,6 +20,86 @@ sources:
   - latent-variable-pi-auto-continue
   - ghuntley-ralph
 tags: [extension, loop, ralph, autoresearch]
+entries:
+  - id: pi-autoresearch
+    name: pi-autoresearch
+    repo: davebcn87/pi-autoresearch
+    npm: pi-autoresearch
+    role: evolve-driver
+    notes: "Karpathy-inspired autoresearch with metric-gated keep/revert. Most adopted in this niche."
+  - id: mitsupi-loop
+    name: "mitsupi (loop.ts)"
+    repo: mitsuhiko/agent-stuff
+    npm: mitsupi
+    role: in-process-llm-tool
+    notes: "Canonical signal_loop_success pattern. Compaction-aware. Bundle (~25 extensions) shares download counts."
+  - id: pi-ralph-wiggum
+    name: "@tmustier/pi-ralph-wiggum"
+    repo: tmustier/pi-extensions
+    npm: "@tmustier/pi-ralph-wiggum"
+    role: in-process-llm-tool
+    notes: "ralph_done advance tool, reflection cadence, parallel loops in one repo."
+  - id: pi-review-loop
+    name: pi-review-loop
+    repo: nicobailon/pi-review-loop
+    npm: pi-review-loop
+    role: in-process-specialized
+    notes: "Code review until 'no issues found'."
+  - id: emanuelcasco-loop
+    name: emanuelcasco/pi-mono-extensions
+    repo: emanuelcasco/pi-mono-extensions
+    npm: "@emanuelcasco/pi-mono-extensions"
+    role: cron-scheduled
+    notes: "/loop [interval] — closest to Claude Code's /loop."
+  - id: jayshah-pi-extensions
+    name: jayshah5696/pi-agent-extensions
+    repo: jayshah5696/pi-agent-extensions
+    role: in-process-llm-tool
+    notes: "Adapts mitsuhiko's loop.ts with attribution."
+  - id: samfoy-pi-ralph
+    name: samfoy/pi-ralph
+    repo: samfoy/pi-ralph
+    role: hat-orchestration
+    notes: "YAML preset hats (Planner, Builder, Reviewer)."
+  - id: kostyay-agent-stuff
+    name: kostyay/agent-stuff
+    repo: kostyay/agent-stuff
+    role: in-process-llm-tool
+    notes: "Independent reimplementation of mitsuhiko's signal_loop_success pattern."
+  - id: rhobot-pi-ralph
+    name: "@rhobot-dev/pi-ralph"
+    repo: mikeyobrien/pi-ralph
+    npm: "@rhobot-dev/pi-ralph"
+    role: pty-embed
+    notes: "PTY-embeds external `ralph` CLI."
+  - id: ralph-loop-pi
+    name: ralph-loop-pi
+    repo: lnilluv/pi-ralph-loop
+    npm: ralph-loop-pi
+    role: subprocess-rpc
+    notes: "Subprocess + RPC + custom rendering. Most feature-complete with RALPH.md, guardrails, pause/resume."
+  - id: mikeyobrien-pi-autoloop
+    name: mikeyobrien/pi-autoloop
+    repo: mikeyobrien/pi-autoloop
+    role: pty-embed
+    notes: "PTY-embeds external `autoloop` CLI."
+  - id: rahulmutt-pi-ralph
+    name: "@rahulmutt/pi-ralph"
+    repo: rahulmutt/pi-ralph
+    npm: "@rahulmutt/pi-ralph"
+    role: branched-session
+    notes: "New session branch per iteration. Closest to Huntley's original."
+  - id: hermes-loop
+    name: akijain2000/hermes-loop
+    repo: akijain2000/hermes-loop
+    role: self-improving
+    notes: "Skill creation, context compression, persistent memory."
+  - id: pi-auto-continue
+    name: "@latent-variable/pi-auto-continue"
+    repo: latent-variable/pi-auto-continue
+    npm: "@latent-variable/pi-auto-continue"
+    role: in-process-agent-end
+    notes: "~50 LOC. agent_end → sendUserMessage('continue'). Hard cap 100."
 ---
 
 # Pi Loop and Ralph Extensions
@@ -29,42 +109,29 @@ deterministic iteration patterns, and Ralph Wiggum-style coding campaigns.
 
 14 distinct projects across 7 architectural variants.
 
-## Headline metrics (2026-05-06)
+## Live signals
 
-Sorted by GitHub stars. Weekly npm downloads as of 2026-04-29 to 2026-05-05.
+Stars, forks, weekly downloads, and last-push date are not inlined in
+this page — they decay too fast to be useful. The `entries:` frontmatter
+above lists each extension's `repo:` and `npm:` identifier; query
+[How to Evaluate a Pi Extension](../references/evaluation.md) for
+recipes that fetch the current vitals in one command per entry.
 
-| Rank | Extension | Repo | ⭐ Stars | 🍴 Forks | 👥 Contrib | 📦 Weekly DL | Last push | Approach |
-|------|-----------|------|--------:|--------:|----------:|------------:|-----------|----------|
-| 1 | **pi-autoresearch** | davebcn87/pi-autoresearch | **6,443** | 375 | **14** | **943** | 2026-05-06 | Autoresearch (try → measure → keep/revert) |
-| 2 | **mitsupi (`loop.ts`)** | mitsuhiko/agent-stuff | **2,275** | 167 | 4 | 168 | 2026-04-29 | LLM-tool breakout (`signal_loop_success`) — canonical pattern |
-| 3 | **@tmustier/pi-ralph-wiggum** | tmustier/pi-extensions | 291 | 19 | 4 | **927** | 2026-04-28 | LLM-tool advance (`ralph_done`) |
-| 4 | **pi-review-loop** | nicobailon/pi-review-loop | 75 | 12 | 2 | 133 | 2026-04-15 | Code review loop until "no issues found" |
-| 5 | **emanuelcasco/pi-mono-extensions** | emanuelcasco/pi-mono-extensions | 37 | 5 | 1 | 27 | 2026-05-06 | Cron-style `/loop [interval]` |
-| 6 | **jayshah5696/pi-agent-extensions** | jayshah5696/pi-agent-extensions | 24 | 2 | 3 | 208 | 2026-04-28 | Adapts mitsuhiko's `loop.ts` |
-| 7 | **samfoy/pi-ralph** | samfoy/pi-ralph | 11 | 1 | 1 | 25 | 2026-04-21 | Hat-based multi-agent orchestration |
-| 8 | **kostyay/agent-stuff** | kostyay/agent-stuff | 8 | 1 | 1 | (in-repo) | 2026-05-03 | LLM-tool breakout (`signal_loop_success`, separate from mitsuhiko's) |
-| 9 | **mikeyobrien/pi-ralph** | mikeyobrien/pi-ralph (`@rhobot-dev/pi-ralph`) | 7 | 0 | 1 | 8 | 2026-02-07 | PTY-embed external `ralph` CLI |
-| 10 | **ralph-loop-pi** | lnilluv/pi-ralph-loop | 2 | 1 | 2 | 21 | 2026-05-04 | Subprocess + RPC + custom rendering; RALPH.md |
-| 11 | **mikeyobrien/pi-autoloop** | mikeyobrien/pi-autoloop | 2 | 0 | 1 | (not on npm) | 2026-04-17 | PTY-embed external `autoloop` CLI |
-| 12 | **@rahulmutt/pi-ralph** | rahulmutt/pi-ralph | 2 | 0 | 1 | 32 | 2026-04-22 | Branched session per iteration |
-| 13 | **akijain2000/hermes-loop** | akijain2000/hermes-loop | 1 | 1 | 1 | (not on npm) | 2026-04-06 | Self-improving (skill creation, context compression) |
-| 14 | **@latent-variable/pi-auto-continue** | latent-variable/pi-auto-continue | 1 | 0 | 1 | 10 | 2026-04-11 | `agent_end` → `pi.sendUserMessage("continue")` |
+When this page makes adoption claims ("most adopted", "canonical
+pattern"), they reflect a relative ranking that has held over multiple
+audits, not a specific number.
 
-Notes:
-- `pi-autoresearch` dominates by stars and downloads, but is not a Ralph
-  loop in the strict sense — it is a Karpathy-inspired autoresearch harness
-  combining agent iteration with explicit benchmark-and-keep/revert
-  decisions. Listed here because it implements deterministic agent loops.
-- `mitsupi` (mitsuhiko/agent-stuff) hosts ~25 different extensions; download
-  counts reflect the entire bundle.
-- `jayshah5696/pi-agent-extensions` explicitly credits and adapts
-  mitsuhiko's `loop.ts`.
+## What this page is for
 
-## Two stars dominate
+Architectural and feature comparison across the 14 implementations.
+The structure here (variants A–G, hook-surface usage, recommendation
+matrix by goal) doesn't decay — it's about *how* each extension solves
+the loop problem, not *how popular* it is right now.
 
-**`davebcn87/pi-autoresearch`** (6,443 ⭐, 14 contributors) is the most
-adopted deterministic-loop project in the Pi ecosystem. A Karpathy-inspired
-autoresearch harness:
+## The two front-runners
+
+**`davebcn87/pi-autoresearch`** is the most adopted deterministic-loop
+project in the Pi ecosystem. A Karpathy-inspired autoresearch harness:
 
 ```
 loop:
@@ -85,10 +152,14 @@ Recent versions added compaction-aware behavior: `session_compact`
 re-prompts the agent to re-read `autoresearch.md` and continue, handling
 Pi's auto-compaction without stopping the loop.
 
-**`mitsuhiko/agent-stuff`** (2,275 ⭐) is Armin Ronacher's personal
-collection. Contains the canonical "agent-end loop with `signal_loop_success`
-breakout tool" in `extensions/loop.ts` — every later implementation either
-copies or independently re-derives this pattern.
+**`mitsuhiko/agent-stuff`** is Armin Ronacher's personal collection.
+Contains the canonical "agent-end loop with `signal_loop_success`
+breakout tool" in `extensions/loop.ts` — every later implementation
+either copies or independently re-derives this pattern.
+
+Note on bundle effects: `mitsupi` ships ~25 different extensions; npm
+download counts reflect the entire bundle, not the loop extension
+specifically.
 
 ## Architectural variants — 7 distinct approaches
 
@@ -164,28 +235,33 @@ Recurring interval-based — closer to Claude Code's `/loop` than to Ralph.
 
 Deterministic agent loops that don't fit the Ralph mold:
 
-| Implementation | Approach | Stars |
-|---|---|---|
-| **davebcn87/pi-autoresearch** | Karpathy-inspired autoresearch with metric-gated keep/revert; explicit benchmark backpressure | 6,443 |
-| **akijain2000/hermes-loop** | Self-improving runtime: creates skills from experience, iterative context compression, persistent memory; runs on Pi or Claude Code | 1 |
-| **nicobailon/pi-review-loop** | Specialized for code review: iterates until "no issues found"; auto-trigger on phrases like "implement the plan"; smart exit detection | 75 |
+| Implementation | Approach |
+|---|---|
+| **davebcn87/pi-autoresearch** | Karpathy-inspired autoresearch with metric-gated keep/revert; explicit benchmark backpressure |
+| **akijain2000/hermes-loop** | Self-improving runtime: creates skills from experience, iterative context compression, persistent memory; runs on Pi or Claude Code |
+| **nicobailon/pi-review-loop** | Specialized for code review: iterates until "no issues found"; auto-trigger on phrases like "implement the plan"; smart exit detection |
 
 ## Code quality observations
 
+These are structural notes from inspecting each codebase. They aren't
+quality scores — they're features and patterns you can verify quickly.
+For a current evaluation framework see
+[How to Evaluate a Pi Extension](../references/evaluation.md).
+
 | Extension | Notes |
 |---|---|
-| **pi-autoresearch** | Well-tested (CI/CD via GitHub Actions, npm OIDC trusted publishing, 14 contributors, 16+ releases, comprehensive CHANGELOG). TypeBox for schemas; cleanly split extension/skill. Compaction-aware (v1.2+). Dashboard config supports user shortcut overrides. Production-grade. |
+| **pi-autoresearch** | CI/CD via GitHub Actions, npm OIDC trusted publishing, multiple contributors, regular tagged releases, comprehensive CHANGELOG. TypeBox for schemas; cleanly split extension/skill. Compaction-aware (v1.2+). Dashboard config supports user shortcut overrides. The most production-grade extension in this niche. |
 | **mitsuhiko/agent-stuff `loop.ts`** | Concise (~250 LOC), TypeBox, structured for clarity. Clean state-machine model. Hooks `session_before_compact` to preserve loop intent across compaction (the only extension surveyed that does this). Uses Haiku for the status-widget condition summary. Idiomatic TypeScript. |
 | **@tmustier/pi-ralph-wiggum** | ~700 LOC. State persisted to `.ralph/<name>.state.json` + `.ralph/<name>.md`. Survives reload via `session_start` rehydration. `<promise>COMPLETE</promise>` text marker. `migrateState()` for backwards-compat. Production-grade for the use case. |
 | **pi-review-loop** | ~250 LOC main extension. Configurable patterns (trigger, exit, prompt). Smart exit detection (won't be fooled by "Fixed N issues. No further issues found."). "Fresh context" mode strips prior review iterations from context. |
 | **ralph-loop-pi** (lnilluv) | ~1300 LOC. Heavy: full RPC parent/child plumbing, signal handling, response correlation with timeout. Tasks-folder workflow. YAML frontmatter with rich validation. Goal-continuation audits per iteration. Test parity harness for iteration determinism. Most feature-complete; also most surface area to maintain. |
 | **rahulmutt/pi-ralph** | Minimalist (~few hundred LOC). Cleanly written. `.ralph/<YYYY>/<MM>/<DD>/RALPH-*.md` progress hierarchy. Branches new session per iteration via session APIs. No subprocess. Closest to Huntley's original. |
-| **samfoy/pi-ralph** | Medium-sized. YAML-driven preset system. Six built-in presets covering common workflows. `/plan` PDD workflow saves artifacts to `specs/<task-name>/`. Single contributor; 11 stars suggests modest adoption. |
+| **samfoy/pi-ralph** | Medium-sized. YAML-driven preset system. Six built-in presets covering common workflows. `/plan` PDD workflow saves artifacts to `specs/<task-name>/`. Single contributor. |
 | **mikeyobrien/pi-ralph** (PTY) | Small wrapper. Delegates real work to external `ralph` CLI. Status widget + overlay + LLM tool. If the external CLI changes, the wrapper needs updates. |
 | **emanuelcasco/pi-mono-extensions/loop** | Small. Smart input parsing (leading token vs trailing "every" clause vs default). 7-day auto-expiry. Clean cleanup on session shutdown. |
 | **latent-variable/pi-auto-continue** | ~50 LOC. The minimalist choice. `setTimeout(...,0)` defer trick to let agent settle into idle. User-input counter reset. Aborted-turn detection. |
 | **kostyay/agent-stuff `loop.ts`** | Independent reimplementation of mitsuhiko's pattern; ~250 LOC; similar shape with `signal_loop_success`. Author has 25+ other Pi extensions. |
-| **akijain2000/hermes-loop** | Combines pi-mono + hermes-agent + Skill Factory. Self-improving (creates skills from experience), iterative context compression, persistent memory. Mostly research-grade; 1 star, 1 contributor. |
+| **akijain2000/hermes-loop** | Combines pi-mono + hermes-agent + Skill Factory. Self-improving (creates skills from experience), iterative context compression, persistent memory. Mostly research-grade. |
 
 ## Hook-surface usage matrix
 
@@ -216,12 +292,12 @@ preserve loop state across compaction. Every other in-process loop will
 
 | Goal | Best extension | Why |
 |---|---|---|
-| Deterministic improvement loops with metrics (test speed, bundle size, LLM training) | **pi-autoresearch** | 6.4k ⭐, 14 contributors, production-grade, compaction-aware, confidence scoring, dashboard. Standard for this niche. |
+| Deterministic improvement loops with metrics (test speed, bundle size, LLM training) | **pi-autoresearch** | Most adopted in this niche; production-grade; compaction-aware; confidence scoring; dashboard |
 | Single-context loop (visible iterations, compaction-safe) | **mitsuhiko/agent-stuff `loop.ts`** | The canonical pattern. Compaction-safe via `session_before_compact`. |
 | Closest to Huntley's Ralph (fresh context every iteration, prompt file based) | **rahulmutt/pi-ralph** | Branches new session per iter; clean cold start; minimal LOC; closest to bash `while :; do cat PROMPT.md \| pi -p; done` semantics |
 | Production autonomous campaigns (guardrails, presets, completion gating, pause/resume, RALPH.md) | **lnilluv/pi-ralph-loop** | Most complete: RALPH.md frontmatter, completion_gate, required_outputs, block_commands, protected_files, signal-based pause/resume, RPC subprocess architecture |
 | Just want autocontinue overnight | **latent-variable/pi-auto-continue** | 50 LOC, hard cap of 100, abort-aware. Simplest possible thing. |
-| TODO/PRD/feature-list driven loops with reflection | **@tmustier/pi-ralph-wiggum** | LLM-driven via `ralph_done` tool; reflection cadence; multiple parallel loops in one repo; 927/wk downloads |
+| TODO/PRD/feature-list driven loops with reflection | **@tmustier/pi-ralph-wiggum** | LLM-driven via `ralph_done` tool; reflection cadence; multiple parallel loops in one repo |
 | Multi-role workflow (Planner → Builder → Reviewer, TDD pipelines) | **samfoy/pi-ralph** | Hat-based with built-in presets (TDD, spec-driven, debug, refactor) |
 | External Ralph CLI integration | **mikeyobrien/pi-ralph** (for `ralph`) or **mikeyobrien/pi-autoloop** (for `autoloop`) | If you already use these external runtimes, Pi becomes a launcher/inspector |
 | Cron-style scheduled prompts | **emanuelcasco/pi-mono-extensions/loop** | Closest to Claude Code's `/loop` semantics |
@@ -240,5 +316,6 @@ with optional LLM-tool breakout. The hook surface
 
 ## See also
 
+- [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs, maintenance signals, and code-quality recipes
 - [Ghuntley — Ralph Wiggum as a software engineer](https://ghuntley.com/ralph/) — the article that popularized the pattern
 - [Karpathy — autoresearch idea](https://x.com/karpathy/status/1827143768459637044) — origin of the autoresearch shape

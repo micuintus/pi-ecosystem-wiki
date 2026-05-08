@@ -2,6 +2,13 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] structure | Evaluation framework + entries-frontmatter convention
+
+- Added `references/evaluation.md`: three-tier framework (vital signs / maintenance / code quality) with copy-pasteable `gh` and `npm` recipes. Wiki captures stable identifiers (`repo:`, `npm:`); readers query live data on demand.
+- Updated `SCHEMA.md`: added `entries:` frontmatter convention for `type: ecosystem` survey pages. Inline numeric values (stars, downloads, last-commit) are explicitly disallowed in body prose.
+- Pilot rewrite of `ecosystem/loop-extensions.md` to the new convention: stripped headline-metrics table and inline star/download counts; added 14 entries with stable IDs to frontmatter; preserved all architectural variant descriptions, hook-surface matrix, and recommendation matrix (timeless content).
+- Registered: github-rest-api, npm-downloads-api as methodology sources.
+
 ## [2026-05-08] restructure | Use-case landing + catalogs reference
 
 - Reframed wiki around "pick the right extension for your Pi setup" persona.

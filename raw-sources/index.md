@@ -144,3 +144,5 @@ copied into a dated bucket file.
 | kcosr-pi-extensions | repo | https://github.com/kcosr/pi-extensions | extension-collection |
 | oh-my-pi-collection | repo | https://github.com/can1357/oh-my-pi | extension-collection, fork |
 | pi-packages-docs | docs | https://pi.dev/docs/latest/packages | docs, packages |
+| github-rest-api | docs | https://docs.github.com/en/rest | docs, methodology |
+| npm-downloads-api | docs | https://github.com/npm/registry/blob/main/docs/download-counts.md | docs, methodology |

@@ -21,10 +21,9 @@ pi-ecosystem-wiki/
 ├── log.md               # append-only ingest log
 ├── raw-sources/
 │   └── index.md         # registry of every source
-├── concepts/            # what things are
-├── comparisons/         # X vs Y
-├── ecosystem/           # per-package reference pages
-└── references/          # pointers to upstream docs and lists
+├── ecosystem/           # surveys of extensions by use case
+└── references/          # pointers to upstream docs and lists,
+                         # plus evaluation/methodology pages
 ```
 
 ## Page frontmatter (mandatory)
@@ -39,6 +38,29 @@ sources: [<id from raw-sources/index.md>, ...]
 ```
 
 Optional: `tags: [tag1, tag2]`.
+
+### Survey-page entries (recommended for `type: ecosystem`)
+
+Survey pages list multiple extensions. To keep numbers from going stale,
+put extension identifiers in frontmatter as machine-readable entries
+and **do not** inline live numbers (stars, downloads, last-commit dates)
+in the body. Readers and agents query those at read-time using the
+recipes in [`references/evaluation.md`](references/evaluation.md).
+
+```yaml
+entries:
+  - id: pi-autoresearch                     # short stable slug
+    name: pi-autoresearch                   # display name
+    repo: davebcn87/pi-autoresearch         # GitHub owner/repo
+    npm: pi-autoresearch                    # npm package name (optional)
+    role: evolve-driver                     # one-word categorical tag
+    notes: "Karpathy-inspired autoresearch harness"
+```
+
+Body prose may make qualitative claims ("dominates", "single-author")
+backed by a `# (live: gh api ...)` recipe link, but should not name a
+specific star count, download number, or commit date. Architectural
+and feature comparisons are timeless and stay inline.
 
 ## Page types
 
