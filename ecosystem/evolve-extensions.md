@@ -8,6 +8,13 @@ sources:
   - openevolve
   - shinkaevolve
 tags: [extension, evolve, autoresearch]
+entries:
+  - id: pi-autoresearch
+    name: pi-autoresearch
+    repo: davebcn87/pi-autoresearch
+    npm: pi-autoresearch
+    role: evolve-driver
+    notes: "Karpathy-inspired autoresearch with metric-gated keep/revert. The only production evolve extension in the Pi ecosystem; see also loop-extensions for general iteration patterns."
 ---
 
 # Pi Evolve / Code-Optimization Extensions
@@ -18,7 +25,7 @@ try a variant, benchmark it, keep or discard, repeat.
 ## The niche is nearly empty
 
 Only one production evolve extension exists for Pi today:
-**`davebcn87/pi-autoresearch`** (6,443⭐). Everything else in the Pi
+**`davebcn87/pi-autoresearch`**. Everything else in the Pi
 ecosystem either iterates without variant storage (Ralph extensions) or
 doesn't tackle the metric-gated keep/discard pattern at all.
 
@@ -39,9 +46,11 @@ distinct.
 
 ## `davebcn87/pi-autoresearch`
 
-Stats: 6,443⭐, 375 forks, 14 contributors, 943/wk npm downloads, 16+
-releases, comprehensive CHANGELOG, CI/CD via GitHub Actions, npm OIDC
-trusted publishing. Production-grade by every measure.
+Project signals: well-tagged release history, CHANGELOG present, CI/CD
+via GitHub Actions, npm OIDC trusted publishing, multiple contributors.
+Production-grade by every structural measure. For current vital signs
+(stars, downloads, last push), query as described in
+[How to Evaluate a Pi Extension](../references/evaluation.md).
 
 Inspiration: Karpathy's [autoresearch](https://github.com/karpathy/autoresearch)
 (single-branch hill-climbing). `pi-autoresearch` is the Pi-native

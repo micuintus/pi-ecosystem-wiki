@@ -70,3 +70,76 @@ with auto-selection. Adding Brave matches the provider choice of
 Claude.ai and Le Chat, improves general web/news coverage, and adds a
 free-tier option. The multi-provider pattern is standard — no major AI
 product relies on a single search backend.
+
+## Routing guidance — one tool, internal selection
+
+The non-obvious design rule when a Pi setup has *multiple* search
+backends configured: **expose one tool to the model, route internally.
+Never expose multiple search tools.**
+
+Every major AI product follows this rule. Claude.ai/Code, ChatGPT,
+Gemini, and Le Chat all have multiple backends or fallbacks but
+present the model with a single search capability:
+
+| Product | Backends | What the model sees |
+|---|---|---|
+| Claude.ai / Claude Code | Brave Search | One `WebSearch` tool |
+| ChatGPT | Bing + OAI index + others | One search capability |
+| Gemini | Google Search | One grounding tool |
+| Le Chat | Brave Search | One web search tool |
+
+### The right shape
+
+```ts
+// One tool — provider chosen internally
+{
+  name: "web_search",
+  parameters: {
+    query: string,
+    provider: "auto" | "exa" | "brave" | "perplexity" | "gemini",
+  }
+}
+
+// Implementation routes based on query intent + available keys
+function resolveProvider(query, config) {
+  if (config.provider !== "auto") return config.provider;
+  if (looksLikeCodeQuery(query))  return "exa";    // technical docs/APIs
+  if (looksLikeNewsQuery(query))  return "brave";  // current events
+  if (config.perplexityKey)       return "perplexity"; // synthesis
+  return "gemini"; // fallback
+}
+```
+
+The model sees a tool description that **does not name specific
+providers**:
+
+> `web_search`: Search the web for current information. The tool
+> automatically selects the best provider for your query.
+
+### The wrong shape
+
+```ts
+brave_search({ query: "..." })       // Which one?
+exa_search({ query: "..." })         // When do I use which?
+perplexity_search({ query: "..." })  // The model now has to choose every call
+```
+
+Multiple visible tools force the model to make a meta-decision on
+every search. It will get it wrong, sometimes spectacularly. Never do
+this.
+
+### Why this matters when picking extensions
+
+Some Pi web search extensions ship multiple-tool surfaces; others
+ship one tool with internal routing. When evaluating, check:
+
+- Does the extension register **one** tool or **several**?
+- If several, do their descriptions make the LLM-side choice obvious,
+  or do they overlap?
+- Can the user override provider selection per-call without that
+  override being a separate tool?
+
+Single-tool-with-routing is the right answer at scale. The exception
+is genuinely orthogonal capabilities (e.g. `web_search` vs
+`fetch_url` vs `youtube_transcript`) — those are different verbs, not
+different backends for the same verb.

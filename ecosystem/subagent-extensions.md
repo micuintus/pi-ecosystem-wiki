@@ -15,6 +15,62 @@ sources:
   - noahsaso-my-pi
   - pi-rfc-552
 tags: [extension, subagent]
+entries:
+  - id: pi-mono-subagent-example
+    name: "pi-mono examples/extensions"
+    repo: badlogic/pi-mono
+    role: subprocess-reference
+    notes: "Reference subprocess-spawn implementation. JSON-mode output. Single, parallel, chain modes."
+  - id: mjakl-pi-subagent
+    name: pi-subagent (mjakl)
+    repo: mjakl/pi-subagent
+    role: subprocess-spawn
+    notes: "Single (spawn or fork), parallel. Configurable spawn/fork context modes."
+  - id: aleclarson-pi-subagent
+    name: pi-subagent (aleclarson)
+    repo: aleclarson/pi-subagent
+    role: subprocess-fork
+    notes: "Fork of mjakl/pi-subagent."
+  - id: jamwil-pi-subagent
+    name: pi-subagent (jamwil)
+    repo: jamwil/pi-subagent
+    role: subprocess-fork
+    notes: "Fork of mjakl/pi-subagent."
+  - id: e9n-pi-subagent
+    name: "@e9n/pi-subagent"
+    repo: espennilsen/pi
+    npm: "@e9n/pi-subagent"
+    role: subprocess-orchestration
+    notes: "Most workflow-rich. Hierarchical agent trees; agents spawn and message each other; pool-based dispatch."
+  - id: pi-fast-subagent
+    name: pi-fast-subagent
+    repo: tuansondinh/pi-fast-subagent
+    npm: pi-fast-subagent
+    role: in-process
+    notes: "createAgentSession() in same process — no subprocess cold-start. Single, parallel, background modes."
+  - id: pi-subagents
+    name: pi-subagents
+    repo: nicobailon/pi-subagents
+    npm: pi-subagents
+    role: async-artifact
+    notes: "Largest single-author subagent extension. Async delegation with truncation, artifacts, and session sharing."
+  - id: noahsaso-interactive-subagents
+    name: pi-interactive-subagents
+    repo: noahsaso/my-pi
+    role: async-multiplexer
+    notes: "Subagents in multiplexer panes for interactive orchestration. Bundled in noahsaso's Pi collection."
+  - id: pi-delegate
+    name: pi-delegate
+    repo: drsh4dow/pi-delegate
+    npm: pi-delegate
+    role: minimal
+    notes: "One delegate tool. Fresh child, runs task, returns result. 'Small by design.'"
+  - id: cmf-pi-subagent
+    name: "@cmf/pi-subagent"
+    repo: cmf/pi-subagent
+    npm: "@cmf/pi-subagent"
+    role: library
+    notes: "Library exporting invokeAgentWithUI and registerSubagentRenderer for other extensions. Direction RFC #552 explores."
 ---
 
 # Subagent Extensions
@@ -44,26 +100,26 @@ library.
 
 ### Subprocess-spawn family
 
-| Extension | Stars | Modes | Notes |
-|---|---|---|---|
-| **`badlogic/pi-mono` example** | (in repo) | single, parallel, chain | Reference implementation. JSON-mode output. Spawns a `pi` process per call. |
-| **`mjakl/pi-subagent`** | small | single (spawn or fork), parallel | Configurable `spawn` / `fork` context modes. Lightweight. |
-| **`aleclarson/pi-subagent`** | fork | spawn / fork | Fork of mjakl's; same architecture. |
-| **`jamwil/pi-subagent`** | fork | as upstream | Fork of mjakl's. |
-| **`espennilsen/pi/extensions/pi-subagent`** (`@e9n/pi-subagent`) | small | single, parallel, chain, orchestrator, pool | Most workflow-rich. Hierarchical agent trees, agents can spawn and message each other, pool-based dispatch. |
+| Extension | Modes | Notes |
+|---|---|---|
+| **`badlogic/pi-mono` example** | single, parallel, chain | Reference implementation. JSON-mode output. Spawns a `pi` process per call. |
+| **`mjakl/pi-subagent`** | single (spawn or fork), parallel | Configurable `spawn` / `fork` context modes. Lightweight. |
+| **`aleclarson/pi-subagent`** | spawn / fork | Fork of mjakl's; same architecture. |
+| **`jamwil/pi-subagent`** | as upstream | Fork of mjakl's. |
+| **`espennilsen/pi/extensions/pi-subagent`** (`@e9n/pi-subagent`) | single, parallel, chain, orchestrator, pool | Most workflow-rich. Hierarchical agent trees, agents can spawn and message each other, pool-based dispatch. |
 
 ### In-process
 
-| Extension | Weekly downloads | Approach |
-|---|---|---|
-| **`tuansondinh/pi-fast-subagent`** (`pi-fast-subagent`) | 1.7K | `createAgentSession()` in same process. No subprocess cold-start, reuses Pi auth/model registry. Single, parallel, background (fire-and-forget with poll/cancel) modes. Slash commands for background job status. |
+| Extension | Approach |
+|---|---|
+| **`tuansondinh/pi-fast-subagent`** (`pi-fast-subagent`) | `createAgentSession()` in same process. No subprocess cold-start, reuses Pi auth/model registry. Single, parallel, background (fire-and-forget with poll/cancel) modes. Slash commands for background job status. |
 
 ### Async / artifact-oriented
 
-| Extension | Stars | Approach |
-|---|---|---|
-| **`nicobailon/pi-subagents`** | 1K | Largest single-author subagent extension. Async delegation with truncation, artifacts, and session sharing. Use cases: code review, scouting, parallel audits, saved workflows, background jobs. |
-| **`noahsaso/pi-interactive-subagents`** | (in `noahsaso/my-pi`) | Subagents in multiplexer panes; interactive orchestration. Bundled in noahsaso's Pi extension collection. |
+| Extension | Approach |
+|---|---|
+| **`nicobailon/pi-subagents`** | Largest single-author subagent extension. Async delegation with truncation, artifacts, and session sharing. Use cases: code review, scouting, parallel audits, saved workflows, background jobs. |
+| **`noahsaso/pi-interactive-subagents`** (in `noahsaso/my-pi`) | Subagents in multiplexer panes; interactive orchestration. Bundled in noahsaso's Pi extension collection. |
 
 ### Minimal
 
@@ -73,9 +129,9 @@ library.
 
 ### Library / infrastructure
 
-| Extension | Stars | Approach |
-|---|---|---|
-| **`cmf/pi-subagent`** (`@cmf/pi-subagent`) | small | Library, not a standalone extension. Exports `invokeAgentWithUI` and `registerSubagentRenderer` for other extensions to build on top of. The "extract subagent execution into a library" direction RFC #552 is exploring. |
+| Extension | Approach |
+|---|---|
+| **`cmf/pi-subagent`** (`@cmf/pi-subagent`) | Library, not a standalone extension. Exports `invokeAgentWithUI` and `registerSubagentRenderer` for other extensions to build on top of. The "extract subagent execution into a library" direction RFC #552 is exploring. |
 
 ## Tradeoffs
 
@@ -102,5 +158,7 @@ time. The **subprocess** approach is preferred when isolation matters
 - **Pi** delegates this to extensions, which is why the variant
   landscape exists at all. Different teams pick different tradeoffs.
 
-See [Loop Architectures](../comparisons/loop-architectures.md) for the
-broader framing.
+## See also
+
+- [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes for picking among these variants
+- [Loop and Ralph Extensions](loop-extensions.md) — related iteration-pattern surveys

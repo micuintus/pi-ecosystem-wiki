@@ -8,6 +8,28 @@ sources:
   - patriceckhart-pi-todo
   - jayshah-pi-agent-extensions
 tags: [extension, todo]
+entries:
+  - id: pi-mono-todo
+    name: "pi-mono examples/extensions/todo.ts"
+    repo: badlogic/pi-mono
+    role: reference-impl
+    notes: "In-tree reference. Tool-only TODO with details-stored state. /todos slash command opens read-only viewer."
+  - id: pi-todo-md
+    name: pi-todo-md
+    repo: forjd/pi-todo-md
+    npm: pi-todo-md
+    role: external-file
+    notes: "Tool + repo-local TODO.md. LLM and human can both edit."
+  - id: patriceckhart-pi-todo
+    name: pi-todo (patriceckhart)
+    repo: patriceckhart/pi-todo
+    role: external-sync
+    notes: "Tool + Apple Reminders sync via Swift+EventKit. Interactive TUI for browse/edit. macOS only."
+  - id: jayshah-pi-extensions-todo
+    name: jayshah5696/pi-agent-extensions
+    repo: jayshah5696/pi-agent-extensions
+    role: bundle
+    notes: "Bundle including TODO-related items among other extensions."
 ---
 
 # Pi TODO List Extensions

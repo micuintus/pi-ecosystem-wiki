@@ -12,22 +12,98 @@ sources:
   - pi-hashline-edit
   - pi-hashline-readmap
   - oh-my-pi
+  - bruclan-pi-hashline-edit
+  - kcosr-codemap
+  - whamp-pi-read-map
 tags: [extension, footer, powerline, hashline, edit]
+entries:
+  - id: pi-powerline-footer
+    name: pi-powerline-footer
+    repo: nicobailon/pi-powerline-footer
+    npm: pi-powerline-footer
+    role: footer-default
+    notes: "Powerline-style status bar. 6 presets. Working vibes via /vibe. Editor stash. Bash mode. Dominant in this niche."
+  - id: pi-fancy-footer
+    name: pi-fancy-footer
+    repo: mavam/pi-fancy-footer
+    npm: pi-fancy-footer
+    role: footer-widget-system
+    notes: "Two-line, widget API, interactive /fancy-footer config editor. 17 built-in widgets, 8 context-bar styles, 4 icon families."
+  - id: pi-powerbar
+    name: pi-powerbar
+    repo: juanibiapina/pi-powerbar
+    npm: "@juanibiapina/pi-powerbar"
+    role: footer-event-driven
+    notes: "Event-driven segments — extensions emit powerbar:update with no imports. tmux-like left/right alignment."
+  - id: pi-vitals
+    name: pi-vitals
+    repo: mcowger/pi-vitals
+    npm: pi-vitals
+    role: footer-minimal-config
+    notes: "Configurable left/right segments via ~/.pi/agent/powerline.json. Lightweight."
+  - id: diegopetrucci-minimal-footer
+    name: minimal-footer (diegopetrucci)
+    repo: diegopetrucci/pi-extensions
+    npm: "@diegopetrucci/pi-minimal-footer"
+    role: footer-minimal
+    notes: "Two-line minimal layout. OpenAI Codex usage tracking. Bundled with oracle/permission-gate/notify."
+  - id: tomsej-custom-footer
+    name: custom-footer (tomsej)
+    repo: tomsej/pi-ext
+    role: footer-collection
+    notes: "Compact powerline single line. Part of 12+ extension pi-ext bundle. Not standalone-installable."
+  - id: pi-powerline-unscoped
+    name: pi-powerline (unscoped)
+    npm: pi-powerline
+    role: footer-broader-ui
+    notes: "Broader Powerline-style UI extensions. Limited public info beyond npm listing."
+  - id: pi-hashline-edit
+    name: pi-hashline-edit
+    repo: RimuruW/pi-hashline-edit
+    npm: pi-hashline-edit
+    role: hashline-edit-focused
+    notes: "Replaces read/edit only. Hash-anchored line editing with stale-anchor detection. 20+ test files. 'Fail hard, be predictable.' Inspired by oh-my-pi."
+  - id: bruclan-pi-hashline-edit
+    name: pi-hashline-edit (bruclan)
+    repo: bruclan/pi-hashline-edit
+    role: hashline-fork
+    notes: "Fork of RimuruW/pi-hashline-edit."
+  - id: pi-hashline-readmap
+    name: pi-hashline-readmap
+    repo: coctostan/pi-hashline-readmap
+    npm: pi-hashline-readmap
+    role: hashline-full-overhaul
+    notes: "Replaces read/edit/grep/ls/find. Structural file maps for 18 languages. Symbol-aware nav. ast_search. Bash output compression. 60+ test files."
+  - id: kcosr-codemap
+    name: codemap
+    repo: kcosr/codemap
+    role: hashline-adjacent
+    notes: "Codemap navigation extension; lighter alternative in the hashline-edit space."
+  - id: whamp-pi-read-map
+    name: pi-read-map
+    repo: Whamp/pi-read-map
+    npm: pi-read-map
+    role: hashline-adjacent
+    notes: "Lightweight read-map navigation extension."
+  - id: oh-my-pi
+    name: oh-my-pi
+    repo: can1357/oh-my-pi
+    role: full-fork
+    notes: "Full pi-mono fork — not an extension. Origin of the hashline concept; both standalone hashline extensions credit it. Requires switching off pi-mono entirely."
 ---
 
 # Pi Footer, Powerline and Hashline Extensions
 
 Survey of Pi extensions that customize the footer/status bar and of those
 that replace the built-in `read`/`edit` tools with hash-anchored line
-references. Numbers as of 2026-05-05.
+references.
+
+For current vital signs (stars, weekly downloads, last push) of any
+entry, see [How to Evaluate a Pi Extension](../references/evaluation.md).
 
 ## Footer / powerline / status bar
 
 ### pi-powerline-footer (nicobailon)
-
-- Repo: [nicobailon/pi-powerline-footer](https://github.com/nicobailon/pi-powerline-footer)
-- Stars: 201 · Forks: 41 · Open issues: 15 · Releases: 39 (latest v0.5.1, 2026-05-03)
-- npm: `pi-powerline-footer` · ~2,900/wk · ~9,957/mo · 332 KB · 0 deps · MIT
 
 Powerline-style status bar inspired by Powerlevel10k and oh-my-pi.
 Six presets (default, minimal, compact, full, nerd, ascii). Welcome
@@ -38,15 +114,28 @@ scroll toggle. Git branch/status, model name, thinking level, token
 usage, cost, context %. Auto Nerd Font detection with ASCII fallback.
 Configurable via `~/.pi/agent/settings.json`.
 
-Single-file `index.ts` (~96 KB) — monolithic but well-organized. No
-external dependencies. 39 releases in ~4 months. 4 contributors.
-Dominant market share among footer extensions.
+Single-file `index.ts` (large, monolithic but well-organized). No
+external dependencies. Active release cadence. Dominant by adoption
+in the footer niche.
+
+#### `/vibe` and `workingVibeMode` setting
+
+`workingVibeMode` controls how `/vibe` generates the rotating
+working-state messages:
+
+| Mode | What it does |
+|---|---|
+| `file` | Picks from a curated set of pre-written strings |
+| `ai` | One small LLM call per `/vibe` change generates themed messages dynamically |
+
+**Known gotcha:** `ai` mode initially fails with
+`Error: Failed to generate vibes: No API key for provider: openai-codex`
+when the vibe LLM call is bound to a separate provider rather than the
+currently-selected Pi model. Fix: ensure the extension version you have
+binds to the active Pi model. If it doesn't, switch to `file` mode or
+upgrade.
 
 ### pi-fancy-footer (mavam)
-
-- Repo: [mavam/pi-fancy-footer](https://github.com/mavam/pi-fancy-footer)
-- Stars: 6 · Forks: 2 · Open issues: 1 · Releases: 10 (latest v0.5.1, 2026-04-15)
-- npm: `pi-fancy-footer` · ~369/wk · MIT
 
 Two-line fancy status footer (compact, information-dense). Interactive
 TUI config editor via `/fancy-footer`. Widget system with 17 built-in
@@ -59,13 +148,9 @@ Third-party extension widget contribution API.
 
 Modular (`api`, `config-editor`, `render`, `git`, `ci`, `pull-request`).
 Has tests. Structured changelog with `manifest.yaml` per release.
-2 contributors. Niche but well-crafted; unique widget API.
+Niche but well-crafted; unique widget API.
 
 ### pi-powerbar (juanibiapina)
-
-- Repo: [juanibiapina/pi-powerbar](https://github.com/juanibiapina/pi-powerbar)
-- Stars: 22 · Forks: 2 · Open issues: 1
-- npm: `@juanibiapina/pi-powerbar` · ~555/wk · 78.9 KB · 1 dep · MIT
 
 Event-driven segment architecture (tmux-like left/right alignment).
 Any extension can emit `powerbar:update` to add segments — no imports
@@ -75,14 +160,10 @@ Configurable via `pi-extension-settings` (`/extension-settings`).
 Placement above or below editor.
 
 Very modular (separate `powerbar-context`, `powerbar-git`, etc.). Has
-tests. Uses `biome.json`. 3 contributors. Praised for clean
-architecture; load-order sensitivity is a known friction point.
+tests. Uses `biome.json`. Praised for clean architecture; load-order
+sensitivity is a known friction point.
 
 ### pi-vitals (mcowger)
-
-- Repo: [mcowger/pi-vitals](https://github.com/mcowger/pi-vitals)
-- Stars: 6 · Forks: 3 · Open issues: 1
-- npm: `pi-vitals` · ~48/wk · MIT
 
 Customizable left/right segments. Git integration (branch, staged,
 unstaged, untracked). Token tracking (input/output/total/cache
@@ -90,14 +171,10 @@ read/write). Context awareness. Thinking level indicator. Nerd Font
 auto-detection + ASCII fallback. Live updates. Config via
 `~/.pi/agent/powerline.json`.
 
-Small codebase (~8 files, no deps). 1 contributor. Lightweight
-alternative to `pi-powerline-footer`.
+Small codebase, no deps. Lightweight alternative to
+`pi-powerline-footer`.
 
 ### minimal-footer (diegopetrucci/pi-extensions)
-
-- Repo: [diegopetrucci/pi-extensions](https://github.com/diegopetrucci/pi-extensions) (collection)
-- Collection stars: 6
-- npm: `@diegopetrucci/pi-minimal-footer` · ~266/wk · 4.2 KB · MIT
 
 Minimal two-line layout: `<git-branch> <repo-name>` then
 `<context-%> <model> • <thinking>`. Optional "DUMB ZONE" indicator.
@@ -106,9 +183,6 @@ to one line. Bundled with other useful extensions (oracle,
 permission-gate, notify).
 
 ### custom-footer (tomsej/pi-ext)
-
-- Repo: [tomsej/pi-ext](https://github.com/tomsej/pi-ext) (collection)
-- Collection stars: 35 · Forks: 2 · MIT
 
 Compact powerline-style single line:
 
@@ -123,8 +197,6 @@ filtering.
 
 ### pi-powerline (unscoped npm)
 
-- npm: `pi-powerline` · ~242/wk
-
 "Powerline-style UI extensions for pi coding agent (custom editor,
 breadcrumb, footer, header)." Broader UI overhaul package; limited
 public info beyond the npm listing.
@@ -132,10 +204,6 @@ public info beyond the npm listing.
 ## Hashline / edit-tool replacements
 
 ### pi-hashline-edit (RimuruW)
-
-- Repo: [RimuruW/pi-hashline-edit](https://github.com/RimuruW/pi-hashline-edit)
-- Stars: 44 · Forks: 8 · Open issues: 1 · Releases: 4 (latest v0.5.4, 2026-04-19)
-- npm: `pi-hashline-edit` · ~225/wk · MIT
 
 Replaces built-in `read` and `edit`. Hash-anchored line editing:
 `LINE#HASH:` prefix on every line. Custom 16-char alphabet
@@ -146,17 +214,16 @@ Chained edits with fresh-anchor return. Diff preview. Atomic writes
 (temp-file-then-rename). Symlink/hardlink preservation. Per-file
 mutation queue. Hidden legacy compatibility for old `oldText`/`newText`.
 
-Very well tested: 20+ test files (compute-affected-range, edit-diff,
-hashline strict input, hashline apply, parse, recovery, resolve,
-path-utils, runtime, compatibility notify, edit preview, edit queue,
-edit replace-text, fs-write, permission errors). Uses Bun.
-3 contributors. Inspired by oh-my-pi (credited in README).
+Very well tested (20+ test files). Uses Bun. Inspired by oh-my-pi
+(credited in README). Stated philosophy: "fail hard, be predictable" —
+stale anchors always fail; no silent relocation.
+
+### bruclan/pi-hashline-edit
+
+Fork of RimuruW/pi-hashline-edit. Same overall feature set; check the
+fork's history for divergence before installing.
 
 ### pi-hashline-readmap (coctostan)
-
-- Repo: [coctostan/pi-hashline-readmap](https://github.com/coctostan/pi-hashline-readmap)
-- Stars: 21 · Forks: 5 · Open issues: 1
-- npm: `pi-hashline-readmap` · ~756/wk · MIT
 
 Unified replacement for stock `read`, `edit`, `grep`, `ls`, `find`.
 Hash-anchored reads and edits (`LINE:HASH|content`). Structural file
@@ -169,51 +236,32 @@ for test runners, builds, Git, Docker, linters, package managers, HTTP,
 transfer tools. `replace_symbol` edit op. Syntax-regression validator
 (warn/block/off). Context-hygiene system. Doom-loop detection.
 
-Extensive test suite: 60+ test files. 1 contributor. Highest weekly
-downloads among hashline tools (~756 vs ~225). "One extension instead
-of stacking overlapping packages" is the value prop.
+Extensive test suite (60+ test files). Highest adoption among
+hashline tools when last surveyed. "One extension instead of stacking
+overlapping packages" is the value prop.
+
+### Lighter alternatives in the hashline space
+
+- **`kcosr/codemap`** — codemap navigation, lighter than the
+  full `pi-hashline-readmap`.
+- **`Whamp/pi-read-map`** — lightweight read-map navigation
+  extension.
+
+These overlap with `pi-hashline-readmap`'s structural-map idea but
+without the full edit-replacement machinery.
 
 ### oh-my-pi (can1357) — fork, not extension
 
-- Repo: [can1357/oh-my-pi](https://github.com/can1357/oh-my-pi)
-- Stars: 3,946 · Forks: 363 · Open issues: 126 · MIT
-- Type: full pi-mono fork
+Full pi-mono **fork**, not an installable extension. Hash-anchored
+edits originated here (both standalone hashline extensions credit it).
+Optimized tool harness. LSP integration (40+ languages). Python tool
+with IPython kernel. TTSR (Time Traveling Streamed Rules) — zero-cost
+context rules. Interactive code review (`/review`). Task/subagent
+system with bundled agents. Commit tool with AI-powered conventional
+commits. Bash mode. Browser tool. Autonomous memory.
 
-Hash-anchored edits (the original inspiration for `pi-hashline-edit`
-and `pi-hashline-readmap`). Optimized tool harness. LSP integration
-(11 ops, 40+ languages). Python tool with IPython kernel. TTSR (Time
-Traveling Streamed Rules) — zero-cost context rules. Interactive code
-review (`/review`). Task/subagent system with 6 bundled agents. Commit
-tool with AI-powered conventional commits. Bash mode. Browser tool.
-Autonomous memory.
-
-Massive monorepo (Rust + TypeScript). CI/CD with GitHub Actions. The
-hashline concept originated here; both standalone hashline extensions
-credit it. Requires switching off pi-mono entirely.
-
-## Summary tables
-
-### Footer / powerline
-
-| Extension | Stars | Forks | Weekly DL | Size | Deps | Tested | Presets | Widget API | Nerd Font |
-|---|---:|---:|---:|---:|---:|---|---|---|---|
-| pi-powerline-footer | 201 | 41 | ~2,900 | 332 KB | 0 | Partial | 6 | No | Auto |
-| pi-fancy-footer | 6 | 2 | ~369 | — | — | Yes | 0 (widget-based) | Yes | 4 families |
-| pi-powerbar | 22 | 2 | ~555 | 79 KB | 1 | Yes | N/A (event-driven) | Event-based | No |
-| pi-vitals | 6 | 3 | ~48 | — | — | No | Custom JSON | No | Auto |
-| minimal-footer (diegopetrucci) | 6* | 0 | ~266 | 4 KB | 0 | No | 0 | No | No |
-| custom-footer (tomsej/pi-ext) | 35* | 2 | — | — | — | No | 0 | No | No |
-| pi-powerline (unscoped) | — | — | ~242 | — | — | — | — | — | — |
-
-*Collection stars, not individual extension.
-
-### Hashline / edit
-
-| Extension | Stars | Forks | Weekly DL | Replaces | Languages | Maps | Tests |
-|---|---:|---:|---:|---|---|---|---|
-| pi-hashline-edit | 44 | 8 | ~225 | read, edit | — | No | 20+ files |
-| pi-hashline-readmap | 21 | 5 | ~756 | read, edit, grep, ls, find | 18 | Yes | 60+ files |
-| oh-my-pi | 3,946 | 363 | N/A (fork) | Entire pi-mono | 40+ (LSP) | Yes | CI only |
+Massive monorepo (Rust + TypeScript). CI/CD with GitHub Actions.
+Requires switching off pi-mono entirely.
 
 ## Recommendation matrix
 
@@ -232,4 +280,11 @@ credit it. Requires switching off pi-mono entirely.
 |---|---|---|
 | Focused edit safety only | **pi-hashline-edit** | Replaces just read/edit; excellent test coverage |
 | Complete workflow overhaul | **pi-hashline-readmap** | Replaces 5 tools, structural maps, AST search, bash compression |
+| Light navigation only | **kcosr/codemap** or **Whamp/pi-read-map** | Structural maps without the full edit-replacement machinery |
 | Full forked experience | **oh-my-pi** | Original concept, broad tooling, but means leaving pi-mono |
+
+## See also
+
+- [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes
+- [Themes](themes.md) — separate visual layer that composes with these
+- [Tool-Call Rendering Extensions](tool-rendering-extensions.md) — message-stream rendering vs the status-bar layer covered here

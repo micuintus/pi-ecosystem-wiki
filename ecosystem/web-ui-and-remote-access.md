@@ -9,6 +9,35 @@ sources:
   - VVander-pi-remote-web-ui
   - sleepingrobots-pi-web-ui
 tags: [extension, web-ui, remote, mobile]
+entries:
+  - id: pi-web-ui
+    name: "@mariozechner/pi-web-ui"
+    repo: badlogic/pi-mono
+    npm: "@mariozechner/pi-web-ui"
+    role: library
+    notes: "Library of Lit web components for AI chat UIs. Lives in pi-mono itself. Build on it; not installable as an extension."
+  - id: qroy-pi-remote
+    name: "@q.roy/pi-remote"
+    repo: ruanqisevik/pi-mono-extensions
+    npm: "@q.roy/pi-remote"
+    role: remote-terminal-original
+    notes: "The original WebSocket+browser remote terminal. Eclipsed by noahsaso fork for active use."
+  - id: noahsaso-pi-remote
+    name: "@noahsaso/pi-remote"
+    repo: noahsaso/pi-remote
+    npm: "@noahsaso/pi-remote"
+    role: remote-terminal-tailscale
+    notes: "Active fork of @q.roy/pi-remote with Tailscale HTTPS, per-session routes, token auth, mobile-friendly UI."
+  - id: pi-remote-web-ui
+    name: pi-remote-web-ui
+    repo: VVander/pi-remote-web-ui
+    role: remote-terminal-ssh
+    notes: "SSH-tunnel-only remote terminal. Server binds 127.0.0.1; reach via existing SSH. Single in-process AgentSession shared across tabs."
+  - id: sleepingrobots-pi-web-ui-showcase
+    name: Pi Web UI by Sleeping Robots
+    repo: sleepingrobots
+    role: showcase
+    notes: "Full-stack showcase wiring pi-web-ui components to a Node server; reference implementation for the embedded library."
 ---
 
 # Web UI and Remote/Mobile Access

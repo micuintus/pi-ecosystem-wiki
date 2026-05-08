@@ -12,6 +12,28 @@ sources:
   - pi-diff-extension
   - pi-issue-851
 tags: [extension, tool-rendering, ui]
+entries:
+  - id: pi-tool-display
+    name: pi-tool-display
+    repo: MasuRii/pi-tool-display
+    npm: pi-tool-display
+    role: rendering-canonical
+    notes: "OpenCode-style tool rendering; the reference implementation."
+  - id: pi-tool-view
+    name: pi-tool-view
+    repo: vinyroli/pi-tool-view
+    role: rendering-fork
+    notes: "Fork of pi-tool-display. Status uncertain — verify availability before installing."
+  - id: pi-tool-display-danielmlevans
+    name: "pi-tool-display (danielmlevans)"
+    repo: danielmlevans/pi-tool-display
+    role: rendering-fork
+    notes: "Fork of pi-tool-display."
+  - id: pi-tool-display-tynanbe
+    name: "pi-tool-display (tynanbe)"
+    repo: tynanbe/pi-tool-display
+    role: rendering-fork
+    notes: "Fork of pi-tool-display."
 ---
 
 # Tool-Call Rendering Extensions
@@ -33,7 +55,7 @@ the proposal is to align built-in tools (`read`, `bash`, `edit`,
 
 ### `MasuRii/pi-tool-display` — the canonical implementation
 
-130 stars, the reference. "OpenCode-style tool rendering for the Pi
+The reference. "OpenCode-style tool rendering for the Pi
 coding agent."
 
 - Compact tool calls by default
