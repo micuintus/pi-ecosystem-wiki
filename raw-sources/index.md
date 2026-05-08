@@ -136,3 +136,11 @@ copied into a dated bucket file.
 | VVander-pi-remote-web-ui | repo | https://github.com/VVander/pi-remote-web-ui | extension, web-ui |
 | pi-web-ui-package | repo | https://github.com/badlogic/pi-mono/tree/main/packages/web-ui | package, web-ui |
 | sleepingrobots-pi-web-ui | article | https://sleepingrobots.com/dreams/pi-web-ui/ | web-ui, article |
+| qualisero-awesome-pi-agent | list | https://github.com/qualisero/awesome-pi-agent | catalog, awesome-list |
+| shaftoe-awesome-pi-coding-agent | list | https://github.com/shaftoe/awesome-pi-coding-agent | catalog, awesome-list, auto |
+| awesome-pi-site | list | https://awesome-pi.site/ | catalog, web |
+| pi-dev-packages | catalog | https://pi.dev/packages | catalog, official |
+| qualisero-rhubarb-pi | repo | https://github.com/qualisero/rhubarb-pi | extension-collection |
+| kcosr-pi-extensions | repo | https://github.com/kcosr/pi-extensions | extension-collection |
+| oh-my-pi-collection | repo | https://github.com/can1357/oh-my-pi | extension-collection, fork |
+| pi-packages-docs | docs | https://pi.dev/docs/latest/packages | docs, packages |

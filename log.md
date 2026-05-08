@@ -2,6 +2,14 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] restructure | Use-case landing + catalogs reference
+
+- Reframed wiki around "pick the right extension for your Pi setup" persona.
+- Rewrote index.md as use-case landing page (loops/iteration, task tracking, TUI customization, web search, remote access, integrations).
+- Added references/catalogs.md surveying pi.dev/packages, qualisero/awesome-pi-agent, shaftoe/awesome-pi-coding-agent, plus curated single-author collections (rhubarb-pi, kcosr/pi-extensions, noahsaso/my-pi, oh-my-pi).
+- Updated README.md to point to catalogs.md and drop concepts/comparisons section references (out of scope).
+- Registered: 9 sources (qualisero-awesome-pi-agent, shaftoe-awesome-pi-coding-agent, awesome-pi-site, pi-dev-packages, qualisero-rhubarb-pi, kcosr-pi-extensions, oh-my-pi-collection, pi-packages-docs; noahsaso-my-pi already registered).
+
 ## [2026-05-08] ingest | Subagents, tool rendering, web/remote access
 
 - Registered: 14 sources (pi-subagent-example, mjakl-pi-subagent, aleclarson-pi-subagent, jamwil-pi-subagent, espennilsen-pi-subagent, nicobailon-pi-subagents, tuansondinh-pi-fast-subagent, cmf-pi-subagent, drsh4dow-pi-delegate, noahsaso-my-pi, pi-rfc-552, MasuRii-pi-tool-display, vinyroli-pi-tool-view, danielmlevans-pi-tool-display, tynanbe-pi-tool-display, pi-built-in-tool-renderer, pi-minimal-mode, pi-diff-extension, pi-issue-851, qroy-pi-remote, noahsaso-pi-remote, VVander-pi-remote-web-ui, pi-web-ui-package, sleepingrobots-pi-web-ui).
