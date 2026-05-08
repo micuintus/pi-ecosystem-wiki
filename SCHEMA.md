@@ -82,8 +82,29 @@ Readers and agents looking for a global classification should rely on
 
 The distinction between *survey* and *integration-reference* inside
 `type: ecosystem` is implicit and visible from the presence of an
-`entries:` block. Survey pages also typically include a
-`## Recommendation matrix`.
+`entries:` block.
+
+## Survey-page sections
+
+Survey pages share a common shape but use **category-specific section
+names**. There is no fixed header taxonomy — pick what fits the
+domain.
+
+- **Decision-support section.** Every survey ends in a "how to pick"
+  section. Its name is page-local: `## Recommendation matrix`,
+  `## Picking a <thing> strategy`, `## Tradeoffs`, `## Comparison`,
+  `## Discriminator: <axis>`, etc. Readers and agents should not
+  expect a single canonical name; the section is identified by being
+  the last decision-shaped block before `## See also`.
+- **Live signals stay central.** Methodology for fetching current
+  vitals (stars, downloads, last-push, contributor count, etc.) lives
+  in [`references/evaluation.md`](references/evaluation.md), not in
+  individual surveys. Surveys should not duplicate "how to query the
+  numbers" boilerplate. They *may* include a short
+  page-specific section ("Theme-specific quality signal",
+  "Subagent-specific cold-start signal", etc.) only when the survey's
+  domain has a unique signal that the central evaluation page
+  doesn't cover.
 
 ## Source rules
 

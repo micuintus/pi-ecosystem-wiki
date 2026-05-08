@@ -109,18 +109,6 @@ deterministic iteration patterns, and Ralph Wiggum-style coding campaigns.
 
 14 distinct projects across 7 architectural variants.
 
-## Live signals
-
-Stars, forks, weekly downloads, and last-push date are not inlined in
-this page — they decay too fast to be useful. The `entries:` frontmatter
-above lists each extension's `repo:` and `npm:` identifier; query
-[How to Evaluate a Pi Extension](../references/evaluation.md) for
-recipes that fetch the current vitals in one command per entry.
-
-When this page makes adoption claims ("most adopted", "canonical
-pattern"), they reflect a relative ranking that has held over multiple
-audits, not a specific number.
-
 ## What this page is for
 
 Architectural and feature comparison across the 14 implementations.

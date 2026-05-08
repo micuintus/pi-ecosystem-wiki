@@ -194,16 +194,14 @@ Best when: you're already adopting that author's broader workflow.
 | To bundle theming with broader workflow customisation | A personal collection (`tomsej/pi-ext`, `@astrofoundry/pi-astro`) or write your own |
 | To create a new theme | Use `/theme` with Pi itself; iterate with hot-reload |
 
-## Live signals
+## Theme-specific quality signal
 
-Stars, downloads, and last-push are not inlined here — see
-[How to Evaluate a Pi Extension](../references/evaluation.md) for
-recipes. The `entries:` frontmatter lists `repo:` and `npm:` for each
-theme so vitals are one command away.
-
-Specific to themes: the **dependency footprint should be ~zero**. A
-theme that pulls runtime dependencies is a smell. Most themes here
-ship only JSON files plus a thin loader.
+The general extension-evaluation framework lives in
+[How to Evaluate a Pi Extension](../references/evaluation.md). One
+signal is theme-specific and worth calling out here: the **dependency
+footprint should be ~zero**. A theme that pulls runtime dependencies
+is a smell. Most themes in this survey ship only JSON files plus a
+thin loader.
 
 ## See also
 

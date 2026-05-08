@@ -2,6 +2,12 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] refactor | Centralize Live signals; document section conventions
+
+- Removed `## Live signals` boilerplate section from `ecosystem/loop-extensions.md` (pure methodology pointer; now covered centrally in `references/evaluation.md`).
+- Trimmed `ecosystem/theme-extensions.md`'s `## Live signals` section to a `## Theme-specific quality signal` block that retains only the domain-specific point (theme dependency footprint should be ~zero); removed the boilerplate methodology pointer.
+- Updated `SCHEMA.md`: documented decision-support section name as **page-local** (no fixed header taxonomy — `## Recommendation matrix`, `## Picking a <thing> strategy`, `## Tradeoffs`, `## Comparison`, `## Discriminator: <axis>` are all valid). Documented that **Live signals methodology stays central** in `references/evaluation.md`; surveys may include only domain-specific signals not covered there.
+
 ## [2026-05-08] refactor | Source graph cleanup + title sweep
 
 - Registered 3 missing sources: `bruclan-pi-hashline-edit`, `kcosr-codemap`, `whamp-pi-read-map` (cited from hashline-edit-extensions.md but absent from the registry).
