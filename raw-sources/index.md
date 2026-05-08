@@ -50,3 +50,16 @@ copied into a dated bucket file.
 | akijain-hermes-loop | repo | https://github.com/akijain2000/hermes-loop | extension, loop, self-improving |
 | latent-variable-pi-auto-continue | repo | https://github.com/latent-variable/pi-auto-continue | extension, loop |
 | ghuntley-ralph | article | https://ghuntley.com/ralph/ | method, ralph |
+| pi-dev-docs-skills | docs | https://pi.dev/docs/latest/skills | skills |
+| pi-mono-extension-examples | repo | https://github.com/earendil-works/pi-mono/tree/main/packages/coding-agent/examples/extensions | extensions, examples |
+| pi-web-access | repo | https://github.com/nicobailon/pi-web-access | extension, web-search |
+| pi-codex-web-search | repo | https://github.com/ayagmar/pi-codex-web-search | extension, web-search, codex |
+| pi-free-web-search | repo | https://github.com/Albertobelleiro/pi-free-web-search | extension, web-search |
+| pi-web-extension | repo | https://github.com/NicoAvanzDev/pi-web-extension | extension, web-search |
+| pi-exa-gh-web-tools | repo | https://github.com/coctostan/pi-exa-gh-web-tools | extension, web-search, exa |
+| pi-web-utils | repo | https://github.com/shantanugoel/pi-web-utils | extension, web-search |
+| aemonculaba-pi-search | repo | https://github.com/eysenfalk/aemonculaba-pi-search | extension, web-search |
+| pi-skills | repo | https://github.com/badlogic/pi-skills | skill, collection |
+| pi-skills-brave-search | repo | https://github.com/badlogic/pi-skills/tree/main/brave-search | skill, web-search |
+| joemccann-pi-exa | repo | https://github.com/joemccann/pi-exa | extension, web-search, exa |
+| pi-exa-search | repo | https://github.com/najibninaba/pi-exa-search | extension, web-search, exa |

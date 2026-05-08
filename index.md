@@ -20,6 +20,7 @@ _(none yet)_
 ## ecosystem/
 
 - [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 14 projects, 7 architectural variants. *Updated: 2026-05-08*
+- [Web Search Extensions](ecosystem/web-search-extensions.md) — 10 web search extensions and skills compared. *Updated: 2026-05-08*
 
 ## references/
 
