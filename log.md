@@ -2,6 +2,12 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] ingest | Anthropic + Google integrations
+
+- Registered: 9 sources (claude-agent-sdk-pi, claude-agent-sdk-pi-pr-8, claude-agent-sdk-pi-pr-10, anthropic-claude-agent-sdk, pi-pr-3286, pi-issue-3299, opus-47-adaptive, googleworkspace-cli, anthropic-third-party-end).
+- Compiled: ecosystem/llm-chat-ingestion.md, ecosystem/claude-code-loop.md, ecosystem/anthropic-subscription-auth.md, ecosystem/claude-agent-sdk-pi.md, ecosystem/google-workspace.md, references/web-search-providers.md.
+- Updated: index.md.
+
 ## [2026-05-08] ingest | LLM Wiki Skills
 
 - Registered: 6 sources (astro-han-llm-wiki, praneybehl-llm-wiki-plugin, aaronoah-llm-wiki-skill, iRonin-pi-llm-wiki, atomicmemory-llm-wiki-compiler, lucasastorian-llmwiki).

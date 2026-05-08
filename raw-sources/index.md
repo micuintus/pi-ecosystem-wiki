@@ -84,3 +84,23 @@ copied into a dated bucket file.
 | iRonin-pi-llm-wiki | repo | https://github.com/iRonin/pi-llm-wiki | extension, llm-wiki |
 | atomicmemory-llm-wiki-compiler | repo | https://github.com/atomicmemory/llm-wiki-compiler | skill, llm-wiki |
 | lucasastorian-llmwiki | repo | https://github.com/lucasastorian/llmwiki | skill, llm-wiki |
+| ai-chat-exporter | repo | https://github.com/revivalstack/ai-chat-exporter | tool, chat-export |
+| chat-export | repo | https://github.com/Trifall/chat-export | tool, chat-export |
+| chatgpt-exporter | repo | https://github.com/pionxzh/chatgpt-exporter | tool, chat-export |
+| obsidian-clipper | repo | https://github.com/obsidianmd/obsidian-clipper | tool, web-clipper |
+| rebrowser-playwright | repo | https://github.com/rebrowser/rebrowser-playwright | tool, browser-automation |
+| playwright | repo | https://github.com/microsoft/playwright | tool, browser-automation |
+| claude-code-scheduled-tasks | docs | https://code.claude.com/docs/en/scheduled-tasks | claude-code, cron |
+| claude-code-agent-loop | docs | https://code.claude.com/docs/en/agent-sdk/agent-loop | claude-code |
+| pi-providers-docs | docs | https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/providers.md | docs, providers |
+| pi-issue-2751 | issue | https://github.com/badlogic/pi-mono/issues/2751 | auth, anthropic |
+| pi-discussion-2950 | issue | https://github.com/badlogic/pi-mono/discussions/2950 | auth, anthropic |
+| anthropic-third-party-end | article | https://mlq.ai/news/anthropic-ends-paid-access-for-claude-in-third-party-tools-like-openclaw/ | auth, anthropic |
+| claude-agent-sdk-pi | repo | https://github.com/prateekmedia/claude-agent-sdk-pi | extension, claude-agent-sdk |
+| claude-agent-sdk-pi-pr-8 | issue | https://github.com/prateekmedia/claude-agent-sdk-pi/pull/8 | extension, claude-agent-sdk |
+| claude-agent-sdk-pi-pr-10 | issue | https://github.com/prateekmedia/claude-agent-sdk-pi/pull/10 | extension, claude-agent-sdk, opus |
+| anthropic-claude-agent-sdk | repo | https://github.com/anthropics/claude-agent-sdk-typescript | sdk, anthropic |
+| pi-pr-3286 | issue | https://github.com/badlogic/pi-mono/pull/3286 | thinking, models |
+| pi-issue-3299 | issue | https://github.com/badlogic/pi-mono/issues/3299 | thinking, models |
+| opus-47-adaptive | article | https://allthings.how/claude-opus-4-7-adaptive-thinking-explained/ | claude, thinking |
+| googleworkspace-cli | repo | https://github.com/googleworkspace/cli | skill, google-workspace |
