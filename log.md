@@ -2,6 +2,13 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] ingest | Subagents, tool rendering, web/remote access
+
+- Registered: 14 sources (pi-subagent-example, mjakl-pi-subagent, aleclarson-pi-subagent, jamwil-pi-subagent, espennilsen-pi-subagent, nicobailon-pi-subagents, tuansondinh-pi-fast-subagent, cmf-pi-subagent, drsh4dow-pi-delegate, noahsaso-my-pi, pi-rfc-552, MasuRii-pi-tool-display, vinyroli-pi-tool-view, danielmlevans-pi-tool-display, tynanbe-pi-tool-display, pi-built-in-tool-renderer, pi-minimal-mode, pi-diff-extension, pi-issue-851, qroy-pi-remote, noahsaso-pi-remote, VVander-pi-remote-web-ui, pi-web-ui-package, sleepingrobots-pi-web-ui).
+- Compiled: ecosystem/subagent-extensions.md, ecosystem/tool-rendering-extensions.md, ecosystem/web-ui-and-remote-access.md.
+- Fresh research; not ported from private wiki (which had only stubs for these three topics).
+- Updated: index.md.
+
 ## [2026-05-08] ingest | Anthropic + Google integrations
 
 - Registered: 9 sources (claude-agent-sdk-pi, claude-agent-sdk-pi-pr-8, claude-agent-sdk-pi-pr-10, anthropic-claude-agent-sdk, pi-pr-3286, pi-issue-3299, opus-47-adaptive, googleworkspace-cli, anthropic-third-party-end).

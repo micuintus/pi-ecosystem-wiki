@@ -104,3 +104,35 @@ copied into a dated bucket file.
 | pi-issue-3299 | issue | https://github.com/badlogic/pi-mono/issues/3299 | thinking, models |
 | opus-47-adaptive | article | https://allthings.how/claude-opus-4-7-adaptive-thinking-explained/ | claude, thinking |
 | googleworkspace-cli | repo | https://github.com/googleworkspace/cli | skill, google-workspace |
+| pi-agent-loop | repo | https://github.com/badlogic/pi-mono/blob/main/packages/agent/src/agent-loop.ts | pi, source |
+| pi-agent-session | repo | https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/src/core/agent-session.ts | pi, source |
+| opencode-repo-prompt | repo | https://github.com/sst/opencode/blob/dev/packages/opencode/src/session/prompt.ts | opencode, source |
+| opencode-repo-llm | repo | https://github.com/sst/opencode/blob/dev/packages/opencode/src/session/llm.ts | opencode, source |
+| opencode-repo-processor | repo | https://github.com/sst/opencode/blob/dev/packages/opencode/src/session/processor.ts | opencode, source |
+| opencode-pr-20074 | issue | https://github.com/sst/opencode/pull/20074 | opencode, dacmicu |
+| vercel-ai-sdk | repo | https://github.com/vercel/ai | sdk, ai |
+| anthropic-sdk-typescript | repo | https://github.com/anthropics/anthropic-sdk-typescript | sdk, anthropic |
+| pi-subagent-example | repo | https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent/examples/extensions/subagent | extension, subagent, example |
+| mjakl-pi-subagent | repo | https://github.com/mjakl/pi-subagent | extension, subagent |
+| aleclarson-pi-subagent | repo | https://github.com/aleclarson/pi-subagent | extension, subagent |
+| jamwil-pi-subagent | repo | https://github.com/jamwil/pi-subagent | extension, subagent |
+| espennilsen-pi-subagent | repo | https://github.com/espennilsen/pi/tree/main/extensions/pi-subagent | extension, subagent |
+| nicobailon-pi-subagents | repo | https://github.com/nicobailon/pi-subagents | extension, subagent, async |
+| tuansondinh-pi-fast-subagent | repo | https://github.com/tuansondinh/pi-fast-subagent | extension, subagent, in-process |
+| cmf-pi-subagent | repo | https://github.com/cmf/pi-subagent | extension, subagent, library |
+| drsh4dow-pi-delegate | repo | https://github.com/drsh4dow/pi-delegate | extension, subagent, minimal |
+| noahsaso-my-pi | repo | https://github.com/noahsaso/my-pi | extension-collection |
+| pi-rfc-552 | issue | https://github.com/badlogic/pi-mono/issues/552 | rfc, subagent |
+| MasuRii-pi-tool-display | repo | https://github.com/MasuRii/pi-tool-display | extension, tool-rendering |
+| vinyroli-pi-tool-view | repo | https://github.com/vinyroli/pi-tool-view | extension, tool-rendering |
+| danielmlevans-pi-tool-display | repo | https://github.com/danielmlevans/pi-tool-display | extension, tool-rendering |
+| tynanbe-pi-tool-display | repo | https://github.com/tynanbe/pi-tool-display | extension, tool-rendering |
+| pi-built-in-tool-renderer | repo | https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/built-in-tool-renderer.ts | extension, tool-rendering, example |
+| pi-minimal-mode | repo | https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/minimal-mode.ts | extension, tool-rendering, example |
+| pi-diff-extension | repo | https://github.com/badlogic/pi-mono/blob/main/.pi/extensions/diff.ts | extension, tool-rendering, example |
+| pi-issue-851 | issue | https://github.com/badlogic/pi-mono/issues/851 | rfc, tool-rendering |
+| qroy-pi-remote | repo | https://github.com/ruanqisevik/pi-mono-extensions | extension, remote |
+| noahsaso-pi-remote | repo | https://github.com/noahsaso/pi-remote | extension, remote, tailscale |
+| VVander-pi-remote-web-ui | repo | https://github.com/VVander/pi-remote-web-ui | extension, web-ui |
+| pi-web-ui-package | repo | https://github.com/badlogic/pi-mono/tree/main/packages/web-ui | package, web-ui |
+| sleepingrobots-pi-web-ui | article | https://sleepingrobots.com/dreams/pi-web-ui/ | web-ui, article |

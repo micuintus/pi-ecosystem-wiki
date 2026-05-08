@@ -30,6 +30,9 @@ _(none yet)_
 - [Anthropic Subscription Auth in Pi](ecosystem/anthropic-subscription-auth.md) — OAuth, API key, Foundry; why third-party tools can't reach the main subscription budget. *Updated: 2026-05-08*
 - [claude-agent-sdk-pi](ecosystem/claude-agent-sdk-pi.md) — Bridge between Pi and Anthropic's Agent SDK; thinking-mode mapping. *Updated: 2026-05-08*
 - [Google Workspace Integration](ecosystem/google-workspace.md) — `gws` CLI, OAuth, GCP prerequisites, command shapes. *Updated: 2026-05-08*
+- [Subagent Extensions](ecosystem/subagent-extensions.md) — Subprocess, in-process, fork, and async subagent variants. *Updated: 2026-05-08*
+- [Tool-Call Rendering Extensions](ecosystem/tool-rendering-extensions.md) — Compact rendering and richer diff visualization. *Updated: 2026-05-08*
+- [Web UI and Remote/Mobile Access](ecosystem/web-ui-and-remote-access.md) — Embedded library and remote-terminal options. *Updated: 2026-05-08*
 
 ## references/
 
