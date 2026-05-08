@@ -114,3 +114,8 @@ adapter code consumes the map without per-model branches.
 - For the broader question of which routes hit which Anthropic billing
   bucket, see [Anthropic Subscription Auth in
   Pi](anthropic-subscription-auth.md).
+
+## See also
+
+- [Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md) — OAuth, API key, Foundry routes and which one hits the main subscription budget
+- [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes

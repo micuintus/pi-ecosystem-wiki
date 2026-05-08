@@ -24,11 +24,11 @@ right one for the job.
 
 ## Catalogs at a glance
 
-| Catalog | Type | Size | Update model | Best for |
-|---|---|---|---|---|
-| **[`pi.dev/packages`](https://pi.dev/packages)** | Official catalog | All published Pi packages | Auto, npm-driven | "What's been published recently?" Authoritative for new packages. |
-| **[`qualisero/awesome-pi-agent`](https://github.com/qualisero/awesome-pi-agent)** | Curated awesome-list | ~581★, smaller | Hand-curated + Discord-scraping workflow + PR-driven | Quality filter — entries vetted before inclusion |
-| **[`shaftoe/awesome-pi-coding-agent`](https://github.com/shaftoe/awesome-pi-coding-agent) / [`awesome-pi.site`](https://awesome-pi.site/)** | Auto-aggregated directory | 1100+ extensions, 1100+ tools, 131 themes, 253 providers, 16 templates, 114 videos | Daily auto-discovery | Maximum coverage, daily-fresh, browsable web UI with category counts |
+| Catalog | Type | Update model | Best for |
+|---|---|---|---|
+| **[`pi.dev/packages`](https://pi.dev/packages)** | Official catalog | Auto, npm-driven | "What's been published recently?" Authoritative for new packages. |
+| **[`qualisero/awesome-pi-agent`](https://github.com/qualisero/awesome-pi-agent)** | Curated awesome-list | Hand-curated + Discord-scraping workflow + PR-driven | Quality filter — entries vetted before inclusion |
+| **[`shaftoe/awesome-pi-coding-agent`](https://github.com/shaftoe/awesome-pi-coding-agent) / [`awesome-pi.site`](https://awesome-pi.site/)** | Auto-aggregated directory | Daily auto-discovery | Maximum coverage, daily-fresh, browsable web UI with category counts. Indexes extensions, tools, themes, providers, templates, and videos. |
 
 Three different philosophies — official-source-of-truth, curated quality, and exhaustive auto-discovery. They overlap but none subsumes the others.
 

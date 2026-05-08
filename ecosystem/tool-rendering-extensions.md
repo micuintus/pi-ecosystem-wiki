@@ -131,3 +131,9 @@ Status bars / footers live below the input box and are surveyed in
 extensions (e.g. `pi-tool-display`) touch both surfaces in one
 package, which is why they sometimes show up cross-listed in package
 catalogs.
+
+## See also
+
+- [Footer / Powerline Extensions](footer-extensions.md) — status-bar UI layer (separate from inline tool-call rendering)
+- [Hashline Edit Extensions](hashline-edit-extensions.md) — replaces tool *behavior*, not rendering
+- [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes

@@ -8,19 +8,13 @@ sources:
   - openevolve
   - shinkaevolve
 tags: [extension, evolve, autoresearch]
-entries:
-  - id: pi-autoresearch
-    name: pi-autoresearch
-    repo: davebcn87/pi-autoresearch
-    npm: pi-autoresearch
-    role: evolve-driver
-    notes: "Karpathy-inspired autoresearch with metric-gated keep/revert. The only production evolve extension in the Pi ecosystem; see also loop-extensions for general iteration patterns."
 ---
 
 # Pi Evolve / Code-Optimization Extensions
 
-Survey of Pi extensions implementing evolutionary code optimization —
-try a variant, benchmark it, keep or discard, repeat.
+Single-extension reference page (the niche is currently a category of
+one) covering Pi extensions that implement evolutionary code
+optimization — try a variant, benchmark it, keep or discard, repeat.
 
 ## The niche is nearly empty
 

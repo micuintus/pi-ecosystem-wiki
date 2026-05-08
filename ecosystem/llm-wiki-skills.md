@@ -104,3 +104,8 @@ pages → query results), three operations (ingest, query, lint), and an
 explicit `index.md` + `log.md`. Implementations diverge mostly on
 whether to add a search/graph engine on top, and on how strict to be
 about file-shape conventions.
+
+## See also
+
+- [LLM Chat Ingestion](llm-chat-ingestion.md) — how to feed web LLM conversations into a wiki as raw sources
+- [How to Evaluate a Pi Extension](../references/evaluation.md) — apply the same vital-signs framework to skills

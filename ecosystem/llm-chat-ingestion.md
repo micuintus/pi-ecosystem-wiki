@@ -107,3 +107,8 @@ or kept depending on the use case.
   generic single-blob HTML extraction via Defuddle/Turndown.
 - The dedicated Chrome window must be running when ingesting. Quitting
   it doesn't lose state — the profile persists in its `--user-data-dir`.
+
+## See also
+
+- [LLM Wiki Skills](llm-wiki-skills.md) — natural downstream: ingested chats become source packets for a wiki
+- [Web Search Extensions](web-search-extensions.md) — orthogonal but related: extracting web content (vs. extracting chat content) from a browser-managed session

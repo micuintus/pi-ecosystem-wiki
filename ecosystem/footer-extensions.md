@@ -171,6 +171,6 @@ public info beyond the npm listing.
 ## See also
 
 - [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes
-- [Themes](themes.md) — color/style layer that composes with these
+- [Themes](theme-extensions.md) — color/style layer that composes with these
 - [Tool-Call Rendering Extensions](tool-rendering-extensions.md) — message-stream rendering vs the status-bar layer covered here
 - [Hashline Edit Extensions](hashline-edit-extensions.md) — orthogonal tool-behavior layer; `oh-my-pi` ships both worlds in a single fork

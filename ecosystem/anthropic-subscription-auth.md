@@ -81,10 +81,19 @@ Inferred from oh-my-pi's repo structure; confirmation requires reading
 | Pay-as-you-go API | Set `ANTHROPIC_API_KEY`. |
 | Enterprise inference | Foundry env vars. |
 
-## Open questions
+## Caveats
 
-- Whether oh-my-pi's main-budget route still works after subsequent
-  Anthropic detection updates.
-- Whether a Pi extension (rather than fork) could provide a
-  Claude-Code-SDK-based provider without forking. Discussion #2950
-  suggests no current path inside base Pi.
+The oh-my-pi main-budget route depends on Anthropic's third-party-tool
+detection not catching it. Anthropic has tightened that detection at
+least once already; the route may stop working at any time without
+notice. Treat it as best-effort.
+
+Whether a Pi *extension* (rather than a fork) could provide a
+Claude-Code-SDK-based provider without forking is an open thread on
+the Pi side. Discussion #2950 suggests no current path inside base Pi
+— the SDK injection has historically required fork-level patches.
+
+## See also
+
+- [claude-agent-sdk-pi](claude-agent-sdk-pi.md) — the bridge extension to Anthropic's Agent SDK and the model/billing implications
+- [Pi Ecosystem Catalogs](../references/catalogs.md) — where to find oh-my-pi and other forks

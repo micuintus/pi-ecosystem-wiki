@@ -62,14 +62,28 @@ backed by a `# (live: gh api ...)` recipe link, but should not name a
 specific star count, download number, or commit date. Architectural
 and feature comparisons are timeless and stay inline.
 
+### `role:` is page-local, not a global taxonomy
+
+The `role:` field on each entry is a **page-local categorical label**
+used to group entries inside that one survey (e.g. `subprocess-spawn`
+vs `in-process` on the subagent page; `footer-default` vs
+`footer-event-driven` on the footer page). It is not a controlled
+vocabulary and is not expected to be consistent across pages.
+Readers and agents looking for a global classification should rely on
+`tags:`, not `role:`.
+
 ## Page types
 
-- **concept** — what a thing is. Skills, extensions, packages, hooks, etc.
-- **comparison** — X vs Y vs Z, with axes and tradeoffs.
-- **reference** — flat reference material (this file, schema docs).
-- **ecosystem** — one page per notable package or project.
-- **synthesis** — opinionated rollup across multiple concepts.
-- **stub** — registered but not yet compiled.
+- **ecosystem** — covers an extension, a family of extensions (survey),
+  or an integration target. Lives under `ecosystem/`. Survey pages
+  carry an `entries:` block; integration-reference pages do not.
+- **reference** — flat reference / methodology material. Lives under
+  `references/` (or at the root for `index.md` / `SCHEMA.md`).
+
+The distinction between *survey* and *integration-reference* inside
+`type: ecosystem` is implicit and visible from the presence of an
+`entries:` block. Survey pages also typically include a
+`## Recommendation matrix`.
 
 ## Source rules
 

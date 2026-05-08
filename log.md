@@ -2,6 +2,18 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] refactor | Wiki-wide consistency pass
+
+- Stripped stale numbers from `README.md` and `references/catalogs.md` (counts of stars and entries decay; only shape descriptions remain).
+- Added `## See also` to `claude-agent-sdk-pi`, `llm-chat-ingestion`, `llm-wiki-skills`, `tool-rendering-extensions`, `anthropic-subscription-auth`, `google-workspace`.
+- Renamed `ecosystem/themes.md` → `ecosystem/theme-extensions.md` to match the survey-page naming convention; updated cross-links.
+- Replaced `## Open questions` sections in `anthropic-subscription-auth.md` and `google-workspace.md` with `## Caveats` prose (avoids private-investigation tone).
+- Trimmed unused page types (`concept`, `comparison`, `synthesis`, `stub`) from `SCHEMA.md`; documented the implicit *survey* vs *integration-reference* split inside `type: ecosystem`.
+- Documented `role:` as page-local, not a global taxonomy, in `SCHEMA.md`.
+- Moved "one tool, internal routing" guidance from `references/web-search-providers.md` to `ecosystem/web-search-extensions.md` so the reference page stays a clean backend reference. Cross-link kept.
+- Reshaped `ecosystem/evolve-extensions.md` to integration-reference style (dropped the single-entry `entries:` block; the page is explicitly a category-of-one).
+- Dropped "14 projects" / "10 web search extensions" stale counts from `index.md`.
+
 ## [2026-05-08] refactor | Split footer + hashline surveys
 
 - Split `ecosystem/footer-and-hashline-extensions.md` (legacy lump from the private wiki) into two orthogonal pages: `ecosystem/footer-extensions.md` (visual status-bar layer) and `ecosystem/hashline-edit-extensions.md` (hash-anchored read/edit replacements).

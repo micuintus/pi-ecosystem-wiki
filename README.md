@@ -23,8 +23,8 @@ upstream catalogs and how they complement each other.
 
 Quick links:
 
-- [qualisero/awesome-pi-agent](https://github.com/qualisero/awesome-pi-agent) — hand-curated, ~581★
-- [shaftoe/awesome-pi-coding-agent](https://github.com/shaftoe/awesome-pi-coding-agent) / [awesome-pi.site](https://awesome-pi.site/) — auto-aggregated, ~1100+ entries, daily updated
+- [qualisero/awesome-pi-agent](https://github.com/qualisero/awesome-pi-agent) — hand-curated
+- [shaftoe/awesome-pi-coding-agent](https://github.com/shaftoe/awesome-pi-coding-agent) / [awesome-pi.site](https://awesome-pi.site/) — auto-aggregated, daily updated
 - [pi.dev/packages](https://pi.dev/packages) — official catalog
 
 ## Browse

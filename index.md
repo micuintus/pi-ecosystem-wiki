@@ -21,7 +21,7 @@ them.
 
 ### Loops, agents, and iteration
 
-- [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 14 projects, 7 architectural variants for "keep iterating until done"
+- [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 7 architectural variants for "keep iterating until done"
 - [Evolve / Code-Optimization Extensions](ecosystem/evolve-extensions.md) — `pi-autoresearch` and the broader research landscape (try variant → benchmark → keep/discard)
 - [Subagent Extensions](ecosystem/subagent-extensions.md) — Subprocess, in-process, fork, and async patterns for delegating tasks to child agents
 - [Claude Code `/loop`](ecosystem/claude-code-loop.md) — Cross-tool reference: how Claude Code's cron-scheduled loop differs from Pi Ralph
@@ -32,7 +32,7 @@ them.
 
 ### TUI customization
 
-- [Themes](ecosystem/themes.md) — 5 strategies for theming Pi (terminal-ANSI inheritance, single-port, curated bundle, distinct-UI, personal-collection)
+- [Themes](ecosystem/theme-extensions.md) — 5 strategies for theming Pi (terminal-ANSI inheritance, single-port, curated bundle, distinct-UI, personal-collection)
 - [Footer / Powerline Extensions](ecosystem/footer-extensions.md) — Status bars and powerline-style segments
 - [Tool-Call Rendering Extensions](ecosystem/tool-rendering-extensions.md) — Compact rendering and richer diff visualization (OpenCode-style)
 
@@ -42,7 +42,7 @@ them.
 
 ### Web search and information retrieval
 
-- [Web Search Extensions](ecosystem/web-search-extensions.md) — 10 web search extensions and skills, side-by-side
+- [Web Search Extensions](ecosystem/web-search-extensions.md) — Pi web search extensions and skills, side-by-side
 - [Web Search Providers](references/web-search-providers.md) — What backend powers search in major AI products (reference)
 - [LLM Chat Ingestion](ecosystem/llm-chat-ingestion.md) — Importing web LLM conversations (Claude.ai, ChatGPT, Gemini, Le Chat) when share links are unavailable
 

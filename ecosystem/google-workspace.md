@@ -129,12 +129,16 @@ For "give me readable headers" the `messages.list` →
 `messages.get format=metadata` two-step is needed; there is no
 built-in mass-headers helper.
 
-## Open questions
+## Caveats
 
-- Whether `download.txt` filename for `drive files export` is
-  configurable.
-- Whether the per-message metadata fetch can be parallelised through a
-  single helper (current loop pattern is per-id, slow for large
-  queries).
-- Whether the bundled skills' triggers fire reliably in Pi or whether
-  the system prompt needs an explicit nudge.
+A few rough edges as of writing: the `download.txt` filename for
+`drive files export` may not be configurable; the per-message metadata
+fetch is per-id (slow for large queries) with no built-in batching
+helper; and the bundled skills' triggers may not fire reliably in Pi
+without an explicit nudge in the system prompt. Check the upstream
+repo for current status before relying on any of these.
+
+## See also
+
+- [LLM Wiki Skills](llm-wiki-skills.md) — the skill-driven knowledge-management family that pairs naturally with `gws`
+- [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes (apply to skills too)
