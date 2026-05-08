@@ -2,6 +2,25 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] ingest | LLM Wiki Skills
+
+- Registered: 6 sources (astro-han-llm-wiki, praneybehl-llm-wiki-plugin, aaronoah-llm-wiki-skill, iRonin-pi-llm-wiki, atomicmemory-llm-wiki-compiler, lucasastorian-llmwiki).
+- Compiled: ecosystem/llm-wiki-skills.md.
+- Updated: index.md.
+
+## [2026-05-08] ingest | Pi Evolve / Code-Optimization Extensions
+
+- Registered: 3 sources (karpathy-autoresearch, openevolve, shinkaevolve).
+- Compiled: ecosystem/evolve-extensions.md (stripped MATS/DACMICU framing; kept pi-autoresearch deep-dive and research-landscape context).
+- Updated: index.md.
+
+## [2026-05-08] ingest | Pi TODO List Extensions
+
+- Registered: 3 sources (pi-todo-md, patriceckhart-pi-todo, pi-mono-todo-example).
+- Compiled: ecosystem/todo-extensions.md (stripped DACMICU loop sketch).
+- Skipped: subagents.md (too thin), web-mobile-access.md, tool-rendering.md (mostly open questions).
+- Updated: index.md.
+
 ## [2026-05-08] ingest | Pi Footer, Powerline and Hashline Extensions
 
 - Registered: 9 sources (pi-powerline-footer, pi-fancy-footer, pi-powerbar, pi-vitals, diegopetrucci-pi-extensions, tomsej-pi-ext, pi-hashline-edit, pi-hashline-readmap, oh-my-pi).

@@ -72,3 +72,15 @@ copied into a dated bucket file.
 | pi-hashline-edit | repo | https://github.com/RimuruW/pi-hashline-edit | extension, edit, hashline |
 | pi-hashline-readmap | repo | https://github.com/coctostan/pi-hashline-readmap | extension, edit, hashline, readmap |
 | oh-my-pi | repo | https://github.com/can1357/oh-my-pi | fork, hashline |
+| pi-todo-md | repo | https://github.com/forjd/pi-todo-md | extension, todo |
+| patriceckhart-pi-todo | repo | https://github.com/patriceckhart/pi-todo | extension, todo |
+| pi-mono-todo-example | repo | https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/todo.ts | extension, todo, example |
+| karpathy-autoresearch | repo | https://github.com/karpathy/autoresearch | method, evolve, autoresearch |
+| openevolve | repo | https://github.com/codelion/openevolve | research, evolve |
+| shinkaevolve | repo | https://github.com/SakanaAI/ShinkaEvolve | research, evolve |
+| astro-han-llm-wiki | repo | https://github.com/Astro-Han/karpathy-llm-wiki | skill, llm-wiki |
+| praneybehl-llm-wiki-plugin | repo | https://github.com/praneybehl/llm-wiki-plugin | skill, llm-wiki, claude-code |
+| aaronoah-llm-wiki-skill | repo | https://github.com/aaronoah/llm-wiki-skill | skill, llm-wiki |
+| iRonin-pi-llm-wiki | repo | https://github.com/iRonin/pi-llm-wiki | extension, llm-wiki |
+| atomicmemory-llm-wiki-compiler | repo | https://github.com/atomicmemory/llm-wiki-compiler | skill, llm-wiki |
+| lucasastorian-llmwiki | repo | https://github.com/lucasastorian/llmwiki | skill, llm-wiki |
