@@ -19,7 +19,7 @@ _(none yet)_
 
 ## ecosystem/
 
-_(none yet)_
+- [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 14 projects, 7 architectural variants. *Updated: 2026-05-08*
 
 ## references/
 
