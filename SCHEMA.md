@@ -51,11 +51,21 @@ Optional: `tags: [tag1, tag2]`.
 
 ## Source rules
 
-- Every claim cites a source listed in `raw-sources/index.md`.
-- Stable public URLs are referenced, not copied.
-- Mutable or auth-walled sources are copied into
-  `raw-sources/<bucket>/YYYY-MM-DD-slug.md`.
-- Code references use permalinks (commit SHA), not `main` URLs.
+Sources in this wiki must be **canonical, external, and public**. Allowed kinds:
+
+- **GitHub repos / files / issues / PRs** (use commit-pinned permalinks for files)
+- **Project home pages** (pi.dev, etc.)
+- **npm package listings**
+- **Other Pi extension collections / awesome-lists**
+- **Articles / gists** (Karpathy, Huntley, etc.)
+
+Not allowed: local file paths, private session dumps, internal investigation
+notes, links into a developer's local clone. If the source can't be opened
+by anyone in the world from a fresh browser, it doesn't belong in
+`raw-sources/index.md`.
+
+Every claim cites a source id from `raw-sources/index.md`. Code references
+use permalinks (commit SHA), not `main` URLs.
 
 ## Public-use deltas vs private LLM Wiki
 
