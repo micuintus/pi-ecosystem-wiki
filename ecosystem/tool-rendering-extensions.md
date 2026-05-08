@@ -1,5 +1,5 @@
 ---
-title: Tool-Call Rendering Extensions
+title: Pi Tool-Call Rendering Extensions
 type: ecosystem
 updated: 2026-05-08
 sources:

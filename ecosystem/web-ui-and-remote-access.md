@@ -1,5 +1,5 @@
 ---
-title: Web UI and Remote/Mobile Access Extensions
+title: Pi Web UI and Remote Access Extensions
 type: ecosystem
 updated: 2026-05-08
 sources:

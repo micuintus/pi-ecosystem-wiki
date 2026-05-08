@@ -5,6 +5,8 @@ updated: 2026-05-08
 sources:
   - pi-dev-packages
   - qualisero-awesome-pi-agent
+  - github-rest-api
+  - npm-downloads-api
 tags: [reference, evaluation, quality, methodology]
 ---
 

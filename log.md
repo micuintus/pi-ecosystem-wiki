@@ -2,6 +2,17 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] refactor | Source graph cleanup + title sweep
+
+- Registered 3 missing sources: `bruclan-pi-hashline-edit`, `kcosr-codemap`, `whamp-pi-read-map` (cited from hashline-edit-extensions.md but absent from the registry).
+- Removed duplicate / alias source IDs: `awesome-pi-agent` (alias of `qualisero-awesome-pi-agent`), `awesome-pi-coding-agent` (alias of `shaftoe-awesome-pi-coding-agent`), and the literal duplicate rows for `awesome-pi-site` and `pi-dev-packages` and `tomsej-pi-ext`.
+- Pruned 13 orphan source IDs (cited nowhere): the dropped opencode-* family, `pi-agent-loop`, `pi-agent-session`, `vercel-ai-sdk`, `anthropic-sdk-typescript`, `pi-dev`, `pi-dev-docs-extensions`, `pi-dev-docs-packages`, `pi-dev-docs-skills`, `pi-mono-extension-examples`, `opencode-pr-20074`.
+- Cited `github-rest-api` and `npm-downloads-api` from `references/evaluation.md` (both are referenced from the recipe code blocks).
+- URL sweep: `badlogic/pi-mono` → `earendil-works/pi-mono` across all `pi-*` source rows that pointed at the old org (post-rename canonical home).
+- Renamed 3 survey titles to the `Pi <Topic> Extensions` convention: `subagent-extensions.md`, `tool-rendering-extensions.md`, `web-ui-and-remote-access.md`.
+
+After the pass: source graph is complete and orphan-free — 119 cited IDs, 119 registered IDs, zero unmatched on either side.
+
 ## [2026-05-08] refactor | Wiki-wide consistency pass
 
 - Stripped stale numbers from `README.md` and `references/catalogs.md` (counts of stars and entries decay; only shape descriptions remain).
