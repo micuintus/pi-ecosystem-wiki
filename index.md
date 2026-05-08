@@ -32,6 +32,7 @@ them.
 
 ### TUI customization
 
+- [Themes](ecosystem/themes.md) — 5 strategies for theming Pi (terminal-ANSI inheritance, single-port, curated bundle, distinct-UI, personal-collection)
 - [Footer and Hashline Extensions](ecosystem/footer-and-hashline-extensions.md) — Status bars, powerlines, and hash-anchored edit-tool replacements
 - [Tool-Call Rendering Extensions](ecosystem/tool-rendering-extensions.md) — Compact rendering and richer diff visualization (OpenCode-style)
 

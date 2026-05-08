@@ -2,6 +2,11 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] feat | Themes survey
+
+- Added `ecosystem/themes.md`: 5-strategy survey (terminal-ANSI inheritance, single-port, curated bundle, distinct-UI, personal-collection) with 13 entries in frontmatter. Names the canonical implementation for each strategy rather than enumerating all 131 themes the catalogs index.
+- Registered: pi-themes-docs, leblancfg-pi-ansi-themes, juanibiapina-pi-tokyonight, danielcherubini-pi-dracula, dracula-pi-coding-agent, joelhooks-pi-theme-catppuccin-mocha, otahontas-pi-coding-agent-catppuccin, victor-pi-curated-themes, ironin-pi-curated-themes, hasit-pi-community-themes, vinyroli-pi-codex-theme, tomsej-pi-ext, astrofoundry-pi-astro.
+
 ## [2026-05-08] expand | Project health prioritized + community sentiment tier
 
 - Reframed `references/evaluation.md`. Tier 1 is now "Project Health" with priority-ranked metrics (★★★ last commit, npm downloads, contributors; ★★ release cadence, 90-day commit frequency, issue ratio; ★ stars, forks, version compatibility).

@@ -144,5 +144,18 @@ copied into a dated bucket file.
 | kcosr-pi-extensions | repo | https://github.com/kcosr/pi-extensions | extension-collection |
 | oh-my-pi-collection | repo | https://github.com/can1357/oh-my-pi | extension-collection, fork |
 | pi-packages-docs | docs | https://pi.dev/docs/latest/packages | docs, packages |
+| pi-themes-docs | docs | https://pi.dev/docs/latest/themes | docs, themes |
+| leblancfg-pi-ansi-themes | repo | https://github.com/leblancfg/pi-ansi-themes | theme, ansi |
+| juanibiapina-pi-tokyonight | repo | https://github.com/juanibiapina/pi-tokyonight | theme, tokyo-night |
+| danielcherubini-pi-dracula | repo | https://github.com/danielcherubini/pi-dracula | theme, dracula |
+| dracula-pi-coding-agent | repo | https://github.com/dracula/pi-coding-agent | theme, dracula, official |
+| joelhooks-pi-theme-catppuccin-mocha | repo | https://github.com/joelhooks/pi-theme-catppuccin-mocha | theme, catppuccin |
+| otahontas-pi-coding-agent-catppuccin | repo | https://github.com/otahontas/pi-coding-agent-catppuccin | theme, catppuccin |
+| victor-pi-curated-themes | repo | https://github.com/victor-software-house/pi-curated-themes | theme, bundle |
+| ironin-pi-curated-themes | repo | https://github.com/iRonin/pi-curated-themes | theme, bundle |
+| hasit-pi-community-themes | repo | https://github.com/hasit/pi-community-themes | theme, bundle |
+| vinyroli-pi-codex-theme | repo | https://github.com/vinyroli/pi-codex-theme | theme, codex, ui |
+| tomsej-pi-ext | repo | https://github.com/tomsej/pi-ext | extension-collection, theme |
+| astrofoundry-pi-astro | repo | https://github.com/astrofoundry/pi-astro | extension-collection, theme |
 | github-rest-api | docs | https://docs.github.com/en/rest | docs, methodology |
 | npm-downloads-api | docs | https://github.com/npm/registry/blob/main/docs/download-counts.md | docs, methodology |
