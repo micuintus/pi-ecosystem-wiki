@@ -65,3 +65,21 @@ them.
 - [How to Evaluate a Pi Extension](references/evaluation.md) — vital signs, maintenance signals, code-quality recipes (the framework this wiki uses instead of stale numbers)
 - [Pi Ecosystem Catalogs and Awesome-Lists](references/catalogs.md) — Where to look when this wiki doesn't cover your need
 - [Web Search Providers](references/web-search-providers.md) — Backends behind the major AI products
+
+## Niches not yet surveyed
+
+Extensions exist and are actively used but no survey page has been compiled yet.
+Use [`qualisero/awesome-pi-agent`](https://github.com/qualisero/awesome-pi-agent),
+[`awesome-pi.site`](https://awesome-pi.site/), and
+[`pi.dev/packages`](https://pi.dev/packages) to find candidates.
+
+| Niche | Notable entries (starting points for a future survey) |
+|---|---|
+| **MCP integration** | `pi-mcp-adapter` (highest downloads in the ecosystem), `@aliou/pi-linkup` |
+| **Security, guardrails, and sandboxing** | `michalvavra/agents` (filter-output, security), `kcosr/toolwatch`, `prateekmedia/pi-hooks` permission, `@aliou/pi-guardrails`, `shitty-extensions` plan-mode, `gondolin` (earendil-works sandbox), `nono` (Landlock/Seatbelt) |
+| **Notifications** | `pi-notification-extension`, `pi-notify-pp`, `ferologics/pi-notify`, `qualisero/rhubarb-pi` background-notify |
+| **Cost tracking and usage monitoring** | `shitty-extensions` cost-tracker/usage-bar, `tmustier` usage-extension, `mrexodia/pi-cost-dashboard`, `pi-sub` |
+| **Session management and checkpoints** | `nicobailon/pi-rewind-hook`, `prateekmedia/pi-hooks` checkpoint, `shitty-extensions` branch-sessions/handoff |
+| **Process and task orchestration** | `juanibiapina/gob`, `patleeman/task-factory`, `taskplane`, `lsj5031/PiSwarm` |
+| **Memory and persistent context** | `noahsaso/my-pi` memory.ts, `shitty-extensions` memory-mode, `@0xkobold/pi-learn` |
+| **SSH remote access** | `cv/pi-ssh-remote` (redirects all file ops to a remote host) |

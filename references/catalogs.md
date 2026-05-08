@@ -12,6 +12,12 @@ sources:
   - noahsaso-my-pi
   - oh-my-pi-collection
   - pi-packages-docs
+  - mitsuhiko-agent-stuff
+  - hjanuschka-shitty-extensions
+  - tmustier-pi-extensions
+  - aliou-pi-extensions
+  - ben-vargas-pi-packages
+  - obra-superpowers
 tags: [reference, catalog, navigation]
 ---
 
@@ -38,10 +44,23 @@ Single-author/team bundles, useful as starting points or to lift extensions piec
 
 | Collection | Author | Notes |
 |---|---|---|
-| [`qualisero/rhubarb-pi`](https://github.com/qualisero/rhubarb-pi) | qualisero | Small hooks: `background-notify`, `session-emoji`, `session-color`, others. Each individually installable. |
-| [`kcosr/pi-extensions`](https://github.com/kcosr/pi-extensions) | kcosr | Released bundle, semver-tagged. |
-| [`noahsaso/my-pi`](https://github.com/noahsaso/my-pi) | noahsaso | Personal Pi extension/skills/agents collection — includes `pi-context`, `pi-interactive-subagents`, browser tools, web tools (skills from `badlogic/pi-skills` and `obra/superpowers`). |
+| [`mitsuhiko/agent-stuff`](https://github.com/mitsuhiko/agent-stuff) | mitsuhiko (Pi maintainer) | The Pi maintainer's own bundle. 22+ extensions (loop, review, todos, notify, multi-edit, files, btw, answer, prompt-editor, session-breakdown, whimsical, …) + 19+ skills (commit, github, google-workspace, librarian, web-browser, sentry, tmux, mermaid, …). Two npm distributions: `mitsupi` (common) and `mitsupi-loaded` (all). Canonical reference for Pi idioms. |
+| [`hjanuschka/shitty-extensions`](https://github.com/hjanuschka/shitty-extensions) | hjanuschka | Community bundle covering oracle (second opinion from any model), plan-mode (read-only exploration), memory-mode, branch-sessions, cost-tracker, usage-bar, clipboard, handoff, status-widget, ultrathink. npm-published (`shitty-extensions`). |
+| [`qualisero/rhubarb-pi`](https://github.com/qualisero/rhubarb-pi) | qualisero | Small, individually-installable hooks: `background-notify`, `session-emoji`, `session-color`, `safe-git`. |
+| [`tmustier/pi-extensions`](https://github.com/tmustier/pi-extensions) | tmustier | ralph-wiggum (loop), tab-status, arcade, usage-extension, agent-guidance. |
+| [`aliou/pi-extensions`](https://github.com/aliou/pi-extensions) | aliou | Rich collection: breadcrumbs (session search), providers manager, chrome header/footer, git-branch-autocomplete, session-name, models-overrides, session tools. npm-published under `@aliou/`. |
+| [`ben-vargas/pi-packages`](https://github.com/ben-vargas/pi-packages) | ben-vargas | Individually-publishable packages with CI and tests: Synthetic provider, Exa MCP, Firecrawl, Antigravity image gen, Claude Code OAuth patch, ancestor-discovery, cut-stack, OpenAI fast/verbosity. Each installable standalone via npm. |
+| [`kcosr/pi-extensions`](https://github.com/kcosr/pi-extensions) | kcosr | Released bundle, semver-tagged. codemap, apply-patch, assistant picker, skill-picker, toolwatch (SQLite tool-call auditing). |
+| [`noahsaso/my-pi`](https://github.com/noahsaso/my-pi) | noahsaso | Personal collection: pi-context, pi-interactive-subagents, browser tools, web tools, memory, file-watcher, code-ast, antigravity image gen. Skills from `badlogic/pi-skills` and `obra/superpowers`. Includes SETUP.md for agent-guided install. |
 | [`can1357/oh-my-pi`](https://github.com/can1357/oh-my-pi) | can1357 | A Pi fork (not just extensions) bundling Claude Code SDK provider and other patches. See also [Anthropic Subscription Auth in Pi](../ecosystem/anthropic-subscription-auth.md). |
+
+## Cross-agent workflow skills
+
+Not Pi-exclusive but widely used across Pi setups:
+
+| Collection | Notes |
+|---|---|
+| [`obra/superpowers`](https://github.com/obra/superpowers) | Complete software development methodology as skills: brainstorming → writing-plans → subagent-driven-development → TDD → requesting-code-review → finishing-a-development-branch. Works with Pi, Claude Code, Codex, Gemini CLI, OpenCode, Cursor. In Claude Code's official plugin marketplace. Referenced by `noahsaso/my-pi` and `mitsuhiko/agent-stuff`. |
 
 ## How catalogs and this wiki relate
 

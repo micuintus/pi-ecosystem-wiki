@@ -2,6 +2,24 @@
 
 Append-only. Newest at top.
 
+## [2026-05-08] feat | Add missing personal collections; stub uncovered niches
+
+Research pass against `qualisero/awesome-pi-agent` and `shaftoe/awesome-pi-coding-agent`.
+
+Added to `references/catalogs.md` — curated collections:
+- `mitsuhiko/agent-stuff` (mitsupi) — Pi maintainer's own bundle; was cited in loop survey but not listed as a collection.
+- `hjanuschka/shitty-extensions` — oracle, plan-mode, memory-mode, branch-sessions, cost-tracker, usage-bar, clipboard, handoff, status-widget.
+- `tmustier/pi-extensions` — tab-status, arcade, usage-extension, agent-guidance + ralph-wiggum (was cited for ralph-wiggum only).
+- `aliou/pi-extensions` — breadcrumbs, providers manager, chrome header/footer, git-branch-autocomplete, session-name, models-overrides.
+- `ben-vargas/pi-packages` — CI/tested monorepo: Synthetic provider, Exa MCP, Firecrawl, Antigravity image gen, Claude Code OAuth patch.
+- `obra/superpowers` — cross-agent workflow skills (TDD, systematic-debugging, subagent-driven-development, brainstorming). In Claude Code official marketplace.
+
+Added to `index.md` — "Niches not yet surveyed" table covering 8 uncovered niches: MCP integration, security/guardrails/sandboxing, notifications, cost tracking, session management, process orchestration, memory/persistent context, SSH remote.
+
+Registered 4 new sources: `hjanuschka-shitty-extensions`, `aliou-pi-extensions`, `ben-vargas-pi-packages`, `obra-superpowers`.
+
+Source graph: 123 cited, 123 registered, zero unmatched.
+
 ## [2026-05-08] refactor | Centralize Live signals; document section conventions
 
 - Removed `## Live signals` boilerplate section from `ecosystem/loop-extensions.md` (pure methodology pointer; now covered centrally in `references/evaluation.md`).

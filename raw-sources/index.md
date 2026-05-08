@@ -142,5 +142,9 @@ copied into a dated bucket file.
 | hasit-pi-community-themes | repo | https://github.com/hasit/pi-community-themes | theme, bundle |
 | vinyroli-pi-codex-theme | repo | https://github.com/vinyroli/pi-codex-theme | theme, codex, ui |
 | astrofoundry-pi-astro | repo | https://github.com/astrofoundry/pi-astro | extension-collection, theme |
+| hjanuschka-shitty-extensions | repo | https://github.com/hjanuschka/shitty-extensions | extension-collection |
+| aliou-pi-extensions | repo | https://github.com/aliou/pi-extensions | extension-collection |
+| ben-vargas-pi-packages | repo | https://github.com/ben-vargas/pi-packages | extension-collection |
+| obra-superpowers | repo | https://github.com/obra/superpowers | skill-collection, cross-agent |
 | github-rest-api | docs | https://docs.github.com/en/rest | docs, methodology |
 | npm-downloads-api | docs | https://github.com/npm/registry/blob/main/docs/download-counts.md | docs, methodology |
