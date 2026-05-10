@@ -107,8 +107,8 @@ entries:
 - [Market structure](#market-structure)
 - [Recommendation matrix](#recommendation-matrix)
 - [Author note](#author-note)
-- [Setup notes — pi-web-access](#setup-notes--pi-web-access)
-- [Routing guidance](#routing-guidance--one-tool-internal-selection)
+- [Setup notes — pi-web-access](#setup-notes-pi-web-access)
+- [Routing guidance](#routing-guidance-one-tool-internal-selection)
 - [See also](#see-also)
 
 Comparison of published Pi web search extensions and skills.

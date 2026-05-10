@@ -42,7 +42,7 @@ entries:
 
 - [What MCP adds (and costs)](#what-mcp-adds-and-costs)
 - [Surveyed adapters](#surveyed-adapters)
-- [The proxy pattern](#the-proxy-pattern--how-nicobailons-adapter-works)
+- [The proxy pattern](#the-proxy-pattern-how-nicobailons-adapter-works)
 - [When MCP makes sense](#when-mcp-makes-sense-and-when-it-doesnt)
 - [CLI skills as the Pi-native alternative](#cli-skills-as-the-pi-native-alternative)
 - [Picking an MCP adapter](#picking-an-mcp-adapter)

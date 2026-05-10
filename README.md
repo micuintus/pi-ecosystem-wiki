@@ -21,7 +21,8 @@ without trawling 1000+ entries in the flat catalogs.
 | **Customize how Pi looks** (themes, status bar, tool output) | [Themes](ecosystem/theme-extensions.md) · [Footer / Powerline](ecosystem/footer-extensions.md) · [Tool Rendering](ecosystem/tool-rendering-extensions.md) |
 | **Connect Pi to other services** (Google Workspace, Claude SDK, auth) | [Google Workspace](ecosystem/google-workspace.md) · [Anthropic Auth](ecosystem/anthropic-subscription-auth.md) · [Claude Agent SDK Bridge](ecosystem/claude-agent-sdk-pi.md) |
 | **Evaluate whether an extension is worth installing** | [How to Evaluate a Pi Extension](references/evaluation.md) — vital signs, maintenance signals, code-quality recipes |
-| **Browse every known extension** (flat list) | [Pi Ecosystem Catalogs](references/catalogs.md) — links to `pi.dev/packages`, `awesome-pi.site`, and curated collections |
+| **Browse all surveyed pages** | [index.md](index.md) — full browse organized by category |
+| **Find extensions not yet surveyed here** | [Pi Ecosystem Catalogs](references/catalogs.md) — `pi.dev/packages`, `awesome-pi.site`, curated collections |
 
 ---
 
@@ -35,58 +36,11 @@ without trawling 1000+ entries in the flat catalogs.
 
 ---
 
-## Browse by use case
+## Full browse
 
-### 🔁 Loops, agents, and iteration
-
-- [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — "keep iterating until done" (7 architectural variants)
-- [Evolve / Code-Optimization Extensions](ecosystem/evolve-extensions.md) — try variant → benchmark → keep/discard
-- [Subagent Extensions](ecosystem/subagent-extensions.md) — delegate tasks to child agents (4 patterns compared)
-- [Claude Code `/loop`](ecosystem/claude-code-loop.md) — cross-tool reference for Claude's cron-scheduled loop
-
-### ✅ Task tracking and planning
-
-- [TODO List Extensions](ecosystem/todo-extensions.md) — tool-only, widget, and external-file patterns
-
-### 🎨 TUI customization
-
-- [Themes](ecosystem/theme-extensions.md) — 5 theming strategies
-- [Footer / Powerline Extensions](ecosystem/footer-extensions.md) — status bars and powerline segments
-- [Tool-Call Rendering Extensions](ecosystem/tool-rendering-extensions.md) — compact rendering, richer diffs
-
-### 🔧 Tool behavior
-
-- [Hashline Edit Extensions](ecosystem/hashline-edit-extensions.md) — hash-anchored `read`/`edit` replacements
-
-### 🌐 Web search and information retrieval
-
-- [Web Search Extensions](ecosystem/web-search-extensions.md) — extensions and skills
-- [Web Search Providers](references/web-search-providers.md) — what backend powers search in major AI products
-- [LLM Chat Ingestion](ecosystem/llm-chat-ingestion.md) — importing web LLM conversations
-
-### 🧠 Knowledge and skills
-
-- [LLM Wiki Skills](ecosystem/llm-wiki-skills.md) — Karpathy LLM Wiki implementations across agents
-
-### 📱 Remote and browser access
-
-- [Web UI and Remote/Mobile Access](ecosystem/web-ui-and-remote-access.md) — embedded library and remote-terminal options
-
-### 🔌 Integrations and providers
-
-- [Anthropic Subscription Auth in Pi](ecosystem/anthropic-subscription-auth.md) — OAuth, API key, Foundry
-- [Claude Agent SDK Bridge](ecosystem/claude-agent-sdk-pi.md) — Pi ↔ Anthropic Agent SDK
-- [Google Workspace Integration](ecosystem/google-workspace.md) — `gws` CLI, OAuth, GCP prerequisites
-
-### 📋 References
-
-- [How to Evaluate a Pi Extension](references/evaluation.md) — the framework this wiki uses
-- [Pi Ecosystem Catalogs](references/catalogs.md) — upstream awesome-lists and official catalog
-- [Web Search Providers](references/web-search-providers.md) — backend reference
-
-### 🚧 Niches not yet surveyed
-
-MCP integration · Security/guardrails · Notifications · Cost tracking · Session management · Process orchestration · Memory/persistent context · SSH remote access — see [index.md](index.md) for starting points.
+For the complete list of pages organized by category, see
+**[index.md](index.md)**. The "I want to…" table above covers the
+most common entry points; `index.md` covers everything.
 
 ---
 

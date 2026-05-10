@@ -73,7 +73,7 @@ product relies on a single search backend.
 
 For the Pi-side design rule on how to *expose* multiple backends to
 the model (one tool with internal routing, not several visible tools),
-see [Web Search Extensions — routing guidance](../ecosystem/web-search-extensions.md#routing-guidance--one-tool-internal-selection).
+see [Web Search Extensions — routing guidance](../ecosystem/web-search-extensions.md#routing-guidance-one-tool-internal-selection).
 
 ## See also
 

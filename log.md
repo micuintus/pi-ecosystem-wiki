@@ -2,6 +2,27 @@
 
 Append-only. Newest at top.
 
+## [2026-05-10] refactor | Walk back duplication; fix broken TOC anchors
+
+**README.md trimmed 114 → 67 lines.** Removed the full browse-by-use-case
+section that duplicated `index.md`. README now contains: identity,
+"I want to…" decision table, Quick picks, pointer to `index.md` for
+full browse, what-this-is/is-not, contributing. One canonical browse
+location.
+
+**TOC anchor fixes (9 broken).** Em-dash headings (`Tier 1 — Project
+Health`) slugify to single-dash (`tier-1-project-health`), not double.
+Manual TOCs across 6 pages had `--` where GitHub generates `-`. Fixed
+in: loop-extensions, web-search-extensions (×2), subagent-extensions,
+mcp-integration, evaluation (×3), web-search-providers (×1).
+
+**Validation upgraded.** Anchor verifier added (Python script in this
+log entry's session): walks all `.md` files, slugifies headings,
+checks every `](#anchor)` and `](file.md#anchor)` resolves. Run
+alongside the existing source-graph and link checks.
+
+Source graph: 139/139.
+
 ## [2026-05-10] feat | Add MCP integration survey; complete ## See also coverage
 
 **New page: `ecosystem/mcp-integration.md`**

@@ -15,9 +15,9 @@ tags: [reference, evaluation, quality, methodology]
 ## Contents
 
 - [Three tiers of signal](#three-tiers-of-signal)
-- [Tier 1 — Project health](#tier-1--project-health-highest-priority)
-- [Tier 2 — Community sentiment](#tier-2--community-sentiment)
-- [Tier 3 — Code quality signals](#tier-3--code-quality-signals)
+- [Tier 1 — Project health](#tier-1-project-health-highest-priority)
+- [Tier 2 — Community sentiment](#tier-2-community-sentiment)
+- [Tier 3 — Code quality signals](#tier-3-code-quality-signals)
 - [What this wiki does and doesn't promise](#what-this-wiki-does-and-doesnt-promise)
 - [See also](#see-also)
 

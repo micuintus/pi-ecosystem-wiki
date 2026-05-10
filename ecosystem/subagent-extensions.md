@@ -102,7 +102,7 @@ entries:
 - [The four architectural patterns](#the-four-architectural-patterns)
 - [Cross-pattern comparison](#cross-pattern-comparison)
 - [Idiomatic LLM-known tool shapes](#idiomatic-llm-known-tool-shapes)
-- [ConversationViewer](#conversationviewer-tintinwebhopsken--capabilities-and-limits)
+- [ConversationViewer](#conversationviewer-tintinwebhopsken-capabilities-and-limits)
 - [Comparison with other agents](#comparison-with-other-agents)
 - [Picking a subagent extension](#picking-a-subagent-extension)
 - [Caveats](#caveats)

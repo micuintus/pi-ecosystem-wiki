@@ -108,7 +108,7 @@ entries:
 
 - [What this page is for](#what-this-page-is-for)
 - [The two front-runners](#the-two-front-runners)
-- [Architectural variants](#architectural-variants--7-distinct-approaches)
+- [Architectural variants](#architectural-variants-7-distinct-approaches)
 - [Code quality observations](#code-quality-observations)
 - [Hook-surface usage matrix](#hook-surface-usage-matrix)
 - [Source-path notes](#source-path-notes)
