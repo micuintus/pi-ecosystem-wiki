@@ -146,5 +146,13 @@ copied into a dated bucket file.
 | aliou-pi-extensions | repo | https://github.com/aliou/pi-extensions | extension-collection |
 | ben-vargas-pi-packages | repo | https://github.com/ben-vargas/pi-packages | extension-collection |
 | obra-superpowers | repo | https://github.com/obra/superpowers | skill-collection, cross-agent |
+| tintinweb-pi-manage-todo-list | repo | https://github.com/tintinweb/pi-manage-todo-list | extension, todo |
+| tintinweb-pi-tasks | repo | https://github.com/tintinweb/pi-tasks | extension, todo, dag |
+| edxeth-pi-tasks | repo | https://github.com/edxeth/pi-tasks | extension, todo, dag |
+| soleone-pi-tasks | repo | https://github.com/Soleone/pi-tasks | extension, todo, pluggable-backend |
+| popododo-pi-stuff | repo | https://github.com/popododo0720/pi-stuff | extension, workflow, todo |
+| tintinweb-pi-subagents | repo | https://github.com/tintinweb/pi-subagents | extension, subagent, in-process |
+| hazat-pi-interactive-subagents | repo | https://github.com/HazAT/pi-interactive-subagents | extension, subagent, multiplexer |
+| ifi-pi-extension-subagents | repo | https://github.com/ifiokjr/pi-extension-subagents | extension, subagent, tui-overlay |
 | github-rest-api | docs | https://docs.github.com/en/rest | docs, methodology |
 | npm-downloads-api | docs | https://github.com/npm/registry/blob/main/docs/download-counts.md | docs, methodology |

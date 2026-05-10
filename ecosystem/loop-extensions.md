@@ -276,6 +276,25 @@ Only `mitsuhiko/agent-stuff loop.ts` uses `session_before_compact` to
 preserve loop state across compaction. Every other in-process loop will
 "forget" it's in a loop after `/compact` fires.
 
+## Source-path notes
+
+Wiki and blog citations frequently get these wrong. Verified paths
+(2026-05-08 from a clone of each repo):
+
+- `mitsuhiko/agent-stuff` loop extension lives at `extensions/loop.ts`
+  — not `pi-extensions/loop.ts`. The repo has no `pi-extensions/`
+  directory.
+- `tmustier/pi-extensions` ralph extension lives at
+  `pi-ralph-wiggum/index.ts` — not `ralph-wiggum/index.ts`.
+- `davebcn87/pi-autoresearch` extension lives at
+  `extensions/pi-autoresearch/index.ts` (3,038 LOC, plus
+  `compaction.ts`, `jsonl.ts`, `shortcuts.ts`, `hooks.ts`).
+- `lnilluv/pi-ralph-loop` ships as `ralph-loop-pi` on npm.
+- The in-tree visibility-preserving subagent reference at
+  `packages/coding-agent/examples/extensions/subagent/index.ts` uses
+  `pi --mode json -p --no-session`, **not** `--mode rpc`. RPC is what
+  `lnilluv/pi-ralph-loop` uses for its steerable variant.
+
 ## Recommendation matrix
 
 | Goal | Best extension | Why |

@@ -2,6 +2,39 @@
 
 Append-only. Newest at top.
 
+## [2026-05-10] feat | Ingest substantial updates from upstream private llm-wiki
+
+Pulled in new public-relevant content from the private source wiki. Stripped DACMICU framing, internal investigation tone, and pi-evolve confabulation; kept objective ecosystem analysis.
+
+**`ecosystem/todo-extensions.md`** — major expansion (5 → 9 entries):
+- Added `tintinweb/pi-manage-todo-list` (506 LOC, verbatim Copilot `manage_todo_list` shape, branch-safe). The "minimal idiomatic" recommendation.
+- Added `edxeth/pi-tasks` (~1,100 LOC, verbatim Claude Code `Task*` shape, DAG, stats, file-backed). The "full task experience" recommendation.
+- Added `tintinweb/pi-tasks` (2,061 LOC, 7 tools, DAG).
+- Added `Soleone/pi-tasks` (3,566 LOC, pluggable backends).
+- New section "Idiomatic LLM-known TODO tool shapes" — Claude Code `TodoWrite` vs VSCode Copilot `manage_todo_list` field-by-field comparison; explains which Pi extension mirrors which.
+- New section "The four-layer widget stack" — L1 renderResult, L2 setWidget factory form, L3 registerMessageRenderer (the unrealized polish opportunity, no production extension uses it), L4 modal viewer.
+- New section on `popododo0720/pi-stuff/workflow-extension` as proof-of-pattern for state-machine + transition-guards on top of TODOs.
+- Replaced old "Polish gap vs TodoWrite" section with structural explanation.
+
+**`ecosystem/subagent-extensions.md`** — major restructure (10 → 12 entries):
+- Added `tintinweb/pi-subagents` as the in-process gold standard (verbatim Claude Code `Task`/`get_subagent_result`/`steer_subagent` tool names; ConversationViewer modal; agent-tree widget; cross-extension `pi.events` RPC).
+- Added `HazAT/pi-interactive-subagents` (~8,200 LOC, 442 stars) — Pattern 4 (multiplexer pane per subagent). The only Pi extension supporting true side-by-side parallel inspection.
+- Added `@ifi/pi-extension-subagents` (nicobailon fork with Agents Manager TUI overlay).
+- Added `elpapi42/pi-minimal-subagent` (1,144 LOC, env-injection escape hatch).
+- Restructured around four architectural patterns (was three): added Pattern 4 (multiplexer pane) with full code sketch and tradeoff analysis.
+- New "Cross-pattern comparison" matrix covering spawn cost, isolation, parallel inspection, LOC, SDK semver risk.
+- New "Idiomatic LLM-known tool shapes" section.
+- New "ConversationViewer — capabilities and limits" section documenting the 500-char truncation in tintinweb's modal.
+- Updated opencode comparison: post-PR #14814 opencode also has no tabs/panes, so HazAT (mux split) is strictly more capable than opencode for parallel inspection.
+- Added Caveats section: Hopsken/pi-subagents = stale private mirror of tintinweb/pi-subagents (not a separate project); cmf/pi-subagent = experimental not production.
+
+**`ecosystem/loop-extensions.md`** — small addition:
+- New "Source-path notes" subsection correcting common citation errors (mitsuhiko's `loop.ts` lives at `extensions/`, not `pi-extensions/`; tmustier's at `pi-ralph-wiggum/index.ts`; pi-autoresearch at `extensions/pi-autoresearch/index.ts`; lnilluv ships as `ralph-loop-pi` on npm).
+
+**Sources registered** (8 new): `tintinweb-pi-manage-todo-list`, `tintinweb-pi-tasks`, `edxeth-pi-tasks`, `soleone-pi-tasks`, `popododo-pi-stuff`, `tintinweb-pi-subagents`, `hazat-pi-interactive-subagents`, `ifi-pi-extension-subagents`.
+
+Source graph: 131/131. No broken markdown links.
+
 ## [2026-05-08] feat | Ingest personal collections; expand evaluation Tier 2
 
 **Survey page updates (ingestion seeds from the 6 newly catalogued collections):**
