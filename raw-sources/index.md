@@ -154,5 +154,13 @@ copied into a dated bucket file.
 | tintinweb-pi-subagents | repo | https://github.com/tintinweb/pi-subagents | extension, subagent, in-process |
 | hazat-pi-interactive-subagents | repo | https://github.com/HazAT/pi-interactive-subagents | extension, subagent, multiplexer |
 | ifi-pi-extension-subagents | repo | https://github.com/ifiokjr/pi-extension-subagents | extension, subagent, tui-overlay |
+| nicobailon-pi-mcp-adapter | repo | https://github.com/nicobailon/pi-mcp-adapter | extension, mcp |
+| spences10-my-pi | repo | https://github.com/spences10/my-pi | extension, bundle, mcp |
+| jordyvd-pi-mcp-adapter | repo | https://github.com/jordyvandomselaar/pi-mcp-adapter | extension, mcp |
+| steimbyte-pi-mcp-extension | repo | https://github.com/alephtex/pi-mcp-extension | extension, mcp |
+| mitsuhiko-pi-codemode-mcp | repo | https://github.com/mitsuhiko/pi-codemode-mcp | extension, mcp, experiment |
+| mariozechner-mcp-vs-cli | article | https://mariozechner.at/posts/2025-08-15-mcp-vs-cli/ | opinion, methodology |
+| mariozechner-what-if-no-mcp | article | https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp | opinion, methodology |
+| pi-mcp-adapter-docs | docs | https://nicobailon-pi-mcp-adapter.mintlify.app/introduction | docs, mcp |
 | github-rest-api | docs | https://docs.github.com/en/rest | docs, methodology |
 | npm-downloads-api | docs | https://github.com/npm/registry/blob/main/docs/download-counts.md | docs, methodology |

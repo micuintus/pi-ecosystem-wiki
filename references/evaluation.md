@@ -12,6 +12,15 @@ tags: [reference, evaluation, quality, methodology]
 
 # How to Evaluate a Pi Extension
 
+## Contents
+
+- [Three tiers of signal](#three-tiers-of-signal)
+- [Tier 1 — Project health](#tier-1--project-health-highest-priority)
+- [Tier 2 — Community sentiment](#tier-2--community-sentiment)
+- [Tier 3 — Code quality signals](#tier-3--code-quality-signals)
+- [What this wiki does and doesn't promise](#what-this-wiki-does-and-doesnt-promise)
+- [See also](#see-also)
+
 This wiki deliberately does **not** bake live numbers into pages —
 they go stale within weeks. Instead, every survey page lists each
 extension with stable machine-readable identifiers (`repo:`, `npm:`)

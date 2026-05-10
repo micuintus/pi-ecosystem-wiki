@@ -68,6 +68,20 @@ entries:
 
 # Pi Footer / Powerline / Status Bar Extensions
 
+## Contents
+
+- [pi-powerline-footer](#pi-powerline-footer-nicobailon)
+- [pi-fancy-footer](#pi-fancy-footer-mavam)
+- [pi-powerbar](#pi-powerbar-juanibiapina)
+- [pi-vitals](#pi-vitals-mcowger)
+- [minimal-footer](#minimal-footer-diegopetruccipi-extensions)
+- [custom-footer](#custom-footer-tomsejpi-ext)
+- [pi-powerline](#pi-powerline-unscoped-npm)
+- [chrome](#chrome-alioupi-extensions)
+- [status-widget](#status-widget-hjanuschkashitty-extensions)
+- [Recommendation matrix](#recommendation-matrix)
+- [See also](#see-also)
+
 Survey of Pi extensions that customize the footer / status bar — the
 visual layer that renders below the editor.
 

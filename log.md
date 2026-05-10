@@ -2,6 +2,39 @@
 
 Append-only. Newest at top.
 
+## [2026-05-10] feat | Add MCP integration survey; complete ## See also coverage
+
+**New page: `ecosystem/mcp-integration.md`**
+- 4 entries: `nicobailon/pi-mcp-adapter` (608 stars, 23.7K weekly downloads,
+  proxy pattern ~200 tokens), `steimbyte/pi-mcp-extension` (Zod conflict
+  fix), `mitsuhiko/pi-codemode-mcp` (experimental sandbox), `spences10/my-pi`
+  (bundle with MCP + LSP + chains).
+- Opinionated caveat lede: Mario Zechner's stance that CLI skills are
+  leaner than MCP servers for most tasks. Design tension surfaced as
+  first-class content, not suppressed.
+- Comparison table: when MCP makes sense (databases, browsers,
+  third-party APIs) vs when CLI skills are better (file ops, custom
+  tools, long-running services).
+- Proxy pattern explained: how nicobailon's adapter avoids 10k+ token
+  registration cost.
+
+**`references/web-search-providers.md`** — added `## See also`
+**`references/catalogs.md`** — added `## See also`
+
+**`index.md`** — added MCP to "Integrations and providers" category;
+removed from "Niches not yet surveyed"; updated date.
+
+**Inline TOCs added** to:
+- `ecosystem/theme-extensions.md`
+- `ecosystem/footer-extensions.md`
+- `references/evaluation.md`
+
+Sources registered: 7 new (nicobailon-pi-mcp-adapter, jordyvd-pi-mcp-adapter,
+steimbyte-pi-mcp-extension, mitsuhiko-pi-codemode-mcp, mariozechner-mcp-vs-cli,
+mariozechner-what-if-no-mcp, pi-mcp-adapter-docs, spences10-my-pi).
+
+Source graph: 139/139.
+
 ## [2026-05-10] feat | Improve human navigation: README portal, inline TOCs, visual anchors
 
 **README.md** — complete rewrite as a landing page:

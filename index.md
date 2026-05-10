@@ -1,7 +1,7 @@
 ---
 title: Index
 type: reference
-updated: 2026-05-08
+updated: 2026-05-10
 sources: []
 ---
 
@@ -56,6 +56,7 @@ them.
 
 ### 🔌 Integrations and providers
 
+- [MCP Integration](ecosystem/mcp-integration.md) — Model Context Protocol adapters; when MCP makes sense and when CLI skills are leaner
 - [Anthropic Subscription Auth in Pi](ecosystem/anthropic-subscription-auth.md) — OAuth, API key, Foundry; why third-party tools can't reach the main subscription budget
 - [claude-agent-sdk-pi](ecosystem/claude-agent-sdk-pi.md) — Bridge between Pi and Anthropic's Agent SDK; thinking-mode mapping
 - [Google Workspace Integration](ecosystem/google-workspace.md) — `gws` CLI, OAuth, GCP prerequisites, command shapes
@@ -75,7 +76,6 @@ Use [`qualisero/awesome-pi-agent`](https://github.com/qualisero/awesome-pi-agent
 
 | Niche | Notable entries (starting points for a future survey) |
 |---|---|
-| **MCP integration** | `pi-mcp-adapter` (highest downloads in the ecosystem), `@aliou/pi-linkup` |
 | **Security, guardrails, and sandboxing** | `michalvavra/agents` (filter-output, security), `kcosr/toolwatch`, `prateekmedia/pi-hooks` permission, `@aliou/pi-guardrails`, `shitty-extensions` plan-mode, `gondolin` (earendil-works sandbox), `nono` (Landlock/Seatbelt) |
 | **Notifications** | `pi-notification-extension`, `pi-notify-pp`, `ferologics/pi-notify`, `qualisero/rhubarb-pi` background-notify |
 | **Cost tracking and usage monitoring** | `shitty-extensions` cost-tracker/usage-bar, `tmustier` usage-extension, `mrexodia/pi-cost-dashboard`, `pi-sub` |

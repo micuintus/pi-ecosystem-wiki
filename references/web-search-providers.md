@@ -75,3 +75,8 @@ For the Pi-side design rule on how to *expose* multiple backends to
 the model (one tool with internal routing, not several visible tools),
 see [Web Search Extensions — routing guidance](../ecosystem/web-search-extensions.md#routing-guidance--one-tool-internal-selection).
 
+## See also
+
+- [Web Search Extensions](../ecosystem/web-search-extensions.md) — Pi extensions that use these providers
+- [Pi Ecosystem Catalogs](catalogs.md) — where to find more extensions
+

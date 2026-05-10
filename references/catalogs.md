@@ -106,3 +106,8 @@ keyword for catalog discoverability. Reference:
 [Pi Packages docs](https://pi.dev/docs/latest/packages).
 
 This is the unit that all three top-level catalogs index.
+
+## See also
+
+- [How to Evaluate a Pi Extension](evaluation.md) — vital signs and code-quality recipes for vetting packages from any catalog
+- [Pi Web Search Extensions](../ecosystem/web-search-extensions.md) — example of a survey page that sits on top of catalogs

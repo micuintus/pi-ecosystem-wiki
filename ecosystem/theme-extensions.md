@@ -87,6 +87,14 @@ entries:
 
 # Pi Theme Extensions
 
+## Contents
+
+- [How Pi themes work](#how-pi-themes-work-very-short)
+- [Five theme strategies](#five-theme-strategies)
+- [Picking a theme strategy](#picking-a-theme-strategy)
+- [Theme-specific quality signal](#theme-specific-quality-signal)
+- [See also](#see-also)
+
 Pi ships only `dark` and `light` as built-in themes. Everything else
 comes from the community. The `awesome-pi.site` catalog tracks **131
 themes** in this category, so this page does not try to enumerate
