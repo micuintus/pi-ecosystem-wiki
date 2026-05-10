@@ -70,6 +70,18 @@ entries:
 
 # Pi TODO List Extensions
 
+## Contents
+
+- [Discriminator](#discriminator-tool-only-vs-rendered-widget-vs-external-file)
+- [Surveyed extensions](#surveyed-extensions)
+- [Idiomatic LLM-known TODO tool shapes](#idiomatic-llm-known-todo-tool-shapes)
+- [Reference implementation pattern](#reference-implementation-pattern)
+- [The four-layer widget stack](#the-four-layer-widget-stack)
+- [Workflow extensions on top of TODOs](#workflow-extensions-on-top-of-todos)
+- [Picking a TODO extension](#picking-a-todo-extension)
+- [Why no Pi extension matches Claude Code's polish](#why-no-pi-extension-matches-claude-codes-todowrite-polish)
+- [See also](#see-also)
+
 Survey of Pi extensions that manage TODO lists — both as LLM-callable
 tools and as user-visible widgets. A TODO list is a natural state
 object for autonomous agent loops, where each iteration picks the top

@@ -2,6 +2,24 @@
 
 Append-only. Newest at top.
 
+## [2026-05-10] feat | Improve human navigation: README portal, inline TOCs, visual anchors
+
+**README.md** — complete rewrite as a landing page:
+- "I want to…" decision table mapping 8 common goals to the right page
+- "Quick picks" section — 3 safe starting points for new Pi users
+- Full browse-by-use-case with emoji category markers and inline descriptions
+- Moved `index.md` content into README so GitHub visitors don't bounce
+
+**Inline TOCs added** to the 4 longest pages:
+- `ecosystem/subagent-extensions.md` — 8 section anchors
+- `ecosystem/loop-extensions.md` — 9 section anchors
+- `ecosystem/todo-extensions.md` — 9 section anchors
+- `ecosystem/web-search-extensions.md` — 9 section anchors
+
+**index.md** — emoji visual anchors on all category headers (🔁 ✅ 🎨 🔧 🌐 🧠 📱 🔌 📋 🚧)
+
+Source graph: 131/131. No broken links.
+
 ## [2026-05-10] feat | Ingest substantial updates from upstream private llm-wiki
 
 Pulled in new public-relevant content from the private source wiki. Stripped DACMICU framing, internal investigation tone, and pi-evolve confabulation; kept objective ecosystem analysis.

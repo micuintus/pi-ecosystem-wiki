@@ -99,6 +99,18 @@ entries:
 
 # Pi Web Search Extensions
 
+## Contents
+
+- [Approach](#approach)
+- [Code quality and engineering shape](#code-quality-and-engineering-shape)
+- [What each does](#what-each-does)
+- [Market structure](#market-structure)
+- [Recommendation matrix](#recommendation-matrix)
+- [Author note](#author-note)
+- [Setup notes — pi-web-access](#setup-notes--pi-web-access)
+- [Routing guidance](#routing-guidance--one-tool-internal-selection)
+- [See also](#see-also)
+
 Comparison of published Pi web search extensions and skills.
 
 ## Approach

@@ -97,6 +97,17 @@ entries:
 
 # Pi Subagent Extensions
 
+## Contents
+
+- [The four architectural patterns](#the-four-architectural-patterns)
+- [Cross-pattern comparison](#cross-pattern-comparison)
+- [Idiomatic LLM-known tool shapes](#idiomatic-llm-known-tool-shapes)
+- [ConversationViewer](#conversationviewer-tintinwebhopsken--capabilities-and-limits)
+- [Comparison with other agents](#comparison-with-other-agents)
+- [Picking a subagent extension](#picking-a-subagent-extension)
+- [Caveats](#caveats)
+- [See also](#see-also)
+
 Pi extensions that delegate tasks to child agents with isolated
 context windows. Pattern: parent calls a `delegate` / `subagent` /
 `Task` tool → child agent runs the task → result returns to parent

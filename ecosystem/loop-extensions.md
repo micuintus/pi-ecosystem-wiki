@@ -104,6 +104,18 @@ entries:
 
 # Pi Loop and Ralph Extensions
 
+## Contents
+
+- [What this page is for](#what-this-page-is-for)
+- [The two front-runners](#the-two-front-runners)
+- [Architectural variants](#architectural-variants--7-distinct-approaches)
+- [Code quality observations](#code-quality-observations)
+- [Hook-surface usage matrix](#hook-surface-usage-matrix)
+- [Source-path notes](#source-path-notes)
+- [Recommendation matrix](#recommendation-matrix)
+- [Convergence signal](#convergence-signal)
+- [See also](#see-also)
+
 Comparative survey of Pi extensions implementing autonomous agent loops,
 deterministic iteration patterns, and Ralph Wiggum-style coding campaigns.
 
