@@ -10,6 +10,7 @@ sources:
   - iRonin-pi-llm-wiki
   - atomicmemory-llm-wiki-compiler
   - lucasastorian-llmwiki
+  - micuintus-llm-wiki
 tags: [skill, llm-wiki]
 entries:
   - id: karpathy-llm-wiki
@@ -47,6 +48,11 @@ entries:
     repo: lucasastorian/llmwiki
     role: skill
     notes: "Surfaced in landscape; not deeply analyzed."
+  - id: micuintus-llm-wiki
+    name: llm-wiki (micuintus)
+    repo: micuintus/llm-wiki
+    role: cross-agent-skill
+    notes: "Markdown skill following Karpathy's gist. Five-section spec (Layout, Ingest, Query, Lint, Schema) plus Navigation-and-discoverability rules. Anchor-link verification in lint. Used to maintain this wiki — same author. Cross-agent: Claude Code, Pi, others that support SKILL.md skills."
 ---
 
 # LLM Wiki Skills and Pi-native Implementations
@@ -71,6 +77,7 @@ fragmentation may be by design.
 | **`iRonin/pi-llm-wiki`** | Pi-native package | Pi extension + skill bundle, npm-installable. Four logical layers: raw capture packets, wiki pages, generated JSON metadata (registry, backlinks, events), schema. Guardrails block direct raw/meta edits. Uses Obsidian wikilinks. Source-page intermediate layer mandatory. |
 | **`atomicmemory/llm-wiki-compiler`** | Skill | Surfaced in landscape; not deeply analyzed. |
 | **`lucasastorian/llmwiki`** | Skill | Surfaced in landscape; not deeply analyzed. |
+| **`micuintus/llm-wiki`** | Cross-agent skill | Five-section spec (Layout, Ingest, Query, Lint, Schema) plus Navigation-and-discoverability rules. Anchor-link verification in lint. Recommended skill for `micuintus/pi-ecosystem-wiki` (same author maintains both). Works with any agent that supports SKILL.md skills. |
 
 ## Fidelity scorecard (vs Karpathy gist)
 
@@ -94,6 +101,7 @@ fragmentation may be by design.
 | Claude Code, full features | **praneybehl/llm-wiki-plugin** | Slash commands, BM25, graph layer, scaling docs |
 | Minimal CLI | **aaronoah/llm-wiki-skill** | Three Python scripts, no overhead |
 | Pi-native, npm-installable | **iRonin/pi-llm-wiki** | Pi extension + skill bundle, deterministic guardrails |
+| Querying [`pi-ecosystem-wiki`](https://github.com/micuintus/pi-ecosystem-wiki) | **micuintus/llm-wiki** | Page conventions match; anchor-link lint catches the common em-dash failures; same maintainer |
 | Build your own | Karpathy gist directly | The gist explicitly invites collaboration with your agent |
 
 ## Note on the pattern

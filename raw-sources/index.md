@@ -162,5 +162,6 @@ copied into a dated bucket file.
 | mariozechner-mcp-vs-cli | article | https://mariozechner.at/posts/2025-08-15-mcp-vs-cli/ | opinion, methodology |
 | mariozechner-what-if-no-mcp | article | https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp | opinion, methodology |
 | pi-mcp-adapter-docs | docs | https://nicobailon-pi-mcp-adapter.mintlify.app/introduction | docs, mcp |
+| micuintus-llm-wiki | repo | https://github.com/micuintus/llm-wiki | skill, llm-wiki, recommended |
 | github-rest-api | docs | https://docs.github.com/en/rest | docs, methodology |
 | npm-downloads-api | docs | https://github.com/npm/registry/blob/main/docs/download-counts.md | docs, methodology |

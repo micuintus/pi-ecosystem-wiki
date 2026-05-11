@@ -1,12 +1,27 @@
 # pi-ecosystem-wiki
 
-A compiled, interlinked knowledge base about the [Pi coding agent](https://pi.dev/)
-ecosystem — extensions, skills, packages, prompt templates, themes,
-providers, and the people building them.
+A [Karpathy-style LLM wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+about the [Pi coding agent](https://pi.dev/) ecosystem — extensions,
+skills, packages, themes, providers. Survey pages by use case, each
+comparing options so you can choose.
 
-Pi itself is deliberately minimal. The ecosystem around it is not.
-This wiki helps you **pick the right extensions for your Pi setup**
-without trawling 1000+ entries in the flat catalogs.
+**Use this via Pi, not by browsing it manually.** The wiki is designed
+to be queried by an LLM. Point Pi at this repo and ask things like
+*"what loop extension should I use for overnight autoresearch?"* or
+*"which subagent extension does in-process delegation?"*. The
+recommended way is the [`micuintus/llm-wiki`](https://github.com/micuintus/llm-wiki)
+skill — it handles ingest, query, and lint following the page
+conventions this wiki already uses. Disclosure: same author maintains
+both.
+
+Manual browsing works too — the "I want to…" table below is the fast
+lane — but the design assumes an LLM is doing the synthesis. This is
+**not** a flat awesome-list. For exhaustive coverage see
+[`qualisero/awesome-pi-agent`](https://github.com/qualisero/awesome-pi-agent),
+[`awesome-pi.site`](https://awesome-pi.site/), and
+[`pi.dev/packages`](https://pi.dev/packages) — all referenced in
+[references/catalogs.md](references/catalogs.md). Every claim here
+cites a source; see [`SCHEMA.md`](SCHEMA.md).
 
 ---
 
@@ -26,13 +41,27 @@ without trawling 1000+ entries in the flat catalogs.
 
 ---
 
-## Quick picks
+## Quick picks — author's minimal Pi setup
 
-**Just installed Pi?** Three safe starting points used by multiple curators:
+Pi is deliberately minimal. Stay minimal yourself; grab more later as
+real needs surface. This is the author's actual install list, not a
+"top downloads" list:
 
-1. **[`tintinweb/pi-manage-todo-list`](ecosystem/todo-extensions.md)** — minimal TODO tool that LLMs already know how to use (mirrors GitHub Copilot's `manage_todo_list` shape). Branch-safe, polished widget.
-2. **[`davebcn87/pi-autoresearch`](ecosystem/evolve-extensions.md)** — the most adopted code-optimization loop. Confidence scoring, dashboard, compaction-aware.
-3. **[`tintinweb/pi-subagents`](ecosystem/subagent-extensions.md)** — in-process subagent delegation with idiomatic Claude Code tool names. Live modal viewer, cross-extension RPC.
+**Extensions (install these first):**
+
+1. **[`nicobailon/pi-powerline-footer`](ecosystem/footer-extensions.md#pi-powerline-footer-nicobailon)** — at-a-glance status bar (model, cost, branch, dir). The footer you stop noticing because it's right.
+2. **[`MasuRii/pi-tool-display`](ecosystem/tool-rendering-extensions.md)** — compact tool-call rendering. Stops tool output from burying the conversation.
+3. **[`nicobailon/pi-web-access`](ecosystem/web-search-extensions.md)** — web search + content fetch. Single tool, sensible defaults.
+
+**Skills (workflow-dependent — install only what you'll use):**
+
+- **GitHub skill** from [`mitsuhiko/agent-stuff`](references/catalogs.md#curated-extension-collections) — `gh` CLI workflows
+- *Optional:* **[Google Workspace skill](ecosystem/google-workspace.md)** — only if you live in Gmail/Docs/Calendar
+- *Optional:* **[Jira skill](https://github.com/netresearch/jira-skill)** — only if your tickets are in Jira
+
+Everything else in this wiki is "grab when you actually need it" —
+loops, subagents, todos, evolve, MCP. Don't pre-install for the
+hypothetical workflow you might want.
 
 ---
 
@@ -41,20 +70,6 @@ without trawling 1000+ entries in the flat catalogs.
 For the complete list of pages organized by category, see
 **[index.md](index.md)**. The "I want to…" table above covers the
 most common entry points; `index.md` covers everything.
-
----
-
-## What this is — and is not
-
-**Is:** an LLM-maintained markdown wiki following the
-[Karpathy LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
-pattern. Survey pages by *use case*, each comparing options so you can choose.
-
-**Is not:** another flat awesome-list. Those exist and do their job —
-see [references/catalogs.md](references/catalogs.md) for `qualisero/awesome-pi-agent`,
-[`awesome-pi.site`](https://awesome-pi.site/), and [`pi.dev/packages`](https://pi.dev/packages).
-
-Every claim cites a source. See [`SCHEMA.md`](SCHEMA.md) for conventions.
 
 ---
 

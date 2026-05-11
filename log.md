@@ -2,6 +2,29 @@
 
 Append-only. Newest at top.
 
+## [2026-05-10] feat | Reframe README; honest Quick picks; surface llm-wiki skill
+
+**README.md**
+- Merged intro and "What this is — and is not" into one opening that
+  leads with the actual use case: **query this wiki via Pi using an
+  LLM wiki skill**, manual browsing as the fallback fast lane. Names
+  `micuintus/llm-wiki` as the recommended skill (with disclosure that
+  same author maintains both). Trimmed redundant framing.
+- **Quick picks rewritten.** Was: "three safe starting points used by
+  multiple curators" (mostly TODO/loop/subagent — premature for a
+  fresh install). Now: author's actual minimal-first setup:
+  `pi-powerline-footer`, `pi-tool-display`, `pi-web-access`,
+  GitHub skill (mitsuhiko/agent-stuff), optionally GWS/Jira skills if
+  workflow demands. Explicit philosophy: stay minimal, grab more
+  later.
+
+**ecosystem/llm-wiki-skills.md**
+- Added `micuintus/llm-wiki` to entries, landscape table, and
+  recommendation matrix (slot: "querying pi-ecosystem-wiki"). Was
+  missing despite being the maintained skill for this wiki.
+
+Source `micuintus-llm-wiki` registered. Graph: 140/140.
+
 ## [2026-05-10] cleanup | Apply tightened TOC rule
 
 Removed `## Contents` from `ecosystem/mcp-integration.md` (149 lines).
