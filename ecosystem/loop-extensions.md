@@ -106,7 +106,6 @@ entries:
 
 ## Contents
 
-- [What this page is for](#what-this-page-is-for)
 - [The two front-runners](#the-two-front-runners)
 - [Architectural variants](#architectural-variants-7-distinct-approaches)
 - [Code quality observations](#code-quality-observations)
@@ -118,15 +117,13 @@ entries:
 
 Comparative survey of Pi extensions implementing autonomous agent loops,
 deterministic iteration patterns, and Ralph Wiggum-style coding campaigns.
-
 14 distinct projects across 7 architectural variants.
 
-## What this page is for
-
-Architectural and feature comparison across the 14 implementations.
-The structure here (variants A–G, hook-surface usage, recommendation
-matrix by goal) doesn't decay — it's about *how* each extension solves
-the loop problem, not *how popular* it is right now.
+**Short answer for most readers:** `davebcn87/pi-autoresearch` if you
+have a metric to optimize (test speed, bundle size, benchmark score);
+`mitsuhiko/agent-stuff`'s `loop.ts` if you just want a single-context
+loop with a clean breakout tool. Both production-grade. Everything
+below explains the 7 variants and the picks for niche goals.
 
 ## The two front-runners
 

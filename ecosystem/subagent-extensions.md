@@ -113,6 +113,15 @@ context windows. Pattern: parent calls a `delegate` / `subagent` /
 `Task` tool → child agent runs the task → result returns to parent
 without polluting the parent's context.
 
+**Short answer for most readers:** `tintinweb/pi-subagents` if you
+want the polished in-process option with idiomatic Claude Code tool
+names (`Task`, `get_subagent_result`, `steer_subagent`).
+`nicobailon/pi-subagents` if you want the most-adopted subprocess
+option with worktree, JSONL artifacts, async polling.
+`HazAT/pi-interactive-subagents` if you want each child in its own
+visible terminal pane. Everything below maps the 4 architectural
+patterns and 12+ extensions onto specific goals.
+
 There is no built-in subagent in Pi (unlike Claude Code's `Task` tool
 or opencode2's first-class `subtask` part type). The community has
 filled the gap with **four distinct architectural patterns** spread

@@ -2,6 +2,19 @@
 
 Append-only. Newest at top.
 
+## [2026-05-10] polish | TL;DR ledes on two longest survey pages
+
+`loop-extensions.md` (340 lines) and `subagent-extensions.md` (347 lines)
+now open with a 2–3 sentence "short answer for most readers" punchline
+naming the top picks, before diving into the variant taxonomy. Readers
+who just want a recommendation get one without scrolling.
+
+Also dropped `## What this page is for` from `loop-extensions.md` — it
+was defensive meta-commentary ("the structure doesn't decay…") that
+added no information for the reader.
+
+No new pages, no new sources. 139/139.
+
 ## [2026-05-10] refactor | Walk back duplication; fix broken TOC anchors
 
 **README.md trimmed 114 → 67 lines.** Removed the full browse-by-use-case
