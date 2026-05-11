@@ -2,6 +2,14 @@
 
 Append-only. Newest at top.
 
+## [2026-05-10] cleanup | Apply tightened TOC rule
+
+Removed `## Contents` from `ecosystem/mcp-integration.md` (149 lines).
+The new skill rule drops the "or >6 H2s" alternative threshold — line
+count alone is sufficient. mcp-integration had 7 H2s but is short
+enough to scroll without a TOC.
+
+
 ## [2026-05-10] polish | TL;DR ledes on two longest survey pages
 
 `loop-extensions.md` (340 lines) and `subagent-extensions.md` (347 lines)

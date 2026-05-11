@@ -38,16 +38,6 @@ entries:
 
 # Pi MCP Integration
 
-## Contents
-
-- [What MCP adds (and costs)](#what-mcp-adds-and-costs)
-- [Surveyed adapters](#surveyed-adapters)
-- [The proxy pattern](#the-proxy-pattern-how-nicobailons-adapter-works)
-- [When MCP makes sense](#when-mcp-makes-sense-and-when-it-doesnt)
-- [CLI skills as the Pi-native alternative](#cli-skills-as-the-pi-native-alternative)
-- [Picking an MCP adapter](#picking-an-mcp-adapter)
-- [See also](#see-also)
-
 Survey of Pi extensions that connect to [Model Context Protocol](https://modelcontextprotocol.io/)
 (MCP) servers — the standardized way to expose tools, resources, and
 prompts to LLMs.
