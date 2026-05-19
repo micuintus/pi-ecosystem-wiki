@@ -36,7 +36,7 @@ entries:
     notes: "Fork of pi-tool-display."
 ---
 
-# Tool-Call Rendering Extensions
+# Pi Tool-Call Rendering Extensions
 
 Pi extensions that customize how tool calls and their results display
 in the TUI. The dominant theme: **OpenCode-style compact rendering

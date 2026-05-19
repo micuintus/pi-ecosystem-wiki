@@ -165,3 +165,65 @@ copied into a dated bucket file.
 | micuintus-llm-wiki | repo | https://github.com/micuintus/llm-wiki | skill, llm-wiki, recommended |
 | github-rest-api | docs | https://docs.github.com/en/rest | docs, methodology |
 | npm-downloads-api | docs | https://github.com/npm/registry/blob/main/docs/download-counts.md | docs, methodology |
+| stackit-ai-model-serving | docs | https://stackit.de/en/product/stackit-ai-model-serving | provider, eu, germany, sovereign |
+| scaleway-generative-apis | docs | https://www.scaleway.com/en/generative-apis/ | provider, eu, france, sovereign |
+| scaleway-managed-inference | docs | https://www.scaleway.com/en/docs/managed-inference | provider, eu, france, sovereign |
+| eurouter-about | docs | https://www.eurouter.ai/about | provider, eu, netherlands, router |
+| eurouter-hn-comment | issue | https://news.ycombinator.com/item?id=47191201 | provider, eu, sovereignty-washing, opinion |
+| llmbase-eyloo | docs | https://llmbase.ai/about/ | provider, eu, germany, privacy |
+| tensorix-ltd | docs | https://tensorix.ai/terms | provider, eu, ireland, privacy |
+| juicefactory-founders | docs | https://juicefactory.ai/en | provider, eu, sweden, privacy |
+| infomaniak-about | docs | https://www.infomaniak.com/en/about | provider, eu, switzerland, privacy |
+| aki-io-berlin | docs | https://aki.io/terms-of-use/ | provider, eu, germany, berlin |
+| langdock-berlin | docs | https://langdock.com/ | provider, eu, germany, berlin, enterprise |
+| xydra-labs | docs | https://xydra.ai/ | provider, eu, germany, berlin, self-hosted |
+| exalsius | docs | https://exalsius.ai/ | provider, eu, germany, berlin, compute |
+| berlin-ai-labs | docs | https://berlinailabs.de/ | provider, eu, germany, berlin, compliance |
+| polarise | docs | https://polarise.eu/ | provider, eu, germany, berlin, sovereign |
+| vective | docs | https://www.vective.de/technology/sovereign-stack | provider, eu, germany, berlin, sovereign |
+| basebox | docs | https://basebox.ai/en | provider, eu, germany, berlin, sovereign |
+| sovereignty-washing-cispe | article | https://www.networkworld.com/article/4147779/cloud-providers-seek-to-shape-european-sovereignty-legislation.html | eu, sovereignty-washing, policy |
+| aws-european-sovereign-cloud | article | https://www.computerworld.com/article/4118639/aws-european-cloud-service-launch-raises-questions-over-sovereignty.html | eu, aws, sovereignty-washing, cloud-act |
+| azure-eu-data-boundary | article | https://www.computerweekly.com/news/252500940/Microsoft-EU-data-boundary-dubbed-smoke-and-mirrors | eu, azure, sovereignty-washing, cloud-act |
+| google-cloud-eu-sovereign | article | https://www.computing.co.uk/news/2025/cloud/google-strengthens-sovereign-cloud-for-europe | eu, google-cloud, sovereignty-washing, cloud-act |
+| pi-model-router | repo | https://libraries.io/npm/pi-model-router | extension, provider, routing |
+| pi-provider-litellm | repo | https://github.com/balcsida/pi-provider-litellm | extension, provider, proxy |
+| awtotty-pi-opencode | repo | https://github.com/awtotty/pi-opencode | extension, provider, opencode |
+| lnilluv-pi-opencode-go-rotation | repo | https://github.com/lnilluv/pi-opencode-go-rotation | extension, provider, opencode, key-rotation |
+| mosquito-tokenfactory-pi | repo | https://github.com/mosquito/tokenfactory-pi | extension, provider, nebius |
+| mdsitton-pi-opencode-provider | catalog | https://pi.dev/packages/pi-opencode-provider | extension, provider, opencode |
+| pi-issue-1757 | issue | https://github.com/earendil-works/pi-mono/issues/1757 | provider, opencode, built-in |
+| pi-issue-3348 | issue | https://github.com/earendil-works/pi-mono/issues/3348 | provider, nebius, built-in |
+| oh-my-pi-pr-310 | issue | https://github.com/can1357/oh-my-pi/pull/310 | provider, opencode, fork |
+| openclaw-pr-67556 | issue | https://github.com/openclaw/openclaw/pull/67556 | provider, nebius, fork |
+| nebius-token-factory | docs | https://nebius.com/services/studio-inference-service | provider, nebius, open-source |
+| eurouter-ai | docs | https://www.eurouter.ai/ | provider, eu, privacy, kimi |
+| llmbase-ai | docs | https://llmbase.ai/ | provider, eu, privacy, open-source |
+| tensorix-ai | docs | https://tensorix.ai/ | provider, eu, privacy |
+| aki-io | docs | https://aki.io/ | provider, eu, privacy, open-source |
+| juicefactory-ai | docs | https://juicefactory.ai/ | provider, eu, privacy |
+| infomaniak-ai | docs | https://www.infomaniak.com/gtl/hosting.llm | provider, eu, privacy, open-source |
+| cortecs-ai | docs | https://cortecs.ai/ | provider, eu, privacy, router |
+| wayland-ai | docs | https://wayland-ai.eu/ | provider, eu, privacy, open-source |
+| mistral-ai | docs | https://mistral.ai/ | provider, eu, privacy, open-source |
+| kimi-k2-6 | article | https://www.kimi.com/ai-models/kimi-k2-6 | model, open-weight, kimi |
+| aki-io-models | docs | https://aki.io/docs/llm-chat/available-llm-models/ | provider, eu, germany, berlin, models |
+| polarise-baremetal | docs | https://polarise.eu/baremetal | provider, eu, germany, berlin, gpu, bare-metal |
+| basebox-llm-recommendations | docs | https://docs.basebox.ai/on-premise/llm-recommendations/ | provider, eu, germany, berlin, gpu, self-hosted |
+| nervur-architecture | docs | https://nervur.com/concepts/architecture/ | provider, eu, germany, berlin, self-hosted |
+| eden-ai-pricing | docs | https://www.edenai.co/docs/v3/overview/plans-prices | provider, eu, france, routing, competitor |
+| eden-ai-privacy | docs | https://www.edenai.co/privacy | provider, eu, france, routing, gdpr |
+| eden-ai-dpa | docs | https://www.edenai.co/dpa | provider, eu, france, routing, enterprise |
+| eden-ai-enterprise | docs | https://www.edenai.co/enterprise | provider, eu, france, routing, enterprise |
+| eden-ai-vs-openrouter | article | https://dev.to/dr_hernani_costa/api-fatigue-vs-vendor-lock-in-edenai-vs-openrouter-338a | provider, routing, comparison |
+| openrouter-api-guide | article | https://apiscout.dev/guides/openrouter-api-unified-llm-gateway-2026 | provider, routing, us |
+| orq-ai-vs-eden | article | https://router.orq.ai/orq.ai-vs-eden-ai | provider, routing, comparison |
+| requesty-eu | article | https://postmake.io/compare/openrouter-vs-eden-ai-vs-codeium | provider, routing, eu |
+| eurouter-competitors-eden | article | https://www.edenai.co/post/top-european-alternatives-to-openrouter | provider, routing, eu, comparison |
+| eurouter-getaitools | article | https://www.getaitool.in/ai/eurouter | provider, eu, netherlands, review |
+| eurouter-infrabase | article | https://infrabase.ai/inference-apis/eurouter | provider, eu, netherlands, review |
+| eurouter-toolhunt | article | https://toolhunt.io/eurouter/ | provider, eu, netherlands, directory |
+| eurouter-creative-hub | article | https://ai.cyrilcreatives.com/tools/eurouter | provider, eu, netherlands, review |
+| robert-keus-openrouter-alternatives | article | https://medium.com/@robertkeus/the-10-best-openrouter-alternatives-in-2026-from-eu-first-to-open-source-594031416f25 | provider, routing, comparison |
+| david-lodico-linkedin | article | https://www.linkedin.com/posts/davidlodico_ill-admit-it-i-was-part-of-the-problem-activity-7429892670883262465-rjKu | provider, eu, founder, opinion |
+| david-lodico-indiepage | article | https://indiepa.ge/david_lodico | provider, eu, founder, profile |

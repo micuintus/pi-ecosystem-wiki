@@ -1,15 +1,14 @@
 ---
 title: Index
 type: reference
-updated: 2026-05-10
+updated: 2026-05-19
 sources: []
 ---
 
 # Pi Ecosystem Wiki
 
-A use-case-organized guide to picking extensions for your Pi setup.
-Each survey page covers one niche, compares the available options, and
-links upstream.
+The full browse. Each survey page covers one niche, names the options,
+compares them, and links upstream.
 
 If you can't find what you need here, see
 [references/catalogs.md](references/catalogs.md) for the broader
@@ -60,6 +59,7 @@ them.
 - [Anthropic Subscription Auth in Pi](ecosystem/anthropic-subscription-auth.md) — OAuth, API key, Foundry; why third-party tools can't reach the main subscription budget
 - [claude-agent-sdk-pi](ecosystem/claude-agent-sdk-pi.md) — Bridge between Pi and Anthropic's Agent SDK; thinking-mode mapping
 - [Google Workspace Integration](ecosystem/google-workspace.md) — `gws` CLI, OAuth, GCP prerequisites, command shapes
+- [Provider Extensions](ecosystem/provider-extensions.md) — OpenCode Zen/Go, Nebius Token Factory, and EU/privacy-forward open-weight model providers
 
 ## 📋 References and catalogs
 

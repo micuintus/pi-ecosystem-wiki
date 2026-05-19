@@ -2,6 +2,67 @@
 
 Append-only. Newest at top.
 
+## [2026-05-19] research | Berlin providers: Kimi/GLM availability and GPU access
+
+**`ecosystem/provider-extensions.md`** — expanded Berlin-based providers section:
+- Added Kimi 2.6 and GLM availability columns to the Berlin providers table.
+- **Finding: only AKI.IO offers GLM** (GLM 4.7 358B). **None of the nine
+  Berlin providers offer Kimi 2.6** as a managed API.
+- Added GPU access column. **GPU providers:** exalsius (K8s-native),
+  Polarise (NVIDIA B200/GB200/GB300 NVL72 bare metal), Vective (H100/A100
+  bare metal), basebox (self-hosted K8s + GPU Operator), Xydra Labs
+  (on-prem/VPC), Nervur (your own hardware). **API-only (no GPU rental):**
+  AKI.IO and Langdock.
+- New subsection "GPU access compared to Scaleway" — Polarise and Vective
+  are the closest German equivalents to Scaleway's GPU offerings.
+- Updated recommendation matrix with three new rows: GLM via Berlin
+  provider, Kimi 2.6 via Berlin provider, German bare-metal GPU.
+- Registered 4 new sources: `aki-io-models`, `polarise-baremetal`,
+  `basebox-llm-recommendations`, `nervur-architecture`.
+- Source graph: 186/186. No broken links.
+
+## [2026-05-19] feat | Add provider extensions survey; EU/privacy-forward open-weight providers
+
+**New page: `ecosystem/provider-extensions.md`**
+- 6 entries in frontmatter: `awtotty/pi-opencode` (static provider),
+  `mdsitton/pi-opencode-provider` (runtime discovery, npm/pi.dev only),
+  `lnilluv/pi-opencode-go-rotation` (reactive key rotation + watchdog),
+  `mosquito/tokenfactory-pi` (runtime Nebius catalog discovery),
+  `pi-model-router` (generic model routing), `pi-provider-litellm`
+  (LiteLLM proxy adapter — closest thing to a universal EU-provider
+  extension in Pi today).
+- Comparison matrix: static vs runtime discovery vs key-rotation.
+- Built-in vs extension gaps table — when each extension is actually
+  needed vs using Pi core providers.
+- Expanded EU / privacy-forward provider landscape: 9 general providers
+  plus StackIT, Scaleway, AKI.IO. Deep-dive sections on:
+  - **EUrouter** — unfunded Amsterdam router; AWS Bedrock controversy;
+    sovereignty-washing criticism from HN.
+  - **LLMbase** — Eyloo GmbH (German); consumer + API hybrid.
+  - **Tensorix** — Tensorix Ltd (Irish reg 796387); zero-retention claim.
+  - **Juice Factory** — Swedish startup (org 559382-2942); founders
+    Misisca and Fallström; defense-grade dedicated instances.
+  - **Infomaniak** — Swiss employee-owned B Corp; owned data centers;
+    strongest sovereignty profile surveyed.
+- **Berlin-based providers** table: AKI.IO, Langdock, Xydra Labs,
+  exalsius, Berlin AI Labs, Polarise, Vective, basebox, Nervur.
+- **Sovereignty washing** section: CISPE open letter (24 EU cloud CEOs),
+  AWS European Sovereign Cloud critique, Microsoft EU Data Boundary
+  "smoke and mirrors," Google Cloud EU Data Boundary limitations;
+  red-flag vs green-flag checklist.
+- **Pi extensions for EU providers** — documented the gap: no dedicated
+  extensions exist. Generic OpenAI provider, `pi-provider-litellm`,
+  or custom 50-line extension are the current paths.
+
+**`index.md`** — added Provider Extensions to "Integrations and providers".
+
+**`raw-sources/index.md`** — registered 30 new sources (4 extensions,
+  2 built-in issues, 2 fork PRs, 9 EU providers, 1 model reference,
+  4 major EU cloud providers, 4 provider deep-dive sources, 9 Berlin
+  providers, 3 sovereignty-washing articles, 2 Pi extension proxies).
+
+Source graph: 182/182. No broken links.
+
 ## [2026-05-10] feat | Reframe README; honest Quick picks; surface llm-wiki skill
 
 **README.md**
