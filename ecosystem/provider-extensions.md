@@ -53,6 +53,7 @@ sources:
   - apmantza-pi-free
   - pi-kilocode
   - ditfetzt-pi-cline-free
+  - aadishv-pi-agy
 entries:
   - id: awtotty-pi-opencode
     name: pi-opencode
@@ -332,6 +333,60 @@ fetches the live catalog from Cline's API on every Pi startup so newly
 added free models appear automatically.
 
 Install: `pi install npm:pi-cline-free-models`
+
+## Antigravity / Gemini CLI extensions
+
+Pi v0.71.0 removed built-in Google Gemini CLI and Antigravity support. 
+Community extensions have emerged to restore access to Google's AI models 
+via your Google account subscription.
+
+### `aadishv/pi-agy` — Antigravity OAuth + CLIProxyAPI proxy
+
+Provides access to Gemini and Claude models through Google's Antigravity 
+platform using your Google account subscription. Works by running a local 
+proxy that translates Pi's Anthropic API calls to Antigravity's format.
+
+**Models available:**
+- `gemini-claude-opus-4-5-thinking`
+- `gemini-claude-sonnet-4-5-thinking` 
+- `gemini-claude-sonnet-4-5`
+- `gemini-3-pro-preview`
+
+**How it works:**
+1. `pi-agy login` opens browser for Google OAuth (uses Antigravity's client ID)
+2. `pi-agy proxy start` launches CLIProxyAPI on localhost:8317
+3. Pi is configured to use the proxy for Anthropic API calls
+4. Proxy translates to Antigravity's cloudcode-pa.googleapis.com API
+
+**Features:**
+- Uses your actual Google account subscription (no separate API key)
+- Supports both Gemini and Claude models via Antigravity
+- Automatic token refresh
+- Per-model routing available via `pi-antigravity-rotator` extension
+
+Install: `pi install git:github.com/aadishv/pi-agy`
+
+### `tuxevil/pi-antigravity-rotator` — Multi-account rotation proxy
+
+Distributes Antigravity API usage across multiple Google accounts with:
+- Per-model routing (Gemini Pro, Flash, Claude each use separate accounts)
+- Real-time quota tracking
+- Automatic token management
+- Infringement detection
+
+Useful if you have multiple Google accounts with Antigravity access and 
+want to avoid rate limits.
+
+Install: `pi install npm:pi-antigravity-rotator`
+
+### `vedang/pi-antigravity-image-gen` — Image generation tool
+
+Adds a `generate_image` tool backed by:
+- Google's Veo/Imagen models via Antigravity
+- Vertex AI fallback
+- Inline terminal rendering
+
+Install: `pi install npm:@benvargas/pi-antigravity-image-gen`
 
 ## EU / privacy-forward providers — the gap
 

@@ -207,6 +207,7 @@ copied into a dated bucket file.
 | aki-io | docs | https://aki.io/ | provider, eu, privacy, open-source |
 | juicefactory-ai | docs | https://juicefactory.ai/ | provider, eu, privacy |
 | infomaniak-ai | docs | https://www.infomaniak.com/gtl/hosting.llm | provider, eu, privacy, open-source |
+| aadishv-pi-agy | repo | https://github.com/aadishv/pi-agy | extension, provider, antigravity, claude, gemini, oauth |
 | cortecs-ai | docs | https://cortecs.ai/ | provider, eu, privacy, router |
 | wayland-ai | docs | https://wayland-ai.eu/ | provider, eu, privacy, open-source |
 | mistral-ai | docs | https://mistral.ai/ | provider, eu, privacy, open-source |
