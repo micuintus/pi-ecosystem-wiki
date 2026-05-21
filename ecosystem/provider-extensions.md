@@ -49,6 +49,10 @@ sources:
   - polarise-baremetal
   - basebox-llm-recommendations
   - nervur-architecture
+  - micuintus-pi-eurouter
+  - apmantza-pi-free
+  - pi-kilocode
+  - ditfetzt-pi-cline-free
 entries:
   - id: awtotty-pi-opencode
     name: pi-opencode
@@ -68,6 +72,28 @@ entries:
     npm: tokenfactory-pi
     role: dynamic-provider
     notes: "Runtime model discovery for Nebius Token Factory; fetches live catalog on startup"
+  - id: micuintus-pi-eurouter
+    name: pi-eurouter
+    repo: micuintus/pi-eurouter
+    npm: pi-eurouter
+    role: dynamic-provider
+    notes: "EUrouter provider; fetches live model catalog; thinking-level map for reasoning models"
+  - id: apmantza-pi-free
+    name: pi-free-providers
+    repo: apmantza/pi-free
+    role: free-multi-provider
+    notes: "Multi-provider free-tier bundle: Kilo, Cline, NVIDIA NIM, LLM7, ZenMux, CrofAI, Ollama Cloud, SambaNova, and more"
+  - id: pi-kilocode
+    name: pi-kilocode
+    npm: pi-kilocode
+    role: free-provider
+    notes: "Kilo Gateway provider with device-auth OAuth; fetches live catalog; free tier available"
+  - id: ditfetzt-pi-cline-free
+    name: pi-cline-free-models
+    repo: ditfetzt/pi-cline-free-models
+    npm: pi-cline-free-models
+    role: free-provider
+    notes: "Cline free models provider; OAuth via SSO; dynamic catalog fetch on startup"
   - id: mdsitton-pi-opencode-provider
     name: pi-opencode-provider
     npm: pi-opencode-provider
@@ -104,13 +130,21 @@ utilities** (rotation, quota bypass) that the core does not provide.
 - **Using Nebius Token Factory?** Pi has a built-in provider — no extension
   needed. Only install `tokenfactory-pi` if you are on an older Pi version
   or specifically want runtime catalog discovery.
+- **Want EU-hosted open-weight models via EUrouter?** Install
+  `pi install npm:pi-eurouter` — live catalog fetch, thinking-level map
+  for reasoning models, EU-hosted routing.
+- **Want free inference without a paid API key?** See
+  [Free inference providers](#free-inference-providers) —
+  `pi-free-providers`, `pi-kilocode`, and `pi-cline-free-models` all
+  expose free or free-tier models.
 - **Prefer a simple static mapping?** `awtotty/pi-opencode` is a minimal
   git-installable alternative, though it lags behind built-in support.
-- **No Pi-specific extensions exist for EU providers** (STACKIT,
-  Scaleway, EUrouter, LLMbase, Tensorix, Juice Factory, Infomaniak,
-  AKI.IO, etc.). Use Pi's built-in generic OpenAI provider with a
-  custom `baseUrl`, or install `balcsida/pi-provider-litellm` to
-  discover models through a LiteLLM proxy. See
+- **No Pi-specific extensions exist for most EU providers** (STACKIT,
+  Scaleway, LLMbase, Tensorix, Juice Factory, Infomaniak, AKI.IO, etc.),
+  though `pi-eurouter` covers EUrouter specifically. For others: use Pi's
+  built-in generic OpenAI provider with a custom `baseUrl`, or install
+  `balcsida/pi-provider-litellm` to discover models through a LiteLLM
+  proxy. See
   [EU / privacy-forward providers — the gap](#eu--privacy-forward-providers--the-gap).
 
 ## What each extension does
@@ -180,6 +214,25 @@ All models use the `openai-completions` API with
 
 Install: `pi install npm:tokenfactory-pi`. Requires `NEBIUS_API_KEY`.
 
+### `micuintus/pi-eurouter` — EUrouter provider
+
+A Pi provider extension for [EUrouter](https://eurouter.ai) — an Amsterdam-based
+OpenAI-compatible routing service with 120+ EU-hosted models.
+
+The extension fetches the live EUrouter model catalog from
+`https://api.eurouter.ai/api/v1/models` on startup, converts each entry
+to Pi's model format, and registers them as the `eurouter` provider. It falls
+back to a two-model list (Kimi K2.6 and DeepSeek V3) if the API is unreachable.
+
+**Thinking support:** Models that advertise `reasoning_effort` in
+`supported_parameters` are marked `reasoning: true` and receive a
+`thinkingLevelMap` mapping Pi's thinking levels to EUrouter's effort strings
+(`minimal → "low"`, `xhigh → "high"`).
+
+Login: `/login` → "Use an API key" → "EUrouter" → paste your `eur_...` key.
+
+Install: `pi install npm:pi-eurouter`. Published on npm as `pi-eurouter`.
+
 ### `balcsida/pi-provider-litellm` — LiteLLM proxy adapter
 
 Discovers models from a self-hosted LiteLLM proxy and registers them
@@ -230,6 +283,55 @@ require a code change. `mdsitton/pi-opencode-provider` is the best
 choice for users who want immediate access to new OpenCode models.
 `lnilluv/pi-opencode-go-rotation` is orthogonal — pair it with either
 provider if you have multiple OpenCode Go keys.
+
+## Free inference providers
+
+Three extensions expose models with no (or minimal) per-request cost.
+
+### `apmantza/pi-free` — multi-provider free-tier bundle
+
+The most comprehensive free inference extension. Registers multiple
+providers and filters each to show only free-tier models by default.
+Providers include:
+
+- **Free**: Kilo (OAuth), Cline (OAuth), LLM7 gateway (100 req/hr)
+- **Freemium**: NVIDIA NIM (1,000 free req/month), Ollama Cloud,
+  SambaNova (20–480 RPM, no credit card)
+- **Paid with free models**: OpenRouter, ZenMux, CrofAI, Codestral
+  (Mistral Experiment plan: 2 req/min, 1B tokens/month), DeepInfra
+  ($5 trial credit), Novita AI (3 free models)
+- **Dynamic (API key required)**: Mistral, Groq, Cerebras, xAI,
+  Hugging Face, OpenCode, FastRouter
+
+Per-provider `/toggle-{provider}` commands switch between free-only
+and all-models view. OAuth for Kilo and Cline opens automatically in a
+browser. Adds Coding Index benchmark scores to model names.
+
+Install: `pi install git:github.com/apmantza/pi-free`
+
+### `pi-kilocode` — Kilo Gateway provider
+
+A thin provider extension for [Kilo Code's](https://kilo.ai) gateway,
+which itself routes to hundreds of models (Anthropic, OpenAI, Google,
+Mistral, etc.) through a single OpenAI-compatible endpoint. Kilo offers
+a free tier with a selection of capable models.
+
+The extension fetches the live Kilo model catalog from
+`https://api.kilo.ai/api/gateway/models`, caches it on disk, and
+registers text-capable models under the `kilo` provider. Uses Kilo's
+device-auth OAuth login flow.
+
+Install: `pi install npm:pi-kilocode`
+
+### `ditfetzt/pi-cline-free-models` — Cline free models
+
+Exposes Cline's free-tier models (historically Kimi K2.5, MiniMax,
+and others) as a Pi provider. OAuth via SSO (Google, GitHub, Microsoft)
+opens in a browser and handles the callback automatically. The extension
+fetches the live catalog from Cline's API on every Pi startup so newly
+added free models appear automatically.
+
+Install: `pi install npm:pi-cline-free-models`
 
 ## EU / privacy-forward providers — the gap
 

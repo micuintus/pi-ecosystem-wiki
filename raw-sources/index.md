@@ -191,6 +191,10 @@ copied into a dated bucket file.
 | awtotty-pi-opencode | repo | https://github.com/awtotty/pi-opencode | extension, provider, opencode |
 | lnilluv-pi-opencode-go-rotation | repo | https://github.com/lnilluv/pi-opencode-go-rotation | extension, provider, opencode, key-rotation |
 | mosquito-tokenfactory-pi | repo | https://github.com/mosquito/tokenfactory-pi | extension, provider, nebius |
+| micuintus-pi-eurouter | repo | https://github.com/micuintus/pi-eurouter | extension, provider, eu, eurouter |
+| pi-kilocode | repo | https://github.com/sudosubin/pi-frontier | extension, provider, free, kilo |
+| apmantza-pi-free | repo | https://github.com/apmantza/pi-free | extension, provider, free, multi-provider |
+| ditfetzt-pi-cline-free | repo | https://github.com/ditfetzt/pi-cline-free-models | extension, provider, free, cline |
 | mdsitton-pi-opencode-provider | catalog | https://pi.dev/packages/pi-opencode-provider | extension, provider, opencode |
 | pi-issue-1757 | issue | https://github.com/earendil-works/pi-mono/issues/1757 | provider, opencode, built-in |
 | pi-issue-3348 | issue | https://github.com/earendil-works/pi-mono/issues/3348 | provider, nebius, built-in |
