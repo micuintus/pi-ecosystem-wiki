@@ -391,3 +391,18 @@ After the pass: source graph is complete and orphan-free — 119 cited IDs, 119 
 - Updated: ecosystem/anthropic-subscription-auth.md (added route row +
   See also link), ecosystem/claude-agent-sdk-pi.md (cross-link to
   downstream fork), index.md (catalog entry).
+
+## [2026-05-25] update | pi-claude-bridge recommendation matrix
+
+- ecosystem/pi-claude-bridge.md: added "Picking between claude-agent-sdk-pi
+  and pi-claude-bridge" section with capability matrix and explicit
+  subscription-route recommendation (pi-claude-bridge for day-to-day;
+  upstream only if smaller-surface tradeoff is acceptable). Notes that
+  neither route lets you drop the claude_code SDK preset — direct
+  ANTHROPIC_API_KEY is the right path for "no CC personality" use cases.
+- Extended with a "Token cost" subsection: upstream leaks the default CC
+  tool catalog + filesystem/cloud MCP descriptions into the prompt and
+  has no session-resume, so prompt-cache hits are lost each turn and
+  double-compact thrashing can occur; pi-claude-bridge passes `tools: []`,
+  `--strict-mcp-config`, `ENABLE_CLAUDEAI_MCP_SERVERS=0`,
+  `DISABLE_AUTO_COMPACT=1`, and preserves sessionId across turns.

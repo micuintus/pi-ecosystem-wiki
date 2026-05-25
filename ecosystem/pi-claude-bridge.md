@@ -197,6 +197,69 @@ prompt while still using the SDK.
 asks: *can you get CC-SDK-wrapped subscription access without
 forking?* Yes, at the cost of running CC as a subprocess.
 
+## Picking between `claude-agent-sdk-pi` and `pi-claude-bridge`
+
+For subscription-route use specifically (Claude Max/Pro budget inside
+Pi), both extensions reach the same billing bucket via the same
+structural mechanism — they launch the real `claude` binary through
+`@anthropic-ai/claude-agent-sdk`, so Anthropic's prompt-content
+detector sees Claude Code. The billing outcome is identical. The
+difference is what surrounds that core call.
+
+| Capability | `claude-agent-sdk-pi` (upstream) | `pi-claude-bridge` (fork) |
+|---|---|---|
+| Streaming responses | basic | yes, with partial-message support |
+| Pi tools → CC via MCP | partial | full bridging with ID-based tool-result matching |
+| Session resume / persistence | no | yes (cc-session-io; sessionId preserved across provider switches) |
+| Opus 4.7 thinking (`--thinking-display=summarized`) | needs PR #10 | shipped since 0.3.1 |
+| Pi `/compact` propagation | no | subscribes to `session_compact` + `session_tree` events |
+| CC autocompact thrashing fix (issue #8) | no | `DISABLE_AUTO_COMPACT=1` + REBUILD path |
+| MCP isolation (`--strict-mcp-config` + cloud MCP off) | partial | unconditional |
+| AskClaude sub-agent tool | no | yes (gateable via `askClaude.enabled`) |
+| AGENTS.md + skills forwarding | no | yes, with `.pi` → `.claude` path rewriting |
+| NixOS support | no explicit knob | `pathToClaudeCodeExecutable` |
+| Release cadence | sporadic; npm/master skew known | active (0.4.0 on 2026-05-04) |
+
+**Recommendation: `pi-claude-bridge`** for day-to-day subscription
+use. The pieces missing upstream (session persistence, compact
+handling, thinking-display fix, MCP isolation) will bite within a few
+turns of real work. Pick the upstream only if you want the smaller
+dependency surface, are willing to lose session resume, or are
+contributing patches at that layer.
+
+### Token cost
+
+Both pay the same fixed cost of the `claude_code` SDK preset (CC's
+personality + native-tool descriptions in the system prompt). On top
+of that fixed floor, pi-claude-bridge wastes meaningfully fewer
+tokens:
+
+| Token-cost driver | Upstream | pi-claude-bridge |
+|---|---|---|
+| Default CC tool catalog declared to model | leaks in | `tools: []` — only Pi's MCP tools declared |
+| Filesystem MCP servers from `~/.claude.json` / `.mcp.json` | loaded (descriptions in prompt) | `--strict-mcp-config` suppresses |
+| Claude.ai cloud MCP (Gmail/Drive/Figma/Canva) | loaded if logged into claude.ai | `ENABLE_CLAUDEAI_MCP_SERVERS=0` suppresses |
+| User/project `CLAUDE.md` memory | loaded by default | gateable via `settingSources: []` |
+| Prompt-cache continuity across turns | new session per turn (cache miss) | sessionId-resume preserves cache hits |
+| Double-compact thrashing | possible (CC autocompacts independently of Pi) | `DISABLE_AUTO_COMPACT=1` + Pi-driven REBUILD |
+| Tool-result re-sends from order mismatches | FIFO matching → silent re-deliveries | ID-based matching |
+
+The cache-continuity and compact items are load-bearing. In a long
+session the upstream loses prompt-cache hits between turns and can
+trigger CC's own autocompact in parallel with Pi's, causing rebuilds
+that flush the cache again. Upstream's token overhead grows
+nonlinearly with session length; pi-claude-bridge stays roughly flat.
+The one place upstream might be cheaper — a single one-shot query
+with no local MCP — is marginal and disappears by turn 3.
+
+**Neither is the right route if you want to drop CC's personality.**
+For users who specifically don't want Claude Code's memory or native
+tool catalog, neither extension lets you swap the `claude_code` SDK
+preset. If that's a hard requirement, the right path is a direct
+`ANTHROPIC_API_KEY` provider (pay-as-you-go, no subscription) where
+you control the system prompt fully — see
+[Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md).
+
 ## Caveats
 
 - **Depends on Anthropic's TOS posture and the CC preset.** If
