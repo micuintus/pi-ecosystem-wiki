@@ -406,3 +406,16 @@ After the pass: source graph is complete and orphan-free — 119 cited IDs, 119 
   double-compact thrashing can occur; pi-claude-bridge passes `tools: []`,
   `--strict-mcp-config`, `ENABLE_CLAUDEAI_MCP_SERVERS=0`,
   `DISABLE_AUTO_COMPACT=1`, and preserves sessionId across turns.
+
+## [2026-05-25] deepen | pi-claude-bridge token-cost section
+
+- ecosystem/pi-claude-bridge.md: expanded the "Token cost" subsection
+  with the structural mechanism — upstream declares CC's native tools
+  (`DEFAULT_TOOLS = ["Read","Write","Edit","Bash","Grep","Glob"]`) to
+  the model and then refuses execution via `canUseTool: deny`, so the
+  model emits native tool calls, receives a denial as `tool_result`,
+  re-plans, and tries again. pi-claude-bridge passes `tools: []` so
+  the native schemas are never declared and no denial loop occurs.
+  Added a concrete per-turn worked example and order-of-magnitude
+  estimates (2–5× higher upstream cost in multi-turn sessions;
+  ~10–30% in single-shot queries; widens with session length).

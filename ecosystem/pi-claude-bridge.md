@@ -231,26 +231,94 @@ contributing patches at that layer.
 
 Both pay the same fixed cost of the `claude_code` SDK preset (CC's
 personality + native-tool descriptions in the system prompt). On top
-of that fixed floor, pi-claude-bridge wastes meaningfully fewer
-tokens:
+of that floor, pi-claude-bridge wastes meaningfully fewer tokens —
+and the dominant reason is structural, not incremental.
 
-| Token-cost driver | Upstream | pi-claude-bridge |
-|---|---|---|
-| Default CC tool catalog declared to model | leaks in | `tools: []` — only Pi's MCP tools declared |
-| Filesystem MCP servers from `~/.claude.json` / `.mcp.json` | loaded (descriptions in prompt) | `--strict-mcp-config` suppresses |
-| Claude.ai cloud MCP (Gmail/Drive/Figma/Canva) | loaded if logged into claude.ai | `ENABLE_CLAUDEAI_MCP_SERVERS=0` suppresses |
-| User/project `CLAUDE.md` memory | loaded by default | gateable via `settingSources: []` |
-| Prompt-cache continuity across turns | new session per turn (cache miss) | sessionId-resume preserves cache hits |
-| Double-compact thrashing | possible (CC autocompacts independently of Pi) | `DISABLE_AUTO_COMPACT=1` + Pi-driven REBUILD |
-| Tool-result re-sends from order mismatches | FIFO matching → silent re-deliveries | ID-based matching |
+#### The structural difference: tool declaration strategy
 
-The cache-continuity and compact items are load-bearing. In a long
-session the upstream loses prompt-cache hits between turns and can
-trigger CC's own autocompact in parallel with Pi's, causing rebuilds
-that flush the cache again. Upstream's token overhead grows
-nonlinearly with session length; pi-claude-bridge stays roughly flat.
-The one place upstream might be cheaper — a single one-shot query
-with no local MCP — is marginal and disappears by turn 3.
+`claude-agent-sdk-pi` (upstream) declares CC's native tools to the
+model and then refuses execution at runtime. From `index.ts:32, 682,
+966-971`:
+
+```ts
+const DEFAULT_TOOLS = ["Read", "Write", "Edit", "Bash", "Grep", "Glob"];
+// ...
+tools: sdkTools,          // = DEFAULT_TOOLS when context.tools is empty
+canUseTool: async () => ({ behavior: "deny",
+  message: "Tool execution is unavailable in this environment." }),
+```
+
+CC's model is *told* it has `Read`/`Write`/`Edit`/`Bash`/`Grep`/`Glob`
+available. Their full tool schemas land in the system prompt. When
+the model picks one — which it will, given CC is trained to prefer
+its native tools — the SDK denies at runtime and feeds back a denial
+string as the tool result. The model re-plans with the denial in
+context and tries again.
+
+`pi-claude-bridge` (`src/index.ts:1010`):
+
+```ts
+tools: [],
+```
+
+CC's tool list contains only Pi's MCP-bridged tools. The native
+schemas are never declared, so the model routes directly to Pi's
+tools without a denial loop.
+
+#### Per-turn cost example
+
+User says *"read `foo.ts` and tell me what it does."* Pi has its own
+`read` tool registered.
+
+**Upstream:**
+1. CC sees `Read` (native) **and** `mcp__custom-tools__read` (Pi-bridged) declared.
+2. Model picks `Read` (training bias toward native).
+3. SDK denies → "Tool execution is unavailable" returned as `tool_result`.
+4. Model now has the denial in context, re-plans, picks `mcp__custom-tools__read`.
+5. Pi executes; model answers.
+
+Two model turns instead of one, plus both tool schemas in the prompt,
+plus the denial echoed back in context.
+
+**pi-claude-bridge:**
+1. CC sees only `mcp__custom-tools__read`.
+2. Model picks it; Pi executes; model answers.
+
+One turn. No denial loop. No CC-native schema overhead.
+
+#### Cumulative drivers
+
+| Surface | Upstream | pi-claude-bridge | Per-turn impact |
+|---|---|---|---|
+| CC native tool schemas in prompt | `tools: sdkTools` (6 builtins by default) | `tools: []` | Saves the schema text + eliminates denial loops |
+| Denied tool calls re-fed as `tool_result` | Yes — `canUseTool: deny` returns denial message | N/A | Saves 1–N extra model turns per user turn |
+| `--strict-mcp-config` | Default `!appendSystemPrompt` → **OFF** when `appendSystemPrompt: true` (the default) | Always ON | Without it, `~/.claude.json` + `.mcp.json` MCP server descriptions land in the prompt |
+| Claude.ai cloud MCP (Gmail/Drive/Figma/Canva) | Not suppressed | `ENABLE_CLAUDEAI_MCP_SERVERS=0` always set | Large tool catalogs leak in if user has ever logged into claude.ai |
+| `CLAUDE.md` memory load | Default `settingSources` loads `user` + `project` | Suppressible via `settingSources: []` | Saves the full CLAUDE.md text per turn |
+| Session resume across turns | **None** — no resume logic | Yes, via `cc-session-io` (sessionId preserved across provider switches) | Without resume, full re-tokenization every turn → prompt-cache miss → 5–10× more billable input on cache-warm paths |
+| CC autocompact in parallel with Pi's | Not suppressed | `DISABLE_AUTO_COMPACT=1` | Double-compact = double cache-flush + thrashing-guard refusals |
+| Tool-result delivery | FIFO match by position | Match by `toolCallId` | FIFO can silently mis-deliver under parallel calls → model retries |
+
+#### Order-of-magnitude
+
+- Multi-turn session with several tool calls: upstream commonly runs
+  **2–5× higher** token usage, driven mostly by (a) the denial-loop
+  re-planning and (b) prompt-cache miss on every turn.
+- One-shot query with no local MCP and no thinking: gap narrows to
+  **~10–30%**, mostly from the leaked tool-schema text and any
+  unsuppressed MCP descriptions.
+- Long-running sessions with `/compact`: gap *widens* further because
+  the upstream has no compact-event subscription, so CC ends up
+  re-importing the full pre-compact history into a fresh session
+  each turn.
+
+The CHANGELOG entry for 0.4.0 calls out the structural piece
+directly: *"Use `tools: []` instead of `disallowedTools` blocklist —
+switch from blocking specific tools to explicitly passing an empty
+tools list, preventing any new default tools from silently leaking
+into bridge sessions."* That single change is the load-bearing one;
+session resume, strict MCP, cloud-MCP off, and autocompact off are
+the multipliers on top.
 
 **Neither is the right route if you want to drop CC's personality.**
 For users who specifically don't want Claude Code's memory or native
