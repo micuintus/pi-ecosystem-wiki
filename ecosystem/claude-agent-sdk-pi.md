@@ -1,7 +1,7 @@
 ---
 title: claude-agent-sdk-pi — Bridge to Anthropic's Agent SDK
 type: ecosystem
-updated: 2026-05-08
+updated: 2026-05-25
 sources:
   - claude-agent-sdk-pi
   - claude-agent-sdk-pi-pr-8
@@ -10,6 +10,7 @@ sources:
   - pi-pr-3286
   - pi-issue-3299
   - opus-47-adaptive
+  - pi-claude-bridge
 tags: [extension, claude-agent-sdk, integration]
 ---
 
@@ -118,4 +119,5 @@ adapter code consumes the map without per-model branches.
 ## See also
 
 - [Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md) — OAuth, API key, Foundry routes and which one hits the main subscription budget
+- [pi-claude-bridge](pi-claude-bridge.md) — downstream extension that builds on this adapter to run CC as a Pi provider (subscription route) and as an AskClaude sub-agent
 - [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes

@@ -375,3 +375,19 @@ After the pass: source graph is complete and orphan-free — 119 cited IDs, 119 
 ## [2026-05-08] init
 
 - Bootstrap: README, SCHEMA, index, log, raw-sources/index, LICENSE, .gitignore.
+
+## [2026-05-25] ingest | pi-claude-bridge
+
+- Registered: 1 source (pi-claude-bridge).
+- Compiled: ecosystem/pi-claude-bridge.md — dedicated page covering the
+  two integration modes (provider + AskClaude tool), the structural
+  reason it can reach the Claude Max/Pro subscription budget (real CC
+  binary launched via Agent SDK, so Anthropic's prompt-content
+  detector sees Claude Code), the AskClaude per-mode tool blocklists,
+  and a feature matrix of what users can and cannot shut off
+  (notably: `claude_code` SDK preset is not exposed as a config knob,
+  so CC's personality + native-tool descriptions persist in the
+  system prompt even when memory and Pi-side append are disabled).
+- Updated: ecosystem/anthropic-subscription-auth.md (added route row +
+  See also link), ecosystem/claude-agent-sdk-pi.md (cross-link to
+  downstream fork), index.md (catalog entry).

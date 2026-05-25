@@ -1,7 +1,7 @@
 ---
 title: Anthropic Subscription Auth in Pi
 type: ecosystem
-updated: 2026-05-08
+updated: 2026-05-25
 sources:
   - pi-providers-docs
   - pi-issue-2751
@@ -10,6 +10,7 @@ sources:
   - oh-my-pi
   - anthropic-third-party-end
   - ben-vargas-pi-packages
+  - pi-claude-bridge
 tags: [auth, anthropic, oauth, billing]
 ---
 
@@ -82,6 +83,7 @@ Inferred from oh-my-pi's repo structure; confirmation requires reading
 | Pay-as-you-go API | Set `ANTHROPIC_API_KEY`. |
 | Enterprise inference | Foundry env vars. |
 | OAuth compatibility patching (without forking) | [`@benvargas/pi-claude-code-use`](https://github.com/ben-vargas/pi-packages) — extension-level OAuth compatibility patch; tracks Claude Code auth changes. Less invasive than oh-my-pi but also less capable. |
+| Main-subscription budget without forking | [`pi-claude-bridge`](pi-claude-bridge.md) — runs the real Claude Code binary as a subprocess via Anthropic's Agent SDK; same structural trick as oh-my-pi, packaged as a Pi extension. |
 
 ## Caveats
 
@@ -98,4 +100,5 @@ the Pi side. Discussion #2950 suggests no current path inside base Pi
 ## See also
 
 - [claude-agent-sdk-pi](claude-agent-sdk-pi.md) — the bridge extension to Anthropic's Agent SDK and the model/billing implications
+- [pi-claude-bridge](pi-claude-bridge.md) — downstream extension that uses Claude Code as a Pi provider + AskClaude sub-agent (subscription route as extension, not fork)
 - [Pi Ecosystem Catalogs](../references/catalogs.md) — where to find oh-my-pi and other forks

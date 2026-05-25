@@ -91,6 +91,7 @@ copied into a dated bucket file.
 | pi-discussion-2950 | issue | https://github.com/earendil-works/pi-mono/discussions/2950 | auth, anthropic |
 | anthropic-third-party-end | article | https://mlq.ai/news/anthropic-ends-paid-access-for-claude-in-third-party-tools-like-openclaw/ | auth, anthropic |
 | claude-agent-sdk-pi | repo | https://github.com/prateekmedia/claude-agent-sdk-pi | extension, claude-agent-sdk |
+| pi-claude-bridge | repo | https://github.com/elidickinson/pi-claude-bridge | extension, claude-agent-sdk, claude-code, subscription |
 | claude-agent-sdk-pi-pr-8 | issue | https://github.com/prateekmedia/claude-agent-sdk-pi/pull/8 | extension, claude-agent-sdk |
 | claude-agent-sdk-pi-pr-10 | issue | https://github.com/prateekmedia/claude-agent-sdk-pi/pull/10 | extension, claude-agent-sdk, opus |
 | anthropic-claude-agent-sdk | repo | https://github.com/anthropics/claude-agent-sdk-typescript | sdk, anthropic |
