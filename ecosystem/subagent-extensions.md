@@ -383,6 +383,61 @@ This is one reason `tintinweb/pi-subagents` punches above its star
 count for production use — Anthropic-tuned models hit it with strong
 priors out of the box.
 
+## Inspection: nicobailon artifacts vs tintinweb ConversationViewer
+
+The two extensions take opposite approaches to inspecting child runs.
+`tintinweb/pi-subagents` puts everything in a live modal viewer with
+in-memory truncation; `nicobailon/pi-subagents` writes everything to
+disk and lets you `status`/`interrupt`/`resume` against persistent
+artifacts. The choice is between *live show* and *post-mortem replay*.
+
+### nicobailon inspection surface
+
+Live:
+- Compact async widget in parent TUI — per-agent progress, parallel
+  groups stay grouped, nested children render as a tree
+- `subagent({ action: "status" })` lists active runs;
+  `action: "status", id: "..."` drills into one (resolves exact ids,
+  top-level async, nested, then prefix-match)
+- Foreground runs stream directly into the conversation
+- Completion notifications for background runs
+- Stall detection with next-action suggestions
+
+On disk — `{sessionDir}/subagent-artifacts/<run-id>/`:
+
+| File | Content |
+|---|---|
+| `status.json` | Powers the widget and `status` action |
+| `events.jsonl` | **Full Pi JSON event stream** (message_end, tool_call, tool_result_end, …) annotated with run/step metadata. Replayable. |
+| `output-<n>.log` | Live human-readable tail per step |
+| chain dir | Per-step pinned outputs (`output=context.md` style) |
+| patch files | Full diffs from worktree parallel steps |
+
+Mid-flight control:
+- `action: "interrupt"` aborts a running child (nested too)
+- `action: "resume"` restarts a paused/interrupted run
+- `action: "doctor"` for read-only setup diagnostics
+- Optional `pi-intercom` companion lets the child call
+  `contact_supervisor` for blocking decisions or progress updates —
+  true bidirectional steering
+
+### Side-by-side comparison
+
+| Feature | nicobailon | tintinweb ConversationViewer |
+|---|---|---|
+| Live tool calls visible | yes (widget + foreground stream) | yes (modal `session.subscribe`) |
+| Modal full-transcript view | no (uses log files) | yes (k/j/PgUp/PgDn nav) |
+| Tool result truncation | **none** (full `events.jsonl` on disk) | 500 chars in modal |
+| Bash output truncation | **none** | 500 chars in modal |
+| Post-mortem after session ends | **yes** (persistent files) | no (modal closes, no replay) |
+| Side-by-side parallel inspection | partial (widget tree) | no (one agent, modal-blocking) |
+| Mid-flight steering | `interrupt` + intercom `contact_supervisor` | none from viewer |
+
+For long-running pipelines and evolve-style workflows where the value
+is in *post-hoc auditing*, nicobailon's `events.jsonl` wins decisively.
+For live coaching/oversight where you actively watch the child unfold,
+tintinweb's modal is more immediate.
+
 ## ConversationViewer (tintinweb/Hopsken) — capabilities and limits
 
 The `tintinweb/pi-subagents` modal viewer is the most polished

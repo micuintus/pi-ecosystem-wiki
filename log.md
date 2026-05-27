@@ -491,3 +491,20 @@ Updates:
   issue #80 caveat.
 - Updated the picking-guide "Heavy async pipelines" row to "Default
   subprocess option, most-adopted, most-active" with bolded numbers.
+
+## [2026-05-27] expand | nicobailon inspection surface, pi-claude-bridge empirical note
+
+- ecosystem/subagent-extensions.md: new "Inspection: nicobailon
+  artifacts vs tintinweb ConversationViewer" section detailing
+  nicobailon's events.jsonl/status.json/output-*.log layout,
+  status/interrupt/resume actions, and pi-intercom contact_supervisor
+  steering. Adds a side-by-side feature table making the
+  *live-show vs post-mortem-replay* tradeoff explicit. Frames
+  nicobailon as the decisive winner for long-running pipelines where
+  the value is post-hoc auditing.
+- ecosystem/pi-claude-bridge.md: added "Empirical observation
+  (2026-05-27)" line under Order-of-magnitude. Real-world usage
+  confirms the structural analysis — noticeable per-session token-burn
+  reduction against the same subscription quota relative to the SDK
+  route. Effect size consistent with the predicted multi-turn 2–5×
+  gap, suggesting denial-loop + prompt-cache-miss dominate in practice.

@@ -312,6 +312,14 @@ One turn. No denial loop. No CC-native schema overhead.
   re-importing the full pre-compact history into a fresh session
   each turn.
 
+**Empirical observation (2026-05-27)**: real-world day-to-day usage
+through pi-claude-bridge confirms the structural analysis above —
+noticeable reduction in per-session token burn against the same
+subscription quota relative to running the SDK route. Consistent with
+the predicted multi-turn 2–5× gap rather than the single-shot
+10–30% one, suggesting the denial-loop and prompt-cache-miss effects
+dominate in practice.
+
 The CHANGELOG entry for 0.4.0 calls out the structural piece
 directly: *"Use `tools: []` instead of `disallowedTools` blocklist —
 switch from blocking specific tools to explicitly passing an empty
