@@ -1,7 +1,7 @@
 ---
 title: Pi TODO List Extensions
 type: ecosystem
-updated: 2026-05-10
+updated: 2026-05-27
 sources:
   - pi-mono-todo-example
   - pi-todo-md
@@ -13,6 +13,9 @@ sources:
   - edxeth-pi-tasks
   - soleone-pi-tasks
   - popododo-pi-stuff
+  - eleqtrizit-pi-tasks
+  - code-yeongyu-pi-todotools
+  - jerryan-pi-task-tree
 tags: [extension, todo]
 entries:
   - id: pi-mono-todo
@@ -29,15 +32,35 @@ entries:
   - id: edxeth-pi-tasks
     name: pi-tasks (edxeth)
     repo: edxeth/pi-tasks
-    npm: "@edxeth/pi-tasks"
+    npm: pi-tasks
+    version: "1.1.3"
     role: full-task-system
-    notes: "~1,100 LOC. Fork of tintinweb/pi-tasks reworked toward Claude Code parity. 5 tools (task_create/list/get/update/batch). Dependency DAG with cycle detection. Per-task stats (runtime, tools used, tokens). 3-view widget cycle. Reminders after 10 idle turns. File-backed (~/.pi/tasks/<sessionKey>/) with fork-copy and branch-aware restore."
+    notes: "~1,840 LOC. Forked from tintinweb/pi-tasks then heavily reworked. 5 model-callable tools (task_create / task_list / task_get / task_update / task_batch). 2 commands (/tasks, /tasks-clear-completed). Ctrl+Alt+T cycles widget Open→All→Hidden. Per-session durable storage under ~/.pi/tasks/<sessionKey>/ with branch-aware restore, fork-copy, ids never reused, atomic temp-file-replace writes, file locking. Hidden read-only reminders after 10 turns without task-tool use. Per-task stats: runtime, tool count, last tool, output tokens — **integrates with edxeth/pi-subagents to roll subagent output tokens back into the parent task**. task_batch is all-or-nothing. NPM slug `pi-tasks` collides with Soleone's and tintinweb's; install via git URL or scoped publish."
   - id: tintinweb-pi-tasks
     name: pi-tasks (tintinweb)
     repo: tintinweb/pi-tasks
     npm: "@tintinweb/pi-tasks"
+    version: "0.5.0"
     role: dag-tasks
-    notes: "2,061 LOC. 7 tools (TaskCreate/List/Get/Update/Output/Stop/Execute) — verbatim mirror of Claude Code's tool shape. Built-in DAG with deps shown in widget. Animated star spinner. File-backed across sessions."
+    notes: "2,061 LOC. 7 tools (TaskCreate/List/Get/Update/Output/Stop/Execute) — verbatim mirror of Claude Code's tool shape. Built-in DAG with deps shown in widget. Animated star spinner. File-backed across sessions. 82 stars, 11 releases, last release 2026-04-28."
+  - id: eleqtrizit-pi-tasks
+    name: "Pi TaskGraph (eleqtrizit)"
+    repo: eleqtrizit/pi-tasks
+    npm: pi-taskgraph
+    role: dag-tasks-with-parallel-batch
+    notes: "Dependency-aware task system, branded 'Pi TaskGraph'. 6 tools: task_create / task_update / task_get / task_list / **get_batch_of_tasks** / clear_tasks. Distinctive: get_batch_of_tasks returns all pending+unblocked tasks ready for parallel execution — first-class API for fanning work to subagents. Bidirectional blockedBy/blocks links auto-maintained. Status flow enforces dependency rules (blocked tasks can't move to in_progress/completed). Per-task storage under ~/.pi/tasks/<list-id>/N.json with priority resolution PI_TASK_LIST_ID env > persisted session key > new UUID. Multi-list support. Owner field. Custom metadata bag. Ships /list-tasks (markdown with ✓■□⚠ symbols) and /clear-tasks. Bundles a task-management skill."
+  - id: code-yeongyu-pi-todotools
+    name: pi-todotools (code-yeongyu)
+    repo: code-yeongyu/pi-todotools
+    npm: pi-todotools
+    role: todowrite-todoread-with-continuation
+    notes: "Standalone extraction of senpi-mono's former built-in `todotools` extension. 2 tools: todowrite (replace full list) / todoread. Persists as session entry `sanepi.todo-state`. Sidebar widget. **Distinctive: built-in auto-continuation** — when incomplete todos remain after a clean assistant stop, injects a follow-up continuation prompt (disable via `pi --disable-todo-continuation` or settings). Branch-local todo state reconstruction on session reload or tree nav. Field shape (content/status/priority) matches senpi/Codex naming."
+  - id: jerryan-pi-task-tree
+    name: pi-task-tree (JerryAZR)
+    repo: JerryAZR/pi-task-tree
+    npm: "@jerryan/pi-task-tree"
+    role: hierarchical-experimental
+    notes: "Nested task list with focus mode. 7 tools: task_create_root / task_extend_root / task_breakdown / task_update / task_close / task_list / task_get. Distinctive: hierarchical parents+subtasks, 'focus mode' showing first incomplete at each level. Persistence survives restarts. Author warns early-stage with possible data loss as format evolves, and explicitly flags context cost in README: 7 tools with rich schemas sit in system prompt every turn — author recommends NOT installing globally, reserve for sessions with deep hierarchical planning."
   - id: soleone-pi-tasks
     name: pi-tasks (Soleone)
     repo: Soleone/pi-tasks

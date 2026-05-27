@@ -1,7 +1,7 @@
 ---
 title: Raw sources
 type: reference
-updated: 2026-05-08
+updated: 2026-05-27
 sources: []
 ---
 
@@ -153,6 +153,14 @@ copied into a dated bucket file.
 | soleone-pi-tasks | repo | https://github.com/Soleone/pi-tasks | extension, todo, pluggable-backend |
 | popododo-pi-stuff | repo | https://github.com/popododo0720/pi-stuff | extension, workflow, todo |
 | tintinweb-pi-subagents | repo | https://github.com/tintinweb/pi-subagents | extension, subagent, in-process |
+| tintinweb-pi-subagents-issue-75 | issue | https://github.com/tintinweb/pi-subagents/issues/75 | extension, subagent, bug |
+| edxeth-pi-subagents | repo | https://github.com/edxeth/pi-subagents | extension, subagent, mux, hybrid |
+| masta-g3-pi-tmux-subagents | repo | https://github.com/masta-g3/pi-tmux-subagents | extension, subagent, tmux |
+| hamdimaz-pi-sub-agent | repo | https://github.com/HamdiMaz/pi-sub-agent | extension, subagent, subprocess |
+| jerryan-pi-subagent-lite | repo | https://github.com/JerryAZR/pi-subagent-lite | extension, subagent, minimal |
+| eleqtrizit-pi-tasks | repo | https://github.com/eleqtrizit/pi-tasks | extension, todo, dag |
+| code-yeongyu-pi-todotools | repo | https://github.com/code-yeongyu/pi-todotools | extension, todo, continuation |
+| jerryan-pi-task-tree | repo | https://github.com/JerryAZR/pi-task-tree | extension, todo, hierarchical |
 | hazat-pi-interactive-subagents | repo | https://github.com/HazAT/pi-interactive-subagents | extension, subagent, multiplexer |
 | ifi-pi-extension-subagents | repo | https://github.com/ifiokjr/pi-extension-subagents | extension, subagent, tui-overlay |
 | nicobailon-pi-mcp-adapter | repo | https://github.com/nicobailon/pi-mcp-adapter | extension, mcp |

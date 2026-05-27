@@ -419,3 +419,75 @@ After the pass: source graph is complete and orphan-free — 119 cited IDs, 119 
   Added a concrete per-turn worked example and order-of-magnitude
   estimates (2–5× higher upstream cost in multi-turn sessions;
   ~10–30% in single-shot queries; widens with session length).
+
+## [2026-05-27] expand | new subagent + task systems, tintinweb #75 caveat
+
+Triggered by in-session observation of tintinweb/pi-subagents subagents
+hanging at 0 tool uses (mirrors the failure mode the user saw earlier
+in scriabin-waveform-qt). Live verification at
+`~/.pi/agent/npm/node_modules/@tintinweb/pi-subagents/src/default-agents.ts`
+confirmed: the built-in `general-purpose` agent omits `builtinToolNames`,
+which means "all available tools" — the trigger for issue #75.
+
+- ecosystem/subagent-extensions.md: added four entries —
+  - **edxeth/pi-subagents** (Pattern 4+1 hybrid, ~10,622 LOC, orchestrator
+    mode, ambient awareness, rich frontmatter, skill injection, the
+    closest thing to a production multi-agent framework on Pi)
+  - **masta-g3/pi-tmux-subagents** (~1,387 LOC, tmux-only mux, single
+    rich-action tool, auto-stop, pi-agent-hub integration)
+  - **HamdiMaz/pi-sub-agent** (~1,537 LOC, Pattern 1, 9 bundled agents
+    incl. security-auditor, /sub-agent-settings, single/parallel/chain
+    modes, prompt via stdin, self-disables in children)
+  - **JerryAZR/pi-subagent-lite** (245 LOC, Pattern 1 minimal, no agent
+    .md files at all — specialization via pi skills)
+  - New "4+1 hybrid" row in the pattern table for edxeth.
+  - New caveat documenting tintinweb #75 with the override-file workaround;
+    notes PR #74 in flight (open since 2026-05-14) as the candidate fix.
+  - Refreshed tintinweb/pi-subagents entry to v0.7.3 and embedded the
+    known-issue notice.
+- ecosystem/todo-extensions.md: added three entries —
+  - **eleqtrizit/pi-tasks** ("Pi TaskGraph", npm `pi-taskgraph`, 6 tools
+    incl. **get_batch_of_tasks** for parallel-ready unblocked tasks —
+    first-class fan-out API)
+  - **code-yeongyu/pi-todotools** (extracted from senpi-mono, 2 tools,
+    **built-in auto-continuation** when incomplete todos remain — disable
+    via `pi --disable-todo-continuation`)
+  - **JerryAZR/pi-task-tree** (hierarchical, 7 tools, focus mode; author's
+    own README warns about context cost — recommends NOT installing
+    globally)
+  - Refreshed edxeth/pi-tasks to v1.1.3, ~1,840 LOC; noted the token
+    roll-up integration with edxeth/pi-subagents and the `pi-tasks` npm
+    slug collision (Soleone, tintinweb, edxeth all publish under it).
+- raw-sources/index.md: registered 9 new sources (4 subagent repos +
+  3 task-system repos + 1 issue + 1 re-registration for the tintinweb
+  bug-tracker).
+
+## [2026-05-27] add | Adoption-signals section + nicobailon dominance
+
+Pulled fresh GitHub stars/forks/issues and npm weekly-download numbers
+across 11 subagent extensions on 2026-05-27 to settle the question of
+which extension is most mature.
+
+Findings (full table in ecosystem/subagent-extensions.md):
+
+- nicobailon/pi-subagents dominates by ~10× weekly downloads (24,118
+  vs tintinweb's 2,555), 4× stars (1,581 vs 380), 3× forks (232 vs 74).
+- Cross-pollination signal: HazAT (pi-interactive-subagents author)
+  and tmustier (multiple loop extensions) both contribute commits to
+  nicobailon — ecosystem-mature project.
+- High open-issue count (65) is healthy triage activity, not neglect.
+- nicobailon released v0.25.0 on 2026-05-21 adding nested subagent
+  fanout.
+- Surfaced nicobailon issue #80: sync subagent returning large results
+  after long sessions can crash parent — flagged in entry as relevant
+  to evolve-style workflows.
+
+Updates:
+- New "Adoption signals (2026-05-27)" section with hard-data table,
+  observations, and a sharpened picking-guide.
+- Rewrote the "Short answer for most readers" lead to surface
+  nicobailon as the dominant default (was tintinweb-led).
+- Refreshed nicobailon entry: v0.25.0, full popularity numbers,
+  issue #80 caveat.
+- Updated the picking-guide "Heavy async pipelines" row to "Default
+  subprocess option, most-adopted, most-active" with bolded numbers.
