@@ -181,7 +181,7 @@ Source graph: 131/131. No broken links.
 
 ## [2026-05-10] feat | Ingest substantial updates from upstream private llm-wiki
 
-Pulled in new public-relevant content from the private source wiki. Stripped DACMICU framing, internal investigation tone, and pi-evolve confabulation; kept objective ecosystem analysis.
+Pulled in new public-relevant content from the private source wiki. Stripped internal-project framing, investigation tone, and pi-evolve confabulation; kept objective ecosystem analysis.
 
 **`ecosystem/todo-extensions.md`** — major expansion (5 → 9 entries):
 - Added `tintinweb/pi-manage-todo-list` (506 LOC, verbatim Copilot `manage_todo_list` shape, branch-safe). The "minimal idiomatic" recommendation.
@@ -340,13 +340,13 @@ After the pass: source graph is complete and orphan-free — 119 cited IDs, 119 
 ## [2026-05-08] ingest | Pi Evolve / Code-Optimization Extensions
 
 - Registered: 3 sources (karpathy-autoresearch, openevolve, shinkaevolve).
-- Compiled: ecosystem/evolve-extensions.md (stripped MATS/DACMICU framing; kept pi-autoresearch deep-dive and research-landscape context).
+- Compiled: ecosystem/evolve-extensions.md (stripped internal-project framing; kept pi-autoresearch deep-dive and research-landscape context).
 - Updated: index.md.
 
 ## [2026-05-08] ingest | Pi TODO List Extensions
 
 - Registered: 3 sources (pi-todo-md, patriceckhart-pi-todo, pi-mono-todo-example).
-- Compiled: ecosystem/todo-extensions.md (stripped DACMICU loop sketch).
+- Compiled: ecosystem/todo-extensions.md (stripped internal loop sketch).
 - Skipped: subagents.md (too thin), web-mobile-access.md, tool-rendering.md (mostly open questions).
 - Updated: index.md.
 
@@ -369,7 +369,7 @@ After the pass: source graph is complete and orphan-free — 119 cited IDs, 119 
 ## [2026-05-08] ingest | Pi Loop and Ralph Extensions
 
 - Registered: 16 sources (pi-autoresearch, mitsuhiko-agent-stuff, tmustier-pi-extensions, pi-ralph-wiggum, pi-review-loop, jayshah-pi-agent-extensions, samfoy-pi-ralph, kostyay-agent-stuff, mikeyobrien-pi-ralph, emanuelcasco-pi-mono-extensions, lnilluv-pi-ralph-loop, rahulmutt-pi-ralph, mikeyobrien-pi-autoloop, akijain-hermes-loop, latent-variable-pi-auto-continue, ghuntley-ralph).
-- Compiled: ecosystem/loop-extensions.md (rewritten from private wiki, DACMICU/MetaHarness refs stripped).
+- Compiled: ecosystem/loop-extensions.md (rewritten from private wiki, internal-project refs stripped).
 - Updated: index.md.
 
 ## [2026-05-08] init
