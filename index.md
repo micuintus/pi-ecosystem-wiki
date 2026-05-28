@@ -1,7 +1,7 @@
 ---
 title: Index
 type: reference
-updated: 2026-05-25
+updated: 2026-05-28
 sources: []
 ---
 
@@ -90,5 +90,5 @@ Use [`qualisero/awesome-pi-agent`](https://github.com/qualisero/awesome-pi-agent
 | **Cost tracking and usage monitoring** | `shitty-extensions` cost-tracker/usage-bar, `tmustier` usage-extension, `mrexodia/pi-cost-dashboard`, `pi-sub` |
 | **Session management and checkpoints** | `nicobailon/pi-rewind-hook`, `prateekmedia/pi-hooks` checkpoint, `shitty-extensions` branch-sessions/handoff |
 | **Process and task orchestration** | `juanibiapina/gob`, `patleeman/task-factory`, `taskplane`, `lsj5031/PiSwarm` |
-| **Memory and persistent context** | `noahsaso/my-pi` memory.ts, `shitty-extensions` memory-mode, `@0xkobold/pi-learn` |
+| **Memory and persistent context** | `noahsaso/my-pi` memory.ts, `shitty-extensions` memory-mode, `@0xkobold/pi-learn` (project-memory-layer and observation-ledger patterns covered in [Compaction Extensions](ecosystem/compaction-extensions.md)) |
 | **SSH remote access** | `cv/pi-ssh-remote` (redirects all file ops to a remote host) |
