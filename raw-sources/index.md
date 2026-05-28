@@ -1,7 +1,7 @@
 ---
 title: Raw sources
 type: reference
-updated: 2026-05-27
+updated: 2026-05-28
 sources: []
 ---
 
@@ -238,6 +238,20 @@ copied into a dated bucket file.
 | eurouter-infrabase | article | https://infrabase.ai/inference-apis/eurouter | provider, eu, netherlands, review |
 | eurouter-toolhunt | article | https://toolhunt.io/eurouter/ | provider, eu, netherlands, directory |
 | eurouter-creative-hub | article | https://ai.cyrilcreatives.com/tools/eurouter | provider, eu, netherlands, review |
+| pi-mono-custom-compaction-example | repo | https://github.com/earendil-works/pi-mono/blob/main/packages/coding-agent/examples/extensions/custom-compaction.ts | extension, compaction, reference |
+| pi-vcc | repo | https://github.com/sting8k/pi-vcc | extension, compaction, algorithmic |
+| pi-observational-memory | repo | https://github.com/elpapi42/pi-observational-memory | extension, compaction, memory, observation-ledger |
+| pi-observational-memory-fork-githubfoxy | repo | https://github.com/GitHubFoxy/pi-observational-memory | extension, compaction, memory, fork |
+| pi-blackhole | repo | https://github.com/k0valik/pi-blackhole | extension, compaction, memory, frankenmerge |
+| pi-smart-compact | repo | https://github.com/alpertarhan/pi-smart-compact | extension, compaction, structured |
+| pi-agentic-compaction-whamp | repo | https://github.com/Whamp/pi-agentic-compaction | extension, compaction, agentic, virtual-fs |
+| pi-agentic-compaction-salemsayed | repo | https://github.com/salemsayed/pi-agentic-compaction | extension, compaction, agentic, virtual-fs |
+| pi-omni-compact | repo | https://github.com/Whamp/pi-omni-compact | extension, compaction, large-context-subprocess |
+| pi-dcp | repo | https://github.com/PSU3D0/pi-dcp | extension, compaction, tool-output-pruning |
+| pi-dynamic-context-pruning-complexthings | docs | https://registry.npmjs.org/@complexthings/pi-dynamic-context-pruning | extension, compaction, tool-output-pruning |
+| pi-context-prune | repo | https://github.com/championswimmer/pi-context-prune | extension, compaction, tool-call-tree |
+| pi-grounded-compaction | docs | https://registry.npmjs.org/pi-grounded-compaction | extension, compaction, grounded |
+| pi-memctx | docs | https://pi.dev/packages/pi-memctx | extension, memory, project-memory-layer |
 | robert-keus-openrouter-alternatives | article | https://medium.com/@robertkeus/the-10-best-openrouter-alternatives-in-2026-from-eu-first-to-open-source-594031416f25 | provider, routing, comparison |
 | david-lodico-linkedin | article | https://www.linkedin.com/posts/davidlodico_ill-admit-it-i-was-part-of-the-problem-activity-7429892670883262465-rjKu | provider, eu, founder, opinion |
 | david-lodico-indiepage | article | https://indiepa.ge/david_lodico | provider, eu, founder, profile |

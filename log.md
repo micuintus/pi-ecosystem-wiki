@@ -508,3 +508,38 @@ Updates:
   reduction against the same subscription quota relative to the SDK
   route. Effect size consistent with the predicted multi-turn 2–5×
   gap, suggesting denial-loop + prompt-cache-miss dominate in practice.
+
+## [2026-05-28] new survey | compaction extensions (pi-blackhole and its predecessors)
+
+Ingested `k0valik/pi-blackhole` as the entry point and traced both
+predecessors (`sting8k/pi-vcc`, `elpapi42/pi-observational-memory`),
+then ran an Exa search across the broader compaction landscape on
+pi.dev / npm / GitHub.
+
+New page: ecosystem/compaction-extensions.md surveys 15 entries
+across 6 strategies + 1 adjacent (project-memory):
+
+1. Algorithmic / extractive — pi-vcc
+2. Observation ledger — pi-observational-memory (+ GitHubFoxy fork)
+3. Combined — pi-blackhole (vcc in compact slot, OM in memory slot,
+   shared hook, unified config, per-worker model fallback chains,
+   persisted cooldowns, manual-flush `noAutoCompact` mode, lockstep
+   audit skill tracking both upstreams)
+4. Tool-output pruning — pi-dcp, pi-context-prune,
+   @complexthings/pi-dynamic-context-pruning
+5. Agentic compaction (subagent + shell tools over VFS) —
+   pi-agentic-compaction (Whamp & salemsayed variants),
+   pi-omni-compact (large-context subprocess)
+6. Grounded LLM compaction with files-touched index —
+   pi-grounded-compaction
+7. Adjacent: pi-memctx (durable Markdown project memory)
+
+Frankenmerge lineage spelled out: pi-blackhole credits sting8k and
+elpapi42; both upstreams hooked the same compaction path and were
+not co-installable until k0valik resolved the conflict. Also noted
+alpertarhan/pi-smart-compact's "Kamradt-style chunking" framing.
+
+Updates:
+- raw-sources/index.md: +15 source rows, bumped updated date
+- index.md: new "Compaction and memory" section
+- README.md: new I-want-to row for compaction

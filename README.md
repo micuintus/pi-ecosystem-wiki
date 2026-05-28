@@ -35,6 +35,7 @@ TOC with structure and comparisons. Awesome-lists like
 | **Customize how Pi looks** (themes, status bar, tool output) | [Themes](ecosystem/theme-extensions.md) · [Footer / Powerline](ecosystem/footer-extensions.md) · [Tool Rendering](ecosystem/tool-rendering-extensions.md) |
 | **Delegate tasks to child agents** (subagents, parallel work) | [Subagent Extensions](ecosystem/subagent-extensions.md) — 4 patterns, 12 extensions, with tradeoff matrix |
 | **Track what my agent is doing** (TODO lists, task progress) | [TODO List Extensions](ecosystem/todo-extensions.md) — idiomatic tool shapes, widget stack, picking guide |
+| **Keep long sessions coherent across compactions** | [Compaction Extensions](ecosystem/compaction-extensions.md) — algorithmic vs observation-ledger vs agentic-VFS vs tool-output-pruning, with `pi-blackhole` as the combined default |
 | **Add a new LLM provider** (OpenCode, Nebius, EU providers) | [Provider Extensions](ecosystem/provider-extensions.md) — when built-in isn't enough, and the EU gap |
 | **Connect Pi to other services** (Google Workspace, Claude SDK, auth) | [Google Workspace](ecosystem/google-workspace.md) · [Anthropic Auth](ecosystem/anthropic-subscription-auth.md) · [Claude Agent SDK Bridge](ecosystem/claude-agent-sdk-pi.md) |
 | **Make Pi work autonomously** (iterate until done, run overnight) | [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 7 architectural variants compared |

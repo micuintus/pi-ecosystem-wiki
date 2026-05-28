@@ -29,6 +29,10 @@ them.
 
 - [TODO List Extensions](ecosystem/todo-extensions.md) — Tool-only, rendered widget, and external-file TODO patterns
 
+### 🗜️ Compaction and memory
+
+- [Compaction Extensions](ecosystem/compaction-extensions.md) — Algorithmic, observation-ledger, agentic-VFS, tool-output-pruning, large-context-subprocess, and grounded LLM compaction patterns; `pi-blackhole` = `pi-vcc` + `pi-observational-memory`
+
 ### 🎨 TUI customization
 
 - [Themes](ecosystem/theme-extensions.md) — 5 strategies for theming Pi (terminal-ANSI inheritance, single-port, curated bundle, distinct-UI, personal-collection)
