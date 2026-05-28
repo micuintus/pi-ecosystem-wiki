@@ -260,6 +260,7 @@ copied into a dated bucket file.
 | pi-copilot-queue | repo | https://github.com/ayagmar/pi-copilot-queue | extension, queue, ask-user, tasksync |
 | pi-better-messages-cache | repo | https://github.com/mcowger/pi-better-messages-cache | extension, prompt-cache, anthropic, provider |
 | pi-cache-graph | repo | https://github.com/championswimmer/pi-cache-graph | extension, prompt-cache, observability |
+| pi-custom-compactor | repo | https://github.com/davidorex/pi-custom-compactor | extension, compaction, yaml-declared |
 | robert-keus-openrouter-alternatives | article | https://medium.com/@robertkeus/the-10-best-openrouter-alternatives-in-2026-from-eu-first-to-open-source-594031416f25 | provider, routing, comparison |
 | david-lodico-linkedin | article | https://www.linkedin.com/posts/davidlodico_ill-admit-it-i-was-part-of-the-problem-activity-7429892670883262465-rjKu | provider, eu, founder, opinion |
 | david-lodico-indiepage | article | https://indiepa.ge/david_lodico | provider, eu, founder, profile |

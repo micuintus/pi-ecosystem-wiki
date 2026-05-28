@@ -579,3 +579,40 @@ Updates:
 - raw-sources/index.md: +9 source rows
 - index.md: new "Prompt: input, templates, queue, cache" section
 - README.md: new I-want-to row
+
+## [2026-05-28] sharpen | compaction picking-guide; pi-vcc license caveat; pi-custom-compactor
+
+User-driven refinement after working through the "I just want
+/compact, but better" question against live tier-1 / tier-3 signals.
+
+Findings:
+- pi-vcc is the right answer for "drop-in better /compact" — not
+  pi-blackhole. Blackhole's ledger machinery is orthogonal complexity
+  for that use case.
+- pi-vcc has a real packaging-hygiene gap: no LICENSE file in the
+  repo, `"license": null` in package.json. Hard blocker for commercial
+  or policy-gated installs until fixed. Durable, non-numeric fact —
+  belongs in the wiki body.
+- pi-observational-memory carries the strongest adoption signal in
+  the niche (highest stars, downloads, forks) but is the wrong answer
+  for "make /compact better" — its value is durable cross-compaction
+  memory, not the compaction step itself.
+- pi-blackhole's engineering bar (lockstep audit skill, 41 tests,
+  strict TS, MIT license, manual-flush mode) is the highest of the
+  three, but it's 4 days old — adoption signal is thin. Install it
+  when you want vcc *and* the ledger, not just sharper compaction.
+- New entry surfaced via web search: `davidorex/pi-custom-compactor`
+  — YAML-declared extraction passes (mechanical or LLM-based per
+  extract), JSON artifacts on disk, multiple specs per work mode.
+  Same bracketed-section family as pi-vcc but configuration-driven.
+
+Updates:
+- ecosystem/compaction-extensions.md: added "Picking the right
+  layer" decision table up front, mapping "what you actually want"
+  → extension. The downstream strategy taxonomy stays as the deep
+  dive.
+- ecosystem/compaction-extensions.md: added LICENSE-hygiene caveat
+  to the pi-vcc entry note.
+- ecosystem/compaction-extensions.md: added pi-custom-compactor as
+  a new entry in the same algorithmic-family bucket as pi-vcc.
+- raw-sources/index.md: +1 row (pi-custom-compactor).

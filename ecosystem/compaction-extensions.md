@@ -18,6 +18,7 @@ sources:
   - pi-context-prune
   - pi-grounded-compaction
   - pi-memctx
+  - pi-custom-compactor
 tags: [extension, compaction, memory, context-management]
 entries:
   - id: pi-mono-custom-compaction
@@ -30,7 +31,7 @@ entries:
     repo: sting8k/pi-vcc
     npm: "@sting8k/pi-vcc"
     role: algorithmic-no-llm
-    notes: "Inspired by lllyasviel/VCC (View-oriented Conversation Compiler). Zero LLM calls — extraction + formatting. Splits at last user message; everything after stays intact; older portion summarized into bracketed sections (Session Goal / Files And Changes / Commits / Outstanding Context / User Preferences) plus a rolling brief transcript with `(#N)` tool refs. Bounded merge across compactions. Lossless `vcc_recall` tool reads raw JSONL; supports regex + BM25-style OR ranking; default scope=active lineage. `overrideDefaultCompaction` toggle. `/pi-vcc` and `/pi-vcc-recall` slash commands."
+    notes: "Inspired by lllyasviel/VCC (View-oriented Conversation Compiler). Zero LLM calls — extraction + formatting. Splits at last user message; everything after stays intact; older portion summarized into bracketed sections (Session Goal / Files And Changes / Commits / Outstanding Context / User Preferences) plus a rolling brief transcript with `(#N)` tool refs. Bounded merge across compactions: sticky sections (Goal, Preferences) carry forward, volatile sections (Outstanding Context) replace, accumulating sections (Files, Commits) union without duplicates, transcript rolls. Lossless `vcc_recall` tool reads raw JSONL; supports regex + BM25-style OR ranking; default scope=active lineage. `overrideDefaultCompaction` toggle routes Pi's `/compact` and auto-threshold paths through vcc too. `/pi-vcc` and `/pi-vcc-recall` slash commands. **Packaging-hygiene caveat:** no LICENSE file present in the repo and `"license"` is `null` in `package.json` — the README is open and the maintainer accepts PRs, but the missing license is a blocker for commercial/policy-gated installs until fixed."
   - id: pi-observational-memory
     name: pi-observational-memory
     repo: elpapi42/pi-observational-memory
@@ -84,6 +85,11 @@ entries:
     repo: championswimmer/pi-context-prune
     role: tool-call-tree-prune
     notes: "Summarizes completed tool-call batches and prunes raw tool outputs from future LLM context. Exposes a `context_tree_query` escape hatch so the agent can recover any original output on demand. Operates on tool-call trees rather than raw token sweep."
+  - id: pi-custom-compactor
+    name: pi-custom-compactor
+    repo: davidorex/pi-custom-compactor
+    role: yaml-declared-extraction
+    notes: "Hooks `session_before_compact`. Compaction behavior is declared in YAML specs: each spec lists named **extracts**, each extract is either *mechanical* (regex / tool-call inspection, no LLM) or *llm-based* (via `complete()` from `@mariozechner/pi-ai`). Writes JSON artifacts to disk and composes them into the final summary. Multiple specs coexist for different work modes; falls back to default compaction on failure. Same family as pi-vcc (bracketed-sections shape) but with the section list and extraction logic moved out of code into config."
   - id: pi-grounded-compaction
     name: pi-grounded-compaction
     npm: pi-grounded-compaction
@@ -108,6 +114,23 @@ sessions.
 
 The ecosystem has converged on a small handful of structural answers,
 each replacing or augmenting a different part of the default path.
+
+## Picking the right layer
+
+Before reading the strategy taxonomy, decide which problem you
+actually have. The strategies below solve different things and only
+one of them is the answer to *"give me `/compact`, but better"*.
+
+| What you actually want | Pick |
+|---|---|
+| **A drop-in better `/compact`** — same UX, sharper output, no new concepts to learn | [`pi-vcc`](https://github.com/sting8k/pi-vcc) with `overrideDefaultCompaction: true`. Algorithmic, deterministic, free, fast, and merges cleanly across repeated compactions. Mind the LICENSE caveat for commercial use. |
+| **A drop-in better `/compact`, license hygiene must be clean** | [`pi-grounded-compaction`](https://www.npmjs.com/package/pi-grounded-compaction). Keeps the LLM path — lower payoff but properly packaged. |
+| **Durable memory across many compactions and days** | [`pi-observational-memory`](https://github.com/elpapi42/pi-observational-memory). The observation ledger is the load-bearing piece. |
+| **Both of the above in one extension** | [`pi-blackhole`](https://github.com/k0valik/pi-blackhole). The frankenmerge — don't install it just for sharper compaction, install it when you also want the ledger. |
+
+The full strategy taxonomy and recommendation matrix below cover the
+rest of the design space (tool-output pruning, agentic-VFS, large-context
+subprocess, etc.).
 
 ## Strategies
 
