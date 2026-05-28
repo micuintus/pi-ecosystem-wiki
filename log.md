@@ -616,3 +616,33 @@ Updates:
 - ecosystem/compaction-extensions.md: added pi-custom-compactor as
   a new entry in the same algorithmic-family bucket as pi-vcc.
 - raw-sources/index.md: +1 row (pi-custom-compactor).
+
+## [2026-05-28] expand | prompt-history niche has three players, not one
+
+Initial prompt-extensions survey treated this niche as solved by
+pi-prompt-history. Re-search surfaced two siblings:
+
+- `mrshu/pi-readline-search` — Readline Ctrl+R + ! bash history,
+  current-branch scope only, tiny single-file. Stale (no commits in
+  90+d as of 2026-05-28).
+- `samfoy/pi-session-search` — FTS5 keyword search + optional
+  semantic embeddings (hybrid via Reciprocal Rank Fusion), indexes
+  whole session content not just prompts. Dominant adoption signal
+  in the niche (highest npm DL, multi-contributor, semver-tagged,
+  CI + MIT). Browse-and-read rather than copy-into-editor.
+
+The three don't replace each other — different mechanisms, scopes,
+and primary actions. pi-prompt-history's unique-value action is
+**fork-from-prompt** (resume a session, fork at the chosen user
+message, pre-fill the prompt text).
+
+Also tightened the pi-prompt-history entry with the WTFPL +
+package.json license-mismatch caveat (durable non-numeric fact).
+
+Updates:
+- ecosystem/prompt-extensions.md: section title changed from
+  "pi-prompt-history — Ctrl+R over past prompts" to "Searching past
+  prompts and sessions"; replaced the single-tool prose with a
+  three-row comparison table and per-extension prose. Added
+  pi-session-search to the recommendation matrix.
+- raw-sources/index.md: +2 rows.

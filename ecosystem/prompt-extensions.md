@@ -6,6 +6,8 @@ sources:
   - pi-mono
   - pi-sticky-prompt
   - pi-prompt-history
+  - pi-readline-search
+  - pi-session-search
   - pi-prompt-composer
   - pi-prompt-template-model
   - true-queue
@@ -24,7 +26,19 @@ entries:
     name: pi-prompt-history
     repo: vedang/pi-prompt-history
     role: ctrl-r-prompt-search
-    notes: "Ctrl+R-style reverse search over prior **user prompts** parsed from `~/.pi/agent/sessions/` JSONL. SQLite-backed index (size+mtime change detection, incremental). Floating overlay; seeds query from current editor contents. Local scope = sessions with exact-equal `cwd`; Global scope = all sessions, with Current-session / Same-cwd / Other-cwd grouping. Primary action `copy` (paste into editor) or `resume` (fork from the chosen prompt, or restore the whole session). Slash commands: `/prompt-history`, `/prompt-history-global`, `/prompt-history-reindex [global]`, `/prompt-history-status`."
+    notes: "Ctrl+R-style reverse search over prior **user prompts** parsed from `~/.pi/agent/sessions/` JSONL. SQLite-backed index (size+mtime change detection, incremental). Floating overlay; seeds query from current editor contents. Local scope = sessions with exact-equal `cwd`; Global scope = all sessions, with Current-session / Same-cwd / Other-cwd grouping. Primary action `copy` (paste into editor) or `resume` (fork from the chosen prompt, or restore the whole session) — fork-from-prompt is the unique-value action vs. siblings. Slash commands: `/prompt-history`, `/prompt-history-global`, `/prompt-history-reindex [global]`, `/prompt-history-status`. Engineering discipline is high for a solo project (strict TS, biome + knip + jscpd, three test tiers). License: WTFPL via `LICENSE.txt` (package.json `\"license\": null` — mismatch)."
+  - id: pi-readline-search
+    name: pi-readline-search
+    repo: mrshu/pi-readline-search
+    npm: pi-readline-search
+    role: readline-style-ctrl-r
+    notes: "GNU Readline-style Ctrl+R reverse search in-editor over **current branch** history — both prompts and `!bash` commands. Ctrl+R / ↑ older, Ctrl+S / ↓ newer, Enter accept, Esc cancel. Tiny single-file extension. **Status: stale** (no commits in 90+ days as of 2026-05-28 against a fast-moving Pi). MIT."
+  - id: pi-session-search
+    name: pi-session-search
+    repo: samfoy/pi-session-search
+    npm: pi-session-search
+    role: hybrid-fts-semantic-search
+    notes: "Indexes, summarizes, and searches past pi coding sessions — not just user prompts but the whole session content. **FTS5 keyword search** always on (zero-config, no API keys). When an embedder is configured, adds **semantic embeddings** and fuses keyword + cosine-similarity scores via **Reciprocal Rank Fusion**. Optional auto-summarization. Browse-and-read model rather than copy-into-editor. MIT, strict TS, CI publish workflow, semver-tagged releases. The dominant adoption signal in the niche."
   - id: pi-prompt-composer
     name: pi-prompt-composer
     npm: pi-prompt-composer
@@ -119,17 +133,40 @@ scrollback in your terminal.
 
 Constraints: macOS 13+ Apple Silicon, Swift-built HUD app.
 
-### `pi-prompt-history` — Ctrl+R over past prompts
+### Searching past prompts and sessions
 
-[`vedang/pi-prompt-history`](https://github.com/vedang/pi-prompt-history)
-indexes prior **user prompts** from `~/.pi/agent/sessions/` JSONL
-into a SQLite db and opens a floating overlay on `Ctrl+R`. Existing
-editor text seeds the filter. Local scope = exact-cwd-equal sessions
-(shell-history-style); Global = everything, with Current-session /
-Same-cwd / Other-cwd groupings. Selection either copies the prompt
-into the editor or *forks* the target session at the chosen prompt
-(falls back to whole-session restore). Incremental indexing keyed on
-file size + mtime.
+Three extensions sit in this niche, with meaningfully different scopes
+and mechanisms:
+
+| | Mechanism | Scope | Primary action | Status |
+|---|---|---|---|---|
+| [`vedang/pi-prompt-history`](https://github.com/vedang/pi-prompt-history) | SQLite FTS over user prompts | All sessions, grouped Current / Same-cwd / Other-cwd | Copy into editor, *or* fork target session at the chosen prompt | active, solo |
+| [`mrshu/pi-readline-search`](https://github.com/mrshu/pi-readline-search) | In-memory string-contains, Readline-style | **Current branch only** — prompts + `!bash` | Replace editor text | **stale** (no recent commits) |
+| [`samfoy/pi-session-search`](https://github.com/samfoy/pi-session-search) | **FTS5 keyword + optional semantic embeddings**, hybrid via Reciprocal Rank Fusion | All sessions, indexed and summarizable | Browse / read past sessions | active, dominant adoption |
+
+`pi-readline-search` is the lightest — one keystroke, current branch,
+classical shell-history feel — but appears stale on a fast-moving
+target.
+
+`pi-prompt-history` is the classical Ctrl+R-for-prompts model with a
+sharper persistence layer (SQLite, incremental size+mtime indexing,
+Local/Global cwd scopes). Its unique-value action is **fork-from-prompt**:
+resume a target session, fork at the chosen user message, pre-fill the
+prompt text. License is WTFPL via `LICENSE.txt` with a `package.json`
+license-field mismatch — fine for personal use, may trip corporate
+policy filters.
+
+`pi-session-search` is doing real IR over the whole session content,
+not just prompts. FTS5 keyword search is always on with zero config;
+optional semantic embeddings fuse BM25 + cosine-similarity scores via
+Reciprocal Rank Fusion. Browse-and-read rather than copy-into-editor.
+The dominant adoption signal in the niche and the only entry with
+MIT + CI + multi-author maintenance.
+
+These compose without conflict (different commands / keybindings).
+If you want both "Ctrl+R for prompts with fork-from-prompt" and
+"search the body of past sessions", install
+`pi-prompt-history` + `pi-session-search`.
 
 ## 2. Prompt-template authoring
 
@@ -252,7 +289,8 @@ behaves identically.
 | Situation | Default pick |
 |---|---|
 | **Scrolling history loses your input prompt (macOS)** | [`pi-sticky-prompt`](https://github.com/alonmartin2222/pi-sticky-prompt) — floating macOS HUD over UDS |
-| **You retype the same prompts** | [`pi-prompt-history`](https://github.com/vedang/pi-prompt-history) — Ctrl+R over past user prompts |
+| **You retype the same prompts and want fork-from-prompt** | [`pi-prompt-history`](https://github.com/vedang/pi-prompt-history) — Ctrl+R + SQLite-indexed reverse search |
+| **You want to actually search the body of past sessions** | [`pi-session-search`](https://github.com/samfoy/pi-session-search) — FTS5 + optional semantic embeddings, hybrid via RRF |
 | **You have lots of project-local templates with structure** | [`pi-prompt-composer`](https://www.npmjs.com/package/pi-prompt-composer) for the slash surface + [`pi-prompt-template-model`](https://www.npmjs.com/package/pi-prompt-template-model) for per-template model/skill switching |
 | **You want sequential isolation of queued tasks** | [`true-queue`](https://github.com/Krystofee/true-queue) — `+`-prefixed hidden queue |
 | **You want the model to drive the queue (TaskSync-style)** | [`pi-copilot-queue`](https://github.com/ayagmar/pi-copilot-queue) — `ask_user` tool + forced tool_choice |
