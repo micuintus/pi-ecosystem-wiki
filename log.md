@@ -543,3 +543,39 @@ Updates:
 - raw-sources/index.md: +15 source rows, bumped updated date
 - index.md: new "Compaction and memory" section
 - README.md: new I-want-to row for compaction
+
+## [2026-05-28] new survey | prompt extensions (input UX, templates, queue, cache)
+
+Entry point: ingested `alonmartin2222/pi-sticky-prompt` (macOS
+floating-HUD prompt bar over UDS, fixes the "scroll terminal = lose
+editor" problem of pi running outside alternate-screen mode). Then
+ran Exa searches on prompt input / prompt-template / prompt-cache /
+queue extensions.
+
+New page: ecosystem/prompt-extensions.md surveys 9 entries across
+four layers of "the prompt":
+
+1. Prompt input UX — pi-sticky-prompt (out-of-TUI floating editor,
+   macOS NSPanel + UDS), pi-prompt-history (Ctrl+R reverse search
+   over user prompts, SQLite-indexed, Local/Global cwd scopes,
+   fork-from-prompt action)
+2. Prompt-template authoring — pi-prompt-composer (Markdown→slash
+   commands with Liquid templating, grouped dirs, missing-arg
+   collection), pi-prompt-template-model (model/skill/thinking
+   frontmatter, auto-restore previous model after turn)
+3. Prompt queueing — true-queue (`+`-prefixed hidden queue,
+   sequential isolation, counter-pattern to steering since LLMs
+   anchor on completion when they see future tasks), pi-copilot-queue
+   (TaskSync-style `ask_user` tool + system-prompt loop policy +
+   forced tool_choice, provider-gated to github-copilot by default)
+4. Prompt-cache layer — pi-better-messages-cache (dual cache_control
+   markers on assistant tool_use + user msg, matches OpenCode / Kilo
+   Code / Roo Code; reported MiniMax/Kimi cache hit lift near-zero →
+   80%+; implements pi-mono#1737, declined upstream; also fixes
+   control-char-in-tool-call-JSON streaming crash), pi-cache-graph
+   (/cache graph|stats|export, three TUI views, CSV export)
+
+Updates:
+- raw-sources/index.md: +9 source rows
+- index.md: new "Prompt: input, templates, queue, cache" section
+- README.md: new I-want-to row

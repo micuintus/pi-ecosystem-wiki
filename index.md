@@ -29,6 +29,10 @@ them.
 
 - [TODO List Extensions](ecosystem/todo-extensions.md) — Tool-only, rendered widget, and external-file TODO patterns
 
+### ✏️ Prompt: input, templates, queue, cache
+
+- [Prompt Extensions](ecosystem/prompt-extensions.md) — floating editor (`pi-sticky-prompt`), Ctrl+R history search, template authoring (`pi-prompt-composer`, `pi-prompt-template-model`), hidden/`ask_user`-driven queues, dual cache-breakpoint fix, cache-hit observability
+
 ### 🗜️ Compaction and memory
 
 - [Compaction Extensions](ecosystem/compaction-extensions.md) — Algorithmic, observation-ledger, agentic-VFS, tool-output-pruning, large-context-subprocess, and grounded LLM compaction patterns; `pi-blackhole` = `pi-vcc` + `pi-observational-memory`

@@ -252,6 +252,14 @@ copied into a dated bucket file.
 | pi-context-prune | repo | https://github.com/championswimmer/pi-context-prune | extension, compaction, tool-call-tree |
 | pi-grounded-compaction | docs | https://registry.npmjs.org/pi-grounded-compaction | extension, compaction, grounded |
 | pi-memctx | docs | https://pi.dev/packages/pi-memctx | extension, memory, project-memory-layer |
+| pi-sticky-prompt | repo | https://github.com/alonmartin2222/pi-sticky-prompt | extension, prompt, editor, macos, hud |
+| pi-prompt-history | repo | https://github.com/vedang/pi-prompt-history | extension, prompt, history, ctrl-r |
+| pi-prompt-composer | docs | https://registry.npmjs.org/pi-prompt-composer | extension, prompt-template, slash-commands, liquid |
+| pi-prompt-template-model | docs | https://registry.npmjs.org/pi-prompt-template-model | extension, prompt-template, model-switching |
+| true-queue | repo | https://github.com/Krystofee/true-queue | extension, queue, prompt |
+| pi-copilot-queue | repo | https://github.com/ayagmar/pi-copilot-queue | extension, queue, ask-user, tasksync |
+| pi-better-messages-cache | repo | https://github.com/mcowger/pi-better-messages-cache | extension, prompt-cache, anthropic, provider |
+| pi-cache-graph | repo | https://github.com/championswimmer/pi-cache-graph | extension, prompt-cache, observability |
 | robert-keus-openrouter-alternatives | article | https://medium.com/@robertkeus/the-10-best-openrouter-alternatives-in-2026-from-eu-first-to-open-source-594031416f25 | provider, routing, comparison |
 | david-lodico-linkedin | article | https://www.linkedin.com/posts/davidlodico_ill-admit-it-i-was-part-of-the-problem-activity-7429892670883262465-rjKu | provider, eu, founder, opinion |
 | david-lodico-indiepage | article | https://indiepa.ge/david_lodico | provider, eu, founder, profile |
