@@ -263,6 +263,12 @@ copied into a dated bucket file.
 | pi-custom-compactor | repo | https://github.com/davidorex/pi-custom-compactor | extension, compaction, yaml-declared |
 | pi-readline-search | repo | https://github.com/mrshu/pi-readline-search | extension, prompt, history, readline |
 | pi-session-search | repo | https://github.com/samfoy/pi-session-search | extension, prompt, history, semantic-search, fts5 |
+| pi-claude-code-use | repo | https://github.com/ben-vargas/pi-packages/tree/main/packages/pi-claude-code-use | extension, anthropic, oauth, payload-patcher |
+| pi-anthropic-auth | repo | https://github.com/gotgenes/pi-anthropic-auth | extension, anthropic, oauth, compat-shim |
+| pi-claude-cli | repo | https://github.com/rchern/pi-claude-cli | extension, anthropic, claude-code, cli-subprocess, stale |
+| pi-claude-code-fractary | repo | https://github.com/fractary/pi-claude-code | extension, anthropic, claude-code, tool-name-shim |
+| pi-anthropic-messages | repo | https://github.com/BlackBeltTechnology/pi-anthropic-messages | extension, anthropic, protocol-bridge |
+| pi-proxy-models | repo | https://github.com/victormilk/pi-proxy-models | extension, provider, multi-subscription, proxy |
 | robert-keus-openrouter-alternatives | article | https://medium.com/@robertkeus/the-10-best-openrouter-alternatives-in-2026-from-eu-first-to-open-source-594031416f25 | provider, routing, comparison |
 | david-lodico-linkedin | article | https://www.linkedin.com/posts/davidlodico_ill-admit-it-i-was-part-of-the-problem-activity-7429892670883262465-rjKu | provider, eu, founder, opinion |
 | david-lodico-indiepage | article | https://indiepa.ge/david_lodico | provider, eu, founder, profile |

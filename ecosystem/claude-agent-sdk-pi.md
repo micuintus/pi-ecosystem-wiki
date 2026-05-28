@@ -118,6 +118,7 @@ adapter code consumes the map without per-model branches.
 
 ## See also
 
+- [Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md) — niche survey covering this extension, its dominant fork, and the alternate payload-patcher shape
 - [Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md) — OAuth, API key, Foundry routes and which one hits the main subscription budget
-- [pi-claude-bridge](pi-claude-bridge.md) — downstream extension that builds on this adapter to run CC as a Pi provider (subscription route) and as an AskClaude sub-agent
+- [pi-claude-bridge](pi-claude-bridge.md) — downstream extension that builds on this adapter to run CC as a Pi provider (subscription route) and as an AskClaude sub-agent. Adds the **session-resume** optimization that this upstream is missing — strictly less token-wasteful on any multi-turn session.
 - [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes

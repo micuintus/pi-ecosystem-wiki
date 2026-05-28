@@ -39,6 +39,7 @@ TOC with structure and comparisons. Awesome-lists like
 | **Tame the prompt** (floating editor, history search, templates, queues, cache) | [Prompt Extensions](ecosystem/prompt-extensions.md) — four layers (input UX, template authoring, queueing, provider cache) |
 | **Add a new LLM provider** (OpenCode, Nebius, EU providers) | [Provider Extensions](ecosystem/provider-extensions.md) — when built-in isn't enough, and the EU gap |
 | **Connect Pi to other services** (Google Workspace, Claude SDK, auth) | [Google Workspace](ecosystem/google-workspace.md) · [Anthropic Auth](ecosystem/anthropic-subscription-auth.md) · [Claude Agent SDK Bridge](ecosystem/claude-agent-sdk-pi.md) |
+| **Use my Claude Pro/Max subscription in Pi** (payload-patch vs provider-proxy) | [Claude Subscription Extensions](ecosystem/claude-subscription-extensions.md) — two shapes, picking guide, code-read findings |
 | **Make Pi work autonomously** (iterate until done, run overnight) | [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 7 architectural variants compared |
 | **Evaluate whether an extension is worth installing** | [How to Evaluate a Pi Extension](references/evaluation.md) — vital signs, maintenance signals, code-quality recipes |
 | **Browse all surveyed pages** | [index.md](index.md) — full browse organized by category |

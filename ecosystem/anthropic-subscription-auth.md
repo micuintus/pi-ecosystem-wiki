@@ -1,7 +1,7 @@
 ---
 title: Anthropic Subscription Auth in Pi
 type: ecosystem
-updated: 2026-05-25
+updated: 2026-05-28
 sources:
   - pi-providers-docs
   - pi-issue-2751
@@ -82,8 +82,13 @@ Inferred from oh-my-pi's repo structure; confirmation requires reading
 | Subscription auth in Pi at extra-usage rates | `/login` → Anthropic, accept the warning. Make sure `ANTHROPIC_API_KEY` is unset. |
 | Pay-as-you-go API | Set `ANTHROPIC_API_KEY`. |
 | Enterprise inference | Foundry env vars. |
-| OAuth compatibility patching (without forking) | [`@benvargas/pi-claude-code-use`](https://github.com/ben-vargas/pi-packages) — extension-level OAuth compatibility patch; tracks Claude Code auth changes. Less invasive than oh-my-pi but also less capable. |
-| Main-subscription budget without forking | [`pi-claude-bridge`](pi-claude-bridge.md) — runs the real Claude Code binary as a subprocess via Anthropic's Agent SDK; same structural trick as oh-my-pi, packaged as a Pi extension. |
+| OAuth compatibility patching (without forking) | [`@benvargas/pi-claude-code-use`](claude-subscription-extensions.md) — payload-patcher on Pi's native OAuth transport. Zero structural overhead, no Claude Code feature leakage possible. |
+| Main-subscription budget without forking | [`pi-claude-bridge`](claude-subscription-extensions.md) — runs the real Claude Code binary as a subprocess via Anthropic's Agent SDK; structurally heavier but unlocks AskClaude / CC skills / CC sub-agents. |
+
+For the full survey of extensions in both shapes (payload-patcher
+vs. provider-proxy), with code-read findings on token economics and
+leakage surface, see
+[Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md).
 
 ## Caveats
 
@@ -93,12 +98,18 @@ least once already; the route may stop working at any time without
 notice. Treat it as best-effort.
 
 Whether a Pi *extension* (rather than a fork) could provide a
-Claude-Code-SDK-based provider without forking is an open thread on
-the Pi side. Discussion #2950 suggests no current path inside base Pi
-— the SDK injection has historically required fork-level patches.
+Claude-Code-SDK-based provider without forking was once an open
+thread on the Pi side (Discussion #2950). It's now resolved in
+practice: `claude-agent-sdk-pi` and its dominant fork
+`pi-claude-bridge` ship that path as a regular Pi provider via
+`pi.registerProvider()` + `query()` from
+`@anthropic-ai/claude-agent-sdk`. The payload-patcher route
+(`pi-claude-code-use`) sidesteps the question entirely by staying on
+Pi's native Anthropic transport.
 
 ## See also
 
+- [Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md) — the full survey of extensions in both shapes, with picking guide and code-read findings
 - [claude-agent-sdk-pi](claude-agent-sdk-pi.md) — the bridge extension to Anthropic's Agent SDK and the model/billing implications
 - [pi-claude-bridge](pi-claude-bridge.md) — downstream extension that uses Claude Code as a Pi provider + AskClaude sub-agent (subscription route as extension, not fork)
 - [Pi Ecosystem Catalogs](../references/catalogs.md) — where to find oh-my-pi and other forks

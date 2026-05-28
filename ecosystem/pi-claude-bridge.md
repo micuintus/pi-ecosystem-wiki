@@ -353,6 +353,7 @@ you control the system prompt fully — see
 
 ## See also
 
+- [Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md) — niche survey, the alternate payload-patcher shape, and a decision matrix for when *not* to use this bridge
 - [claude-agent-sdk-pi](claude-agent-sdk-pi.md) — upstream community Agent SDK adapter that this extension forks
 - [Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md) — full routing/billing matrix and the detector mechanism
 - [Provider Extensions](provider-extensions.md) — broader provider landscape

@@ -646,3 +646,65 @@ Updates:
   three-row comparison table and per-extension prose. Added
   pi-session-search to the recommendation matrix.
 - raw-sources/index.md: +2 rows.
+
+## [2026-05-28] new survey | Claude Pro/Max subscription extensions
+
+Code-deep review across the niche after user asked: "which is closest
+to 'using my Claude subscription in Pi', has least token waste, is
+least error-prone for CC feature leakage." Cloned and read the four
+serious candidates (pi-claude-code-use, pi-claude-bridge,
+claude-agent-sdk-pi, pi-claude-cli) plus surveyed adjacent niches.
+
+Key structural finding: the niche splits into TWO shapes that are
+trivially confusable but solve different problems:
+
+- **Shape A — payload patcher** (`pi-claude-code-use`,
+  `pi-anthropic-auth`): hooks `before_provider_request`, rewrites
+  outbound payload to dodge Anthropic's third-party fingerprinting.
+  Stays on Pi's built-in Anthropic OAuth transport. No subprocess,
+  no SDK, no CC at all. Zero structural per-turn overhead. CC
+  feature leakage surface structurally zero because CC is never
+  invoked.
+- **Shape B — provider proxy** (`pi-claude-bridge`,
+  `claude-agent-sdk-pi`, `pi-claude-cli`): registers a new provider
+  that routes LLM calls to CC SDK or CLI subprocess. Pi still
+  executes tools. CC's `claude_code` preset system prompt is paid
+  on every cold-start session. Mitigation surface (strict-mcp-config,
+  cloud-MCP suppression, autocompact disable, session resume) is
+  real and well-engineered in pi-claude-bridge.
+
+Code-read empirical findings worth recording (durable, non-numeric):
+
+- `claude-agent-sdk-pi` (prateekmedia, the original) has **no session
+  resume** — searched the 1,258-line single file for `resume`,
+  `sessionId`, `sharedSession`; found only Pi-side session
+  bookkeeping. Every turn sends full history to a fresh `query()`,
+  CC re-prefixes its full system prompt, no cache reuse. Strictly
+  worse token economics than the elidickinson fork on any multi-turn
+  session.
+- `pi-claude-bridge` (elidickinson fork) added: session resume via
+  `cc-session-io` (`resume: resumeSessionId`), `--strict-mcp-config`,
+  `ENABLE_CLAUDEAI_MCP_SERVERS=0`, `DISABLE_AUTO_COMPACT=1`. Each
+  one a meaningful correctness/cost win the upstream lacks.
+- `pi-claude-code-use` (Vargas): pure-function pipeline, 779 LOC
+  src + 1,298 LOC tests (1.67× ratio). Notable empirical claim in
+  README: Anthropic OAuth fingerprints tool *names* — `web_search_exa`
+  rejected in live testing, `mcp__exa__web_search` accepted.
+- `pi-claude-cli` (rchern): highest test ratio in the niche (2.78×).
+  Stale (no commits in 90+ days).
+
+Updates:
+- ecosystem/claude-subscription-extensions.md NEW — full survey
+  (10 entries) with two-shapes structural distinction, picking
+  guide, three-axis comparison.
+- ecosystem/anthropic-subscription-auth.md — promoted to platform-
+  level integration-reference; routes the "extensions" question to
+  the new survey. Cleaned up the practical-answer table. Resolved
+  the "open thread" caveat about Discussion #2950 (it's now solved
+  in practice by both shapes).
+- ecosystem/claude-agent-sdk-pi.md and pi-claude-bridge.md: added
+  See-also links to the new survey. The agent-sdk-pi entry now
+  explicitly notes the missing-resume → token-waste consequence
+  vs the elidickinson fork.
+- index.md, README.md: added survey entry.
+- raw-sources/index.md: +6 rows.
