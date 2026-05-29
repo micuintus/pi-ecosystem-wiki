@@ -37,15 +37,11 @@ TOC with structure and comparisons. Awesome-lists like
 | **Track what my agent is doing** (TODO lists, task progress) | [TODO List Extensions](ecosystem/todo-extensions.md) — idiomatic tool shapes, widget stack, picking guide |
 | **Keep long sessions coherent across compactions** | [Compaction Extensions](ecosystem/compaction-extensions.md) — algorithmic vs observation-ledger vs agentic-VFS vs tool-output-pruning, with `pi-blackhole` as the combined default |
 | **Tame the prompt** (floating editor, history search, templates, queues, cache) | [Prompt Extensions](ecosystem/prompt-extensions.md) — four layers (input UX, template authoring, queueing, provider cache) |
-| **Connect Pi to other services** (Google Workspace) | [Google Workspace](ecosystem/google-workspace.md) — `gws` CLI, OAuth, command shapes |
-| **Add a new LLM provider** (OpenCode, Nebius, EU providers) | [Provider Extensions](ecosystem/provider-extensions.md) — when built-in isn't enough, and the EU gap |
-| **Understand Anthropic auth routes** (OAuth, API key, Foundry) | [Anthropic Subscription Auth](ecosystem/anthropic-subscription-auth.md) — billing implications and the third-party-budget block |
-| **Use my Claude Pro/Max subscription in Pi** (payload-patch vs provider-proxy) | [Claude Subscription Extensions](ecosystem/claude-subscription-extensions.md) — two shapes, picking guide, code-read findings |
-| **Bridge Pi to Anthropic's Agent SDK / Claude Code** | [Claude Agent SDK Bridge](ecosystem/claude-agent-sdk-pi.md) · [pi-claude-bridge](ecosystem/pi-claude-bridge.md) |
 | **Make Pi work autonomously** (iterate until done, run overnight) | [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 7 architectural variants compared |
-| **Evaluate whether an extension is worth installing** | [How to Evaluate a Pi Extension](references/evaluation.md) — vital signs, maintenance signals, code-quality recipes |
-| **Browse all surveyed pages** | [index.md](index.md) — full browse organized by category |
-| **Find extensions not yet surveyed here** | [Pi Ecosystem Catalogs](references/catalogs.md) — `pi.dev/packages`, `awesome-pi.site`, curated collections |
+| **Connect Pi to other services** (Google Workspace) | [Google Workspace](ecosystem/google-workspace.md) — `gws` CLI, OAuth, command shapes |
+| **Pick a provider or bring a Claude subscription** | [Providers and model access](index.md#-providers-and-model-access) — third-party providers, the EU gap, Anthropic auth routes, Claude Pro/Max in Pi, and the Claude Code bridges |
+
+*Also: [evaluate an extension before installing](references/evaluation.md) · [browse everything by category](index.md) · [find what's not surveyed yet](references/catalogs.md).*
 
 ---
 
