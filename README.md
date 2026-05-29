@@ -57,6 +57,23 @@ entry points; `index.md` covers everything.
 
 ---
 
+## How this wiki is organized
+
+- **`ecosystem/`** — one page per niche. *Survey* pages name the
+  options, compare them, and end in a "how to pick" section;
+  *integration-reference* pages document a single integration target.
+- **`references/`** — methodology and catalogs ([evaluation](references/evaluation.md),
+  [catalogs](references/catalogs.md)).
+- **No live numbers in prose.** Stars, downloads, and commit dates go
+  stale in weeks, so pages carry stable `repo:`/`npm:` identifiers in
+  frontmatter instead and you query the current figures at read-time
+  with the recipes in [evaluation.md](references/evaluation.md).
+  Architectural comparisons (which are timeless) stay inline.
+- Conventions live in **[SCHEMA.md](SCHEMA.md)**; every source is
+  registered in **[raw-sources/index.md](raw-sources/index.md)**.
+
+---
+
 ## Author's opinionated minimal recommendations
 
 **First gotos:**
