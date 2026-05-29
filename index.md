@@ -42,6 +42,7 @@ them.
 - [Themes](ecosystem/theme-extensions.md) — 5 strategies for theming Pi (terminal-ANSI inheritance, single-port, curated bundle, distinct-UI, personal-collection)
 - [Footer / Powerline Extensions](ecosystem/footer-extensions.md) — Status bars and powerline-style segments
 - [Tool-Call Rendering Extensions](ecosystem/tool-rendering-extensions.md) — Compact rendering and richer diff visualization (OpenCode-style)
+- [Working / Thinking Indicator Extensions](ecosystem/working-indicator-extensions.md) — Animated busy spinners and shimmering status verbs (Claude Code / Crush style); per-state animations
 
 ### 🔧 Tool behavior
 

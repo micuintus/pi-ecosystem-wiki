@@ -708,3 +708,40 @@ Updates:
   vs the elidickinson fork.
 - index.md, README.md: added survey entry.
 - raw-sources/index.md: +6 rows.
+
+## [2026-05-29] new survey | working/thinking indicator extensions
+
+Triggered by "I want a Crush-style busy widget." Brave + gh research
+across the busy-indicator niche; compared with the evaluation.md tiers.
+
+New page: ecosystem/working-indicator-extensions.md (6 entries).
+
+Niche boundary drawn explicitly: transient *busy* indicator only.
+Distinct from footer-extensions (persistent status bar) and
+tool-rendering-extensions (tool output + thinking-step content, where
+fluxgear/pi-thinking-steps belongs).
+
+Findings:
+- @dustydonkey/pi-spinner (HarshalRathore) — the truest Crush/Claude
+  Code match: rotating verbs + per-char shimmer, idle-aware, 187 CC
+  verbs, auditable, highest npm pull (339/mo) despite 1 star. Fresh
+  (2026-05). [experimental] but the recommended default for the
+  shimmer-verb aesthetic.
+- arpagon/pi-animations — maximalist: 21 animations incl. a `crush`
+  scrambler, only one with 3 states (thinking/working/tool) and
+  per-state assignment. Most stars (15), 2 releases, MIT — but
+  feature-frozen since creation day 2026-03-20 (staleness watch).
+  Needs true-color + Nerd Font.
+- pi-fancy-loader (unitdhda) — 50+ sequences, HSL palette jitter,
+  100+ verbs, picker. MIT but **npm-only, no public repo** →
+  unauditable; flagged per evaluation Tier-3.
+- shitty-extensions/ultrathink — novelty rainbow toggle, not a real
+  indicator. Noted for completeness.
+- Platform primitive: ctx.ui.setWorkingIndicator()/setWorkingMessage()
+  /setWorkingVisible() (pi-mono #3413) + working-indicator.ts /
+  titlebar-spinner.ts examples — the build-your-own path.
+
+Updates:
+- index.md: added under "TUI customization".
+- raw-sources/index.md: +5 rows (incl. pi-fancy-loader as npm-only
+  docs source).

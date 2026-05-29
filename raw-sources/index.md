@@ -269,6 +269,11 @@ copied into a dated bucket file.
 | pi-claude-code-fractary | repo | https://github.com/fractary/pi-claude-code | extension, anthropic, claude-code, tool-name-shim |
 | pi-anthropic-messages | repo | https://github.com/BlackBeltTechnology/pi-anthropic-messages | extension, anthropic, protocol-bridge |
 | pi-proxy-models | repo | https://github.com/victormilk/pi-proxy-models | extension, provider, multi-subscription, proxy |
+| pi-mono-working-indicator-example | repo | https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/working-indicator.ts | extension, tui, working-indicator, reference |
+| pi-animations | repo | https://github.com/arpagon/pi-animations | extension, tui, animation, spinner |
+| pi-spinner-dustydonkey | repo | https://github.com/HarshalRathore/pi-spinner | extension, tui, spinner, shimmer, verbs |
+| pi-fancy-loader | docs | https://registry.npmjs.org/pi-fancy-loader | extension, tui, spinner, loader, npm-only |
+| shitty-extensions-ultrathink | repo | https://github.com/hjanuschka/shitty-extensions | extension, tui, novelty, rainbow |
 | robert-keus-openrouter-alternatives | article | https://medium.com/@robertkeus/the-10-best-openrouter-alternatives-in-2026-from-eu-first-to-open-source-594031416f25 | provider, routing, comparison |
 | david-lodico-linkedin | article | https://www.linkedin.com/posts/davidlodico_ill-admit-it-i-was-part-of-the-problem-activity-7429892670883262465-rjKu | provider, eu, founder, opinion |
 | david-lodico-indiepage | article | https://indiepa.ge/david_lodico | provider, eu, founder, profile |
