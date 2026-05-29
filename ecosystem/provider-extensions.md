@@ -1,7 +1,7 @@
 ---
 title: Pi Provider Extensions
 type: ecosystem
-updated: 2026-05-19
+updated: 2026-05-28
 sources:
   - awtotty-pi-opencode
   - lnilluv-pi-opencode-go-rotation
@@ -119,6 +119,14 @@ Pi ships with built-in providers for OpenCode Zen, OpenCode Go, Nebius,
 and many others; these extensions exist when users want **runtime model
 discovery** (new models without waiting for a Pi release) or **key-management
 utilities** (rotation, quota bypass) that the core does not provide.
+
+> **Looking for Claude Pro/Max specifically?** This page covers the
+> general provider landscape (OpenCode, Nebius, EU/privacy-forward
+> backends). For bringing an Anthropic subscription into Pi — the
+> payload-patcher vs provider-proxy shapes, the SDK/CLI bridges, and
+> the billing implications — see
+> [Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md)
+> and [Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md).
 
 ## TL;DR
 

@@ -61,15 +61,18 @@ them.
 
 - [Web UI and Remote/Mobile Access](ecosystem/web-ui-and-remote-access.md) — Embedded library and remote-terminal options
 
-### 🔌 Integrations and providers
+### 🔌 Providers and model access
 
-- [MCP Integration](ecosystem/mcp-integration.md) — Model Context Protocol adapters; when MCP makes sense and when CLI skills are leaner
+- [Provider Extensions](ecosystem/provider-extensions.md) — OpenCode Zen/Go, Nebius Token Factory, and EU/privacy-forward open-weight model providers
 - [Anthropic Subscription Auth in Pi](ecosystem/anthropic-subscription-auth.md) — OAuth, API key, Foundry; why third-party tools can't reach the main subscription budget
 - [Claude Pro/Max Subscription Extensions](ecosystem/claude-subscription-extensions.md) — survey of extensions in this niche, split into payload-patcher (native path) vs provider-proxy (delegated path) shapes
 - [claude-agent-sdk-pi](ecosystem/claude-agent-sdk-pi.md) — Bridge between Pi and Anthropic's Agent SDK; thinking-mode mapping
 - [pi-claude-bridge](ecosystem/pi-claude-bridge.md) — Use Claude Code as a Pi provider (subscription route) and as an AskClaude sub-agent tool; what you can and can't shut off
+
+### 🧩 Integrations
+
+- [MCP Integration](ecosystem/mcp-integration.md) — Model Context Protocol adapters; when MCP makes sense and when CLI skills are leaner
 - [Google Workspace Integration](ecosystem/google-workspace.md) — `gws` CLI, OAuth, GCP prerequisites, command shapes
-- [Provider Extensions](ecosystem/provider-extensions.md) — OpenCode Zen/Go, Nebius Token Factory, and EU/privacy-forward open-weight model providers
 
 ## 📋 References and catalogs
 
