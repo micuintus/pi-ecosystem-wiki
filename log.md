@@ -745,3 +745,22 @@ Updates:
 - index.md: added under "TUI customization".
 - raw-sources/index.md: +5 rows (incl. pi-fancy-loader as npm-only
   docs source).
+
+## [2026-05-29] refine | working-indicator survey with code-read discriminators
+
+Read the actual source of both leading entries (not just READMEs) to
+settle a switch decision. Durable findings folded into the page:
+
+- pi-spinner is genuinely idle-aware (`if (ctx.isIdle()) return` pauses
+  the shimmer during sub-agent/user waits); gentle 200ms/3s cadence;
+  uses both setWorkingIndicator + setWorkingMessage; clean teardown.
+- pi-animations has NO idle/sub-agent guard — its 40–100ms multi-line
+  render loop keeps firing during nested work (flicker + terminal-write
+  pressure). CI is `tsc … || true` (cannot fail), 0 tests, hard
+  true-color + Nerd Font requirement, feature-frozen since 2026-03-20.
+- Disambiguated "Crush style": pi-animations ships a literal `crush`
+  scramble animation (Charm Crush effect) vs pi-spinner's shimmer-verb
+  line (Claude Code effect). New "Two senses of Crush style" section.
+- Rewrote the picking-guide rows around the real discriminator: idle-
+  awareness + terminal capability + which effect you actually mean,
+  rather than "aesthetic match."

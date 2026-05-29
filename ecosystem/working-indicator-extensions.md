@@ -16,13 +16,13 @@ entries:
     repo: arpagon/pi-animations
     npm: pi-animations
     role: multi-state-animation-suite
-    notes: "21 terminal animations (demoscene fire, Matrix rain, Pac-Man, aurora, starfield, a `crush` character-scrambler, pi-pulse, shimmer, …) in 1-line and 3-line variants, ANSI true color + Nerd Font glyphs. Distinctive: **three distinct animation states** — thinking (`thinking_start`/`thinking_end`), working (`agent_start`/`agent_end`), tool (`tool_execution_start`/`tool_execution_end`), with priority thinking > tool > working. Per-state assignment (`/animation thinking:aurora working:matrix3 tool:fire3`), configurable width (full/50/custom), interactive `/animation showcase` browser, random mode. 1-line animations ride `ctx.ui.setWorkingMessage()` alongside pi's braille spinner; 3-line use a widget. MIT, single author, 2 releases. Feature-complete but no commits since creation day (2026-03-20) — watch staleness."
+    notes: "21 terminal animations (demoscene fire, Matrix rain, Pac-Man, aurora, starfield, a `crush` character-scrambler, pi-pulse, shimmer, …) in 1-line and 3-line variants, ANSI true color + Nerd Font glyphs. Distinctive: **three distinct animation states** — thinking (`thinking_start`/`thinking_end`), working (`agent_start`/`agent_end`), tool (`tool_execution_start`/`tool_execution_end`), with priority thinking > tool > working. Per-state assignment (`/animation thinking:aurora working:matrix3 tool:fire3`), configurable width (full/50/custom), interactive `/animation showcase` browser, random mode. 1-line animations ride `ctx.ui.setWorkingMessage()` alongside pi's braille spinner; 3-line use a widget. Has a literal `crush` mode — the truest match if you mean Charm Crush's *scramble* effect (vs Claude Code's shimmer-verb line). MIT, single author, 2 releases. **Code-read caveats:** no `isIdle()`/sub-agent guard — its 40–100ms multi-line render loop keeps firing during nested/sub-agent work (flicker + terminal-write pressure exactly when you don't want it); CI is `tsc … || true` (cannot fail); 0 tests; hard true-color + Nerd Font requirement; 3-line variants consume vertical space. Feature-frozen since creation day (2026-03-20) — watch staleness."
   - id: pi-spinner-dustydonkey
     name: "@dustydonkey/pi-spinner"
     repo: HarshalRathore/pi-spinner
     npm: "@dustydonkey/pi-spinner"
     role: claude-code-style-shimmer-verbs
-    notes: "The closest match to the Claude Code / Crush busy aesthetic: replaces pi's braille spinner with frame presets + **rotating status verbs** + a gentle per-character **shimmer** sweep. 6 frame presets (Claude star sequence, braille, pulse, dot, star, none), 5 verb presets (187 Claude Code verbs, short, technical, fun, custom). Idle-aware — shimmer pauses while waiting on sub-agents / user input to avoid flicker. `/spinner` and `/verbs` slash commands, custom frames/interval, settings persist under `workingSpinner` in `.pi/settings.json`. MIT, single author, fresh (created 2026-05). Highest npm pull of the three despite low stars."
+    notes: "The closest match to the Claude Code *shimmer-verb* busy aesthetic: replaces pi's braille spinner with frame presets + **rotating status verbs** + a gentle per-character **shimmer** sweep. 6 frame presets (Claude star sequence, braille, pulse, dot, star, none), 5 verb presets (187 Claude Code verbs, short, technical, fun, custom). **Code-read strength: genuinely idle-aware** — `if (ctx.isIdle()) return` pauses the shimmer while waiting on sub-agents / user input, so no flicker during nested work (the key robustness edge over pi-animations). Gentle render cadence (200ms shimmer, ~3s verb rotation). Uses both `setWorkingIndicator` (spinner frames) and `setWorkingMessage` (verb text). Clean teardown on `agent_end`/`session_shutdown`. Degrades gracefully on plain terminals. `/spinner` and `/verbs` slash commands, settings persist under `workingSpinner` in `.pi/settings.json`. MIT, single author, fresh (last push 2026-05). 0 tests, no CI. Highest npm pull of the three despite low stars."
   - id: pi-fancy-loader
     name: pi-fancy-loader
     npm: pi-fancy-loader
@@ -75,18 +75,36 @@ The core examples `working-indicator.ts` and `titlebar-spinner.ts`
 show both the inline-frames and terminal-title approaches. If you want
 something bespoke, fork one of those rather than installing.
 
+## Two senses of "Crush style"
+
+Worth disambiguating up front, because it splits the choice:
+
+- **Charm Crush's *scramble* effect** (characters churn/resolve) →
+  `pi-animations` ships a literal `crush` animation. Truest literal
+  match.
+- **The polished *shimmer-verb* busy line** (rotating status word with
+  a gentle color sweep, à la Claude Code) → `pi-spinner`.
+
+Both get called "Crush style" colloquially; they're different effects.
+
 ## The three dedicated extensions
 
-### `@dustydonkey/pi-spinner` — the Crush / Claude Code look
+### `@dustydonkey/pi-spinner` — the shimmer-verb look
 
 Rotating status verbs with a per-character shimmer sweep, explicitly
-"inspired by Claude Code." This is the truest match if what you want
-is the *clean shimmering-verb* aesthetic Crush popularized — not flashy
-graphics, just polished motion and a hint of what the agent is doing
-("Analyzing…", "Planning…"). 187 Claude-Code verbs by default,
-idle-aware so it doesn't flicker during sub-agent waits, fully tunable
-via `/spinner` and `/verbs`, settings persist. Single-author and young,
-but the most-pulled of the three on npm.
+"inspired by Claude Code" — polished motion plus a hint of what the
+agent is doing ("Analyzing…", "Planning…"), not flashy graphics. 187
+Claude-Code verbs by default, fully tunable via `/spinner` and
+`/verbs`, settings persist.
+
+**Code-read strength (the deciding factor for sub-agent users):** it is
+genuinely idle-aware — `if (ctx.isIdle()) return` pauses the shimmer
+while waiting on sub-agents or user input, so it doesn't flicker or
+burn terminal writes during nested work. Gentle cadence (200ms
+shimmer, ~3s verb rotation), clean teardown on `agent_end` /
+`session_shutdown`, degrades gracefully on plain terminals. Young and
+single-author with no tests/CI, but the lightest and best-behaved of
+the three.
 
 ### `arpagon/pi-animations` — the maximalist suite
 
@@ -94,11 +112,18 @@ but the most-pulled of the three on npm.
 and 3-line variants, true color + Nerd Font. The only one that
 distinguishes **three states** (thinking / working / tool) and lets you
 assign a different animation to each — e.g. aurora while reasoning,
-matrix while generating, fire while a tool runs. It even ships a
-`crush` character-scrambler animation. The richest feature set and the
-most stars, but feature-frozen since its creation day — watch for
-staleness against a fast-moving Pi, and note it leans on Nerd Font
-glyphs and true-color terminals.
+matrix while generating, fire while a tool runs. Ships the literal
+`crush` scramble animation.
+
+**Code-read caveats:** no `isIdle()`/sub-agent guard — its 40–100ms
+multi-line render loop keeps firing during nested/sub-agent work,
+exactly when flicker and terminal-write pressure hurt most. CI is
+`tsc … || true` (cannot fail), 0 tests, hard true-color + Nerd Font
+requirement, and 3-line variants consume vertical space. Most stars,
+richest features, but feature-frozen since its creation day
+(2026-03-20) — watch staleness against a fast-moving Pi. Best when
+you're on a capable terminal, want per-state graphics, and aren't
+leaning on sub-agents during the animated phases.
 
 ### `pi-fancy-loader` — spinner + palette randomizer
 
@@ -114,8 +139,8 @@ every turn.
 
 | What you want | Pick |
 |---|---|
-| **The Crush / Claude Code shimmering-verb look** | [`@dustydonkey/pi-spinner`](https://github.com/HarshalRathore/pi-spinner) — closest aesthetic match, idle-aware, auditable |
-| **Different animations per thinking/working/tool state, or flashy graphics** | [`arpagon/pi-animations`](https://github.com/arpagon/pi-animations) — richest suite, true color + Nerd Font; mind the staleness |
+| **The Claude Code *shimmer-verb* look; you use sub-agents / long sessions** | [`@dustydonkey/pi-spinner`](https://github.com/HarshalRathore/pi-spinner) — idle-aware (pauses during nested work), lightest, auditable |
+| **The literal Charm Crush *scramble*, per-state graphics, capable terminal** | [`arpagon/pi-animations`](https://github.com/arpagon/pi-animations) — ships a `crush` mode + thinking/working/tool states; no idle guard, true-color + Nerd Font, feature-frozen |
 | **Lots of spinner/palette variety with a picker** | [`pi-fancy-loader`](https://www.npmjs.com/package/pi-fancy-loader) — but it's unauditable (npm-only) |
 | **Build your own** | pi core's `setWorkingIndicator()` + the `working-indicator.ts` example |
 | **A novelty rainbow toggle, not a real indicator** | `ultrathink` in [`shitty-extensions`](https://github.com/hjanuschka/shitty-extensions) |
