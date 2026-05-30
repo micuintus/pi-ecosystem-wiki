@@ -274,6 +274,10 @@ copied into a dated bucket file.
 | pi-spinner-dustydonkey | repo | https://github.com/HarshalRathore/pi-spinner | extension, tui, spinner, shimmer, verbs |
 | pi-fancy-loader | docs | https://registry.npmjs.org/pi-fancy-loader | extension, tui, spinner, loader, npm-only |
 | shitty-extensions-ultrathink | repo | https://github.com/hjanuschka/shitty-extensions | extension, tui, novelty, rainbow |
+| pi-favorites-commands | repo | https://github.com/alonmartin2222/pi-favorites-commands | extension, tui, slash-commands, favorites |
+| tomsej-pi-ext | repo | https://github.com/tomsej/pi-ext | extension, collection, palette, leader-key |
+| pi-command-center | repo | https://github.com/w-winter/dot314 | extension, tui, slash-commands, cheat-sheet |
+| pi-inline-slash-extension | repo | https://github.com/datspike/pi-inline-slash-extension | extension, tui, slash-commands, autocomplete |
 | robert-keus-openrouter-alternatives | article | https://medium.com/@robertkeus/the-10-best-openrouter-alternatives-in-2026-from-eu-first-to-open-source-594031416f25 | provider, routing, comparison |
 | david-lodico-linkedin | article | https://www.linkedin.com/posts/davidlodico_ill-admit-it-i-was-part-of-the-problem-activity-7429892670883262465-rjKu | provider, eu, founder, opinion |
 | david-lodico-indiepage | article | https://indiepa.ge/david_lodico | provider, eu, founder, profile |

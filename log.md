@@ -764,3 +764,30 @@ settle a switch decision. Durable findings folded into the page:
 - Rewrote the picking-guide rows around the real discriminator: idle-
   awareness + terminal capability + which effect you actually mean,
   rather than "aesthetic match."
+
+## [2026-05-30] new survey | slash-command discovery & palette extensions
+
+Ingested alonmartin2222/pi-favorites-commands; searched the niche.
+
+New page: ecosystem/slash-command-extensions.md (5 entries). Niche =
+organizing/navigating a crowded `/` command surface, distinct from
+authoring commands (prompt-extensions).
+
+Three shapes + adjacent fix:
+- reorder native dropdown — pi-favorites-commands (star+reorder, ★,
+  persisted to ~/.pi/agent/data/slash-favorites.json; most-adopted)
+- modal palette/launcher — leader-key palette in tomsej/pi-ext (Ctrl+X,
+  which-key style; most-starred via the collection)
+- cheat-sheet widget — pi-command-center (toggleable list above editor)
+- adjacent UX fix — datspike/pi-inline-slash-extension (slash fires
+  mid-text/2nd line; absolute-path submit bypass)
+
+Code-read note worth recording: pi has NO public autocomplete-
+contribution API (open issue earendil-works/pi#2983 for the @ analog),
+so pi-favorites-commands wraps the editor + CombinedAutocompleteProvider
+and shadows setAutocompleteProvider. Consequences: mirrors the built-in
+command list locally (new built-in needs a bump) and bypasses
+per-command argument autocomplete. Documented as the niche's structural
+caveat.
+
+Updates: index.md (TUI customization); raw-sources +4 rows.

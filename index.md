@@ -43,6 +43,7 @@ them.
 - [Footer / Powerline Extensions](ecosystem/footer-extensions.md) — Status bars and powerline-style segments
 - [Tool-Call Rendering Extensions](ecosystem/tool-rendering-extensions.md) — Compact rendering and richer diff visualization (OpenCode-style)
 - [Working / Thinking Indicator Extensions](ecosystem/working-indicator-extensions.md) — Animated busy spinners and shimmering status verbs (Claude Code / Crush style); per-state animations
+- [Slash-Command Discovery & Palette Extensions](ecosystem/slash-command-extensions.md) — Favorite/reorder the `/` dropdown, leader-key palette, command cheat-sheet; organizing a crowded command surface
 
 ### 🔧 Tool behavior
 
