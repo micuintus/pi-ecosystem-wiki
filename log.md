@@ -791,3 +791,68 @@ per-command argument autocomplete. Documented as the niche's structural
 caveat.
 
 Updates: index.md (TUI customization); raw-sources +4 rows.
+
+## [2026-05-31] ingest | Claude OAuth cluster: code-read pi-anthropic-auth/-oauth, add Shape C, tidy nav
+
+Re-characterised `pi-anthropic-auth` from inference to a source read of
+`gotgenes/pi-anthropic-auth` (src/request-shaping.ts,
+system-prompt-shaping.ts, docs/comparison-to-similar-projects.md).
+
+**Correction.** The prior entry framed pi-anthropic-auth as
+"pi-claude-code-use minus the tool-aliasing layer" — a subset. That is
+wrong. Both are Shape A payload patchers that never invoke Claude Code,
+but they bet on *different* Anthropic fingerprint signals:
+- pi-claude-code-use targets tool **names** (MCP-style aliasing).
+- pi-anthropic-auth targets the billing **header** — it forges Claude
+  Code's `x-anthropic-billing-header` (cc_version / cc_entrypoint / cch
+  = truncated sha256 of the first user message + sampled-char salt),
+  does anchor-based minimal system-prompt de-fingerprinting, fixes
+  assistant text-after-tool_use ordering, and hardens OAuth refresh.
+  No tool aliasing.
+They are complementary and combinable, not big-vs-small.
+
+Nav tidy (cut the two-layer hop to the survey):
+- Updated: claude-subscription-extensions.md — added a short-answer
+  lede (per survey-lede rule); reframed Shape A as "different
+  fingerprint axes"; rewrote the pi-anthropic-auth entry + picking-guide
+  rows; folded pi-anthropic-auth into the three-axis rankings.
+- Updated + renamed: anthropic-auth-and-billing.md (was
+  anthropic-subscription-auth.md — the old name collided with the
+  survey and ignored that the page also covers API key + Foundry).
+  Deduped its practical table; the survey is the single source of
+  extension picks; all inbound links updated.
+- Updated: index.md — Providers section gets a "start here → survey"
+  lede + reorder; auth baseline and the two SDK/bridge pages flagged as
+  foundation / deep dives.
+
+Follow-up in the same investigation:
+- New source: `leohenon/pi-anthropic-oauth` (code-read). A third
+  architectural shape the survey was missing — a **full provider
+  replacement** (own OAuth + own `streamSimple` transport to
+  api.anthropic.com + own conversion, bundles `@anthropic-ai/sdk`,
+  adds Opus 4.8, symlinks `~/.Claude Code` → `~/.pi`). Openly targets
+  the *main* Pro/Max budget; self-warns on ToS; no in-repo tests.
+  Added as Shape C across the survey, the auth-baseline practical
+  table, index.md, and raw-sources.
+- Survey taxonomy: "two shapes" → "three shapes".
+- Added a Shape A head-to-head (minimal / Pi-grain / razor-sharp /
+  capability / adoption). Finding: pi-anthropic-auth is the cleaner,
+  leaner, zero-dep, more Pi-idiomatic build; pi-claude-code-use wins
+  only on capability (tool-name aliasing, via a jiti runtime dep).
+- Adoption correction: dropped the implied pi-claude-code-use
+  "dominance". npm installs currently favour pi-anthropic-auth; the
+  higher star count is the pi-packages monorepo, a confounded signal.
+  Live numbers kept out of pages per SCHEMA; pointed at evaluation.md.
+- Clarified the easy-to-misread tool behaviour: pi-anthropic-auth
+  passes all Pi tools through unchanged; pi-claude-code-use is the one
+  that filters the model's tool view.
+- Full-source re-read corrected the Shape A head-to-head: pi-claude-
+  code-use uses **four** lifecycle hooks and mutates the active-tools
+  list (not a 2-hook pure payload patch) and detects OAuth via Pi's
+  official isUsingOAuth API; pi-anthropic-auth also owns a thin oauth
+  override and sniffs OAuth from system-block markers. Both are high
+  quality — pi-claude-code-use is v1.0 stable and well-engineered for
+  its complexity; framing now says "larger surface, not sloppier".
+
+Note: log.md has a stale "Newest at top" header but recent entries
+append at the bottom — left as-is, not in scope here.

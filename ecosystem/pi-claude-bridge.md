@@ -37,7 +37,7 @@ Pi without forking Pi or reverse-engineering the OAuth flow.
 The mechanism is structural rather than evasive: Anthropic's
 third-party detector pattern-matches Claude Code's system prompt
 content (see
-[Anthropic Subscription Auth](anthropic-subscription-auth.md#detection-mechanism)).
+[Anthropic Auth & Billing](anthropic-auth-and-billing.md#detection-mechanism)).
 Because pi-claude-bridge launches the **real Claude Code binary** —
 not a custom client talking to `api.anthropic.com` — Anthropic sees
 Claude Code, and subscription routing applies. The author's own
@@ -334,7 +334,7 @@ tool catalog, neither extension lets you swap the `claude_code` SDK
 preset. If that's a hard requirement, the right path is a direct
 `ANTHROPIC_API_KEY` provider (pay-as-you-go, no subscription) where
 you control the system prompt fully — see
-[Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md).
+[Anthropic Auth & Billing in Pi](anthropic-auth-and-billing.md).
 
 ## Caveats
 
@@ -355,6 +355,6 @@ you control the system prompt fully — see
 
 - [Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md) — niche survey, the alternate payload-patcher shape, and a decision matrix for when *not* to use this bridge
 - [claude-agent-sdk-pi](claude-agent-sdk-pi.md) — upstream community Agent SDK adapter that this extension forks
-- [Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md) — full routing/billing matrix and the detector mechanism
+- [Anthropic Auth & Billing in Pi](anthropic-auth-and-billing.md) — full routing/billing matrix and the detector mechanism
 - [Provider Extensions](provider-extensions.md) — broader provider landscape
 - Repo: [`elidickinson/pi-claude-bridge`](https://github.com/elidickinson/pi-claude-bridge)

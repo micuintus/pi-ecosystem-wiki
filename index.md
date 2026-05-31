@@ -1,7 +1,7 @@
 ---
 title: Index
 type: reference
-updated: 2026-05-28
+updated: 2026-05-31
 sources: []
 ---
 
@@ -66,10 +66,13 @@ them.
 ### 🔌 Providers and model access
 
 - [Provider Extensions](ecosystem/provider-extensions.md) — OpenCode Zen/Go, Nebius Token Factory, and EU/privacy-forward open-weight model providers
-- [Anthropic Subscription Auth in Pi](ecosystem/anthropic-subscription-auth.md) — OAuth, API key, Foundry; why third-party tools can't reach the main subscription budget
-- [Claude Pro/Max Subscription Extensions](ecosystem/claude-subscription-extensions.md) — survey of extensions in this niche, split into payload-patcher (native path) vs provider-proxy (delegated path) shapes
-- [claude-agent-sdk-pi](ecosystem/claude-agent-sdk-pi.md) — Bridge between Pi and Anthropic's Agent SDK; thinking-mode mapping
-- [pi-claude-bridge](ecosystem/pi-claude-bridge.md) — Use Claude Code as a Pi provider (subscription route) and as an AskClaude sub-agent tool; what you can and can't shut off
+
+**Claude Pro/Max subscription in Pi** — start with the survey; it names the pick. The other three pages are the foundation and the deep dives.
+
+- [Claude Pro/Max Subscription Extensions](ecosystem/claude-subscription-extensions.md) — **start here.** Survey of three shapes: Shape A payload patchers (`pi-claude-code-use`, `pi-anthropic-auth`), Shape B provider proxies (`pi-claude-bridge`), Shape C provider replacement (`pi-anthropic-oauth`), with a picking guide
+- [Anthropic Auth & Billing in Pi](ecosystem/anthropic-auth-and-billing.md) — platform baseline beneath the survey: OAuth / API key / Foundry routes, billing, and why third-party tools can't reach the main subscription budget
+- [claude-agent-sdk-pi](ecosystem/claude-agent-sdk-pi.md) — deep dive: the original Shape B bridge to Anthropic's Agent SDK; thinking-mode mapping
+- [pi-claude-bridge](ecosystem/pi-claude-bridge.md) — deep dive: the dominant Shape B; Claude Code as a Pi provider + AskClaude sub-agent, and what you can/can't shut off
 
 ### 🧩 Integrations
 

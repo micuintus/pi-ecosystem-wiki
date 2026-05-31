@@ -1,11 +1,12 @@
 ---
 title: claude-agent-sdk-pi — Bridge to Anthropic's Agent SDK
 type: ecosystem
-updated: 2026-05-25
+updated: 2026-05-31
 sources:
   - claude-agent-sdk-pi
   - claude-agent-sdk-pi-pr-8
   - claude-agent-sdk-pi-pr-10
+  - claude-agent-sdk-pi-issue-11
   - anthropic-claude-agent-sdk
   - pi-pr-3286
   - pi-issue-3299
@@ -48,6 +49,12 @@ register.
   `appendSystemPrompt`.
 - **[PR #10](https://github.com/prateekmedia/claude-agent-sdk-pi/pull/10)** —
   fix for hallucinated USER responses on Opus 4.7.
+- **[Issue #11](https://github.com/prateekmedia/claude-agent-sdk-pi/issues/11)** (open) —
+  the provider flattens history with role-marker prefixes (`USER:`,
+  `ASSISTANT:`, `Historical tool call`, `TOOL RESULT`); models —
+  especially Opus 4.7 — echo those markers back into their output.
+  The PR #10 prefix tweak didn't fully resolve it; treat tool-use/result
+  hallucination as a live bug.
 
 ## Thinking-mode mapping (Opus 4.7 case study)
 
@@ -113,12 +120,12 @@ adapter code consumes the map without per-model branches.
 - `~/.pi/agent/settings.json` carries `hideThinkingBlock` (Ctrl+R by
   default) — only hides display, doesn't disable generation.
 - For the broader question of which routes hit which Anthropic billing
-  bucket, see [Anthropic Subscription Auth in
-  Pi](anthropic-subscription-auth.md).
+  bucket, see [Anthropic Auth & Billing in
+  Pi](anthropic-auth-and-billing.md).
 
 ## See also
 
 - [Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md) — niche survey covering this extension, its dominant fork, and the alternate payload-patcher shape
-- [Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md) — OAuth, API key, Foundry routes and which one hits the main subscription budget
+- [Anthropic Auth & Billing in Pi](anthropic-auth-and-billing.md) — OAuth, API key, Foundry routes and which one hits the main subscription budget
 - [pi-claude-bridge](pi-claude-bridge.md) — downstream extension that builds on this adapter to run CC as a Pi provider (subscription route) and as an AskClaude sub-agent. Adds the **session-resume** optimization that this upstream is missing — strictly less token-wasteful on any multi-turn session.
 - [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes

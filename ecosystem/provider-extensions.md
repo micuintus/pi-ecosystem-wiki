@@ -126,7 +126,7 @@ utilities** (rotation, quota bypass) that the core does not provide.
 > payload-patcher vs provider-proxy shapes, the SDK/CLI bridges, and
 > the billing implications — see
 > [Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md)
-> and [Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md).
+> and [Anthropic Auth & Billing in Pi](anthropic-auth-and-billing.md).
 
 ## TL;DR
 
@@ -428,5 +428,5 @@ No dedicated Pi extension exists for any of them — the gap is real.
 - [Pi built-in provider documentation](https://github.com/earendil-works/pi-mono/blob/main/packages/coding-agent/docs/providers.md)
 - [Pi Packages — official catalog](https://pi.dev/packages)
 - [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes
-- [Anthropic Subscription Auth in Pi](anthropic-subscription-auth.md) — OAuth and API-key auth patterns
+- [Anthropic Auth & Billing in Pi](anthropic-auth-and-billing.md) — OAuth and API-key auth patterns
 

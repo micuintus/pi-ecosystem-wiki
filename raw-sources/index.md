@@ -1,7 +1,7 @@
 ---
 title: Raw sources
 type: reference
-updated: 2026-05-28
+updated: 2026-05-31
 sources: []
 ---
 
@@ -94,6 +94,7 @@ copied into a dated bucket file.
 | pi-claude-bridge | repo | https://github.com/elidickinson/pi-claude-bridge | extension, claude-agent-sdk, claude-code, subscription |
 | claude-agent-sdk-pi-pr-8 | issue | https://github.com/prateekmedia/claude-agent-sdk-pi/pull/8 | extension, claude-agent-sdk |
 | claude-agent-sdk-pi-pr-10 | issue | https://github.com/prateekmedia/claude-agent-sdk-pi/pull/10 | extension, claude-agent-sdk, opus |
+| claude-agent-sdk-pi-issue-11 | issue | https://github.com/prateekmedia/claude-agent-sdk-pi/issues/11 | extension, claude-agent-sdk, bug, hallucination |
 | anthropic-claude-agent-sdk | repo | https://github.com/anthropics/claude-agent-sdk-typescript | sdk, anthropic |
 | pi-pr-3286 | issue | https://github.com/earendil-works/pi-mono/pull/3286 | thinking, models |
 | pi-issue-3299 | issue | https://github.com/earendil-works/pi-mono/issues/3299 | thinking, models |
@@ -265,6 +266,7 @@ copied into a dated bucket file.
 | pi-session-search | repo | https://github.com/samfoy/pi-session-search | extension, prompt, history, semantic-search, fts5 |
 | pi-claude-code-use | repo | https://github.com/ben-vargas/pi-packages/tree/main/packages/pi-claude-code-use | extension, anthropic, oauth, payload-patcher |
 | pi-anthropic-auth | repo | https://github.com/gotgenes/pi-anthropic-auth | extension, anthropic, oauth, compat-shim |
+| pi-anthropic-oauth | repo | https://github.com/leohenon/pi-anthropic-oauth | extension, anthropic, oauth, provider-replacement |
 | pi-claude-cli | repo | https://github.com/rchern/pi-claude-cli | extension, anthropic, claude-code, cli-subprocess, stale |
 | pi-claude-code-fractary | repo | https://github.com/fractary/pi-claude-code | extension, anthropic, claude-code, tool-name-shim |
 | pi-anthropic-messages | repo | https://github.com/BlackBeltTechnology/pi-anthropic-messages | extension, anthropic, protocol-bridge |

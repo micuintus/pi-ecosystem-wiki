@@ -52,7 +52,7 @@ Single-author/team bundles, useful as starting points or to lift extensions piec
 | [`ben-vargas/pi-packages`](https://github.com/ben-vargas/pi-packages) | ben-vargas | Individually-publishable packages with CI and tests: Synthetic provider, Exa MCP, Firecrawl, Antigravity image gen, Claude Code OAuth patch, ancestor-discovery, cut-stack, OpenAI fast/verbosity. Each installable standalone via npm. |
 | [`kcosr/pi-extensions`](https://github.com/kcosr/pi-extensions) | kcosr | Released bundle, semver-tagged. codemap, apply-patch, assistant picker, skill-picker, toolwatch (SQLite tool-call auditing). |
 | [`noahsaso/my-pi`](https://github.com/noahsaso/my-pi) | noahsaso | Personal collection: pi-context, pi-interactive-subagents, browser tools, web tools, memory, file-watcher, code-ast, antigravity image gen. Skills from `badlogic/pi-skills` and `obra/superpowers`. Includes SETUP.md for agent-guided install. |
-| [`can1357/oh-my-pi`](https://github.com/can1357/oh-my-pi) | can1357 | A Pi fork (not just extensions) bundling Claude Code SDK provider and other patches. See also [Anthropic Subscription Auth in Pi](../ecosystem/anthropic-subscription-auth.md). |
+| [`can1357/oh-my-pi`](https://github.com/can1357/oh-my-pi) | can1357 | A Pi fork (not just extensions) bundling Claude Code SDK provider and other patches. See also [Anthropic Auth & Billing in Pi](../ecosystem/anthropic-auth-and-billing.md). |
 
 ## Cross-agent workflow skills
 

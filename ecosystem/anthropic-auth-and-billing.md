@@ -1,7 +1,7 @@
 ---
-title: Anthropic Subscription Auth in Pi
+title: Anthropic Auth & Billing in Pi
 type: ecosystem
-updated: 2026-05-28
+updated: 2026-05-31
 sources:
   - pi-providers-docs
   - pi-issue-2751
@@ -14,7 +14,7 @@ sources:
 tags: [auth, anthropic, oauth, billing]
 ---
 
-# Anthropic Subscription Auth in Pi
+# Anthropic Auth & Billing in Pi
 
 Three routes to send requests to Anthropic from Pi, with very
 different billing implications.
@@ -78,16 +78,15 @@ Inferred from oh-my-pi's repo structure; confirmation requires reading
 
 | Goal | Route |
 |---|---|
-| Use main Pro/Max/Team budget in Pi | Not possible in base Pi today. Use Claude Code directly, or a fork like oh-my-pi that wraps the Claude Code SDK. |
+| Use main Pro/Max/Team budget in Pi | Not officially available to third-party tools since 2026-04-03. Unofficial routes: Claude Code directly, a fork like oh-my-pi that wraps the Claude Code SDK, or the Shape C extension [`pi-anthropic-oauth`](claude-subscription-extensions.md) (full provider replacement that impersonates CC). All are best-effort and may break or violate Anthropic's terms. |
 | Subscription auth in Pi at extra-usage rates | `/login` → Anthropic, accept the warning. Make sure `ANTHROPIC_API_KEY` is unset. |
 | Pay-as-you-go API | Set `ANTHROPIC_API_KEY`. |
 | Enterprise inference | Foundry env vars. |
-| OAuth compatibility patching (without forking) | [`@benvargas/pi-claude-code-use`](claude-subscription-extensions.md) — payload-patcher on Pi's native OAuth transport. Zero structural overhead, no Claude Code feature leakage possible. |
-| Main-subscription budget without forking | [`pi-claude-bridge`](claude-subscription-extensions.md) — runs the real Claude Code binary as a subprocess via Anthropic's Agent SDK; structurally heavier but unlocks AskClaude / CC skills / CC sub-agents. |
+| Use an extension instead of a raw route | See the [extension survey](claude-subscription-extensions.md): Shape A payload patchers (`pi-claude-code-use` dodges tool-name fingerprinting, `pi-anthropic-auth` forges the billing header) for the smallest blast radius, Shape B (`pi-claude-bridge`) for Claude Code's own features, or Shape C (`pi-anthropic-oauth`) for a full provider replacement that chases the main budget. |
 
-For the full survey of extensions in both shapes (payload-patcher
-vs. provider-proxy), with code-read findings on token economics and
-leakage surface, see
+For the full survey of extensions across all three shapes (payload-
+patcher, provider-proxy, provider-replacement), with code-read
+findings on token economics and leakage surface, see
 [Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md).
 
 ## Caveats
@@ -109,7 +108,7 @@ Pi's native Anthropic transport.
 
 ## See also
 
-- [Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md) — the full survey of extensions in both shapes, with picking guide and code-read findings
+- [Claude Pro/Max Subscription Extensions](claude-subscription-extensions.md) — the full survey of extensions across all three shapes, with picking guide and code-read findings
 - [claude-agent-sdk-pi](claude-agent-sdk-pi.md) — the bridge extension to Anthropic's Agent SDK and the model/billing implications
 - [pi-claude-bridge](pi-claude-bridge.md) — downstream extension that uses Claude Code as a Pi provider + AskClaude sub-agent (subscription route as extension, not fork)
 - [Pi Ecosystem Catalogs](../references/catalogs.md) — where to find oh-my-pi and other forks
