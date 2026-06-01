@@ -856,3 +856,12 @@ Follow-up in the same investigation:
 
 Note: log.md has a stale "Newest at top" header but recent entries
 append at the bottom — left as-is, not in scope here.
+
+## [2026-05-31] docs | README looks-row + extension-agnostic goal table
+
+The "Customize how Pi looks" entry-point row linked themes, footer, and
+tool rendering but omitted the busy-indicator niche; added it as the
+fourth facet (pi-animations and the other spinners are surveyed in
+working-indicator-extensions.md). Also made the "I want to…" table route
+by goal only — dropped the inline extension names (pi-animations,
+pi-blackhole) so it doesn't pre-empt the surveys' recommendations.

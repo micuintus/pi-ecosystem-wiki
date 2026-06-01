@@ -32,10 +32,10 @@ TOC with structure and comparisons. Awesome-lists like
 | Goal | Go here |
 |---|---|
 | **Search the web from Pi** | [Web Search Extensions](ecosystem/web-search-extensions.md) — extensions and skills side-by-side |
-| **Customize how Pi looks** (themes, status bar, tool output) | [Themes](ecosystem/theme-extensions.md) · [Footer / Powerline](ecosystem/footer-extensions.md) · [Tool Rendering](ecosystem/tool-rendering-extensions.md) |
+| **Customize how Pi looks** (themes, status bar, tool output, busy spinner) | [Themes](ecosystem/theme-extensions.md) · [Footer / Powerline](ecosystem/footer-extensions.md) · [Tool Rendering](ecosystem/tool-rendering-extensions.md) · [Working / Thinking Indicators](ecosystem/working-indicator-extensions.md) |
 | **Delegate tasks to child agents** (subagents, parallel work) | [Subagent Extensions](ecosystem/subagent-extensions.md) — 4 patterns, with tradeoff matrix |
 | **Track what my agent is doing** (TODO lists, task progress) | [TODO List Extensions](ecosystem/todo-extensions.md) — idiomatic tool shapes, widget stack, picking guide |
-| **Keep long sessions coherent across compactions** | [Compaction Extensions](ecosystem/compaction-extensions.md) — algorithmic vs observation-ledger vs agentic-VFS vs tool-output-pruning, with `pi-blackhole` as the combined default |
+| **Keep long sessions coherent across compactions** | [Compaction Extensions](ecosystem/compaction-extensions.md) — algorithmic vs observation-ledger vs agentic-VFS vs tool-output-pruning |
 | **Tame the prompt** (floating editor, history search, templates, queues, cache) | [Prompt Extensions](ecosystem/prompt-extensions.md) — four layers (input UX, template authoring, queueing, provider cache) |
 | **Make Pi work autonomously** (iterate until done, run overnight) | [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 7 architectural variants compared |
 | **Connect Pi to other services** (Google Workspace) | [Google Workspace](ecosystem/google-workspace.md) — `gws` CLI, OAuth, command shapes |
