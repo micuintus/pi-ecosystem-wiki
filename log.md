@@ -865,3 +865,40 @@ fourth facet (pi-animations and the other spinners are surveyed in
 working-indicator-extensions.md). Also made the "I want to…" table route
 by goal only — dropped the inline extension names (pi-animations,
 pi-blackhole) so it doesn't pre-empt the surveys' recommendations.
+
+## [2026-05-31] research+restructure | subagent survey: razor-sharp layout, orchestration class, full-view
+
+Wide gh+npm discovery sweep (100+ repos). Reworked subagent-extensions.md:
+- Decision-first short answer; two-axis orientation (observation pattern +
+  delegation-vs-orchestration); single picking table at the end (dropped two
+  redundant mid-page picking blocks).
+- NEW "Delegation vs orchestration: teams and swarms" section for the
+  emerging multi-agent class — tmustier/pi-agent-teams, melihmucuk/pi-crew,
+  Tiziano-AI/pi-multiagent, messense/pi-parallel-agents, pi-zerg-swarm,
+  @llblab/pi-actors, teelicht/pi-superagents, MasuRii/pi-agent-router.
+- Sharpened "Inspecting a subagent: the full-view problem" — mux pane vs
+  in-process+JSONL vs subprocess-persisted vs tintinweb's truncated modal.
+  Added ross-jill-ws/pi-subagent-in-memory (in-process, persona-free, full
+  events.jsonl) and a "running two systems at once" note.
+- Fixed stale facts: tintinweb #75 FIXED (PR #74, v0.8+ line); nicobailon
+  #80 and RFC #552 are closed, not live. Stripped volatile
+  star/download/version numbers (kept LOC as a structural signal); adoption
+  is now qualitative tiers + evaluation.md pointer.
+- Added gotgenes/pi-subagents (tintinweb fork).
+Sources +7; index + README descriptions synced.
+
+Verification pass (source-read of nicobailon, tintinweb v0.10, HazAT,
+pi-subagent-in-memory, aleclarson) corrected two claims:
+- tintinweb's spawn tool is `Agent` (+ get_subagent_result / steer_subagent),
+  NOT Claude Code's `Task`. Recast the tool-naming section and dropped the
+  "verbatim / strong-priors" overclaim. tintinweb is in-process +
+  `SessionManager.inMemory`, so its children are not resumable sessions.
+- nicobailon runs children as real `pi --session <file>` (pi-args.ts), so
+  per-child sessions are genuine RESUMABLE Pi sessions, not just an
+  events.jsonl log — corrected the entry and the inspection table.
+Also softened aleclarson's fork claim (the --session snapshot feeds context
+in; the child's own session persistence is unconfirmed).
+- Second pass: corrected LOC drift (HazAT entry ~8k→~5k src; tintinweb
+  ~6k→~7k); added amosblomqvist/pi-subagents (★107, a coverage gap —
+  minimal Pattern 1 subprocess) and jwangkun/Pi-Multi-Agent to orchestration;
+  pinned the `cmux` backend to craigsc/cmux. Lint clean; no private leak.

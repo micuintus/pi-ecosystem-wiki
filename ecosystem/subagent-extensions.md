@@ -1,7 +1,7 @@
 ---
 title: Pi Subagent Extensions
 type: ecosystem
-updated: 2026-05-27
+updated: 2026-05-31
 sources:
   - pi-subagent-example
   - mjakl-pi-subagent
@@ -16,520 +16,453 @@ sources:
   - pi-rfc-552
   - obra-superpowers
   - tintinweb-pi-subagents
+  - tintinweb-pi-subagents-pr-74
   - hazat-pi-interactive-subagents
   - ifi-pi-extension-subagents
   - edxeth-pi-subagents
   - masta-g3-pi-tmux-subagents
   - hamdimaz-pi-sub-agent
   - jerryan-pi-subagent-lite
-  - tintinweb-pi-subagents-issue-75
-tags: [extension, subagent]
+  - ross-jill-ws-pi-subagent-in-memory
+  - tmustier-pi-agent-teams
+  - melihmucuk-pi-crew
+  - tiziano-pi-multiagent
+  - messense-pi-parallel-agents
+  - gotgenes-pi-subagents
+  - amosblomqvist-pi-subagents
+tags: [extension, subagent, multiagent, orchestration]
 entries:
-  - id: pi-mono-subagent-example
-    name: "pi-mono examples/extensions/subagent"
-    repo: earendil-works/pi-mono
-    role: subprocess-reference
-    notes: "~990 LOC. Reference subprocess-spawn implementation. spawn('pi --mode json -p --no-session'). Re-renders child Message[] inline using Pi's exported components. Single, parallel, chain modes."
-  - id: tintinweb-pi-subagents
-    name: pi-subagents (tintinweb)
-    repo: tintinweb/pi-subagents
-    npm: "@tintinweb/pi-subagents"
-    version: "0.7.3 (2026-05-14)"
-    role: in-process-gold-standard
-    notes: "~6,000 LOC. createAgentSession + ConversationViewer modal (live session.subscribe re-render) + agent-tree widget (Braille spinners, live tool activity, token counts) + cross-extension pi.events RPC + .pi/agents/*.md discovery + memory + group-join + steering + worktree. Idiomatic Claude Code tool names: Task, get_subagent_result, steer_subagent — LLM training-known shape. **Known issue:** built-in default agents declare `tools: all` (or omit the field), which silently breaks tool-calling on some models — child reports status:completed, tool_uses:0, no output. See issue #75, fix PR #74 open since 2026-05-14. Workaround: override `~/.pi/agent/agents/general-purpose.md` with an explicit tools list. Note: Hopsken/pi-subagents is a stale private mirror of this package, not a separate project."
-  - id: hazat-pi-interactive-subagents
-    name: pi-interactive-subagents (HazAT)
-    repo: HazAT/pi-interactive-subagents
-    npm: pi-interactive-subagents
-    role: multiplexer-pane
-    notes: "~8,200 LOC (incl. tests). Each subagent runs in its own multiplexer pane (cmux/tmux/zellij/wezterm). Async non-blocking — subagent() returns immediately. Status from child-written runtime snapshots (4 phases: starting/active/waiting/done). caller_ping (child→parent help request). /plan and /iterate workflows. subagent_interrupt for turn-level cancel. The first Pi extension to support true side-by-side parallel inspection."
-  - id: edxeth-pi-subagents
-    name: pi-subagents (edxeth)
-    repo: edxeth/pi-subagents
-    npm: pi-subagents
-    version: "2.1.0 (2026-05-26)"
-    role: mux-plus-subprocess-hybrid
-    notes: "~10,622 LOC across 55+ files — the largest subagent runtime in the ecosystem. Forked from HazAT/pi-interactive-subagents then radically diverged. **Hybrid Pattern 4+1**: interactive mode runs each child in a multiplexer pane (cmux/tmux/zellij/wezterm via PI_SUBAGENT_MUX), background mode spawns `pi -p` headless via child_process. Tools: subagent / subagent_resume / subagent_kill / set_tab_title (parent-side); caller_ping / subagent_done / set_tab_title auto-injected into every child. /subagents TUI overlay. **Distinctive**: orchestrator mode (PI_ORCHESTRATOR_MODE=1) replaces system prompt and strips read/bash/edit/write/grep/find from parent, leaving only delegation tools — modeled on Claude Code COORDINATOR_MODE. Ambient awareness (hidden custom message listing available agents + isolation labels). Three session modes (lineage-only / standalone / fork). Rich agent frontmatter: mode, async, cwd, tools, extensions, skills, inject-skills, no-context-files, no-session, auto-exit, system-prompt, session-mode, env, spawning, parent-close-policy, allow-model-override. Skill allowlist + injection. Mixed sync/async batch barrier (race-safe). Token roll-up partner of pi-tasks. Custom snake_case tool namespace — NOT idiomatic Claude Code Task/get_subagent_result/steer_subagent shape."
-  - id: masta-g3-pi-tmux-subagents
-    name: pi-tmux-subagents (masta-g3)
-    repo: masta-g3/pi-tmux-subagents
-    npm: pi-tmux-subagents
-    role: multiplexer-pane-minimal
-    notes: "~1,387 LOC. Pattern 4 (mux pane) but **tmux-only** (no cmux/zellij/wezterm). Single `tmux_subagent` tool with rich action verbs: run / list / get / send / wait / status / stop / cancel. Ships scout (gpt-5.4-mini), worker (gpt-5.5), delegate (inherits parent model). Auto-stops cleanly-completed children to keep tmux/dashboards uncluttered (override with autoStopOnComplete:false). Persistent children support multi-turn follow-up via action:send (pasted into live child) and action:wait with timeoutMs. Numbered turn results under jobs/<id>/turns/. Optional pi-agent-hub integration when PI_AGENT_HUB_DIR is set. Tighter, more opinionated than HazAT's mux runtime."
-  - id: hamdimaz-pi-sub-agent
-    name: pi-sub-agent (HamdiMaz)
-    repo: HamdiMaz/pi-sub-agent
-    npm: pi-sub-agent
-    version: "0.1.5 (2026-05-18)"
-    role: subprocess-with-9-agents
-    notes: "~1,537 LOC. Pattern 1 (subprocess+JSON) spawning `pi --mode json -p --no-session`. Single subagent tool with three modes: single / parallel (max 8 tasks, 4 concurrent) / chain (max 8 steps, {previous} placeholder). **Distinctive**: 9 bundled agents (scout, planner, worker, reviewer, debugger, verifier, security-auditor, docs-writer, refactorer) — most of any subprocess option. Per-agent tools allowlist with discovery from user (~/.pi/agent/agents/*.md) and project (.pi/agents/*.md) with explicit confirmation before running project agents. /sub-agent-settings slash command for runtime model/thinking edits. Prompt sent via stdin (not args). Output truncated to Pi defaults (2k lines / 50KB) with full text spilled to temp file. Self-disables `subagent` tool inside children — no recursive nesting."
-  - id: jerryan-pi-subagent-lite
-    name: pi-subagent-lite (JerryAZR)
-    repo: JerryAZR/pi-subagent-lite
-    npm: "@jerryan/pi-subagent-lite"
-    version: "0.1.4 (2026-04-23)"
-    role: subprocess-zero-config
-    notes: "245 LOC (single index.ts). Pattern 1 subprocess. Single `subagent` tool with only **two params**: task + skills. **Distinctive**: zero setup. No agent definitions, no .md files, no model param, no cwd param. Specialization mechanism is **pi skills** (passed via --skill flags), not agent personas. Auto-spills tasks >4000 chars to temp file to dodge CLI length limits. Self-unregisters inside children — no recursive nesting. Minimum viable subagent extension if you want delegation without agent-management surface area."
-  - id: tintinweb-pi-subagents-issue-75
-    name: "tintinweb/pi-subagents issue #75: tools:all silently breaks tool-calling"
-    repo: tintinweb/pi-subagents
-    role: known-issue
-    notes: "Open since 2026-05-15. When an agent definition uses `tools: all` (or omits the field, which is the default for built-in `general-purpose`), the spawned subagent reports status:completed, tool_uses:0, no output. Model is alive but cannot invoke tools — either returns nothing or emits tool calls as raw XML text. PR #74 is the candidate fix (open). Workaround: create `~/.pi/agent/agents/general-purpose.md` overriding the default with explicit tools list."
   - id: nicobailon-pi-subagents
     name: pi-subagents (nicobailon)
     repo: nicobailon/pi-subagents
     npm: pi-subagents
-    version: "0.25.0 (2026-05-21)"
-    role: subprocess-kitchen-sink
-    notes: "~20,500 LOC (+ ~17,800 LOC tests). **Dominant subagent extension by every measurable signal** — 1,581 stars, 232 forks, 24,118 weekly npm downloads, 25 releases, 9+ external contributors including HazAT and tmustier. ~10× the downloads of the next contender. Subprocess-based with truncation, JSONL artifacts, git worktree, true async with result-watcher polling, /run-status slash command. verbose:true mode preserves full transcripts to disk. v0.25.0 added nested subagent fanout. **Known issue #80**: sync subagent returning large results after a long session can crash the parent agent — relevant for evolve-style workflows producing big diffs."
-  - id: ifi-pi-extension-subagents
-    name: "@ifi/pi-extension-subagents"
-    repo: ifiokjr/pi-extension-subagents
-    npm: "@ifi/pi-extension-subagents"
-    role: tui-overlay
-    notes: "Fork of nicobailon adding Agents Manager TUI overlay (Ctrl+Shift+A or /agents) — multi-screen List/Detail/Edit/ChainDetail/ParallelBuilder/TaskInput/NewAgent. Per-agent run history, GitHub Gist export, .chain.md files, multi-select chain/parallel building."
-  - id: aleclarson-pi-subagent
-    name: pi-subagent (aleclarson)
-    repo: aleclarson/pi-subagent
-    role: subprocess-minimalist
-    notes: "1,786 LOC. spawn (fresh) / fork (session snapshot via --session <jsonl>) modes. No widget. Configurable depth limit. Fork of mjakl/pi-subagent."
-  - id: jamwil-pi-subagent
-    name: pi-subagent (jamwil)
-    repo: jamwil/pi-subagent
-    role: subprocess-fork
-    notes: "Fork of mjakl/pi-subagent."
+    role: subprocess-default
+    notes: "The dominant subagent extension by every adoption signal (downloads, stars, forks, external contributors including HazAT and tmustier) — roughly an order of magnitude ahead of the next contender. Pattern 1 (subprocess + JSON event stream). Each child runs as a real `pi --mode json -p --session <file>` process, so per-child session files are **genuine resumable Pi sessions** (`pi --session <file>`) — not just a log — alongside captured `events.jsonl` artifacts. Worktree isolation, true async with result-watcher polling, /run-status, nested fanout. `verbose:true` raises transcript verbosity. ~20k LOC src (+ ~18k tests) — the kitchen-sink option. Default for production unless you specifically need in-process steering, interactive panes, or a smaller surface."
+  - id: tintinweb-pi-subagents
+    name: pi-subagents (tintinweb)
+    repo: tintinweb/pi-subagents
+    npm: "@tintinweb/pi-subagents"
+    role: in-process-claude-code-shape
+    notes: "~7k LOC. Pattern 3 (in-process `createAgentSession` with `SessionManager.inMemory` — children are **not** persisted as resumable Pi sessions). Registers `Agent` / `get_subagent_result` / `steer_subagent` (a Claude-Code-*styled* async trio, not Claude Code's verbatim `Task` tool). Live ConversationViewer modal (`session.subscribe` re-render), an agent-tree widget, cross-extension `pi.events` RPC (`subagents:rpc:*`), `.pi/agents/*.md` discovery, memory, group-join, steering, worktree. The `tools: all` tool-calling bug (issue #75) is **fixed** — PR #74 merged, shipped from v0.8 (current line v0.10+); the fix was a breaking change to agent-definition tool/extension selectors (`extensions:`/`ext:`), so re-check agent files after upgrading. Inspection caveat: the modal truncates tool/bash output to 500 chars and has no post-mortem replay once closed."
+  - id: hazat-pi-interactive-subagents
+    name: pi-interactive-subagents (HazAT)
+    repo: HazAT/pi-interactive-subagents
+    role: mux-pane-full-view
+    notes: "~5k LOC. Pattern 4 (multiplexer pane). Each subagent runs as a real, full Pi session in its own cmux/tmux/zellij/wezterm pane — full TUI, full transcript, no truncation, fully interactive (you can type into the child). The canonical **full-view** option. `subagent()` returns immediately (async, non-blocking); a live widget shows per-agent phase (starting/active/waiting/stalled), results steered back into the parent as async notifications. caller_ping (child→parent help), /plan and /iterate, subagent_interrupt. The first Pi extension with true side-by-side parallel inspection. Not on npm — install by git URL."
+  - id: ross-jill-ws-pi-subagent-in-memory
+    name: pi-subagent-in-memory (ross-jill-ws)
+    repo: ross-jill-ws/pi-subagent-in-memory
+    npm: pi-subagent-in-memory
+    role: in-process-persona-free-logged
+    notes: "Compact, zero-dependency Pattern 3 (in-process `createAgentSession`). Design principle: **adds nothing to the LLM context beyond the tool schema** — no system-prompt injection, no agent personas, no `.md` profiles. One tool, `subagent_create`. Full **`events.jsonl` + `result.md` per subagent** under `.pi/subagent-in-memory/<session>/subagent_N/` (no truncation, post-mortem replayable), plus live card widgets and a `Ctrl+N` detail overlay; `/saim-toggle-overlay off` or `--saim-no-tui` runs silently for headless fanout. Nested subagents supported. The cleanest match for full inspection without personas; in-process so no isolation (a child crash can take the parent down) and the usual `createAgentSession` semver risk."
+  - id: tuansondinh-pi-fast-subagent
+    name: pi-fast-subagent
+    repo: tuansondinh/pi-fast-subagent
+    npm: pi-fast-subagent
+    role: in-process-lean-fanout
+    notes: "Pattern 3 (in-process). single / parallel / background modes with poll+cancel, per-call model override, user+project agent discovery, max-depth guard, streamed prompt preview, chronological expanded view (Ctrl+O). Bundles only two light agents (`scout`, `general`). Tool: `subagent`. The lean in-process option for many short tasks where subprocess cold-start would dominate."
+  - id: masta-g3-pi-tmux-subagents
+    name: pi-tmux-subagents (masta-g3)
+    repo: masta-g3/pi-tmux-subagents
+    npm: pi-tmux-subagents
+    role: mux-pane-tmux-only
+    notes: "~1.4k LOC. Pattern 4 but **tmux-only** (no cmux/zellij/wezterm). Single `tmux_subagent` tool with action verbs run/list/get/send/wait/status/stop/cancel. Persistent children support multi-turn follow-up (action:send into the live child); numbered turn results under jobs/<id>/turns/ — a lighter, tmux-native full-view option than HazAT. Auto-stops cleanly-completed children. Ships scout/worker/delegate agents."
+  - id: edxeth-pi-subagents
+    name: pi-subagents (edxeth)
+    repo: edxeth/pi-subagents
+    npm: pi-subagents
+    role: mux-plus-subprocess-hybrid
+    notes: "~10k LOC across 55+ files — the largest single-runtime option. Hybrid **Pattern 4+1**: interactive children in a multiplexer pane, background children as headless `pi -p`. Orchestrator mode (PI_ORCHESTRATOR_MODE=1) strips read/bash/edit/write from the parent so it can only delegate (modeled on Claude Code COORDINATOR_MODE). Ambient awareness, three session modes (lineage/standalone/fork), rich agent frontmatter, skill allowlist+injection. Custom snake_case tool namespace — not the idiomatic Claude Code shape. NPM slug collides with nicobailon's `pi-subagents`; disambiguate by repo."
+  - id: hamdimaz-pi-sub-agent
+    name: pi-sub-agent (HamdiMaz)
+    repo: HamdiMaz/pi-sub-agent
+    npm: pi-sub-agent
+    role: subprocess-bundled-experts
+    notes: "~1.5k LOC. Pattern 1. single / parallel (max 8, 4 concurrent) / chain modes. Bundles 9 expert agents (scout, planner, worker, reviewer, debugger, verifier, security-auditor, docs-writer, refactorer) — most of any subprocess option. Per-agent tools allowlist, confirmation gate for project agents, /sub-agent-settings. Self-disables nesting. Uses singular `pi-sub-agent` slug (no collision)."
+  - id: jerryan-pi-subagent-lite
+    name: pi-subagent-lite (JerryAZR)
+    repo: JerryAZR/pi-subagent-lite
+    npm: "@jerryan/pi-subagent-lite"
+    role: subprocess-zero-config
+    notes: "~245 LOC single file. Pattern 1. One `subagent` tool with two params: task + skills. **No agent .md files, no personas** — specialization is via Pi skills passed as --skill flags. Auto-spills long tasks to temp. Self-unregisters inside children. The minimum-viable subprocess option that is still useful."
+  - id: amosblomqvist-pi-subagents
+    name: pi-subagents (amosblomqvist)
+    repo: amosblomqvist/pi-subagents
+    role: subprocess-minimal-popular
+    notes: "'Minimal Subagents' — Pattern 1 subprocess registering a single `subagent` tool with a few small bundled agents (scout/haiku for recon, researcher/sonnet for web, plus a worker). Notably well-adopted for its size (one of the most-starred subagent extensions despite a tiny surface) — a compact alternative to nicobailon when you don't need worktrees/async artifacts. Registers the bare `subagent` tool (collides with other `subagent`-named extensions)."
   - id: e9n-pi-subagent
     name: "@e9n/pi-subagent"
     repo: espennilsen/pi
     npm: "@e9n/pi-subagent"
     role: subprocess-orchestration
-    notes: "5 modes: single, parallel, chain, orchestrator (hierarchical agent trees), pool (long-lived persistent agents). Most workflow-rich subprocess option."
-  - id: pi-fast-subagent
-    name: pi-fast-subagent
-    repo: tuansondinh/pi-fast-subagent
-    npm: pi-fast-subagent
-    role: in-process-minimal
-    notes: "createAgentSession() in same process — no subprocess cold-start, reuses Pi auth/model registry. Single, parallel, background modes."
-  - id: noahsaso-interactive-subagents
-    name: pi-interactive-subagents (noahsaso)
-    repo: noahsaso/my-pi
-    role: bundle-multiplexer
-    notes: "Multiplexer-pane subagents bundled in noahsaso's Pi collection. Distinct from HazAT despite the similar name."
+    notes: "Pattern 1. Five modes: single, parallel, chain, orchestrator (hierarchical trees), pool (long-lived persistent agents). The most workflow-rich subprocess option."
+  - id: aleclarson-pi-subagent
+    name: pi-subagent (aleclarson)
+    repo: aleclarson/pi-subagent
+    role: subprocess-spawn-or-fork
+    notes: "~1.8k LOC. spawn (fresh child) / fork (child seeded with a snapshot of the current session via `--session <jsonl>`) modes. Configurable depth limit, no widget. Fork of mjakl/pi-subagent. (The `--session` snapshot feeds parent context *in*; the child's own session persistence is not confirmed.)"
+  - id: mjakl-pi-subagent
+    name: pi-subagent (mjakl)
+    repo: mjakl/pi-subagent
+    npm: "@mjakl/pi-subagent"
+    role: subprocess-lightweight
+    notes: "Lightweight Pattern 1 subagent; the upstream that aleclarson/jamwil forked. Delegate tasks to specialized agents."
   - id: elpapi42-pi-minimal-subagent
     name: pi-minimal-subagent
     repo: elpapi42/pi-minimal-subagent
     role: subprocess-minimalist
-    notes: "1,144 LOC. One tool. Env-injection escape hatch for env-configured extensions. Tri-state extensions config (null/[]/whitelist)."
+    notes: "~1.1k LOC. One tool. Env-injection escape hatch for env-configured extensions. Tri-state extensions config (null/[]/whitelist)."
   - id: pi-delegate
     name: pi-delegate
     repo: drsh4dow/pi-delegate
     npm: pi-delegate
-    role: minimal
-    notes: "~150 LOC. One delegate tool. Fresh child, runs task, returns result. 'Small by design.'"
+    role: subprocess-minimal
+    notes: "~150 LOC. One `delegate` tool. Fresh child, runs task, returns result. No personas. 'Small by design' — the smallest production option."
+  - id: pi-mono-subagent-example
+    name: "pi-mono examples/extensions/subagent"
+    repo: earendil-works/pi-mono
+    role: subprocess-reference
+    notes: "~990 LOC. The in-tree reference Pattern 1 implementation. `spawn('pi --mode json -p --no-session')`, re-renders child Message[] inline using Pi's exported components. single/parallel/chain. Fork this to build your own."
+  - id: tmustier-pi-agent-teams
+    name: pi-agent-teams (tmustier)
+    repo: tmustier/pi-agent-teams
+    role: orchestration-team-parity
+    notes: "Brings Claude Code **agent teams** to Pi: a shared file-per-task list with three states and dependency tracking (blocked tasks wait for prerequisites), idle-teammate **auto-claim**, file-based mailboxes for direct messages and broadcast, and urgent messages that interrupt a teammate's turn via steering. Coordinates work across multiple Pi sessions rather than 1:1 delegation. Framework-scale, command-driven MVP + status widget."
+  - id: melihmucuk-pi-crew
+    name: pi-crew (melihmucuk)
+    repo: melihmucuk/pi-crew
+    npm: "@melihmucuk/pi-crew"
+    role: orchestration-nonblocking
+    notes: "Non-blocking subagent orchestration: spawn isolated agents that run in parallel while the spawning session stays interactive; results are delivered back as steering messages on completion. Mid-scale. (Distinct from the unrelated `pi-crew` npm slug published from baphuongna/pi-crew — disambiguate by repo.)"
+  - id: tiziano-pi-multiagent
+    name: pi-multiagent (Tiziano-AI)
+    repo: Tiziano-AI/pi-multiagent
+    npm: pi-multiagent
+    role: orchestration-graph-isolated
+    notes: "One tool, `agent_team`, plus a `/skill:pi-multiagent` guide and schema-checked graph cookbook (fan-out/fan-in DAGs). Strong isolation: children inherit neither the parent transcript, session, context files, prompt templates, themes, project SYSTEM.md, nor ambient skills; child output is treated as evidence, not instructions. Skill propagation is all-or-nothing and configurable. Framework-scale."
+  - id: messense-pi-parallel-agents
+    name: pi-parallel-agents (messense)
+    repo: messense/pi-parallel-agents
+    npm: pi-parallel-agents
+    role: orchestration-model-race
+    notes: "Five modes: single, parallel, sequential chain, **model race**, and team (DAG-based coordination with dependencies, roles, plan approval). Run the same task across different models in parallel; reuses existing agent definitions; auto-includes git branch/status/diff context. Works with or without predefined agent configs."
+  - id: gotgenes-pi-subagents
+    name: "@gotgenes/pi-subagents"
+    repo: gotgenes/pi-packages
+    npm: "@gotgenes/pi-subagents"
+    role: tintinweb-fork
+    notes: "Heavily-iterated 'friendly fork' of @tintinweb/pi-subagents (in-process, same Claude-Code-styled `Agent`/`get_subagent_result`/`steer_subagent` tool set). Worth evaluating against upstream tintinweb if you want the same tool shape with a different maintenance line; verify whether it preserves tintinweb's `subagents:rpc:*` cross-extension event contract before depending on that."
+  - id: ifi-pi-extension-subagents
+    name: "@ifi/pi-extension-subagents"
+    repo: ifiokjr/pi-extension-subagents
+    npm: "@ifi/pi-extension-subagents"
+    role: nicobailon-fork-tui
+    notes: "Fork of nicobailon adding an Agents Manager TUI overlay (List/Detail/Edit/ChainDetail/ParallelBuilder), per-agent run history, Gist export, .chain.md files."
+  - id: noahsaso-interactive-subagents
+    name: pi-interactive-subagents (noahsaso)
+    repo: noahsaso/my-pi
+    role: mux-pane-bundle
+    notes: "Multiplexer-pane subagents bundled in noahsaso's Pi collection. Distinct implementation from HazAT despite the shared name."
+  - id: jamwil-pi-subagent
+    name: pi-subagent (jamwil)
+    repo: jamwil/pi-subagent
+    role: subprocess-fork
+    notes: "Fork of mjakl/pi-subagent."
   - id: cmf-pi-subagent
     name: "@cmf/pi-subagent"
     repo: cmf/pi-subagent
-    npm: "@cmf/pi-subagent"
-    role: experimental
-    notes: "1,331 LOC. Single-commit experiment (2026-01-08), 0 stars, 0 forks, never published to npm. Pattern reference (recursive step composition, tree progress UI) — not a production dependency target. RFC #552 explores extracting subagent execution into a library; this is the closest existing prototype."
+    role: experimental-reference
+    notes: "~1.3k LOC. Single-commit experiment, never published to npm. Pattern reference (recursive step composition, tree progress UI) — not a dependency target."
 ---
 
 # Pi Subagent Extensions
 
+**Short answer.** Pi ships no built-in subagent, so the community fills the
+gap. For a battle-tested default, use **`nicobailon/pi-subagents`**
+(subprocess, on-disk artifacts, the dominant choice by adoption). If your
+priority is a **full, untruncated view of what the child did**, pick a
+multiplexer-pane option — **`HazAT/pi-interactive-subagents`** (each child
+is a real Pi session in its own terminal pane) — or, without a multiplexer,
+**`ross-jill-ws/pi-subagent-in-memory`** (in-process, full `events.jsonl`
+per child, no personas). For a **Claude-Code-styled tool set** use
+**`tintinweb/pi-subagents`** (the `tools: all` bug is now fixed; in-process, not resumable). For
+**low-latency fanout of many short children**, stay in-process
+(`pi-subagent-in-memory` headless, or `pi-fast-subagent`). For
+**coordinating a team or swarm** (shared task list, mailboxes, DAGs) rather
+than 1:1 delegation, see the orchestration class
+(**`tmustier/pi-agent-teams`**, **`melihmucuk/pi-crew`**).
+
 ## Contents
 
-- [The four architectural patterns](#the-four-architectural-patterns)
+- [Two axes that decide everything](#two-axes-that-decide-everything)
+- [The four execution patterns](#the-four-execution-patterns)
 - [Cross-pattern comparison](#cross-pattern-comparison)
-- [Idiomatic LLM-known tool shapes](#idiomatic-llm-known-tool-shapes)
-- [ConversationViewer](#conversationviewer-tintinwebhopsken-capabilities-and-limits)
+- [Delegation vs orchestration: teams and swarms](#delegation-vs-orchestration-teams-and-swarms)
+- [Inspecting a subagent: the full-view problem](#inspecting-a-subagent-the-full-view-problem)
+- [Tool naming: Claude-Code-styled vs bespoke](#tool-naming-claude-code-styled-vs-bespoke)
+- [Adoption](#adoption)
 - [Comparison with other agents](#comparison-with-other-agents)
-- [Picking a subagent extension](#picking-a-subagent-extension)
+- [Picking guide](#picking-guide)
 - [Caveats](#caveats)
 - [See also](#see-also)
 
-Pi extensions that delegate tasks to child agents with isolated
-context windows. Pattern: parent calls a `delegate` / `subagent` /
-`Task` tool → child agent runs the task → result returns to parent
-without polluting the parent's context.
+The base pattern: parent calls a `delegate` / `subagent` / `Task` tool → a
+child agent runs the task in an isolated context → the result returns to the
+parent without polluting its window. There is no first-class subagent in Pi
+(unlike Claude Code's `Task` tool or opencode's `subtask` part type);
+[RFC #552](https://github.com/earendil-works/pi-mono/issues/552) proposed
+extracting subagent execution into a reusable library but was closed without
+landing one, so the variant landscape is the answer.
 
-**Short answer for most readers:** `nicobailon/pi-subagents` is the
-dominant choice by raw popularity — ~10× the weekly downloads of the
-next contender, 4× the stars, 9+ external contributors. Use it if you
-want the most-adopted subprocess option with worktree, JSONL artifacts,
-async polling, and a steady release cadence. `tintinweb/pi-subagents`
-remains the polished in-process option with idiomatic Claude Code tool
-names (`Task`, `get_subagent_result`, `steer_subagent`), at the cost
-of less process isolation and a known tool-calling bug (issue #75).
-`HazAT/pi-interactive-subagents` if you want each child in its own
-visible terminal pane. Everything below maps the 4 architectural
-patterns and 16+ extensions onto specific goals.
+## Two axes that decide everything
 
-There is no built-in subagent in Pi (unlike Claude Code's `Task` tool
-or opencode2's first-class `subtask` part type). The community has
-filled the gap with **four distinct architectural patterns** spread
-across 12+ extensions.
-[RFC #552](https://github.com/earendil-works/pi-mono/issues/552) tracks
-discussion of extracting subagent execution into a reusable library.
+Almost every choice reduces to two orthogonal questions. Capabilities
+(parallel, chain, pool) are *not* an axis — most options support most of
+them.
 
-## The four architectural patterns
+1. **How is the child observed and where does it run?** → the four
+   execution patterns below. This decides spawn cost, isolation, steering,
+   and how much of the child you can see.
+2. **Is it 1:1 delegation or multi-agent orchestration?** → most extensions
+   are "parent delegates one task to one child." A newer class coordinates a
+   *team or swarm* with shared task lists, mailboxes, and DAGs. See
+   [Delegation vs orchestration](#delegation-vs-orchestration-teams-and-swarms).
 
-Capabilities (parallel, chain, orchestrator, pool) are orthogonal —
-most patterns can support most capabilities. What changes between
-patterns is **where the child runs, how the parent observes it, and
-how output flows back**.
+## The four execution patterns
 
-| Pattern | Where child runs | Parent observes via | Used by |
+What changes between patterns is **where the child runs, how the parent
+observes it, and how output flows back**.
+
+| Pattern | Where the child runs | Parent observes via | Examples |
 |---|---|---|---|
-| **1. Subprocess + JSON event stream** | `spawn('pi --mode json -p')` | parse stdout `Message[]` events | in-tree reference, aleclarson, jamwil, elpapi42, e9n, nicobailon, @ifi, drsh4dow, HamdiMaz, jerryan-lite |
-| **2. Subprocess + RPC over stdin/stdout** | `spawn('pi --mode rpc')` | JSON-RPC notifications + bidirectional commands | (no generic subagent extension; only ralph drivers like `lnilluv/pi-ralph-loop`) |
-| **3. In-process via `createAgentSession` SDK** | same process, separate session | direct `session.subscribe(...)` callback | tintinweb/pi-subagents, tuansondinh/pi-fast-subagent |
-| **4. Multiplexer pane per subagent** | each child = own cmux/tmux/zellij/wezterm pane | child-written runtime snapshot file + the pane itself | HazAT/pi-interactive-subagents, noahsaso (in `my-pi`), masta-g3 (tmux-only) |
-| **4+1 hybrid** | mux pane for interactive, headless `pi -p` for background | both | **edxeth/pi-subagents** |
+| **1. Subprocess + JSON stream** | `spawn('pi --mode json -p')` | parse stdout `Message[]` events | in-tree reference, nicobailon, amosblomqvist, aleclarson, e9n, HamdiMaz, jerryan-lite, pi-delegate |
+| **2. Subprocess + JSON-RPC** | `spawn('pi --mode rpc')` | JSON-RPC notifications + bidirectional commands | no generic extension; only ralph drivers (`lnilluv/pi-ralph-loop`) |
+| **3. In-process (`createAgentSession`)** | same process, separate session | direct `session.subscribe(...)` | tintinweb, pi-subagent-in-memory, pi-fast-subagent |
+| **4. Multiplexer pane per child** | each child = own cmux/tmux/zellij/wezterm pane | runtime snapshot file + the pane itself | HazAT, masta-g3 (tmux-only), noahsaso |
+| **4+1 hybrid** | mux pane (interactive) + headless `pi -p` (background) | both | edxeth |
 
-### Pattern 1 — Subprocess + line-delimited JSON event stream
+### Pattern 1 — subprocess + line-delimited JSON
 
 ```ts
-const proc = spawn("pi", [
-  "--mode", "json", "-p", task,
-  "--no-session",  // or --session <jsonl-path> to inherit parent context
-], { cwd, stdio: ["ignore", "pipe", "pipe"] });
-
+const proc = spawn("pi", ["--mode", "json", "-p", task,
+  "--no-session"],  // or --session <jsonl> to inherit parent context
+  { cwd, stdio: ["ignore", "pipe", "pipe"] });
 proc.stdout.on("data", chunk => {
   for (const line of buffer.split("\n")) {
     const event = JSON.parse(line);
     if (event.type === "message_end") messages.push(event.message);
-    if (event.type === "tool_result_end") toolResults.set(event.id, event.result);
   }
 });
 await once(proc, "exit");
-return { messages, finalOutput, usage, exitCode };
 ```
 
-**Wins:** full process isolation (crashes contained), clean context
-separation by default, optional context inheritance via
-`--session <jsonl>`, re-renderable transcripts, cheap parallelism.
+**Wins:** full process isolation, clean context separation, optional
+inheritance via `--session <jsonl>`, re-renderable transcripts, cheap
+parallelism. **Trades:** ~200–500 ms spawn per child; no mid-flight steering
+(SIGTERM only); the result is a *log*, not a *living view*. **Best for:**
+stateless one-shot delegations, parallel fan-out, hard isolation.
 
-**Trades:** ~200–500ms spawn cost per child; no mid-flight steering
-(SIGTERM only); result is a *log* not a *living view*; tool registration
-in child is whatever the child's pi config does.
+### Pattern 2 — subprocess + JSON-RPC
 
-**Best for:** stateless one-shot delegations, parallel fan-out,
-hard isolation guarantees.
+`pi --mode rpc` exposes a bidirectional channel (`session.start`,
+`session.steer`, `session.abort`, streaming notifications). A long-lived
+child amortizes spawn cost across turns, at ~5× the LOC of Pattern 1 (RPC
+framing, request correlation) and tighter coupling to Pi's RPC schema. No
+generic subagent extension uses it; Pattern 1 covers one-shot needs more
+cheaply and Pattern 3 covers steering in-process.
 
-### Pattern 2 — Subprocess + JSON-RPC
-
-`pi --mode rpc` exposes a bidirectional RPC channel for `session.start`,
-`session.steer`, `session.abort`, `turn_end`/`message_update`/`tool_*`
-notifications. Long-lived child amortizes spawn cost across many
-turns. ~5× the LOC of Pattern 1 because of RPC framing, request
-correlation, notification dispatch, timeout handling. Coupling to Pi's
-RPC schema adds semver risk.
-
-No generic subagent extension uses this pattern today —
-`lnilluv/pi-ralph-loop` uses it for steerable ralph loops. Pattern 1
-covers most one-shot needs more cheaply; Pattern 3 covers steering
-needs in-process with zero subprocess overhead.
-
-### Pattern 3 — In-process via `createAgentSession` SDK
+### Pattern 3 — in-process via `createAgentSession`
 
 ```ts
-import { createAgentSession, SessionManager, SettingsManager } from "@earendil-works/pi-coding-agent";
-
 const { session } = await createAgentSession({
-  cwd,
-  sessionManager: SessionManager.inMemory(cwd),
-  settingsManager: SettingsManager.create(),
-  modelRegistry: ctx.modelRegistry,   // share parent's auth + cache
-  model: "claude-opus-4-7",
-  tools: parentTools,
+  cwd, sessionManager: SessionManager.inMemory(cwd),
+  modelRegistry: ctx.modelRegistry,   // share parent auth + cache
+  model: "claude-opus-4-7", tools: parentTools,
 });
-session.setActiveToolsByName(["bash", "read", "edit"]);
-await session.bindExtensions({ onError: (err) => log(err) });
-
-session.subscribe(event => {
-  if (event.type === "turn_end") onComplete(event);
-  if (event.type === "message_update") render(event);
-});
+session.subscribe(event => { if (event.type === "turn_end") onComplete(event); });
 await session.sendMessage({ content: task, triggerTurn: true });
-
-session.steer("Wrap up immediately");   // direct method call
-session.abort();
+session.steer("Wrap up");  session.abort();
 ```
 
-**Wins:** zero subprocess overhead, full event subscription matching
-Pi's own InteractiveMode, direct steering and abort, shared
-`ModelRegistry` (no re-login per child), the richest UI surface
-(Hopsken's `ConversationViewer` and agent-tree widget are only viable
-in this pattern).
+**Wins:** ~zero spawn overhead (best for many short children), full event
+subscription, direct steering/abort, shared `ModelRegistry` (no re-login per
+child), the richest in-TUI surface. **Trades:** no isolation (a child crash
+takes the parent down), memory accumulation in long parents, and the
+**highest SDK semver risk** — `createAgentSession` is the most
+internals-exposing surface and is not documented as semver-stable. **Best
+for:** low-latency fanout, live oversight, shared auth/quota.
 
-**Trades:** no process isolation (child crash takes parent down),
-memory accumulation in long-running parents, tool conflicts unless
-filtered, **highest SDK semver risk** — `createAgentSession` is the
-most internals-exposing surface and not yet documented as semver-stable.
-
-**Best for:** live oversight where the user actively watches and
-steers; frequent short tasks where spawn cost would dominate; shared
-auth/quota.
-
-### Pattern 4 — Multiplexer pane per subagent
+### Pattern 4 — multiplexer pane per child
 
 ```ts
-const mux: MuxBackend = detectMux();   // cmux | tmux | zellij | wezterm | none
-const paneId = await mux.createPane({
-  command: ["pi", "-p", task, "--session", sessionPath],
-  title: `subagent: ${name}`,
-  splitDirection: "right",
-});
-
-// Child writes runtime state file: { phase: "starting"|"active"|"waiting"|"done", ... }
-// Parent polls + correlates to widget. Result steered back via deliverAs:"followUp".
+const mux = detectMux();   // cmux | tmux | zellij | wezterm | none
+await mux.createPane({ command: ["pi", "-p", task, "--session", sessionPath],
+  title: `subagent: ${name}`, splitDirection: "right" });
+// child writes { phase: "active"|"waiting"|"done", ... }; parent polls + widgets it
 ```
 
-**Wins:** each subagent is a real, full Pi session in a real terminal
-pane — full TUI, full transcript, **fully interactive (you can type
-into the child)**. **True parallel inspection** via mux split — N
-children visible simultaneously. No truncation anywhere. Async
-non-blocking by default. Native multiplexer keybinds the user already
-knows.
+(`cmux` here is the agent-oriented "tmux for Claude Code" multiplexer
+[`craigsc/cmux`](https://github.com/craigsc/cmux), detected via
+`CMUX_SOCKET_PATH`; raw tmux, zellij, and wezterm work too.)
 
-**Trades:** hard dependency on a multiplexer (degrades without one),
-pane lifecycle is the user's problem, no automatic re-rendering inside
-parent's TUI (status widget shows phase, content lives in the other
-pane), each child is still a separate `pi` subprocess.
-
-**Best for:** multi-candidate comparison, users who already live in
-cmux/tmux, when children need full interactivity for steering.
+**Wins:** each child is a **real, full Pi session in a real pane** — full
+TUI, full transcript, **no truncation, fully interactive** (you can type into
+it). True parallel inspection: N children on screen at once. Async by
+default. **Trades:** hard dependency on a multiplexer (degrades without one);
+pane lifecycle is the user's problem; content lives in the other pane, not
+re-rendered inside the parent. **Best for:** multi-candidate comparison,
+users who live in cmux/tmux, children that need full interactivity.
 
 ## Cross-pattern comparison
 
-| Dimension | Pattern 1 (subprocess+JSON) | Pattern 2 (subprocess+RPC) | Pattern 3 (in-process) | Pattern 4 (mux pane) |
+| Dimension | P1 subprocess+JSON | P2 subprocess+RPC | P3 in-process | P4 mux pane |
 |---|---|---|---|---|
-| Spawn cost | ~200–500ms | ~200–500ms | ~0 | ~200–500ms + mux pane |
-| Process isolation | full | full | none | full |
-| Mid-run steer/abort | no (SIGTERM only) | yes (RPC) | yes (method call) | yes (write to pane) |
-| Live event stream | poll stdout | RPC notifications | `session.subscribe` | runtime snapshot file + pane |
-| **Parallel inspection** | no | no | no (modal) | **yes (mux split)** |
+| Spawn cost | ~200–500 ms | ~200–500 ms | **~0** | ~200–500 ms + pane |
+| Process isolation | full | full | **none** | full |
+| Mid-run steer/abort | no (SIGTERM) | yes | yes | yes (write to pane) |
+| **Full untruncated view** | on disk (if persisted) | extension's choice | depends (in-memory: yes on disk) | **yes (real pane)** |
+| **Parallel inspection** | no | no | modal/widget only | **yes (mux split)** |
 | **User-interactive child** | no | no | no | **yes** |
-| Tool result truncation in viewer | extension's choice | extension's choice | tintinweb truncates 500ch | none (real pane) |
-| LOC for minimum viable | ~150 | ~1,300 | ~3,000 | ~5,000 |
-| LOC for production-grade | ~20,000 (nicobailon) | n/a | ~6,000 (tintinweb) | ~8,200 (HazAT) |
+| LOC, minimum viable | ~150 | ~1,300 | ~250 | ~1,400 |
 | SDK semver risk | low | medium | **high** | low |
 
-## Adoption signals (2026-05-27)
+## Delegation vs orchestration: teams and swarms
 
-Hard popularity and activity data across the major subagent extensions.
-Numbers pulled from GitHub and npm APIs on 2026-05-27. The picture is
-lopsided: nicobailon dominates raw adoption by an order of magnitude,
-but several mid-tier options are healthy production choices for
-specific use cases.
+Most extensions above are **1:1 delegation**: one parent hands one task to
+one child and reads the result. A distinct, newer class is **multi-agent
+orchestration** — coordinating a *team* of peers with shared state rather
+than a parent/child tree. The mechanics are different (shared task lists,
+mailboxes, DAGs, auto-claim) and so are the failure modes (deadlock,
+duplicated work, mailbox races), so treat it as its own niche.
 
-| Extension | Stars | Forks | Open issues | npm wk dl | Releases | Latest | Last push |
-|---|---:|---:|---:|---:|---:|---|---|
-| **`nicobailon/pi-subagents`** | **1,581** | **232** | **65** | **24,118** | 25 | v0.25.0 | 2026-05-21 |
-| `HazAT/pi-interactive-subagents` | 483 | 85 | 17 | n/a (not on npm) | — | — | 2026-05-12 |
-| `tintinweb/pi-subagents` | 380 | 74 | 17 | 2,555 | 11 | v0.7.3 | 2026-05-26 |
-| `mjakl/pi-subagent` | 47 | 12 | 0 | 340 | 10 | v1.4.1 | 2026-05-22 |
-| `edxeth/pi-subagents` | 28 | 3 | 1 | shares `pi-subagents` slug | 2 | v2.1.0 | 2026-05-26 |
-| `tuansondinh/pi-fast-subagent` | 15 | 5 | 1 | 56 | — | v0.9.3 | 2026-04-28 |
-| `drsh4dow/pi-delegate` | 2 | 1 | 0 | 468 | — | — | 2026-05-23 |
-| `HamdiMaz/pi-sub-agent` | 0 | 0 | 0 | 103 | — | v0.1.5 | 2026-05-18 |
-| `masta-g3/pi-tmux-subagents` | 0 | 0 | 0 | 12 | — | — | 2026-05-24 |
-| `JerryAZR/pi-subagent-lite` | 1 | 0 | 0 | 153 | — | v0.1.4 | 2026-04-16 |
-| `aleclarson/pi-subagent` | 0 | 0 | 0 | n/a | — | — | 2026-03-03 |
-
-### Observations
-
-- **nicobailon dominates adoption by ~10×**: 24,118 weekly downloads
-  vs 2,555 for tintinweb (second-place on npm) and 468 for pi-delegate.
-  Star count is ~4× next-largest. Forks ~3×.
-- **Cross-pollination signals maturity**: HazAT (author of
-  pi-interactive-subagents) and tmustier (author of multiple loop
-  extensions) both contribute commits to nicobailon — ecosystem leaders
-  treat it as the canonical subprocess option. Tintinweb's contributor
-  graph is much flatter (one author, others ≤2 commits each).
-- **High open-issue counts mean active triage, not neglect** — 65 open
-  issues on nicobailon is the signature of an extension lots of people
-  actually run. Compare to repos with 0 open issues that simply have
-  no users.
-- **Release cadence**: nicobailon ships ~25 tagged releases vs
-  tintinweb's 11; both push to main frequently.
-- **Slug collision warning**: nicobailon and edxeth both publish to
-  `pi-subagents` on npm. Disambiguate by repo URL when installing.
-  HazAT's `pi-interactive-subagents` is not on npm at all — install
-  via git URL.
-
-### Picking from this table
-
-| If you want… | Pick |
+| Extension | Coordination model |
 |---|---|
-| Battle-tested default with the most users | **nicobailon** (subprocess, no live UI) |
-| Live in-process inspection with Claude-Code tool names | **tintinweb** (mind issue #75) |
-| Side-by-side parallel panes | **HazAT** (mux, requires cmux/tmux/zellij/wezterm) |
-| Smallest viable subprocess | **drsh4dow/pi-delegate** or **JerryAZR/pi-subagent-lite** |
-| Opinionated multi-agent runtime with orchestrator mode | **edxeth** (Pattern 4+1 hybrid, ~10.6k LOC) |
+| **`tmustier/pi-agent-teams`** | Claude Code agent-teams parity: shared file-per-task list with dependency tracking, idle-teammate **auto-claim**, file mailboxes (direct + broadcast), steering interrupts across multiple Pi sessions. |
+| **`messense/pi-parallel-agents`** | Five modes incl. **model race** (same task across models) and **team** (DAG with dependencies, roles, plan approval). |
+| **`Tiziano-AI/pi-multiagent`** | One `agent_team` tool + schema-checked graph cookbook (fan-out/fan-in); strict child isolation; output treated as evidence, not instructions. |
+| **`melihmucuk/pi-crew`** | Non-blocking: isolated agents run in parallel while your session stays interactive; results steered back on completion. |
+| **`pi-zerg-swarm`**, **`@llblab/pi-actors`**, **`jwangkun/Pi-Multi-Agent`** | Heavier frameworks — native configurable agent teams with durable recovery; an actor-kernel model for many lightweight agents; a production-grade orchestration framework. |
+| **`teelicht/pi-superagents`**, **`MasuRii/pi-agent-router`** | Workflow/routing layers on top of delegation (superpowers-pipeline role agents with model tiers; orchestrator-only active-agent routing). |
 
-## Idiomatic LLM-known tool shapes
+If you only want "run this one thing in a clean context," stay with 1:1
+delegation — the orchestration runtimes add coordination surface you don't
+need.
 
-Same principle as TODO extensions: matching a training-known tool
-shape lets the LLM use the extension correctly with zero
-system-prompt fine-tuning.
+## Inspecting a subagent: the full-view problem
 
-| Shape | Origin | Pi extension that mirrors it |
+The single most common complaint is *"I can't reliably see what the child
+did."* Three approaches give a genuinely **full** view; one popular option
+truncates.
+
+| Approach | Extension(s) | What you get |
 |---|---|---|
-| `Task`, `get_subagent_result`, `steer_subagent` | Claude Code | **`tintinweb/pi-subagents`** — verbatim |
-| Custom (`delegate`, `subagent`, `spawn`, etc.) | bespoke | most others |
+| **Real pane** | HazAT, masta-g3, noahsaso | The child's entire live Pi session in a terminal pane — no truncation, scrollable, interactive. The most literal full view; needs a multiplexer. |
+| **In-process + on-disk JSONL** | `pi-subagent-in-memory` | Per-child `events.jsonl` + `result.md` on disk (full stream, post-mortem replayable) plus a live `Ctrl+N` overlay. No multiplexer, no personas. |
+| **Subprocess + persisted session** | nicobailon | Each child runs as a real `pi --session <file>` process, so its per-child session JSONL is a **genuine resumable Pi session** (`pi --session <file>`), with an `events.jsonl` artifact alongside. Post-mortem (and resumable), not live. |
+| **Live modal (truncated)** | tintinweb ConversationViewer | Live `session.subscribe` modal with scroll — but **tool/bash output is truncated to 500 chars** and there is **no replay after the modal closes**. Great for live coaching, weak for auditing. |
 
-This is one reason `tintinweb/pi-subagents` punches above its star
-count for production use — Anthropic-tuned models hit it with strong
-priors out of the box.
+**Rule of thumb:** for live, side-by-side oversight you can type into, use a
+**mux pane** (HazAT). For audit-heavy or long pipelines where the value is
+post-hoc, use **on-disk JSONL** (`pi-subagent-in-memory`, or nicobailon
+`verbose:true`). Reach for tintinweb's modal only when you want to watch a
+single child unfold live and don't need the full tail.
 
-## Inspection: nicobailon artifacts vs tintinweb ConversationViewer
+## Tool naming: Claude-Code-styled vs bespoke
 
-The two extensions take opposite approaches to inspecting child runs.
-`tintinweb/pi-subagents` puts everything in a live modal viewer with
-in-memory truncation; `nicobailon/pi-subagents` writes everything to
-disk and lets you `status`/`interrupt`/`resume` against persistent
-artifacts. The choice is between *live show* and *post-mortem replay*.
+No Pi extension replicates Claude Code's actual subagent tool — a single
+`Task` tool with a `subagent_type` parameter and inline results.
+`tintinweb/pi-subagents` (and its fork `@gotgenes/pi-subagents`) come
+closest *in spirit*: they register `Agent` + `get_subagent_result` +
+`steer_subagent` — a Claude-Code-*styled* async trio, **not** the verbatim
+`Task` tool, so don't assume models carry strong out-of-the-box priors
+for it. Everything else uses bespoke names (`subagent`, `delegate`,
+`subagent_create`, `agent_team`, …). `pi-subagent-in-memory` is the
+deliberate minimalist at the far end: one bespoke `subagent_create` and
+**nothing** added to the prompt, letting the model decide from the
+schema alone.
 
-### nicobailon inspection surface
+## Adoption
 
-Live:
-- Compact async widget in parent TUI — per-agent progress, parallel
-  groups stay grouped, nested children render as a tree
-- `subagent({ action: "status" })` lists active runs;
-  `action: "status", id: "..."` drills into one (resolves exact ids,
-  top-level async, nested, then prefix-match)
-- Foreground runs stream directly into the conversation
-- Completion notifications for background runs
-- Stall detection with next-action suggestions
+Adoption is lopsided and moves weekly, so this page does not inline live
+counts — query them with the recipes in
+[references/evaluation.md](../references/evaluation.md). The stable shape of
+the field:
 
-On disk — `{sessionDir}/subagent-artifacts/<run-id>/`:
-
-| File | Content |
-|---|---|
-| `status.json` | Powers the widget and `status` action |
-| `events.jsonl` | **Full Pi JSON event stream** (message_end, tool_call, tool_result_end, …) annotated with run/step metadata. Replayable. |
-| `output-<n>.log` | Live human-readable tail per step |
-| chain dir | Per-step pinned outputs (`output=context.md` style) |
-| patch files | Full diffs from worktree parallel steps |
-
-Mid-flight control:
-- `action: "interrupt"` aborts a running child (nested too)
-- `action: "resume"` restarts a paused/interrupted run
-- `action: "doctor"` for read-only setup diagnostics
-- Optional `pi-intercom` companion lets the child call
-  `contact_supervisor` for blocking decisions or progress updates —
-  true bidirectional steering
-
-### Side-by-side comparison
-
-| Feature | nicobailon | tintinweb ConversationViewer |
-|---|---|---|
-| Live tool calls visible | yes (widget + foreground stream) | yes (modal `session.subscribe`) |
-| Modal full-transcript view | no (uses log files) | yes (k/j/PgUp/PgDn nav) |
-| Tool result truncation | **none** (full `events.jsonl` on disk) | 500 chars in modal |
-| Bash output truncation | **none** | 500 chars in modal |
-| Post-mortem after session ends | **yes** (persistent files) | no (modal closes, no replay) |
-| Side-by-side parallel inspection | partial (widget tree) | no (one agent, modal-blocking) |
-| Mid-flight steering | `interrupt` + intercom `contact_supervisor` | none from viewer |
-
-For long-running pipelines and evolve-style workflows where the value
-is in *post-hoc auditing*, nicobailon's `events.jsonl` wins decisively.
-For live coaching/oversight where you actively watch the child unfold,
-tintinweb's modal is more immediate.
-
-## ConversationViewer (tintinweb/Hopsken) — capabilities and limits
-
-The `tintinweb/pi-subagents` modal viewer is the most polished
-in-process inspection UI in the ecosystem. Verified by reading the
-source on 2026-05-08:
-
-| What it does | What it doesn't do |
-|---|---|
-| Modal overlay (`ctx.ui.custom`) with own keyboard handling | No keybind switch between agents (Esc → re-open via `/agents`) |
-| Live updates via `session.subscribe(() => tui.requestRender())` | Modal blocks parent view — can't see parent agent while open |
-| Full message log scroll (k/j/PgUp/PgDn/Home/End) | **Tool results truncated to 500 chars** |
-| Streaming indicator at bottom (`▍ describeActivity(...)`) | **Bash output truncated to 500 chars** |
-| Header with status icon, duration, token count, tool count | Read-only — can't type, inject, steer from viewer |
-| ANSI-aware width adaptation (`wrapTextWithAnsi`) | One agent at a time — no side-by-side comparison |
-
-The 500-char truncation is the practical reason to reach for
-`HazAT/pi-interactive-subagents` (full pane, no truncation) or
-`nicobailon/pi-subagents` (`verbose:true` mode preserves full JSONL
-transcripts to disk) for evolve-grade post-mortem inspection.
+- **Tier 1 — `nicobailon/pi-subagents`** dominates by roughly an order of
+  magnitude on downloads, with multiple external contributors (including the
+  authors of other ecosystem packages). The default unless you have a
+  specific reason.
+- **Tier 2 — `tintinweb/pi-subagents`** (in-process, Claude-Code-styled) and
+  **`HazAT/pi-interactive-subagents`** (the mux-pane leader, not on npm).
+- **Long tail** — many small, single-author options and a wave of
+  nicobailon clones/forks publishing to crowded `pi-subagent(s)` slugs.
+  Disambiguate by repo URL, not npm name.
 
 ## Comparison with other agents
 
-- **Claude Code** ships a built-in `Task` tool with a `subagent_type`
-  parameter. Provider-side dispatch.
-- **opencode2** has `subtask` as a first-class message part type
-  handled in `runLoop()` itself. Post-PR #14814 it cycles between
-  full-screen sessions via `<leader>+down` / arrows, but **has no
-  tabs/panes** ([open FR](https://github.com/anomalyco/opencode/issues/5826)).
-- **Pi** delegates this to extensions, which is why the variant
-  landscape exists at all. For parallel inspection,
-  `HazAT/pi-interactive-subagents` is **strictly more capable than
-  opencode** — multiplexer split puts N candidates on screen
-  simultaneously where opencode forces full-screen cycling.
+- **Claude Code** ships a built-in `Task` tool with `subagent_type`
+  (provider-side dispatch) and first-class **agent teams**; `pi-agent-teams`
+  ports the latter.
+- **opencode** has `subtask` as a first-class message part handled in
+  `runLoop()`; it cycles full-screen sessions but
+  [has no tabs/panes](https://github.com/anomalyco/opencode/issues/5826).
+  For parallel inspection, `HazAT/pi-interactive-subagents` is **strictly
+  more capable** — a mux split puts N candidates on screen at once.
+- **Pi** delegates this entirely to extensions, which is why the variant
+  landscape exists.
 
-## Picking a subagent extension
+## Picking guide
 
-Updated 2026-05-27 with the four new entries.
-
-| Goal | Best choice | Why |
+| Goal | Pick | Why |
 |---|---|---|
-| **Default in-process delegation** (idiomatic, Claude Code-tuned) | **`tintinweb/pi-subagents`** | 271 stars, 27 releases, 8 contributors. Idiomatic `Task`/`get_subagent_result`/`steer_subagent` tool names. Live ConversationViewer. Cross-extension RPC. |
-| **Side-by-side parallel inspection** (compare N candidates live) | **`HazAT/pi-interactive-subagents`** | The only Pi extension that supports true parallel inspection. Requires user already in cmux/tmux/zellij/wezterm. |
-| **Default subprocess option, most-adopted, most-active** | **`nicobailon/pi-subagents`** | **1,581 stars, 24k weekly downloads, 25 releases, 9+ external contributors (incl. HazAT and tmustier from other ecosystem packages)**. Subprocess kitchen-sink with worktree, JSONL artifacts, async polling, nested fanout (v0.25). Default recommendation for production workloads unless you specifically need in-process steering or interactive panes. |
-| **TUI overlay for browse/edit/launch** | `@ifi/pi-extension-subagents` | nicobailon fork with Agents Manager multi-screen UI. |
-| **Hierarchical agent trees, pools** | `@e9n/pi-subagent` | Five modes: single, parallel, chain, orchestrator, pool. |
-| **In-process, minimal** | `tuansondinh/pi-fast-subagent` | `createAgentSession` only, no extra UI. |
-| **Subprocess, minimal** | `aleclarson/pi-subagent` or `drsh4dow/pi-delegate` | Smallest production options. aleclarson's spawn/fork modes are useful. |
-| **Reference for building your own** | `pi-mono/examples/extensions/subagent` | Re-renders child Message[] inline using Pi's exported components. |
-| **Skill complement** (when/how to spawn, not the mechanism) | `obra/superpowers` | Cross-agent skills `subagent-driven-development`, `dispatching-parallel-agents`, `executing-plans`. Compatible with whichever extension is installed. |
-| **Opinionated multi-agent runtime** (orchestrator mode, ambient awareness, mux+background hybrid) | **`edxeth/pi-subagents`** | 10k LOC. Hybrid Pattern 4+1. Orchestrator mode strips parent's edit tools so it can only delegate. Skill injection, three session modes, rich frontmatter. Closest thing to a production multi-agent framework on Pi. Pairs with edxeth/pi-tasks for token accounting. |
-| **tmux-only mux** (simpler than HazAT if you only use tmux) | **`masta-g3/pi-tmux-subagents`** | ~1.4k LOC. Single `tmux_subagent` tool with run/send/wait/status verbs. Auto-stops cleanly-completed children. Multi-turn follow-up via action:send. Optional pi-agent-hub integration. |
-| **Subprocess with bundled experts** (scout/planner/worker/reviewer/debugger/verifier/security-auditor/docs-writer/refactorer) | **`HamdiMaz/pi-sub-agent`** | ~1.5k LOC. Pattern 1. Most bundled agents of any subprocess option. Confirmation gate for project agents. /sub-agent-settings for runtime model edits. |
-| **Zero-config minimum-viable subagent** (skills instead of agent files) | **`@jerryan/pi-subagent-lite`** | 245 LOC. Single `subagent` tool, only `task` + `skills` params. No agent .md files anywhere. Specialization via pi skills. Auto-spills long tasks. Smallest production option that's still useful. |
+| **Battle-tested default** | `nicobailon/pi-subagents` | Subprocess, on-disk artifacts, async polling, worktree, nested fanout; dominant adoption. |
+| **Full live view you can type into** | `HazAT/pi-interactive-subagents` | Each child a real Pi session in a mux pane; no truncation; true side-by-side. Needs cmux/tmux/zellij/wezterm. |
+| **Full view, no multiplexer, no personas** | `ross-jill-ws/pi-subagent-in-memory` | In-process; full `events.jsonl` per child on disk; adds nothing to the prompt. In-process = no isolation. |
+| **tmux-only, lighter than HazAT** | `masta-g3/pi-tmux-subagents` | Single `tmux_subagent` tool; persistent children; turn artifacts on disk. |
+| **Claude-Code-styled tool set** | `tintinweb/pi-subagents` | `Agent`/`get_subagent_result`/`steer_subagent`; live modal; cross-extension RPC. `tools: all` bug now fixed (PR #74). In-process (not resumable). |
+| **Low-latency fanout of many short children** | `pi-subagent-in-memory` (headless) or `pi-fast-subagent` | In-process = ~0 spawn cost and shared auth; cap concurrency (provider limits, RAM). |
+| **Coordinate a team / swarm** | `tmustier/pi-agent-teams`, `melihmucuk/pi-crew`, `messense/pi-parallel-agents` | Shared task list / mailboxes / DAGs / model races — orchestration, not 1:1 delegation. |
+| **Smallest viable** | `drsh4dow/pi-delegate` or `@jerryan/pi-subagent-lite` | ~150–245 LOC, one tool, no personas. |
+| **Opinionated multi-agent runtime** | `edxeth/pi-subagents` | Hybrid 4+1, orchestrator mode strips the parent's edit tools, rich frontmatter. |
+| **Subprocess with bundled experts** | `HamdiMaz/pi-sub-agent` | 9 bundled expert agents; confirmation gate for project agents. |
+| **Skill complement** (when/how, not the mechanism) | `obra/superpowers` | Cross-agent skills (`subagent-driven-development`, `dispatching-parallel-agents`); works with whichever extension you install. |
+| **Reference for building your own** | `pi-mono/examples/extensions/subagent` | Re-renders child `Message[]` inline using Pi's exported components. |
+
+### Running two systems at once
+
+Because Pi loads many extensions, you can run two subagent systems in
+parallel (e.g. an in-process fanout engine plus a mux-pane viewer) **as long
+as their tool names and `pi.events` namespaces are disjoint**. Tool-name
+collisions are the trap: several options register a bare `subagent` tool, so
+pairing two of those breaks. Pairs like `tintinweb` (`Agent` + `subagents:*`
+events), `pi-subagent-in-memory` (`subagent_create`), and `pi-fast-subagent`
+(`subagent`) coexist cleanly. The remaining concern is the model seeing two
+delegation tools — scope active tools per workflow rather than exposing both.
 
 ## Caveats
 
-- **`Hopsken/pi-subagents` is a stale private mirror of
-  `@tintinweb/pi-subagents`**, not a separate project. Earlier
-  community comparisons treating them as two packages were
-  conflating versions.
-- **`@cmf/pi-subagent` is experimental, not production** —
-  single-commit, never published to npm. The recursive step
-  composition pattern is interesting as a reference but not a
-  dependency target.
-- `noahsaso/pi-interactive-subagents` (in the `my-pi` collection)
-  shares a name with HazAT's package but is a different
-  implementation. Confirm which one you're installing.
-- **`tintinweb/pi-subagents` issue #75 (open since 2026-05-15)** —
-  the built-in `general-purpose` agent declares `tools: all` (no
-  explicit list), which silently breaks tool-calling on some models.
-  Child reports `status: completed`, `tool_uses: 0`, no output. PR #74
-  is the candidate fix (open). Until merged, override
-  `~/.pi/agent/agents/general-purpose.md` with an explicit tools list:
-
-  ```yaml
-  ---
-  description: General-purpose agent for complex, multi-step tasks
-  display_name: Agent
-  tools: read, bash, edit, write, grep, find, ls
-  prompt_mode: append
-  ---
-  ```
-
-  Confirmed in the wild: in-session hangs at 0 tool uses, plus a
-  separate failure mode at ~20 tool retries in <5% context (the same
-  bug expressed against partially-trained model behavior).
-- **edxeth/pi-subagents NPM name collides** with `nicobailon/pi-subagents`
-  on the bare `pi-subagents` slug. Disambiguate by repo when installing.
-  HamdiMaz/pi-sub-agent uses the singular `pi-sub-agent` and does not collide.
+- **tintinweb issue #75 is fixed.** The `tools: all` agent definition that
+  silently broke tool-calling (child reports `status: completed`,
+  `tool_uses: 0`) was resolved by PR #74; upgrade to the v0.8+ line. The fix
+  changed agent-definition tool/extension selectors — re-check your agent
+  files after upgrading.
+- **`pi-subagents` npm slug is contested.** `nicobailon` and `edxeth` both
+  publish to bare `pi-subagents`, and there is a wave of clones. Install by
+  repo URL. `HamdiMaz/pi-sub-agent` (singular) and `@scope/...` packages do
+  not collide.
+- **In-process (Pattern 3) has no isolation and the highest semver risk** —
+  a child crash can take the parent down, and `createAgentSession` is not a
+  documented-stable surface. Pin versions.
+- **`HazAT/pi-interactive-subagents` is not on npm** — install by git URL,
+  and it degrades without a multiplexer.
+- **`noahsaso/pi-interactive-subagents` (in `my-pi`)** shares HazAT's name
+  but is a different implementation. **`Hopsken/pi-subagents`** is a stale
+  mirror of tintinweb, not a separate project.
+- **`@cmf/pi-subagent` is experimental** (single commit, never published) —
+  a pattern reference, not a dependency.
 
 ## See also
 
-- [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes for picking among these
-- [Loop and Ralph Extensions](loop-extensions.md) — companion survey; loop drivers often use subagents
-- [TODO List Extensions](todo-extensions.md) — companion survey
+- [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs and code-quality recipes; the source of live adoption numbers
+- [Loop and Ralph Extensions](loop-extensions.md) — loop drivers often delegate to subagents
+- [TODO List Extensions](todo-extensions.md) — companion survey; teams share a task list

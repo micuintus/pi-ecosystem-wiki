@@ -22,7 +22,7 @@ them.
 
 - [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 7 architectural variants for "keep iterating until done"
 - [Evolve / Code-Optimization Extensions](ecosystem/evolve-extensions.md) — `pi-autoresearch` and the broader research landscape (try variant → benchmark → keep/discard)
-- [Subagent Extensions](ecosystem/subagent-extensions.md) — Subprocess, in-process, fork, and async patterns for delegating tasks to child agents
+- [Subagent Extensions](ecosystem/subagent-extensions.md) — Four execution patterns (subprocess, in-process, mux-pane) plus the team/swarm orchestration class; with a full-view inspection guide and picking table
 - [Claude Code `/loop`](ecosystem/claude-code-loop.md) — Cross-tool reference: how Claude Code's cron-scheduled loop differs from Pi Ralph
 
 ### ✅ Task tracking and planning

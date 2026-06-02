@@ -33,7 +33,7 @@ TOC with structure and comparisons. Awesome-lists like
 |---|---|
 | **Search the web from Pi** | [Web Search Extensions](ecosystem/web-search-extensions.md) — extensions and skills side-by-side |
 | **Customize how Pi looks** (themes, status bar, tool output, busy spinner) | [Themes](ecosystem/theme-extensions.md) · [Footer / Powerline](ecosystem/footer-extensions.md) · [Tool Rendering](ecosystem/tool-rendering-extensions.md) · [Working / Thinking Indicators](ecosystem/working-indicator-extensions.md) |
-| **Delegate tasks to child agents** (subagents, parallel work) | [Subagent Extensions](ecosystem/subagent-extensions.md) — 4 patterns, with tradeoff matrix |
+| **Delegate tasks to child agents** (subagents, parallel work) | [Subagent Extensions](ecosystem/subagent-extensions.md) — four execution patterns + team/swarm orchestration; how to get a full subagent view |
 | **Track what my agent is doing** (TODO lists, task progress) | [TODO List Extensions](ecosystem/todo-extensions.md) — idiomatic tool shapes, widget stack, picking guide |
 | **Keep long sessions coherent across compactions** | [Compaction Extensions](ecosystem/compaction-extensions.md) — algorithmic vs observation-ledger vs agentic-VFS vs tool-output-pruning |
 | **Tame the prompt** (floating editor, history search, templates, queues, cache) | [Prompt Extensions](ecosystem/prompt-extensions.md) — four layers (input UX, template authoring, queueing, provider cache) |

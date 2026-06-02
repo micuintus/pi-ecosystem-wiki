@@ -155,6 +155,14 @@ copied into a dated bucket file.
 | popododo-pi-stuff | repo | https://github.com/popododo0720/pi-stuff | extension, workflow, todo |
 | tintinweb-pi-subagents | repo | https://github.com/tintinweb/pi-subagents | extension, subagent, in-process |
 | tintinweb-pi-subagents-issue-75 | issue | https://github.com/tintinweb/pi-subagents/issues/75 | extension, subagent, bug |
+| tintinweb-pi-subagents-pr-74 | issue | https://github.com/tintinweb/pi-subagents/pull/74 | extension, subagent, fix |
+| ross-jill-ws-pi-subagent-in-memory | repo | https://github.com/ross-jill-ws/pi-subagent-in-memory | extension, subagent, in-process, logged |
+| tmustier-pi-agent-teams | repo | https://github.com/tmustier/pi-agent-teams | extension, subagent, teams, orchestration |
+| melihmucuk-pi-crew | repo | https://github.com/melihmucuk/pi-crew | extension, subagent, orchestration |
+| tiziano-pi-multiagent | repo | https://github.com/Tiziano-AI/pi-multiagent | extension, subagent, multiagent, graph |
+| messense-pi-parallel-agents | repo | https://github.com/messense/pi-parallel-agents | extension, subagent, parallel, orchestration |
+| gotgenes-pi-subagents | repo | https://github.com/gotgenes/pi-packages | extension, subagent, fork |
+| amosblomqvist-pi-subagents | repo | https://github.com/amosblomqvist/pi-subagents | extension, subagent, minimal |
 | edxeth-pi-subagents | repo | https://github.com/edxeth/pi-subagents | extension, subagent, mux, hybrid |
 | masta-g3-pi-tmux-subagents | repo | https://github.com/masta-g3/pi-tmux-subagents | extension, subagent, tmux |
 | hamdimaz-pi-sub-agent | repo | https://github.com/HamdiMaz/pi-sub-agent | extension, subagent, subprocess |
