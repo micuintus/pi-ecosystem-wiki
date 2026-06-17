@@ -1,7 +1,7 @@
 ---
 title: Pi Provider Extensions
 type: ecosystem
-updated: 2026-05-28
+updated: 2026-06-17
 sources:
   - awtotty-pi-opencode
   - lnilluv-pi-opencode-go-rotation
@@ -54,6 +54,8 @@ sources:
   - pi-kilocode
   - ditfetzt-pi-cline-free
   - aadishv-pi-agy
+  - cfal-pi-models-dev
+  - MasuRii-pi-model-discovery
 entries:
   - id: awtotty-pi-opencode
     name: pi-opencode
@@ -99,7 +101,7 @@ entries:
     name: pi-opencode-provider
     npm: pi-opencode-provider
     role: dynamic-provider
-    notes: "Runtime model discovery for OpenCode Zen + Go; replaces built-in providers; pi.dev/npm only"
+    notes: "Runtime model discovery for OpenCode Zen + Go; unconditionally replaces both built-in providers; no test suite; pi.dev/npm only"
   - id: pi-model-router
     name: pi-model-router
     npm: pi-model-router
@@ -110,6 +112,17 @@ entries:
     repo: balcsida/pi-provider-litellm
     role: proxy-provider
     notes: "Discovers models from a self-hosted LiteLLM proxy; can front any OpenAI-compatible endpoint including EU providers"
+  - id: cfal-pi-models-dev
+    name: pi-models-dev
+    repo: cfal/pi-models-dev
+    role: dynamic-provider
+    notes: "Runtime models.dev catalog fetcher; opts into replacing specific built-ins via PI_MODELS_DEV_OVERRIDE_PROVIDERS; per-model compat via models.json"
+  - id: MasuRii-pi-model-discovery
+    name: pi-model-discovery
+    repo: MasuRii/pi-model-discovery
+    npm: pi-model-discovery
+    role: dynamic-discovery-framework
+    notes: "General multi-provider discovery framework; cache-first + background refresh; declines pi-mono-managed provider IDs by default"
 ---
 
 # Pi Provider Extensions
@@ -131,8 +144,12 @@ utilities** (rotation, quota bypass) that the core does not provide.
 ## TL;DR
 
 - **Using OpenCode Zen or Go?** Pi has built-in providers — no extension
-  needed. Only install `pi-opencode-provider` if you want **live model
-  discovery** (new OpenCode models appear without waiting for a Pi release).
+  needed. Only install a discovery extension if you want newer models than
+  Pi's baked snapshot. Prefer `cfal/pi-models-dev` (scoped opt-in override,
+  preserves built-in compat via `models.json`); `mdsitton/pi-opencode-provider`
+  works but unconditionally replaces both built-ins and ships no tests.
+  `MasuRii/pi-model-discovery` is the heavy general framework, overkill for
+  OpenCode Go alone.
 - **Hitting OpenCode Go rate limits with multiple keys?** Install
   `pi-opencode-go-rotation` — it rotates keys reactively; it's a
   key-management companion, not a provider.
@@ -185,6 +202,62 @@ at build time. This extension is for users who want the freshest catalog.
 
 Install: `pi install npm:pi-opencode-provider`. Then run `/login` and select
 OpenCode Zen or OpenCode Go to store the API key through the OAuth flow.
+
+> **Caveat (2026-06-17 audit):** it **unconditionally** replaces both
+> built-in providers, discarding Pi's curated `compat`/`thinkingLevelMap`
+> overrides for models like Kimi K2.6, DeepSeek V4 Flash, and MiniMax —
+> with no per-model override mechanism. The package also ships **no test
+> suite** (only `typecheck`), which is the wiki evaluation page's explicit
+> red flag for extensions that touch every request. Prefer
+> `cfal/pi-models-dev` (below) where built-in compat must be preserved.
+
+### `cfal/pi-models-dev` — scoped models.dev discovery
+
+A runtime [models.dev](https://models.dev) catalog fetcher with a
+deliberately opt-in design: **it does not replace Pi built-ins unless
+explicitly named** in `PI_MODELS_DEV_OVERRIDE_PROVIDERS`. Pointed at
+`PI_MODELS_DEV_OVERRIDE_PROVIDERS=opencode-go`, it fetches the live
+models.dev catalog and registers `opencode-go` models (including models
+Pi's baked snapshot is missing) while leaving `opencode`, `zai`, and
+every other built-in provider untouched.
+
+Provider and per-model `compat` overrides are mergeable via
+`~/.pi/agent/models.json` (`providers[id].compat` and
+`modelOverrides`), so the hand-tuned flags Pi's generator applies to
+Kimi/DeepSeek/MiniMax/Qwen can be re-attached instead of lost. The
+catalog is cached (24h TTL, `PI_MODELS_DEV_OFFLINE` for cache-only).
+
+Installed from git (not yet on npm at time of writing):
+
+```bash
+pi install git:github.com/cfal/pi-models-dev
+PI_MODELS_DEV_OVERRIDE_PROVIDERS=opencode-go pi --list-models
+```
+
+> **Scope/freshness note:** single-author, no tagged releases, git-only
+> at audit time — treat as `[experimental]` under the evaluation page's
+> maturity tags. The codebase is TypeScript-strict with a `bun test`
+> suite covering conversion and filtering, and zero `any`/`@ts-ignore`.
+
+### `MasuRii/pi-model-discovery` — general multi-provider discovery framework
+
+The most extensive discovery package in the ecosystem: cache-first
+registration with background refresh, debounce, provenance tracking, an
+idempotent registrar with explicit ownership semantics, and a `/pi-model-discovery`
+catalog command. Enriches discovered models from models.dev and OpenRouter,
+classifies free-tier models, and covers OpenAI-compatible, Ollama,
+LM Studio, llama.cpp, and Anthropic-compatible backends.
+
+For the OpenCode Go use case specifically there is a **functional
+mismatch**: by design it declines to auto-import provider IDs whose
+credentials are owned by Pi Mono (i.e. an `opencode-go` entry already in
+`auth.json`), to avoid duplicate ownership. It will therefore not
+replace Pi's baked `opencode-go` list without manual per-provider config
+in `config.json`. Best suited to users who want unified discovery across
+**many** self-hosted / local / paid providers, not a drop-in OpenCode Go
+refresh.
+
+Install: `pi install npm:pi-model-discovery`.
 
 ### `lnilluv/pi-opencode-go-rotation` — multi-key rotation for OpenCode Go
 
@@ -263,16 +336,19 @@ The extensions above exist for three specific gaps:
 
 | Gap | Built-in behavior | Extension remedy |
 |---|---|---|
-| **Static model list** | Models generated at Pi build time from `models.dev` | `pi-opencode-provider` and `tokenfactory-pi` both fetch live catalogs on every startup |
+| **Static model list** | Models generated at Pi build time from `models.dev` | `cfal/pi-models-dev`, `mdsitton/pi-opencode-provider`, and `tokenfactory-pi` all fetch live catalogs on every startup |
 | **Subscription login friction** | Built-in OpenCode Go requires manual `OPENCODE_API_KEY` env var | `pi-opencode-provider` adds `/login` → OAuth flow (pick Zen or Go, store key via Pi's auth UI) |
 | **Key rotation / quota bypass** | Single `OPENCODE_API_KEY`; no rotation logic | `pi-opencode-go-rotation` rotates across multiple keys reactively |
 
-**Why `pi-opencode-provider` is a bigger win than `tokenfactory-pi`:**
-`pi-opencode-provider` solves *two* problems — it fetches the live model
-catalog (like `tokenfactory-pi` does for Nebius) *and* it replaces the
-manual env-var setup with Pi's native `/login` OAuth flow. For OpenCode
-Go specifically, that means you pick "Zen" or "Go" from the Pi login
-menu instead of exporting `OPENCODE_API_KEY` by hand.
+**Why `cfal/pi-models-dev` is the recommended discovery pick:** it solves
+the static-catalog gap while respecting Pi's curated built-ins — opt-in
+override means a stale `opencode-go` snapshot can be refreshed without
+clobbering the `compat`/`thinkingLevelMap` flags Pi's generator tuned for
+Kimi/DeepSeek/MiniMax/Qwen on the models the built-in list already carries.
+`mdsitton/pi-opencode-provider` solves the same gap and adds a `/login`
+OAuth flow, but replaces both built-ins unconditionally and ships no tests.
+`MasuRii/pi-model-discovery` is the most complete framework but its
+ownership model keeps it off pi-mono-managed provider IDs by default.
 
 `tokenfactory-pi` only solves the catalog problem; you still set
 `NEBIUS_API_KEY` as an environment variable. Both extensions are
@@ -281,17 +357,24 @@ static lists and manual key management, skip them.
 
 ## Comparison: OpenCode extensions
 
-| Extension | Discovery | Key rotation | Commands | Install size | Public repo |
-|---|---|---|---|---|---|
-| `awtotty/pi-opencode` | Static (hardcoded) | None | None | Minimal (~1 commit) | Yes |
-| `mdsitton/pi-opencode-provider` | Runtime (live API) | None | None | Medium | No (npm/pi.dev only) |
-| `lnilluv/pi-opencode-go-rotation` | None (uses built-in or another provider) | Reactive + watchdog | `/opencode *` | Medium | Yes |
+| Extension | Discovery | Key rotation | Commands | Built-in replace | Tests | Public repo |
+|---|---|---|---|---|---|---|
+| `awtotty/pi-opencode` | Static (hardcoded) | None | None | No | No | Yes |
+| `mdsitton/pi-opencode-provider` | Runtime (live API) | None | None | Unconditional (opencode + opencode-go) | No | No (npm/pi.dev only) |
+| `cfal/pi-models-dev` | Runtime (models.dev) | None | None | Opt-in per provider via env | Yes (`bun test`) | Yes |
+| `MasuRii/pi-model-discovery` | Runtime (multi-source) | None | `/pi-model-discovery` | Declines pi-mono-managed IDs | Yes (`node:test`) | Yes |
+| `lnilluv/pi-opencode-go-rotation` | None (uses built-in or another provider) | Reactive + watchdog | `/opencode *` | N/A (auth layer) | No | Yes |
 
 `awtotty/pi-opencode` is the simplest but least maintained; new models
-require a code change. `mdsitton/pi-opencode-provider` is the best
-choice for users who want immediate access to new OpenCode models.
-`lnilluv/pi-opencode-go-rotation` is orthogonal — pair it with either
-provider if you have multiple OpenCode Go keys.
+require a code change. `cfal/pi-models-dev` is the pick when you want
+newer OpenCode Go models without losing Pi's hand-tuned `compat` flags —
+it overrides only what you name in `PI_MODELS_DEV_OVERRIDE_PROVIDERS`.
+`mdsitton/pi-opencode-provider` also works but replaces both built-ins
+unconditionally and ships no tests. `MasuRii/pi-model-discovery` is the
+most engineered option but its ownership model won't touch `opencode-go`
+without manual config — best for multi-provider discovery, not OpenCode Go alone.
+`lnilluv/pi-opencode-go-rotation` is orthogonal — pair it with any of the
+provider extensions if you have multiple OpenCode Go keys.
 
 ## Free inference providers
 
@@ -416,7 +499,7 @@ No dedicated Pi extension exists for any of them — the gap is real.
 | Your situation | Recommendation |
 |---|---|
 | Use OpenCode Zen/Go (normal case) | Pi built-in — no extension needed |
-| Want newest OpenCode models between Pi releases | `pi install npm:pi-opencode-provider` |
+| Want newest OpenCode Go models between Pi releases (keep built-in compat) | `pi install git:github.com/cfal/pi-models-dev` + set `PI_MODELS_DEV_OVERRIDE_PROVIDERS=opencode-go` |
 | Multiple OpenCode Go keys / hitting rate limits | `pi install npm:@lnilluv/pi-opencode-go-rotation` |
 | Use Nebius Token Factory (normal case) | Pi built-in — no extension needed |
 | Nebius on an older Pi version | `pi install npm:tokenfactory-pi` |

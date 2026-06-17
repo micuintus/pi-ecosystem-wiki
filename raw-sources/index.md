@@ -1,7 +1,7 @@
 ---
 title: Raw sources
 type: reference
-updated: 2026-05-31
+updated: 2026-06-17
 sources: []
 ---
 
@@ -214,6 +214,8 @@ copied into a dated bucket file.
 | apmantza-pi-free | repo | https://github.com/apmantza/pi-free | extension, provider, free, multi-provider |
 | ditfetzt-pi-cline-free | repo | https://github.com/ditfetzt/pi-cline-free-models | extension, provider, free, cline |
 | mdsitton-pi-opencode-provider | catalog | https://pi.dev/packages/pi-opencode-provider | extension, provider, opencode |
+| cfal-pi-models-dev | repo | https://github.com/cfal/pi-models-dev | extension, provider, models-dev, discovery |
+| MasuRii-pi-model-discovery | repo | https://github.com/MasuRii/pi-model-discovery | extension, provider, discovery, multi-provider |
 | pi-issue-1757 | issue | https://github.com/earendil-works/pi-mono/issues/1757 | provider, opencode, built-in |
 | pi-issue-3348 | issue | https://github.com/earendil-works/pi-mono/issues/3348 | provider, nebius, built-in |
 | oh-my-pi-pr-310 | issue | https://github.com/can1357/oh-my-pi/pull/310 | provider, opencode, fork |

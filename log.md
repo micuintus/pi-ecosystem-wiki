@@ -2,6 +2,28 @@
 
 Append-only. Newest at top.
 
+## [2026-06-17] ingest | Two newer OpenCode discovery extensions vs the surveyed pick
+
+**`ecosystem/provider-extensions.md`** — added `cfal/pi-models-dev` and
+`MasuRii/pi-model-discovery`; re-graded `mdsitton/pi-opencode-provider`.
+- Compilation triggered by an in-session audit: `opencode-go/glm-5.2` is
+  live on models.dev and on the Zen/Go endpoint but absent from Pi's
+  baked `models.generated.ts`, so the installed binary can't select it.
+  `mdsitton/pi-opencode-provider` is the surveyed remedy but an evaluation-page
+  audit flagged it (unconditional built-in replace, no tests).
+- `cfal/pi-models-dev`: runtime models.dev fetcher, **opt-in** override
+  (`PI_MODELS_DEV_OVERRIDE_PROVIDERS`) — scoped replacement preserves other
+  built-ins; per-model `compat` merges via `models.json`. TS-strict, `bun test`
+  suite. Recommended for the OpenCode Go staleness case.
+- `MasuRii/pi-model-discovery`: most engineered (cache-first, provenance,
+  idempotent registrar, `node:test`) but its ownership model declines
+  pi-mono-managed provider IDs, so `opencode-go` won't refresh without manual
+  config — better for multi-provider discovery than this use case.
+- Updated TL;DR, built-in-vs-extension table, OpenCode comparison table
+  (added Built-in replace + Tests columns), recommendation matrix.
+- Registered 2 sources: `cfal-pi-models-dev`, `MasuRii-pi-model-discovery`.
+- Updated: `raw-sources/index.md`.
+
 ## [2026-05-19] research | Berlin providers: Kimi/GLM availability and GPU access
 
 **`ecosystem/provider-extensions.md`** — expanded Berlin-based providers section:
