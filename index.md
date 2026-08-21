@@ -31,10 +31,15 @@ them.
 ### ✏️ Prompt: input, templates, queue, cache
 
 - [Prompt Extensions](ecosystem/prompt-extensions.md) — floating editor (`pi-sticky-prompt`), Ctrl+R history search, template authoring (`pi-prompt-composer`, `pi-prompt-template-model`), hidden/`ask_user`-driven queues, dual cache-breakpoint fix, cache-hit observability
+- [Human-in-the-Loop (`ask_user_question`)](ecosystem/human-in-the-loop-extensions.md) — Letting the model ask instead of guessing; the category leader is among the most-installed Pi extensions anywhere
 
 ### 🗜️ Compaction and memory
 
 - [Compaction Extensions](ecosystem/compaction-extensions.md) — Algorithmic, observation-ledger, agentic-VFS, tool-output-pruning, large-context-subprocess, and grounded LLM compaction patterns; `pi-blackhole` = `pi-vcc` + `pi-observational-memory`
+
+### 🔐 Safety and permissions
+
+- [Permission and Guard Extensions](ecosystem/permission-extensions.md) — Pi ships no approval layer; four shapes, and what to check before trusting one (bash AST parsing, subagent gating, fail-closed)
 
 ### 🎨 TUI customization
 

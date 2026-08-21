@@ -1064,3 +1064,45 @@ msgraph-chat-post-messages, composio-teams-pi, msteams-agent-skills,
 burggraf-pi-teams, kristjanpikhof-pi-agents-team).
 - Updated: ecosystem/subagent-extensions.md (agent-teams naming caveat)
 - Updated: index.md, README.md (Teams entry; evolve entry dropped)
+
+## [2026-08-21] ingest | two missing categories: HITL ask_user_question, permissions
+
+Sweep for high-adoption extensions surfaced two whole categories the wiki had
+no page for. Both are things Pi deliberately omits from core, which is exactly
+why they are crowded.
+
+New `ecosystem/human-in-the-loop-extensions.md`. One tool
+(`ask_user_question`), four implementations, and by download volume the leader
+(`@juicesharp/rpiv-ask-user-question`) is an order of magnitude above typical
+extensions surveyed here — the strongest single adoption signal encountered so
+far. Variation between implementations is UI richness, not semantics: minimal /
+rich dialog / grouped `ctx.ui.custom()` form. Caveats that matter: they collide
+on tool name (pick one); one declares a narrow peer range (`>=0.80.2 <0.81.0`)
+and a HITL tool that fails to load is worse than none because the model reverts
+to guessing silently; and it changes model behaviour, so it is a stall risk in
+unattended runs.
+
+New `ecosystem/permission-extensions.md`. Pi ships no approval layer at all —
+the most common reason people bounce off it coming from Claude Code/OpenCode.
+Four shapes: centralized gate (`MasuRii/pi-permission-system`, the leader, plus
+a deliberately-incompatible `gotgenes` fork), AST-based bash matcher
+(`jdiamond/pi-guard`), approval-mode switch (`pi-permission-suite`, incl.
+subagent auto-approval), targeted guard (`@inobit/pi-permission`). Wrote a
+"what to check before installing" section rather than a feature list, because a
+permission layer is only as good as its worst bypass: regex allowlists over
+shell strings lose to `sh -c`, backticks, `$( )`, pipes; delegation means an
+approval prompt in an unwatched pane is a hang not a gate; and an extension
+that errors and stops enforcing is worse than none. Noted that these are
+maximally-trusted in-process code and that gating is not sandboxing.
+
+Sources +18 (juicesharp/josephyoung/jqwn/npm ask-user-question,
+masurii + gotgenes permission-system, jdiamond-pi-guard, pi-permission-suite,
+inobit-pi-permission, composio-top-pi-extensions, nicobailon-pi-annotate,
+cgarrot-pi-mesh, owainlewis/tomsej/nicknisi/lukasparke/mattschoe bundles).
+- Updated: references/catalogs.md (5 more bundles; Mattschoe's branch-scope
+  gating and LukasParke's per-package `@parke.dev` releases are the notable ones)
+- Updated: index.md (new Safety and permissions section), README.md (2 rows)
+
+Still untriaged, recorded for next pass: `nicobailon/pi-annotate` (strong
+adoption), `cgarrot/pi-mesh` (agent-to-agent broker, high weekly downloads),
+`ruizrica/agent-pi`, and the nine-package agent-teams orchestration cluster.

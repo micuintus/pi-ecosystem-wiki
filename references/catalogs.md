@@ -12,6 +12,11 @@ sources:
   - noahsaso-my-pi
   - samfoy-pi-essentials
   - diegopetrucci-pi-extensions
+  - owainlewis-pi-extensions
+  - tomsej-pi-ext
+  - nicknisi-pi-extensions
+  - lukasparke-pi-extensions
+  - mattschoe-pi-extensions
   - narumiruna-pi-extensions
   - tungthedev-pi-extensions
   - edxeth-pi-auto-session-titles
@@ -62,6 +67,11 @@ Single-author/team bundles, useful as starting points or to lift extensions piec
 | [`narumiruna/pi-extensions`](https://github.com/narumiruna/pi-extensions) | narumiruna | TypeScript monorepo, every package published separately under `@narumitw` so nothing is all-or-nothing: automation, planning, language tooling, browser control, web research, Git workflows, config sync. |
 | [`tungthedev/pi-extensions`](https://github.com/tungthedev/pi-extensions) | tungthedev | Opinionated default-experience upgrade: custom editor/composer, inline Mermaid rendering, web research, skill loading, boomerang-style context summarization, tool-set/system-prompt switching between Pi/Codex/Droid modes, TUI-first subagent manager. |
 | [`diegopetrucci/pi-extensions`](https://github.com/diegopetrucci/pi-extensions) | diegopetrucci | Small guardrail-flavoured set: `confirm-destructive` (gate clear/switch/fork), `context-cap` (cap effective context at 200k to dodge the "dumb zone"), `context-inspector` (`/context`). |
+| [`owainlewis/pi-extensions`](https://github.com/owainlewis/pi-extensions) | owainlewis | Experimental set, mid-scale adoption. |
+| [`tomsej/pi-ext`](https://github.com/tomsej/pi-ext) | tomsej | Extensions, skills and themes together: UI polish (tool pills, leader-key palette) through to semantic git review, session archiving, cross-session context handoff, cmux integration. |
+| [`nicknisi/pi-extensions`](https://github.com/nicknisi/pi-extensions) | nicknisi | Newer collection (Aug 2026). |
+| [`LukasParke/pi-extensions`](https://github.com/LukasParke/pi-extensions) | LukasParke | Per-package npm releases under `@parke.dev`, incl. `pi-github` (PRs, reviews, checks, issues, comments, auth). |
+| [`Mattschoe/pi-extensions`](https://github.com/Mattschoe/pi-extensions) | Mattschoe | Branch Context keeps work scoped to the current git branch by injecting `.pi/branches/<branch>.md` and gating out-of-scope edits; plus GitHub/git mentions. |
 
 ### Standalone utilities worth knowing
 

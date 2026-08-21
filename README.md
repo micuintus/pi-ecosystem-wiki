@@ -36,6 +36,8 @@ TOC with structure and comparisons. Awesome-lists like
 | **Delegate tasks to child agents** (subagents, parallel work) | [Subagent Extensions](ecosystem/subagent-extensions.md) — three deciding axes incl. blocking vs async, four execution patterns, team/swarm orchestration, full-view inspection |
 | **Track what my agent is doing** (TODO lists, task progress) | [TODO List Extensions](ecosystem/todo-extensions.md) — idiomatic tool shapes, widget stack, picking guide |
 | **Keep long sessions coherent across compactions** | [Compaction Extensions](ecosystem/compaction-extensions.md) — algorithmic vs observation-ledger vs agentic-VFS vs tool-output-pruning |
+| **Stop the agent guessing** (ask me instead) | [Human-in-the-Loop Extensions](ecosystem/human-in-the-loop-extensions.md) — one tool, four implementations, big adoption |
+| **Gate dangerous operations** (approvals, bash rules) | [Permission and Guard Extensions](ecosystem/permission-extensions.md) — Pi has no core permissions; what to check before trusting one |
 | **Tame the prompt** (floating editor, history search, templates, queues, cache) | [Prompt Extensions](ecosystem/prompt-extensions.md) — four layers (input UX, template authoring, queueing, provider cache) |
 | **Make Pi work autonomously** (iterate until done, run overnight) | [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 7 architectural variants compared |
 | **Connect Pi to other services** (Google Workspace) | [Google Workspace](ecosystem/google-workspace.md) — `gws` CLI, OAuth, command shapes |

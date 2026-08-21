@@ -202,6 +202,23 @@ copied into a dated bucket file.
 | msteams-agent-skills | docs | https://learn.microsoft.com/en-us/microsoftteams/platform/teams-sdk/developer-tools/agent-skills | teams, skill, official, bot-development |
 | burggraf-pi-teams | repo | https://github.com/burggraf/pi-teams | extension, subagent, agent-teams, naming-collision |
 | kristjanpikhof-pi-agents-team | repo | https://github.com/KristjanPikhof/pi-agents-team | extension, subagent, rpc-workers |
+| juicesharp-rpiv-ask-user-question | docs | https://pi.dev/packages/@juicesharp/rpiv-ask-user-question | extension, hitl, ask-user |
+| josephyoung-pi-ask-user-question | repo | https://github.com/josephyoung/pi-ask-user-question | extension, hitl, ui-custom |
+| jqwn-pi-ask-user-question | docs | https://www.npmjs.com/package/@jqwn/pi-ask-user-question | extension, hitl, multi-question |
+| npm-pi-ask-user-question | docs | https://www.npmjs.com/package/pi-ask-user-question | extension, hitl, minimal |
+| masurii-pi-permission-system | repo | https://github.com/MasuRii/pi-permission-system | extension, permissions, gates |
+| gotgenes-pi-permission-system | repo | https://github.com/gotgenes/pi-permission-system | extension, permissions, fork |
+| jdiamond-pi-guard | repo | https://github.com/jdiamond/pi-guard | extension, permissions, bash-ast |
+| pi-permission-suite | docs | https://www.npmjs.com/package/pi-permission-suite | extension, permissions, modes |
+| inobit-pi-permission | docs | https://pi.dev/packages | extension, permissions, sensitive-files |
+| composio-top-pi-extensions | article | https://composio.dev/content/top-pi-extensions | list, curation, popular |
+| nicobailon-pi-annotate | repo | https://github.com/nicobailon/pi-annotate | extension, annotation |
+| cgarrot-pi-mesh | repo | https://github.com/cgarrot/pi-mesh | extension, agent-comms, broker |
+| owainlewis-pi-extensions | repo | https://github.com/owainlewis/pi-extensions | extension, bundle |
+| tomsej-pi-ext | repo | https://github.com/tomsej/pi-ext | extension, bundle, cmux |
+| nicknisi-pi-extensions | repo | https://github.com/nicknisi/pi-extensions | extension, bundle |
+| lukasparke-pi-extensions | repo | https://github.com/LukasParke/pi-extensions | extension, bundle, github |
+| mattschoe-pi-extensions | repo | https://github.com/Mattschoe/pi-extensions | extension, bundle, branch-scope |
 | edxeth-pi-subagents | repo | https://github.com/edxeth/pi-subagents | extension, subagent, mux, hybrid |
 | masta-g3-pi-tmux-subagents | repo | https://github.com/masta-g3/pi-tmux-subagents | extension, subagent, tmux |
 | hamdimaz-pi-sub-agent | repo | https://github.com/HamdiMaz/pi-sub-agent | extension, subagent, subprocess |
