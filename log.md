@@ -952,3 +952,68 @@ artale-pi-notify, merlinbr-pi-agent-notify).
 - Updated: index.md (Integrations entry)
 - Updated: ecosystem/mcp-integration.md (See also -> slack-extensions, the
   "if an MCP server exists" Slack hint now resolves to a real page)
+
+## [2026-08-21] ingest+correct | Jenkins/CI, Pi year one vs opencode, subagent 3rd axis
+
+Pi repo pulled to v0.84.2 (5,656 commits; repo opened 2025-08-09, so year one
+is essentially the whole project life).
+
+New `ecosystem/jenkins-and-ci-integration.md` (type: synthesis). No Pi Jenkins
+extension exists, so this is a design page, not a survey. Core argument: the
+problem is context management, not transport, so rank options by how much log
+never reaches the window. Three shapes (bash+curl / MCP server + adapter /
+native extension); Jenkins endpoints that matter (`progressiveText` as a
+byte-offset cursor via X-Text-Size, `wfapi/describe` + per-stage log as the
+biggest context saving, `tree=` filters); API-token auth is crumb-free since
+Jenkins 2.96; JENKINS-75081 = client can OOM the controller on huge logs.
+Maps onto Pi's documented `truncateTail` + temp-file spillover contract
+(50KB/2000-line ceiling). Four-tool design ending in `jenkins_log_search`.
+
+New `references/pi-year-one-and-opencode.md` (type: comparison). Commit curve
+(Dec25 868 / Jan26 peak 1,227 / then steady ~400-500), primitive timeline
+(skills v0.19 -> registerCommand+session_before_compact v0.31 -> setActiveTools
+v0.34 -> registerTool+pi.events v0.35 -> provider registry v0.50 -> **native
+extension providers v0.81** -> telemetry+harness v2 v0.84). Thesis: the core
+stayed minimal while the extension surface grew until third parties could ship
+entire providers. opencode is now anomalyco/opencode v1.18.x (Bun, Effect-ts
+Core V2, headless server :4096 with TUI/web/desktop/Slack/IDE as clients).
+Published popularity figures for both are contradictory across sources -> flagged,
+evaluation.md recipes referenced instead.
+
+Corrections to `ecosystem/subagent-extensions.md`:
+- Added a **third deciding axis: blocking vs async**, previously missing. It is
+  invisible interactively and decisive for loop drivers: an async spawner ends
+  the turn at launch, so a loop re-injecting on agent_end starts iteration N+1
+  while child N still runs. Gate on a durable side effect, not turn boundaries.
+- edxeth/pi-subagents re-read: now ~17k LOC src / 93 files (+22k test LOC / 81
+  files, 33 live e2e scripts), not "~10k across 55+". Verified in source:
+  blocking mode via `async: false` frontmatter, and child inherits the parent's
+  live model *and* thinking level (`params.model ?? agentDefs?.model ??
+  parentModelRef`) - the only surveyed option that does. Registers
+  subagent/subagent_resume/subagent_kill -> **collides with HazAT**.
+- HazAT: async-only (no blocking mode); refuses outside a multiplexer via
+  isMuxAvailable() (fail-closed = zero-config off switch); a child spawned
+  without explicit model/agent gets Pi's global default, NOT the parent's model.
+- New entries: heyhuynhgiabuu/pi-task (`task` tool, no collision; task panel
+  with live steerable transcript; delivery guards against cross-branch result
+  delivery), revazi/pi-tmux-orchestrator (role grid + Python CLI + socket
+  broker), ruizrica/agent-pi (triage pending).
+
+Sources +32 (heyhuynhgiabuu-pi-task, ruizrica-agent-pi, nicobailon-pi-boomerang,
+revazi-pi-tmux-orchestrator, hanzceo-pi-codebase-reader,
+edxeth-pi-auto-session-titles, pithings-pi-vscode, samfoy-pi-essentials,
+narumiruna-pi-extensions, tungthedev-pi-extensions, pi-extensions-docs,
+jenkins-remote-access-api, jenkins-scripted-clients-auth, jenkins-csrf-protection,
+jenkins-pipeline-rest-api, jenkins-log-oom-75081, jenkins-mcp-server-plugin,
+t089-jenkins-mcp, jordan-jarvis-jenkins-mcp-enterprise, adarsh-jenkins-mcp-go,
+lanbaoshen-mcp-jenkins, opencode-repo, opencode-changelog, opencode-core-v2,
+martianlee-opencode-architecture, bitter-frontier-pi-profile,
+tensorlake-agent-comparison, bswen-pi-vs-others, pi-releases).
+- Updated: ecosystem/compaction-extensions.md (pi-boomerang: task-scoped
+  context collapse, prevents growth at the task boundary rather than repairing)
+- Updated: ecosystem/web-ui-and-remote-access.md (pi-vscode as a fourth surface)
+- Updated: ecosystem/hashline-edit-extensions.md (read-side counterpart:
+  pi-codebase-reader AST outlining `read` override)
+- Updated: references/catalogs.md (4 bundles + pi-auto-session-titles as a
+  worked example of bounding what leaves the machine)
+- Updated: index.md (2 new pages, subagent description now names the 3 axes)

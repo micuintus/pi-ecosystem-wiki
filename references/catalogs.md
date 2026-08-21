@@ -1,7 +1,7 @@
 ---
 title: Pi Ecosystem Catalogs and Awesome-Lists
 type: reference
-updated: 2026-05-08
+updated: 2026-08-21
 sources:
   - qualisero-awesome-pi-agent
   - shaftoe-awesome-pi-coding-agent
@@ -10,6 +10,11 @@ sources:
   - qualisero-rhubarb-pi
   - kcosr-pi-extensions
   - noahsaso-my-pi
+  - samfoy-pi-essentials
+  - diegopetrucci-pi-extensions
+  - narumiruna-pi-extensions
+  - tungthedev-pi-extensions
+  - edxeth-pi-auto-session-titles
   - oh-my-pi-collection
   - pi-packages-docs
   - mitsuhiko-agent-stuff
@@ -53,6 +58,22 @@ Single-author/team bundles, useful as starting points or to lift extensions piec
 | [`kcosr/pi-extensions`](https://github.com/kcosr/pi-extensions) | kcosr | Released bundle, semver-tagged. codemap, apply-patch, assistant picker, skill-picker, toolwatch (SQLite tool-call auditing). |
 | [`noahsaso/my-pi`](https://github.com/noahsaso/my-pi) | noahsaso | Personal collection: pi-context, pi-interactive-subagents, browser tools, web tools, memory, file-watcher, code-ast, antigravity image gen. Skills from `badlogic/pi-skills` and `obra/superpowers`. Includes SETUP.md for agent-guided install. |
 | [`can1357/oh-my-pi`](https://github.com/can1357/oh-my-pi) | can1357 | A Pi fork (not just extensions) bundling Claude Code SDK provider and other patches. See also [Anthropic Auth & Billing in Pi](../ecosystem/anthropic-auth-and-billing.md). |
+| [`samfoy/pi-essentials`](https://github.com/samfoy/pi-essentials) | samfoy | Quality-of-life set pitched as the baseline every install wants: auto session naming, compact header, clipboard images, image pruning, markdown viewer, screenshots, subagents. |
+| [`narumiruna/pi-extensions`](https://github.com/narumiruna/pi-extensions) | narumiruna | TypeScript monorepo, every package published separately under `@narumitw` so nothing is all-or-nothing: automation, planning, language tooling, browser control, web research, Git workflows, config sync. |
+| [`tungthedev/pi-extensions`](https://github.com/tungthedev/pi-extensions) | tungthedev | Opinionated default-experience upgrade: custom editor/composer, inline Mermaid rendering, web research, skill loading, boomerang-style context summarization, tool-set/system-prompt switching between Pi/Codex/Droid modes, TUI-first subagent manager. |
+| [`diegopetrucci/pi-extensions`](https://github.com/diegopetrucci/pi-extensions) | diegopetrucci | Small guardrail-flavoured set: `confirm-destructive` (gate clear/switch/fork), `context-cap` (cap effective context at 200k to dodge the "dumb zone"), `context-inspector` (`/context`). |
+
+### Standalone utilities worth knowing
+
+- [`edxeth/pi-auto-session-titles`](https://github.com/edxeth/pi-auto-session-titles)
+  names sessions automatically once the first request **fully settles** (after
+  retries, compaction recovery and queued continuations), using a configurable
+  cheap model, and adds `/rename-session` to regenerate from the full branch.
+  Notable for restraint: it never overwrites a title another extension set,
+  never re-titles after compaction, and deliberately withholds thinking, tool
+  results, file contents, bash commands and system prompts from the title
+  model — only the request, the final reply, tool names and up to 20 file
+  paths. A good worked example of bounding what leaves the machine.
 
 ## Cross-agent workflow skills
 

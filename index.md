@@ -1,7 +1,7 @@
 ---
 title: Index
 type: reference
-updated: 2026-06-23
+updated: 2026-08-21
 sources: []
 ---
 
@@ -22,7 +22,7 @@ them.
 
 - [Loop and Ralph Extensions](ecosystem/loop-extensions.md) — 7 architectural variants for "keep iterating until done"
 - [Evolve / Code-Optimization Extensions](ecosystem/evolve-extensions.md) — `pi-autoresearch` and the broader research landscape (try variant → benchmark → keep/discard)
-- [Subagent Extensions](ecosystem/subagent-extensions.md) — Four execution patterns (subprocess, in-process, mux-pane) plus the team/swarm orchestration class; with a full-view inspection guide and picking table
+- [Subagent Extensions](ecosystem/subagent-extensions.md) — Three deciding axes (execution pattern, delegation vs orchestration, **blocking vs async**), four execution patterns, the team/swarm class, full-view inspection guide and picking table
 - [Claude Code `/loop`](ecosystem/claude-code-loop.md) — Cross-tool reference: how Claude Code's cron-scheduled loop differs from Pi Ralph
 
 ### ✅ Task tracking and planning
@@ -77,6 +77,7 @@ them.
 ### 🧩 Integrations
 
 - [MCP Integration](ecosystem/mcp-integration.md) — Model Context Protocol adapters; when MCP makes sense and when CLI skills are leaner
+- [Jenkins and CI Integration](ecosystem/jenkins-and-ci-integration.md) — Reading build logs without drowning the context: bash vs MCP vs native extension, the Jenkins endpoints that matter, and the huge-log trap
 - [Slack Extensions](ecosystem/slack-extensions.md) — Five shapes for Slack ↔ Pi: agent tools (`sf-slack`, `@dreki-gg/pi-slack`), messenger bridges, standalone bots (`pi-mom`), the MCP route, and notifications
 - [Google Workspace Integration](ecosystem/google-workspace.md) — `gws` CLI, OAuth, GCP prerequisites, command shapes
 
@@ -85,6 +86,7 @@ them.
 - [How to Evaluate a Pi Extension](references/evaluation.md) — vital signs, maintenance signals, code-quality recipes (the framework this wiki uses instead of stale numbers)
 - [Pi Ecosystem Catalogs and Awesome-Lists](references/catalogs.md) — Where to look when this wiki doesn't cover your need
 - [Web Search Providers](references/web-search-providers.md) — Backends behind the major AI products
+- [Pi Year One, and How It Compares to opencode](references/pi-year-one-and-opencode.md) — The first year of Pi in commits and primitives, and an honest head-to-head with opencode's headless-engine model
 
 ## 🚧 Niches not yet surveyed
 

@@ -1,7 +1,7 @@
 ---
 title: Pi Compaction Extensions
 type: ecosystem
-updated: 2026-05-28
+updated: 2026-08-21
 sources:
   - pi-mono
   - pi-mono-custom-compaction-example
@@ -10,6 +10,7 @@ sources:
   - pi-observational-memory-fork-githubfoxy
   - pi-blackhole
   - pi-smart-compact
+  - nicobailon-pi-boomerang
   - pi-agentic-compaction-whamp
   - pi-agentic-compaction-salemsayed
   - pi-omni-compact
@@ -21,6 +22,12 @@ sources:
   - pi-custom-compactor
 tags: [extension, compaction, memory, context-management]
 entries:
+  - id: nicobailon-pi-boomerang
+    name: pi-boomerang
+    repo: nicobailon/pi-boomerang
+    npm: pi-boomerang
+    role: task-scoped-context-collapse
+    notes: "Collapses context per *task* rather than per session: a delegated unit of work runs, and only its distilled result returns to the parent transcript — so the parent never accumulates the child's intermediate steps. Sits between compaction and delegation, which is the point: it treats context growth as something to prevent at the task boundary rather than repair afterwards. Strong adoption. Compare with the [subagent survey](subagent-extensions.md), where the same trick is a side effect of process isolation rather than the headline feature."
   - id: pi-mono-custom-compaction
     name: "pi-mono examples/extensions/custom-compaction.ts"
     repo: earendil-works/pi-mono

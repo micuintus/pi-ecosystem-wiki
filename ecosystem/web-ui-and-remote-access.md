@@ -1,15 +1,21 @@
 ---
 title: Pi Web UI and Remote Access Extensions
 type: ecosystem
-updated: 2026-05-08
+updated: 2026-08-21
 sources:
   - pi-web-ui-package
   - qroy-pi-remote
   - noahsaso-pi-remote
   - VVander-pi-remote-web-ui
   - sleepingrobots-pi-web-ui
+  - pithings-pi-vscode
 tags: [extension, web-ui, remote, mobile]
 entries:
+  - id: pithings-pi-vscode
+    name: pi-vscode
+    repo: pithings/pi-vscode
+    role: editor-surface
+    notes: "VS Code extension putting Pi inside the editor — a fourth access surface alongside TUI, embedded web UI and remote browser. Published on both the VS Code Marketplace and Open VSX. Notable as the clearest case of the community supplying by extension what opencode ships as a first-party client; see [Pi year one and opencode](../references/pi-year-one-and-opencode.md)."
   - id: pi-web-ui
     name: "@mariozechner/pi-web-ui"
     repo: badlogic/pi-mono

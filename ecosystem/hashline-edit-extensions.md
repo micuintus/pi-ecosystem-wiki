@@ -1,8 +1,9 @@
 ---
 title: Pi Hashline / Edit-Tool Replacement Extensions
 type: ecosystem
-updated: 2026-05-08
+updated: 2026-08-21
 sources:
+  - hanzceo-pi-codebase-reader
   - pi-hashline-edit
   - pi-hashline-readmap
   - oh-my-pi
@@ -47,6 +48,20 @@ entries:
 ---
 
 # Pi Hashline / Edit-Tool Replacement Extensions
+
+> **Read-side counterpart.** These extensions replace the *edit* tool. The
+> same override mechanism applies to `read`:
+> [`HanzCEO/pi-codebase-reader`](https://github.com/HanzCEO/pi-codebase-reader)
+> swaps Pi's built-in `read` for an AST-aware version that returns a
+> **structural outline** (with line ranges) for large files in TypeScript,
+> JavaScript, Python, Go, Rust and Solidity, passing small files through
+> unchanged and treating `offset`/`limit` as a drill-down into a section. It
+> implements the approach from Sweep's "Read File" post, adds `repo_tree` and
+> `connected_tree` (import-dependency graph) tools, and registers an Explorer
+> subagent for either `@tintinweb/pi-subagents` or `nicobailon/pi-subagents`.
+> Toggle with `/codebase-reader off`. The motivation is the same one driving
+> this page: the built-in file tools are a context-budget decision, not just
+> an ergonomics one.
 
 Survey of Pi extensions that replace the built-in `read` / `edit`
 tools (and sometimes `grep` / `ls` / `find`) with **hash-anchored line

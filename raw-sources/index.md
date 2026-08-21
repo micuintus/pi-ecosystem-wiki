@@ -165,7 +165,33 @@ copied into a dated bucket file.
 | amosblomqvist-pi-subagents | repo | https://github.com/amosblomqvist/pi-subagents | extension, subagent, minimal |
 | heyhuynhgiabuu-pi-task | repo | https://github.com/heyhuynhgiabuu/pi-task | extension, subagent, task-panel, background |
 | ruizrica-agent-pi | repo | https://github.com/ruizrica/agent-pi | extension, subagent, orchestration-suite |
+| nicobailon-pi-boomerang | repo | https://github.com/nicobailon/pi-boomerang | extension, subagent, context-collapse |
 | revazi-pi-tmux-orchestrator | repo | https://github.com/revazi/pi-tmux-orchestrator | extension, orchestration, tmux, broker |
+| hanzceo-pi-codebase-reader | repo | https://github.com/HanzCEO/pi-codebase-reader | extension, read-override, ast, explorer |
+| edxeth-pi-auto-session-titles | repo | https://github.com/edxeth/pi-auto-session-titles | extension, session, titles |
+| pithings-pi-vscode | repo | https://github.com/pithings/pi-vscode | editor-integration, vscode |
+| samfoy-pi-essentials | repo | https://github.com/samfoy/pi-essentials | extension, bundle, quality-of-life |
+| narumiruna-pi-extensions | repo | https://github.com/narumiruna/pi-extensions | extension, bundle, monorepo |
+| tungthedev-pi-extensions | repo | https://github.com/tungthedev/pi-extensions | extension, bundle, editor, mermaid |
+| pi-extensions-docs | docs | https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/extensions.md | docs, extensions, api |
+| jenkins-remote-access-api | docs | https://www.jenkins.io/doc/book/using/remote-access-api/ | jenkins, ci, rest-api |
+| jenkins-scripted-clients-auth | docs | https://www.jenkins.io/doc/book/system-administration/authenticating-scripted-clients/ | jenkins, ci, auth, api-token |
+| jenkins-csrf-protection | docs | https://www.jenkins.io/doc/book/security/csrf-protection/ | jenkins, ci, csrf, crumb |
+| jenkins-pipeline-rest-api | docs | https://plugins.jenkins.io/pipeline-rest-api | jenkins, ci, pipeline, stage-logs |
+| jenkins-log-oom-75081 | issue | https://github.com/jenkinsci/jenkins/issues/16619 | jenkins, ci, logs, oom, bug |
+| jenkins-mcp-server-plugin | docs | https://plugins.jenkins.io/mcp-server/ | jenkins, ci, mcp, official |
+| t089-jenkins-mcp | repo | https://github.com/t089/jenkins-mcp | jenkins, ci, mcp, pagination |
+| jordan-jarvis-jenkins-mcp-enterprise | repo | https://github.com/Jordan-Jarvis/jenkins-mcp-enterprise | jenkins, ci, mcp, vector-search |
+| adarsh-jenkins-mcp-go | repo | https://github.com/2001adarsh/jenkins-mcp-go | jenkins, ci, mcp, go |
+| lanbaoshen-mcp-jenkins | repo | https://github.com/lanbaoshen/mcp-jenkins | jenkins, ci, mcp, python |
+| opencode-repo | repo | https://github.com/anomalyco/opencode | opencode, agent, comparison |
+| opencode-changelog | docs | https://opencode.ai/changelog | opencode, releases |
+| opencode-core-v2 | docs | https://deepwiki.com/sst/opencode/4.7-core-v2-architecture | opencode, architecture, effect |
+| martianlee-opencode-architecture | article | https://martianlee.github.io/posts/2026-06-29-opencode-architecture | opencode, architecture, headless |
+| bitter-frontier-pi-profile | article | https://frontier.bitter.sh/profiles/pi-coding-agent/ | pi, profile, analysis |
+| tensorlake-agent-comparison | article | https://www.tensorlake.ai/blog/best-ai-coding-agents-2026 | comparison, benchmark, harness |
+| bswen-pi-vs-others | article | https://docs.bswen.com/blog/2026-08-10-pi-vs-claude-code-vs-codex-vs-opencode/ | comparison, pi, opencode |
+| pi-releases | docs | https://github.com/earendil-works/pi/releases | pi, releases, changelog |
 | edxeth-pi-subagents | repo | https://github.com/edxeth/pi-subagents | extension, subagent, mux, hybrid |
 | masta-g3-pi-tmux-subagents | repo | https://github.com/masta-g3/pi-tmux-subagents | extension, subagent, tmux |
 | hamdimaz-pi-sub-agent | repo | https://github.com/HamdiMaz/pi-sub-agent | extension, subagent, subprocess |
