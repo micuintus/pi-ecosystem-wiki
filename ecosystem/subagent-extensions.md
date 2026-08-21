@@ -1,7 +1,7 @@
 ---
 title: Pi Subagent Extensions
 type: ecosystem
-updated: 2026-05-31
+updated: 2026-08-21
 sources:
   - pi-subagent-example
   - mjakl-pi-subagent
@@ -30,6 +30,9 @@ sources:
   - messense-pi-parallel-agents
   - gotgenes-pi-subagents
   - amosblomqvist-pi-subagents
+  - heyhuynhgiabuu-pi-task
+  - ruizrica-agent-pi
+  - revazi-pi-tmux-orchestrator
 tags: [extension, subagent, multiagent, orchestration]
 entries:
   - id: nicobailon-pi-subagents
@@ -48,7 +51,7 @@ entries:
     name: pi-interactive-subagents (HazAT)
     repo: HazAT/pi-interactive-subagents
     role: mux-pane-full-view
-    notes: "~5k LOC. Pattern 4 (multiplexer pane). Each subagent runs as a real, full Pi session in its own cmux/tmux/zellij/wezterm pane — full TUI, full transcript, no truncation, fully interactive (you can type into the child). The canonical **full-view** option. `subagent()` returns immediately (async, non-blocking); a live widget shows per-agent phase (starting/active/waiting/stalled), results steered back into the parent as async notifications. caller_ping (child→parent help), /plan and /iterate, subagent_interrupt. The first Pi extension with true side-by-side parallel inspection. Not on npm — install by git URL."
+    notes: "~5k LOC. Pattern 4 (multiplexer pane). Each subagent runs as a real, full Pi session in its own cmux/tmux/zellij/wezterm pane — full TUI, full transcript, no truncation, fully interactive (you can type into the child). The canonical **full-view** option. `subagent()` returns immediately — **async-only, with no blocking mode**; a live widget shows per-agent phase (starting/active/waiting/stalled), results steered back into the parent as async notifications. Two consequences worth knowing: it **hard-refuses outside a multiplexer** (`isMuxAvailable()` → 'Subagents require a supported terminal multiplexer'), which doubles as a clean off-switch; and a child spawned without an explicit `model`/`agent` gets **Pi's global default model, not the parent's live model**. caller_ping (child→parent help), /plan and /iterate, subagent_interrupt. The first Pi extension with true side-by-side parallel inspection. Not on npm — install by git URL."
   - id: ross-jill-ws-pi-subagent-in-memory
     name: pi-subagent-in-memory (ross-jill-ws)
     repo: ross-jill-ws/pi-subagent-in-memory
@@ -72,7 +75,7 @@ entries:
     repo: edxeth/pi-subagents
     npm: pi-subagents
     role: mux-plus-subprocess-hybrid
-    notes: "~10k LOC across 55+ files — the largest single-runtime option. Hybrid **Pattern 4+1**: interactive children in a multiplexer pane, background children as headless `pi -p`. Orchestrator mode (PI_ORCHESTRATOR_MODE=1) strips read/bash/edit/write from the parent so it can only delegate (modeled on Claude Code COORDINATOR_MODE). Ambient awareness, three session modes (lineage/standalone/fork), rich agent frontmatter, skill allowlist+injection. Custom snake_case tool namespace — not the idiomatic Claude Code shape. NPM slug collides with nicobailon's `pi-subagents`; disambiguate by repo."
+    notes: "~17k LOC src across 93 files (+ ~22k LOC tests across 81 files, plus 33 live e2e scripts) — grown from a HazAT fork into the most feature-complete option, now rivalling nicobailon in size. Hybrid **Pattern 4+1**: interactive children in a multiplexer pane (Herdr/cmux/tmux/zellij/WezTerm), background children as headless `pi -p` — so unlike HazAT it still works with **no multiplexer at all**. Two independent axes: interactive-vs-background *and* async-vs-**blocking** (`async: false` in agent frontmatter makes the parent wait — see [blocking vs async](#3-does-the-parent-wait-blocking-vs-async)). **Child inherits the parent's live model and thinking level** when frontmatter omits them (`params.model ?? agentDefs?.model ?? parentModelRef`) — the only surveyed option verified to do this. Orchestrator mode (PI_ORCHESTRATOR_MODE=1) strips read/bash/edit/write from the parent so it can only delegate (modeled on Claude Code COORDINATOR_MODE). Ambient awareness, session modes, rich agent frontmatter, per-agent tool/extension allowlists, `allowed-models` policy. Registers `subagent`/`subagent_resume`/`subagent_kill`/`set_tab_title` — **`subagent` and `subagent_resume` collide with HazAT**, so the two cannot coexist. NPM slug also collides with nicobailon's `pi-subagents`; disambiguate by repo."
   - id: hamdimaz-pi-sub-agent
     name: pi-sub-agent (HamdiMaz)
     repo: HamdiMaz/pi-sub-agent
@@ -85,6 +88,23 @@ entries:
     npm: "@jerryan/pi-subagent-lite"
     role: subprocess-zero-config
     notes: "~245 LOC single file. Pattern 1. One `subagent` tool with two params: task + skills. **No agent .md files, no personas** — specialization is via Pi skills passed as --skill flags. Auto-spills long tasks to temp. Self-unregisters inside children. The minimum-viable subprocess option that is still useful."
+  - id: heyhuynhgiabuu-pi-task
+    name: pi-task (heyhuynhgiabuu)
+    repo: heyhuynhgiabuu/pi-task
+    npm: "@heyhuynhgiabuu/pi-task"
+    role: foreground-background-task-panel
+    notes: "Registers a `task` tool rather than `subagent`, so it does **not** collide with the HazAT/edxeth namespace. ~45 src files with ~28 test files. Distinctive feature is the **interactive task panel below the editor**: press down-arrow on an empty prompt to enter task rows, Enter opens the child's live transcript rendered with Pi's native message/tool components, and typing steers a running tmux/HerdR child. Both foreground (parent waits) and background (parent continues, completion arrives as a follow-up) in one tool. Three backends — tmux, HerdR, and an SDK fallback when neither is available. **Delivery guards** ensure a background result is never delivered into a different conversation or `/tree` branch — the branch-safety problem most async extensions ignore. Agent frontmatter (model, thinking, fast, skills, tools, disallowed_tools) plus task-local OpenAI Fast Mode. Bundled starter agents: scout, explore, general, reviewer."
+  - id: revazi-pi-tmux-orchestrator
+    name: pi-tmux-orchestrator
+    repo: revazi/pi-tmux-orchestrator
+    npm: pi-tmux-orchestrator
+    role: orchestration-role-grid
+    notes: "Orchestration by fixed *roles* rather than ad-hoc children: an implementer with normal coding tools, an independent reviewer with read/verification tools only, plus optional probe, Playwright tester and Django expert, arranged in a monitorable tmux grid. Unusual construction — a Pi extension plus a **dependency-free Python CLI** and a per-run owner-only Unix-socket broker, with metadata-only SQLite state and a status dashboard covering workflow, role, model, usage and context pressure. Same worker-bridge protocol for interactive TUI and headless RPC workers. Per-role provider/model/thinking policy. Explicitly avoids the fragile patterns (no Markdown handoffs, no readiness markers, no relay polling, no tmux key injection). Heaviest setup of the orchestration class; the payoff is supervision and cost accounting."
+  - id: ruizrica-agent-pi
+    name: agent-pi (ruizrica)
+    repo: ruizrica/agent-pi
+    role: orchestration-suite
+    notes: "Extension *suite* positioning Pi as a multi-agent orchestration platform rather than a single delegation tool. Strong adoption signal. Not yet code-read — triage pending."
   - id: amosblomqvist-pi-subagents
     name: pi-subagents (amosblomqvist)
     repo: amosblomqvist/pi-subagents
@@ -194,7 +214,7 @@ than 1:1 delegation, see the orchestration class
 
 ## Contents
 
-- [Two axes that decide everything](#two-axes-that-decide-everything)
+- [Three axes that decide everything](#three-axes-that-decide-everything)
 - [The four execution patterns](#the-four-execution-patterns)
 - [Cross-pattern comparison](#cross-pattern-comparison)
 - [Delegation vs orchestration: teams and swarms](#delegation-vs-orchestration-teams-and-swarms)
@@ -214,9 +234,9 @@ parent without polluting its window. There is no first-class subagent in Pi
 extracting subagent execution into a reusable library but was closed without
 landing one, so the variant landscape is the answer.
 
-## Two axes that decide everything
+## Three axes that decide everything
 
-Almost every choice reduces to two orthogonal questions. Capabilities
+Almost every choice reduces to three orthogonal questions. Capabilities
 (parallel, chain, pool) are *not* an axis — most options support most of
 them.
 
@@ -227,6 +247,33 @@ them.
    are "parent delegates one task to one child." A newer class coordinates a
    *team or swarm* with shared task lists, mailboxes, and DAGs. See
    [Delegation vs orchestration](#delegation-vs-orchestration-teams-and-swarms).
+3. **Does the parent wait?** → blocking vs async. Invisible until you drive
+   the extension from a loop, then decisive. See below.
+
+### 3. Does the parent wait? Blocking vs async
+
+A **blocking** spawn tool runs the child inside the `execute()` call and
+returns its result; the parent's turn cannot end until the child is done. An
+**async** one returns a "started" acknowledgement immediately and delivers
+the result later as a steer message that wakes the parent.
+
+For interactive use the difference is cosmetic. For anything **loop-driven**
+it is the whole game. A loop driver that re-injects its prompt on `agent_end`
+silently assumes blocking: with an async spawner the turn ends the instant
+the child is launched, `agent_end` fires with no pending messages, and
+iteration *N+1* starts while child *N* is still running. The fix is to gate
+the loop on a **durable side effect** the child produces (a file, a ledger
+row, a commit) rather than on turn boundaries — turn boundaries are not
+iteration boundaries.
+
+| Extension | Blocking available? |
+|---|---|
+| `edxeth/pi-subagents` | **Yes** — `async: false` in agent frontmatter |
+| `heyhuynhgiabuu/pi-task` | **Yes** — foreground tasks; background is async |
+| `ross-jill-ws/pi-subagent-in-memory` | **Yes** — awaits child `turn_end` |
+| `nicobailon/pi-subagents` | Both — async with result-watcher polling |
+| `HazAT/pi-interactive-subagents` | **No** — async-only by design |
+| `melihmucuk/pi-crew` | **No** — non-blocking by design |
 
 ## The four execution patterns
 
@@ -422,8 +469,12 @@ the field:
 | **Claude-Code-styled tool set** | `tintinweb/pi-subagents` | `Agent`/`get_subagent_result`/`steer_subagent`; live modal; cross-extension RPC. `tools: all` bug now fixed (PR #74). In-process (not resumable). |
 | **Low-latency fanout of many short children** | `pi-subagent-in-memory` (headless) or `pi-fast-subagent` | In-process = ~0 spawn cost and shared auth; cap concurrency (provider limits, RAM). |
 | **Coordinate a team / swarm** | `tmustier/pi-agent-teams`, `melihmucuk/pi-crew`, `messense/pi-parallel-agents` | Shared task list / mailboxes / DAGs / model races — orchestration, not 1:1 delegation. |
+| **Fixed roles with supervision and cost accounting** | `revazi/pi-tmux-orchestrator` | Implementer + independent reviewer (+ optional probe/tester) in a monitorable tmux grid, broker dashboard, per-role model policy. Heaviest setup here. |
 | **Smallest viable** | `drsh4dow/pi-delegate` or `@jerryan/pi-subagent-lite` | ~150–245 LOC, one tool, no personas. |
-| **Opinionated multi-agent runtime** | `edxeth/pi-subagents` | Hybrid 4+1, orchestrator mode strips the parent's edit tools, rich frontmatter. |
+| **Driving a loop (must not race)** | `edxeth/pi-subagents` (`async: false`) or `heyhuynhgiabuu/pi-task` (foreground) | A blocking spawn keeps turn boundaries and iteration boundaries aligned. With an async-only tool, gate the loop on a durable side effect instead. |
+| **Child must use the parent's model** | `edxeth/pi-subagents` | Verified to fall back to the parent's live model *and* thinking level; most options fall back to Pi's global default instead. |
+| **Steerable background work with a task panel** | `heyhuynhgiabuu/pi-task` | `task` tool (no `subagent` collision); panel under the editor, Enter opens the child's live transcript, typing steers it; delivery guards keep results off the wrong `/tree` branch. |
+| **Opinionated multi-agent runtime** | `edxeth/pi-subagents` | Hybrid 4+1 (mux pane *or* headless `pi -p`, so no multiplexer required), orchestrator mode strips the parent's edit tools, blocking mode, parent model inheritance, rich frontmatter. The most feature-complete option; also the largest. |
 | **Subprocess with bundled experts** | `HamdiMaz/pi-sub-agent` | 9 bundled expert agents; confirmation gate for project agents. |
 | **Skill complement** (when/how, not the mechanism) | `obra/superpowers` | Cross-agent skills (`subagent-driven-development`, `dispatching-parallel-agents`); works with whichever extension you install. |
 | **Reference for building your own** | `pi-mono/examples/extensions/subagent` | Re-renders child `Message[]` inline using Pi's exported components. |
@@ -434,10 +485,13 @@ Because Pi loads many extensions, you can run two subagent systems in
 parallel (e.g. an in-process fanout engine plus a mux-pane viewer) **as long
 as their tool names and `pi.events` namespaces are disjoint**. Tool-name
 collisions are the trap: several options register a bare `subagent` tool, so
-pairing two of those breaks. Pairs like `tintinweb` (`Agent` + `subagents:*`
-events), `pi-subagent-in-memory` (`subagent_create`), and `pi-fast-subagent`
-(`subagent`) coexist cleanly. The remaining concern is the model seeing two
-delegation tools — scope active tools per workflow rather than exposing both.
+pairing two of those breaks. `HazAT`, `edxeth` and `pi-fast-subagent` all
+claim bare `subagent` (and HazAT/edxeth also both claim `subagent_resume`),
+so **those cannot be combined with each other**. Disjoint pairs coexist
+cleanly: `tintinweb` (`Agent` + `subagents:*` events),
+`pi-subagent-in-memory` (`subagent_create`), and `heyhuynhgiabuu/pi-task`
+(`task`). The remaining concern is the model seeing two delegation tools —
+scope active tools per workflow rather than exposing both.
 
 ## Caveats
 
@@ -450,6 +504,17 @@ delegation tools — scope active tools per workflow rather than exposing both.
   publish to bare `pi-subagents`, and there is a wave of clones. Install by
   repo URL. `HamdiMaz/pi-sub-agent` (singular) and `@scope/...` packages do
   not collide.
+- **A multiplexer-only extension fails closed, which is a feature.** HazAT
+  checks `isMuxAvailable()` and returns "Subagents require a supported
+  terminal multiplexer" rather than spawning — nothing crashes, delegation is
+  simply unavailable. Launching outside tmux/cmux is therefore a zero-config
+  off switch. `edxeth` avoids the constraint entirely for background children
+  (headless `pi -p`), reserving the mux requirement for interactive ones.
+- **Check which model the child actually gets.** Spawning without an explicit
+  `model`/`agent` usually yields *Pi's configured default*, not the model the
+  parent is currently running — so a parent on a frontier model can silently
+  delegate to something cheaper. `edxeth` is the exception (inherits the
+  parent's model and thinking level).
 - **In-process (Pattern 3) has no isolation and the highest semver risk** —
   a child crash can take the parent down, and `createAgentSession` is not a
   documented-stable surface. Pin versions.

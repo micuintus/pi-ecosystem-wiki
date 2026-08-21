@@ -1,7 +1,7 @@
 ---
 title: Raw sources
 type: reference
-updated: 2026-06-23
+updated: 2026-08-21
 sources: []
 ---
 
@@ -163,6 +163,9 @@ copied into a dated bucket file.
 | messense-pi-parallel-agents | repo | https://github.com/messense/pi-parallel-agents | extension, subagent, parallel, orchestration |
 | gotgenes-pi-subagents | repo | https://github.com/gotgenes/pi-packages | extension, subagent, fork |
 | amosblomqvist-pi-subagents | repo | https://github.com/amosblomqvist/pi-subagents | extension, subagent, minimal |
+| heyhuynhgiabuu-pi-task | repo | https://github.com/heyhuynhgiabuu/pi-task | extension, subagent, task-panel, background |
+| ruizrica-agent-pi | repo | https://github.com/ruizrica/agent-pi | extension, subagent, orchestration-suite |
+| revazi-pi-tmux-orchestrator | repo | https://github.com/revazi/pi-tmux-orchestrator | extension, orchestration, tmux, broker |
 | edxeth-pi-subagents | repo | https://github.com/edxeth/pi-subagents | extension, subagent, mux, hybrid |
 | masta-g3-pi-tmux-subagents | repo | https://github.com/masta-g3/pi-tmux-subagents | extension, subagent, tmux |
 | hamdimaz-pi-sub-agent | repo | https://github.com/HamdiMaz/pi-sub-agent | extension, subagent, subprocess |
