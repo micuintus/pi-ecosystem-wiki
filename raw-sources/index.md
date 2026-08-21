@@ -69,9 +69,6 @@ copied into a dated bucket file.
 | pi-todo-md | repo | https://github.com/forjd/pi-todo-md | extension, todo |
 | patriceckhart-pi-todo | repo | https://github.com/patriceckhart/pi-todo | extension, todo |
 | pi-mono-todo-example | repo | https://github.com/earendil-works/pi-mono/blob/main/packages/coding-agent/examples/extensions/todo.ts | extension, todo, example |
-| karpathy-autoresearch | repo | https://github.com/karpathy/autoresearch | method, evolve, autoresearch |
-| openevolve | repo | https://github.com/codelion/openevolve | research, evolve |
-| shinkaevolve | repo | https://github.com/SakanaAI/ShinkaEvolve | research, evolve |
 | astro-han-llm-wiki | repo | https://github.com/Astro-Han/karpathy-llm-wiki | skill, llm-wiki |
 | praneybehl-llm-wiki-plugin | repo | https://github.com/praneybehl/llm-wiki-plugin | skill, llm-wiki, claude-code |
 | aaronoah-llm-wiki-skill | repo | https://github.com/aaronoah/llm-wiki-skill | skill, llm-wiki |
@@ -192,6 +189,19 @@ copied into a dated bucket file.
 | tensorlake-agent-comparison | article | https://www.tensorlake.ai/blog/best-ai-coding-agents-2026 | comparison, benchmark, harness |
 | bswen-pi-vs-others | article | https://docs.bswen.com/blog/2026-08-10-pi-vs-claude-code-vs-codex-vs-opencode/ | comparison, pi, opencode |
 | pi-releases | docs | https://github.com/earendil-works/pi/releases | pi, releases, changelog |
+| avivsinai-jenkins-cli-jk | repo | https://github.com/avivsinai/jenkins-cli | jenkins, ci, cli, agent-skill |
+| ysmaoui-jkit | repo | https://github.com/ysmaoui/jkit | jenkins, ci, cli, developer-workflow |
+| jenkins-mcp-cli | docs | https://pypi.org/project/jenkins-mcp-cli/ | jenkins, ci, cli, mcp |
+| jenkins-official-cli | docs | https://www.jenkins.io/doc/book/managing/cli/ | jenkins, ci, cli, official |
+| cli-microsoft365 | repo | https://github.com/pnp/cli-microsoft365 | teams, m365, cli, graph |
+| atc0005-send2teams | repo | https://github.com/atc0005/send2teams | teams, cli, webhook, notification |
+| yusufaltunbicak-microsoft-teams-cli | repo | https://github.com/yusufaltunbicak/microsoft-teams-cli | teams, cli, unofficial, msal |
+| msgraph-teams-messaging | docs | https://learn.microsoft.com/en-us/graph/teams-messaging-overview | teams, graph, api, official |
+| msgraph-chat-post-messages | docs | https://learn.microsoft.com/en-us/graph/api/chat-post-messages | teams, graph, api, official |
+| composio-teams-pi | docs | https://composio.dev/toolkits/microsoft_teams/framework/pi-agent | teams, mcp, pi, composio |
+| msteams-agent-skills | docs | https://learn.microsoft.com/en-us/microsoftteams/platform/teams-sdk/developer-tools/agent-skills | teams, skill, official, bot-development |
+| burggraf-pi-teams | repo | https://github.com/burggraf/pi-teams | extension, subagent, agent-teams, naming-collision |
+| kristjanpikhof-pi-agents-team | repo | https://github.com/KristjanPikhof/pi-agents-team | extension, subagent, rpc-workers |
 | edxeth-pi-subagents | repo | https://github.com/edxeth/pi-subagents | extension, subagent, mux, hybrid |
 | masta-g3-pi-tmux-subagents | repo | https://github.com/masta-g3/pi-tmux-subagents | extension, subagent, tmux |
 | hamdimaz-pi-sub-agent | repo | https://github.com/HamdiMaz/pi-sub-agent | extension, subagent, subprocess |

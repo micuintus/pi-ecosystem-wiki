@@ -33,6 +33,8 @@ sources:
   - heyhuynhgiabuu-pi-task
   - ruizrica-agent-pi
   - revazi-pi-tmux-orchestrator
+  - burggraf-pi-teams
+  - kristjanpikhof-pi-agents-team
 tags: [extension, subagent, multiagent, orchestration]
 entries:
   - id: nicobailon-pi-subagents
@@ -504,6 +506,14 @@ scope active tools per workflow rather than exposing both.
   publish to bare `pi-subagents`, and there is a wave of clones. Install by
   repo URL. `HamdiMaz/pi-sub-agent` (singular) and `@scope/...` packages do
   not collide.
+- **"teams" here means *agent* teams.** A whole cluster ships under that word
+  — `burggraf/pi-teams`, `@vadimcomanescu/pi-teams`, `josorio7122/pi-teams`,
+  `gmlemus/pi-teams`, `KristjanPikhof/pi-agents-team`, `nixihz/pi-agent-teams`,
+  `linys77/pi-agentteam`, `@tmustier/pi-agent-teams`, `@patimweb/pi-team` —
+  and **none of them integrate Microsoft Teams**. They belong to the
+  orchestration class above. For the Microsoft product see
+  [Microsoft Teams integration](microsoft-teams-integration.md). Several also
+  collide with each other on the bare `pi-teams` slug; install by repo URL.
 - **A multiplexer-only extension fails closed, which is a feature.** HazAT
   checks `isMuxAvailable()` and returns "Subagents require a supported
   terminal multiplexer" rather than spawning — nothing crashes, delegation is

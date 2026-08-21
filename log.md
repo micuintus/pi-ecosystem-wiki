@@ -1017,3 +1017,50 @@ tensorlake-agent-comparison, bswen-pi-vs-others, pi-releases).
 - Updated: references/catalogs.md (4 bundles + pi-auto-session-titles as a
   worked example of bounding what leaves the machine)
 - Updated: index.md (2 new pages, subagent description now names the 3 axes)
+
+## [2026-08-21] ingest+move | Jenkins CLI-skill correction, Teams survey, evolve removed
+
+**Correction to this morning's Jenkins page.** It recommended writing a native
+extension. That was premature: `avivsinai/jenkins-cli` (`jk`) already ships an
+agent skill in-repo (`.agents/skills/jk/SKILL.md` + `.claude/skills/jk/`,
+per-command-group rules, `docs/agent-cookbook.md`, `npx skills add
+avivsinai/jenkins-cli`). Since Pi loads SKILL.md natively and skills are
+agent-agnostic, CLI+skill is now the default and the native extension is the
+escalation. Three shapes -> four. `jk` specifics that make it agent-shaped:
+`jk log --follow` (progressive cursor handled), `--format/--jq/--template`,
+`--filter/--since/--with-meta`, keychain-stored per-context tokens, and explicit
+SSO guidance (Jenkins validates API tokens *before* the security realm, which is
+why token auth works against OIDC-fronted controllers). Alternatives noted:
+`ysmaoui/jkit`, `jenkins-mcp-cli` (CLI+MCP in one), official jar as admin-only.
+New caveat: a CLI skill is weaker than an extension at exactly one thing —
+*guaranteeing* what enters the context; `--jq` lets the model narrow, nothing
+forces it.
+
+New `ecosystem/microsoft-teams-integration.md` (type: synthesis). **No native
+Pi Teams extension exists** — the mirror image of Slack's five shapes. Routes:
+`m365` CLI (pnp/cli-microsoft365) as the substantial one and the natural
+skill-wrap target, `send2teams` for webhook notifications, Graph+`az` for CI,
+Composio MCP (remember: +adapter, two parts), and `microsoft-teams-cli`
+(MSAL-via-Playwright, unofficial, policy risk). Auth table keyed on what
+actually blocks people: admin consent, not code. Also records that Microsoft's
+own `teams-dev` agent skill is for *building* Teams apps, not messaging.
+
+**Naming-collision finding**, recorded in both pages: every `pi-teams` /
+`pi-agent-teams` / `pi-agentteam` package is *agent-team orchestration* and
+none touch Microsoft Teams (burggraf, vadimcomanescu, josorio7122, gmlemus,
+KristjanPikhof, nixihz, linys77, tmustier, patimweb). Search results for
+"pi teams" are actively misleading.
+
+**Removed: `ecosystem/evolve-extensions.md`.** Evolve is user-specific work and
+now lives only in the private wiki (`ecosystem/evolve-pi-extensions.md` there).
+The page carried no secrets, but its "Open niche" section described the exact
+branches+ledger design being built privately. Public wiki now has no evolve
+page; index and README updated.
+
+Sources +14 (avivsinai-jenkins-cli-jk, ysmaoui-jkit, jenkins-mcp-cli,
+jenkins-official-cli, cli-microsoft365, atc0005-send2teams,
+yusufaltunbicak-microsoft-teams-cli, msgraph-teams-messaging,
+msgraph-chat-post-messages, composio-teams-pi, msteams-agent-skills,
+burggraf-pi-teams, kristjanpikhof-pi-agents-team).
+- Updated: ecosystem/subagent-extensions.md (agent-teams naming caveat)
+- Updated: index.md, README.md (Teams entry; evolve entry dropped)

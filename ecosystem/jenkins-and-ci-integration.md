@@ -4,6 +4,10 @@ type: synthesis
 updated: 2026-08-21
 sources:
   - pi-extensions-docs
+  - avivsinai-jenkins-cli-jk
+  - ysmaoui-jkit
+  - jenkins-mcp-cli
+  - jenkins-official-cli
   - jenkins-remote-access-api
   - jenkins-scripted-clients-auth
   - jenkins-csrf-protection
@@ -22,25 +26,29 @@ tags: [ci, jenkins, build-logs, integration, mcp]
 
 ## Short answer
 
-For **reading build logs** — the dominant use case — write a small native Pi
-extension over the Jenkins REST API. Not because the API is hard (it is a
-`curl` away), but because the entire problem is **context management**, and
-that is exactly what a native tool controls and a shell pipe does not.
+**Start with [`jk`](https://github.com/avivsinai/jenkins-cli) plus its bundled
+agent skill.** A mature CLI that already ships a `SKILL.md` is the cheapest
+good answer: no extension to write, no MCP process to run, and the skill
+teaches the model the command vocabulary so it stops re-deriving `curl`
+invocations. Write a native Pi extension only when you need context control
+that a CLI cannot give you.
 
-A build log is the worst possible shape for an LLM context window: tens of
-megabytes, mostly irrelevant, with the useful part (the stack trace, the
-failing assertion) buried at the end or scattered across stages. Any
-integration that hands the model a whole log has failed, no matter how clean
-its transport. Rank the options by *how much log never reaches the context*,
-and the answer stops being about Jenkins at all.
+The reason to think about this at all is that the problem is **context
+management**, not transport. A build log is the worst possible shape for an
+LLM context window: tens of megabytes, mostly irrelevant, with the useful part
+(the stack trace, the failing assertion) buried at the end or scattered across
+stages. Any integration that hands the model a whole log has failed, no matter
+how clean its transport. Rank the options by *how much log never reaches the
+context*.
 
-## The three integration shapes
+## The four integration shapes
 
 | Shape | Moving parts | Context control | Use when |
 |---|---|---|---|
 | **`bash` + `curl`** | none | none — output hits Pi's generic truncation blindly | one-off triage; you already know the job and build number |
-| **MCP server** | MCP server process **+** an MCP adapter extension (Pi has no core MCP) | whatever the server author chose | you already run MCP and want the same tools in several agents |
-| **Native Pi extension** | one extension | total — you decide what is even eligible to enter the context | recurring workflow; large or noisy logs; team-wide use |
+| **CLI + agent skill** | one binary (+ a skill file) | good — the CLI's own filters and formats do the narrowing | **default**; recurring work, and the skill is reusable across agents |
+| **MCP server** | MCP server process **+** an MCP adapter extension (Pi has no core MCP) | whatever the server author chose | you already run MCP and want identical tools in several agents |
+| **Native Pi extension** | one extension | total — you decide what is even eligible to enter the context | pathological logs, or org-specific policy the CLI will not encode |
 
 ### Why `bash` + `curl` disappoints
 
@@ -50,6 +58,45 @@ and a 40 MB `consoleText` arrives as an undifferentiated wall that Pi
 truncates by generic rule rather than by relevance. Pi truncates `bash`
 output at **50 KB / 2000 lines** — for logs that cut lands in the middle of
 whatever you needed.
+
+### The CLI + skill route (and why it is the default)
+
+This is the same shape the wiki already recommends for Google Workspace: a
+real CLI does the work, and a skill teaches the model to drive it. Pi loads
+`SKILL.md` natively, and because skills are agent-agnostic the same file works
+in Claude Code and Codex — so the investment is not Pi-specific.
+
+[`avivsinai/jenkins-cli`](https://github.com/avivsinai/jenkins-cli) (`jk`) is
+the strongest option and, unusually, **ships the skill itself** rather than
+leaving you to write one: `.agents/skills/jk/SKILL.md` plus per-command-group
+rules (`run`, `log`, `artifact`, `auth`, `queue`, `cred`, `node`, `test`, …)
+and a `docs/agent-cookbook.md`. Install with `npx skills add
+avivsinai/jenkins-cli`.
+
+What makes it agent-shaped rather than merely scriptable:
+
+- **`jk log <job> <n> --follow`** streams to completion — the progressive-log
+  cursor handled for you.
+- **`--format json|yaml`, `--jq`, `--template`, `--quiet`** — the model can
+  ask for a field instead of a page.
+- **`--filter`, `--since`, `--limit`, `--with-meta`** on `jk run ls` —
+  discovery without listing every build.
+- **Context-aware auth**: multiple controllers stored and switched with
+  `jk context use` / `JK_CONTEXT`, tokens in the OS keychain, never in the
+  prompt.
+- Explicit **SSO/OIDC guidance**: sign in via browser, mint a Jenkins API
+  token at `/me/configure`, and note that Jenkins validates API tokens
+  *before* consulting the security realm — which is why token auth works
+  against Google/Okta/Azure-fronted controllers where password auth cannot.
+
+Alternatives: [`ysmaoui/jkit`](https://github.com/ysmaoui/jkit) takes the same
+"`gh` for Jenkins" line with a developer-workflow bias (`jkit run --wait
+--log`, `Jenkinsfile` linting, input approval);
+[`jenkins-mcp-cli`](https://pypi.org/project/jenkins-mcp-cli/) is a CLI and an
+MCP server in one binary, useful if you want both routes without two tools.
+The official `jenkins-cli.jar` is admin-oriented, JVM-bound and slow to start
+— fine for bulk administration, poor as an agent tool (a GraalVM-compiled
+build exists if you need its plugin-extensible command set).
 
 ### Why MCP is a heavier answer than it looks *in Pi*
 
@@ -161,17 +208,23 @@ a URL invites SSRF against internal hosts.
 
 | Situation | Do this |
 |---|---|
+| **Starting out / most teams** | **`jk` + its bundled skill** (`npx skills add avivsinai/jenkins-cli`) |
 | Occasional triage, log already small | `bash` + `curl` with an API token |
-| Recurring work, pipelines, big logs | Native extension with the four tools above |
-| Same Jenkins tooling across Pi, Claude Code and an IDE | Jenkins MCP server + Pi MCP adapter |
+| Same Jenkins vocabulary across Pi, Claude Code and Codex | The CLI skill — it is agent-agnostic by construction |
+| Same Jenkins *tools* across Pi and an IDE | Jenkins MCP server + Pi MCP adapter |
 | Controller admin rights and org-wide rollout | Official Jenkins MCP Server plugin (verify the reported timeouts) |
+| CLI output still floods context, or org-specific policy needed | Native extension with the four tools above |
 | Log so large that any fetch risks the controller | Stage logs only; never whole-run fetches |
 
 ## Caveats
 
-- **Nothing Pi-specific exists yet.** No Jenkins extension appears in the Pi
-  package catalog as of 2026-08; this page is a design synthesis, not a
-  survey of shipped options.
+- **Nothing Pi-specific exists yet.** No Jenkins *extension* appears in the Pi
+  package catalog as of 2026-08. The gap is largely covered by CLI skills,
+  which is probably why nobody has built one.
+- **A CLI skill is not weaker than an extension by default.** It is weaker at
+  exactly one thing: guaranteeing what enters the context. `jk`'s `--jq` and
+  `--format` let the *model* narrow output, but nothing forces it to — an
+  extension can. Reach for the extension when that guarantee starts mattering.
 - **`consoleText` is a footgun at scale** — convenient in a terminal, wrong
   in a tool. Reach for stage logs or offset windows.
 - **`tree=` is underused.** Most `api/json` payload bloat disappears with a
