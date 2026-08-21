@@ -43,7 +43,7 @@ TOC with structure and comparisons. Awesome-lists like
 | **Connect Pi to other services** (Google Workspace) | [Google Workspace](ecosystem/google-workspace.md) — `gws` CLI, OAuth, command shapes |
 | **Read CI build logs without drowning the context** | [Jenkins and CI Integration](ecosystem/jenkins-and-ci-integration.md) — bash vs MCP vs native extension, the endpoints that matter, the huge-log trap |
 | **Post to Slack or Microsoft Teams from Pi** | [Slack Extensions](ecosystem/slack-extensions.md) — five integration shapes · [Microsoft Teams](ecosystem/microsoft-teams-integration.md) — CLI and MCP routes; no extension exists yet |
-| **Understand how Pi got here, and how it compares** | [Pi Year One, and How It Compares to opencode](references/pi-year-one-and-opencode.md) — the first year in commits and primitives, plus an honest head-to-head |
+| **Understand how Pi got here** | [Pi Year One](references/pi-year-one.md) — when each extension primitive landed, and what the core still refuses |
 | **Pick a provider or bring a Claude subscription** | [Providers and model access](index.md#-providers-and-model-access) — third-party providers, the EU gap, Anthropic auth routes, Claude Pro/Max in Pi, and the Claude Code bridges |
 
 *Also: [evaluate an extension before installing](references/evaluation.md) · [browse everything by category](index.md) · [find what's not surveyed yet](references/catalogs.md).*

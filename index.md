@@ -91,7 +91,7 @@ them.
 - [How to Evaluate a Pi Extension](references/evaluation.md) — vital signs, maintenance signals, code-quality recipes (the framework this wiki uses instead of stale numbers)
 - [Pi Ecosystem Catalogs and Awesome-Lists](references/catalogs.md) — Where to look when this wiki doesn't cover your need
 - [Web Search Providers](references/web-search-providers.md) — Backends behind the major AI products
-- [Pi Year One, and How It Compares to opencode](references/pi-year-one-and-opencode.md) — The first year of Pi in commits and primitives, and an honest head-to-head with opencode's headless-engine model
+- [Pi Year One — How the Extension Platform Arrived](references/pi-year-one.md) — When each extension primitive landed, and why that dates every category in this wiki
 
 ## 🚧 Niches not yet surveyed
 

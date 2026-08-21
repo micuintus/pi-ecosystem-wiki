@@ -46,7 +46,8 @@ entries:
 ## Why this category exists
 
 Pi ships **no approval prompts and no permission layer**. The model gets
-`read`, `write`, `edit` and `bash`, and `bash` means bash. That is a deliberate
+`read`, `write`, `edit`, `bash`, `grep`, `find` and `ls` — and `bash` means
+bash. That is a deliberate
 core decision, and it is the single most common reason people bounce off Pi
 coming from Claude Code or OpenCode, where gating is built in.
 

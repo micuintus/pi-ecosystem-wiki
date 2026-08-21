@@ -1106,3 +1106,42 @@ cgarrot-pi-mesh, owainlewis/tomsej/nicknisi/lukasparke/mattschoe bundles).
 Still untriaged, recorded for next pass: `nicobailon/pi-annotate` (strong
 adoption), `cgarrot/pi-mesh` (agent-to-agent broker, high weekly downloads),
 `ruizrica/agent-pi`, and the nine-package agent-teams orchestration cluster.
+
+## [2026-08-21] split+correct | opencode comparison moved out; core measured
+
+**Scope correction.** `references/pi-year-one-and-opencode.md` mixed two things:
+Pi's own history (on-topic — it dates every category here) and a cross-project
+comparison with opencode (off-topic for a Pi-ecosystem catalogue). Split:
+
+- Kept, retitled: `references/pi-year-one.md` — Pi only.
+- Moved to the private wiki: the opencode comparison, joining the existing
+  loop-architecture comparison there.
+
+Incidental opencode references stay and are not comparisons: opencode's
+`subtask` as context in the subagent survey, "OpenCode-style" tool rendering,
+the OpenCode-migrant permission mapping, and `opencode-go`/`opencode-provider`
+in the provider survey (those are model providers usable *from* Pi).
+
+**Measured the core** (v0.84.2 source) rather than asserting minimality:
+default system prompt is **1,352 chars / 18 lines**, built-in tool descriptions
+total **1,357 chars**, so the baseline context before the first token is
+**~2,709 chars**.
+
+**Fixed a stale claim this wiki repeated: Pi has seven built-in tools**
+(`bash, edit, find, grep, ls, read, write`), not four. The
+"read/write/edit/bash" line describes the philosophy, not the tool list.
+Corrected in `permission-extensions.md`; the new year-one page flags it
+explicitly so the four-tool phrasing stops propagating.
+
+**Extension-platform history sharpened.** Extensibility was not invented in
+January 2026, it was *unified* then: `pi.on(...)` existed at **v0.18.0**
+(2025-12-09), and through December there were two separate mechanisms (a
+`hooks/` dir and a `tools/` dir). PR **#454** merged them into `ExtensionAPI` /
+`loadExtension` at **v0.35.0**, deprecating both dirs. `docs/extensions.md`
+went 0 lines at v0.31 to 1,053 at v0.35, then 1,733 / 2,545 / 2,987 at
+v0.50 / v0.70 / v0.84. v0.35.0 is why the subagent, todo and compaction
+categories can exist; v0.81.0 (native extension providers) is why the provider
+and Claude-subscription clusters can.
+- Removed: references/pi-year-one-and-opencode.md
+- Added: references/pi-year-one.md
+- Updated: ecosystem/permission-extensions.md, index.md, README.md

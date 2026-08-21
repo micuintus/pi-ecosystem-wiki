@@ -15,7 +15,7 @@ entries:
     name: pi-vscode
     repo: pithings/pi-vscode
     role: editor-surface
-    notes: "VS Code extension putting Pi inside the editor — a fourth access surface alongside TUI, embedded web UI and remote browser. Published on both the VS Code Marketplace and Open VSX. Notable as the clearest case of the community supplying by extension what opencode ships as a first-party client; see [Pi year one and opencode](../references/pi-year-one-and-opencode.md)."
+    notes: "VS Code extension putting Pi inside the editor — a fourth access surface alongside TUI, embedded web UI and remote browser. Published on both the VS Code Marketplace and Open VSX. Notable as the clearest case of the community supplying by extension what opencode ships as a first-party client; see [Pi year one](../references/pi-year-one.md)."
   - id: pi-web-ui
     name: "@mariozechner/pi-web-ui"
     repo: badlogic/pi-mono
