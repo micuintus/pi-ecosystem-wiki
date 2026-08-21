@@ -924,3 +924,31 @@ in; the child's own session persistence is unconfirmed).
   ~6k→~7k); added amosblomqvist/pi-subagents (★107, a coverage gap —
   minimal Pattern 1 subprocess) and jwangkun/Pi-Multi-Agent to orchestration;
   pinned the `cmux` backend to craigsc/cmux. Lint clean; no private leak.
+
+## [2026-06-23] ingest | Slack extensions survey (five shapes)
+
+New survey `ecosystem/slack-extensions.md` (type: ecosystem). Sweep of the
+Slack <-> Pi landscape, organized by direction of control into five shapes:
+- A agent tools: sf-slack (10 tools, user-token, runtime scope probing +
+  dynamic gating, HITL writes), @dreki-gg/pi-slack (bot-token reads, Effect),
+  @pinet/slack-bridge (assistant app + broker/follower Pinet mesh).
+- B messenger bridges: tintinweb/pi-messenger-bridge (Slack/TG/WA/Discord/
+  Matrix, challenge auth), @e9n/pi-channels (Slack adapter + webhook/custom).
+- C standalone bots: @mariozechner/pi-mom (first-party, self-managing;
+  REMOVED from earendil fork, lives in badlogic upstream), samfoy/pi-slack-bot,
+  daniel-silva-perez/pi-slack-agents.
+- D generic MCP route via pi-mcp-adapter (official @slack/mcp-server,
+  korotovsky/slack-mcp-server).
+- E notifications: @artale/pi-notify (Slack webhooks), merlinbr/pi-agent-notify
+  (Slack planned).
+Includes auth cheat-sheet (xoxb/xoxp/xapp), comparison + picking tables; live
+numbers kept out per SCHEMA (evaluation.md recipes).
+
+Sources +14 (salesforce-sf-slack, dreki-gg-pi-slack, gugu91-slack-bridge,
+pinet-slack-bridge-npm, tintinweb-pi-messenger-bridge, e9n-pi-channels,
+mariozechner-pi-mom, pi-mom-npm, samfoy-pi-slack-bot,
+daniel-silva-perez-pi-slack-agents, slack-mcp-docs, korotovsky-slack-mcp-server,
+artale-pi-notify, merlinbr-pi-agent-notify).
+- Updated: index.md (Integrations entry)
+- Updated: ecosystem/mcp-integration.md (See also -> slack-extensions, the
+  "if an MCP server exists" Slack hint now resolves to a real page)

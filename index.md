@@ -1,7 +1,7 @@
 ---
 title: Index
 type: reference
-updated: 2026-05-31
+updated: 2026-06-23
 sources: []
 ---
 
@@ -77,6 +77,7 @@ them.
 ### 🧩 Integrations
 
 - [MCP Integration](ecosystem/mcp-integration.md) — Model Context Protocol adapters; when MCP makes sense and when CLI skills are leaner
+- [Slack Extensions](ecosystem/slack-extensions.md) — Five shapes for Slack ↔ Pi: agent tools (`sf-slack`, `@dreki-gg/pi-slack`), messenger bridges, standalone bots (`pi-mom`), the MCP route, and notifications
 - [Google Workspace Integration](ecosystem/google-workspace.md) — `gws` CLI, OAuth, GCP prerequisites, command shapes
 
 ## 📋 References and catalogs

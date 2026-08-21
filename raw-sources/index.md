@@ -1,7 +1,7 @@
 ---
 title: Raw sources
 type: reference
-updated: 2026-06-17
+updated: 2026-06-23
 sources: []
 ---
 
@@ -293,3 +293,17 @@ copied into a dated bucket file.
 | robert-keus-openrouter-alternatives | article | https://medium.com/@robertkeus/the-10-best-openrouter-alternatives-in-2026-from-eu-first-to-open-source-594031416f25 | provider, routing, comparison |
 | david-lodico-linkedin | article | https://www.linkedin.com/posts/davidlodico_ill-admit-it-i-was-part-of-the-problem-activity-7429892670883262465-rjKu | provider, eu, founder, opinion |
 | david-lodico-indiepage | article | https://indiepa.ge/david_lodico | provider, eu, founder, profile |
+| salesforce-sf-slack | repo | https://github.com/salesforce/sf-pi/tree/main/extensions/sf-slack | extension, slack, read-write, oauth, canvas |
+| dreki-gg-pi-slack | repo | https://github.com/dreki-gg/pi-extensions/tree/main/packages/slack | extension, slack, read, effect, bot-token |
+| gugu91-slack-bridge | repo | https://github.com/gugu91/extensions/tree/main/slack-bridge | extension, slack, pinet, broker, socket-mode |
+| pinet-slack-bridge-npm | docs | https://www.npmjs.com/package/@gugu910/pi-slack-bridge | extension, slack, pinet, npm |
+| tintinweb-pi-messenger-bridge | repo | https://github.com/tintinweb/pi-messenger-bridge | extension, slack, bridge, multi-messenger |
+| e9n-pi-channels | repo | https://github.com/espennilsen/pi/tree/main/extensions/pi-channels | extension, slack, bridge, channels |
+| mariozechner-pi-mom | repo | https://github.com/badlogic/pi-mono/tree/main/packages/mom | bot, slack, pi-agent, self-managing |
+| pi-mom-npm | docs | https://registry.npmjs.org/@mariozechner/pi-mom | bot, slack, npm |
+| samfoy-pi-slack-bot | repo | https://github.com/samfoy/pi-slack-bot | bot, slack, dm, sessions |
+| daniel-silva-perez-pi-slack-agents | repo | https://github.com/daniel-silva-perez/pi-slack-agents | bot, slack, multi-agent, mailbox |
+| slack-mcp-docs | docs | https://docs.slack.dev/ai/slack-mcp-server | slack, mcp, official |
+| korotovsky-slack-mcp-server | repo | https://github.com/korotovsky/slack-mcp-server | slack, mcp, server |
+| artale-pi-notify | repo | https://github.com/arosstale/pi-notify | extension, slack, notification, webhook |
+| merlinbr-pi-agent-notify | repo | https://github.com/merlinbr/pi-agent-notify | extension, slack, notification, planned |

@@ -134,6 +134,7 @@ MCP amortizes the setup cost. If you stay in Pi, skills are leaner.
 
 ## See also
 
+- [Slack Extensions](slack-extensions.md) — the Slack MCP-server route vs native Slack tool extensions
 - [Web Search Extensions](web-search-extensions.md) — related survey; some search providers expose MCP servers
 - [How to Evaluate a Pi Extension](../references/evaluation.md) — vital signs for vetting adapters
 - [Pi Ecosystem Catalogs](../references/catalogs.md) — `pi.dev/packages` indexes `pi-mcp-adapter` under the `mcp` tag
