@@ -1145,3 +1145,10 @@ and Claude-subscription clusters can.
 - Removed: references/pi-year-one-and-opencode.md
 - Added: references/pi-year-one.md
 - Updated: ecosystem/permission-extensions.md, index.md, README.md
+
+## 2026-09-17
+
+- Ingested OpenCode Zen free-tier gating: UA gate (older) tightened to hard client gate (2026-09-15/17), header spoofing dead, free models client-only, paid models reachable from Pi. Measured live against zen/v1.
+- Added sources: opencode-zen-docs, opencode-go-docs, opencode-issue-42500, opencode-issue-42029, opencode-issue-33318, zen-proxy
+- Updated: ecosystem/provider-extensions.md, raw-sources/index.md
+- Second ingest: verified Kilo Gateway live (18 free models, anonymous access, kilo-auto/free router, cache-warm caveat) and Cline status for the free-inference section

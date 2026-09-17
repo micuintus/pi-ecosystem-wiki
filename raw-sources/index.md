@@ -1,7 +1,7 @@
 ---
 title: Raw sources
 type: reference
-updated: 2026-08-21
+updated: 2026-09-17
 sources: []
 ---
 
@@ -264,9 +264,16 @@ copied into a dated bucket file.
 | pi-provider-litellm | repo | https://github.com/balcsida/pi-provider-litellm | extension, provider, proxy |
 | awtotty-pi-opencode | repo | https://github.com/awtotty/pi-opencode | extension, provider, opencode |
 | lnilluv-pi-opencode-go-rotation | repo | https://github.com/lnilluv/pi-opencode-go-rotation | extension, provider, opencode, key-rotation |
+| opencode-zen-docs | docs | https://opencode.ai/docs/zen/ | opencode, zen, free-tier, official |
+| opencode-go-docs | docs | https://opencode.ai/docs/go/ | opencode, go, session-header, validated-clients |
+| opencode-issue-42500 | issue | https://github.com/anomalyco/opencode/issues/42500 | opencode, free-tier, user-agent-gate, feature-request |
+| opencode-issue-42029 | issue | https://github.com/anomalyco/opencode/issues/42029 | opencode, free-tier, user-agent-gate, workaround |
+| opencode-issue-33318 | issue | https://github.com/anomalyco/opencode/issues/33318 | opencode, free-tier, quota, paid-does-not-bypass |
+| zen-proxy | repo | https://github.com/12errh/zen-proxy | opencode, free-tier, proxy, user-agent-injection |
 | mosquito-tokenfactory-pi | repo | https://github.com/mosquito/tokenfactory-pi | extension, provider, nebius |
 | micuintus-pi-eurouter | repo | https://github.com/micuintus/pi-eurouter | extension, provider, eu, eurouter |
 | pi-kilocode | repo | https://github.com/sudosubin/pi-frontier | extension, provider, free, kilo |
+| kilo-gateway-docs | docs | https://kilo.ai/docs/gateway/authentication | kilo, free-tier, anonymous-access, official |
 | apmantza-pi-free | repo | https://github.com/apmantza/pi-free | extension, provider, free, multi-provider |
 | ditfetzt-pi-cline-free | repo | https://github.com/ditfetzt/pi-cline-free-models | extension, provider, free, cline |
 | mdsitton-pi-opencode-provider | catalog | https://pi.dev/packages/pi-opencode-provider | extension, provider, opencode |

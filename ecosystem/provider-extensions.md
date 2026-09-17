@@ -1,7 +1,7 @@
 ---
 title: Pi Provider Extensions
 type: ecosystem
-updated: 2026-06-17
+updated: 2026-09-17
 sources:
   - awtotty-pi-opencode
   - lnilluv-pi-opencode-go-rotation
@@ -52,9 +52,16 @@ sources:
   - micuintus-pi-eurouter
   - apmantza-pi-free
   - pi-kilocode
+  - kilo-gateway-docs
   - ditfetzt-pi-cline-free
   - aadishv-pi-agy
   - cfal-pi-models-dev
+  - opencode-zen-docs
+  - opencode-go-docs
+  - opencode-issue-42500
+  - opencode-issue-42029
+  - opencode-issue-33318
+  - zen-proxy
   - MasuRii-pi-model-discovery
 entries:
   - id: awtotty-pi-opencode
@@ -149,7 +156,8 @@ utilities** (rotation, quota bypass) that the core does not provide.
   preserves built-in compat via `models.json`); `mdsitton/pi-opencode-provider`
   works but unconditionally replaces both built-ins and ships no tests.
   `MasuRii/pi-model-discovery` is the heavy general framework, overkill for
-  OpenCode Go alone.
+  OpenCode Go alone. Zen **free** models are client-gated and unreachable
+  from Pi (see [OpenCode Zen free tier — access rules](#opencode-zen-free-tier--access-rules)).
 - **Hitting OpenCode Go rate limits with multiple keys?** Install
   `pi-opencode-go-rotation` — it rotates keys reactively; it's a
   key-management companion, not a provider.
@@ -162,7 +170,9 @@ utilities** (rotation, quota bypass) that the core does not provide.
 - **Want free inference without a paid API key?** See
   [Free inference providers](#free-inference-providers) —
   `pi-free-providers`, `pi-kilocode`, and `pi-cline-free-models` all
-  expose free or free-tier models.
+  expose free or free-tier models. As of 2026-09-17, `pi-kilocode` is
+  the verified-strong option: 18 free models, anonymous access,
+  200 req/hr per IP, and an auto-router that survives model rotation.
 - **Prefer a simple static mapping?** `awtotty/pi-opencode` is a minimal
   git-installable alternative, though it lags behind built-in support.
 - **No Pi-specific extensions exist for most EU providers** (STACKIT,
@@ -376,6 +386,43 @@ without manual config — best for multi-provider discovery, not OpenCode Go alo
 `lnilluv/pi-opencode-go-rotation` is orthogonal — pair it with any of the
 provider extensions if you have multiple OpenCode Go keys.
 
+## OpenCode Zen free tier — access rules
+
+OpenCode Zen's `*-free` models are gated to the official OpenCode
+client ([opencode-zen-docs] lists each free model as "available on
+OpenCode for a limited time"). Requests from other clients get
+`403 FreeTierError`: "OpenCode's free tier can only be used from within
+OpenCode".
+
+The gate has tightened over time:
+
+- **Before mid-September 2026**, the gate was a `User-Agent` check;
+  spoofing `User-Agent: opencode/<version>` worked
+  ([opencode-issue-42500], [opencode-issue-42029]).
+- **From 2026-09-15/17**, header spoofing stopped working. Measured on
+  2026-09-17: free models return `403 FreeTierError` regardless of
+  `User-Agent`, `x-opencode-session` (fixed value, UUID, or `public`),
+  or `x-opencode-client` headers, with or without an API key. The
+  `zen-proxy` header-injection workaround is ineffective too.
+- The [Go docs](https://opencode.ai/docs/go/#where-can-i-use-it)
+  describe the intended contract for paid usage: identify with your own
+  user agent and send a stable `x-opencode-session` per conversation;
+  Pi "current builds" already do this.
+
+Free-model quotas were reported as per-IP, undocumented in size, and
+reset at 00:00 UTC daily ([opencode-issue-33318]); with the client gate
+this is largely moot. Free models are promotional and can disappear or
+turn paid without notice; several carry data-collection carve-outs
+(disclosure in [opencode-zen-docs] privacy section).
+
+**Using OpenCode from Pi.** Free models are effectively client-only; no
+header configuration in Pi works around that. Paid Zen models are
+reachable from Pi's built-in provider (verified 2026-09-17: a paid
+model call from `pi/0.85.0` reaches the gateway and fails only on
+balance). So the practical options are: fund a Zen balance and use
+paid models, use the official OpenCode client for the free ones, or
+use another free-tier provider (see below).
+
 ## Free inference providers
 
 Three extensions expose models with no (or minimal) per-request cost.
@@ -410,10 +457,24 @@ a free tier with a selection of capable models.
 
 The extension fetches the live Kilo model catalog from
 `https://api.kilo.ai/api/gateway/models`, caches it on disk, and
-registers text-capable models under the `kilo` provider. Uses Kilo's
+registers text-capable models under the `kilocode` provider. Uses Kilo's
 device-auth OAuth login flow.
 
 Install: `pi install npm:pi-kilocode`
+
+Verified against the live gateway on 2026-09-17: 379 total models,
+**18 `:free` models**, including `kilo-auto/free` (auto-router that
+picks whichever free model is currently serving, sidestepping model
+rotation), `nvidia/nemotron-3-ultra-550b-a55b:free` (550B MoE, 1M ctx),
+`z-ai/glm-5.2:free`, `stepfun/step-3.7-flash:free`, and
+`poolside/laguna-s-2.1:free` (33B, 256K ctx). Anonymous calls (no key)
+succeed for free models; shared-pool models can 429 upstream
+independently of Kilo. Anonymous limit is
+[200 requests/hour per IP](https://kilo.ai/docs/gateway/authentication#anonymous-access)
+([kilo-gateway-docs]). Operational note: the extension refreshes its
+model cache on `session_start`, so a fresh install shows no models
+until the first interactive start (or a manual cache warm) — new
+packages also require a pi restart to register at all.
 
 ### `ditfetzt/pi-cline-free-models` — Cline free models
 
@@ -424,6 +485,13 @@ fetches the live catalog from Cline's API on every Pi startup so newly
 added free models appear automatically.
 
 Install: `pi install npm:pi-cline-free-models`
+
+Not independently verified here: every request requires the SSO
+browser login, so no anonymous probe is possible. September 2026
+community reports put the current free lineup around GLM-5.3-Flash
+(320B MoE, 1M ctx) and DeepSeek V4.1 Flash, rotating without notice;
+rate limits are unpublished. Weaker fit than `pi-kilocode` for the
+same slot: smaller pool, no published ceiling, no anonymous access.
 
 ## Antigravity / Gemini CLI extensions
 
