@@ -1,7 +1,7 @@
 ---
 title: Pi Provider Extensions
 type: ecosystem
-updated: 2026-10-13
+updated: 2026-10-14
 sources:
   - pi-models-docs
   - pi-coding-agent-changelog
@@ -57,6 +57,7 @@ sources:
   - kilo-gateway-docs
   - ditfetzt-pi-cline-free
   - aadishv-pi-agy
+  - pi-antigravity
   - cfal-pi-models-dev
   - opencode-zen-docs
   - opencode-go-docs
@@ -538,6 +539,12 @@ proxy that translates Pi's Anthropic API calls to Antigravity's format.
 - Per-model routing available via `pi-antigravity-rotator` extension
 
 Install: `pi install git:github.com/aadishv/pi-agy`
+
+### `Rahularya01/pi-antigravity`: Google-subscription models
+
+Actively maintained alternative to `pi-agy` for Gemini and Claude
+models through a Google subscription (0.10.0, October 2026).
+Catalog-level, not code-read.
 
 ### `tuxevil/pi-antigravity-rotator` — Multi-account rotation proxy
 

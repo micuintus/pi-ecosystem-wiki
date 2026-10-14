@@ -266,8 +266,8 @@ then select `router/claude`):
                   "fallbacks": ["opencode-go/mimo-v2.6-pro"] },
       "medium": { "model": "anthropic/claude-opus-5-5", "thinking": "medium",
                   "fallbacks": ["opencode-go/mimo-v2.6-pro"] },
-      "low":    { "model": "anthropic/claude-haiku-5-5", "thinking": "low",
-                  "fallbacks": ["opencode-go/muse-spark-1.3-contributor"] }
+      "low":    { "model": "opencode-go/mimo-v2.6-flash", "thinking": "low",
+                  "fallbacks": ["opencode-go/mimo-v2.6-pro"] }
     }
   }
 }

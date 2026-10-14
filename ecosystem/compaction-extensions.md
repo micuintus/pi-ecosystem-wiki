@@ -1,9 +1,11 @@
 ---
 title: Pi Compaction Extensions
 type: ecosystem
-updated: 2026-08-21
+updated: 2026-10-14
 sources:
   - pi-mono
+  - pi-coding-agent-changelog
+  - pi-compaction-docs
   - pi-mono-custom-compaction-example
   - pi-vcc
   - pi-observational-memory
@@ -38,7 +40,7 @@ entries:
     repo: sting8k/pi-vcc
     npm: "@sting8k/pi-vcc"
     role: algorithmic-no-llm
-    notes: "Inspired by lllyasviel/VCC (View-oriented Conversation Compiler). Zero LLM calls — extraction + formatting. Splits at last user message; everything after stays intact; older portion summarized into bracketed sections (Session Goal / Files And Changes / Commits / Outstanding Context / User Preferences) plus a rolling brief transcript with `(#N)` tool refs. Bounded merge across compactions: sticky sections (Goal, Preferences) carry forward, volatile sections (Outstanding Context) replace, accumulating sections (Files, Commits) union without duplicates, transcript rolls. Lossless `vcc_recall` tool reads raw JSONL; supports regex + BM25-style OR ranking; default scope=active lineage. `overrideDefaultCompaction` toggle routes Pi's `/compact` and auto-threshold paths through vcc too. `/pi-vcc` and `/pi-vcc-recall` slash commands. **Packaging-hygiene caveat:** no LICENSE file present in the repo and `"license"` is `null` in `package.json` — the README is open and the maintainer accepts PRs, but the missing license is a blocker for commercial/policy-gated installs until fixed."
+    notes: "Inspired by lllyasviel/VCC (View-oriented Conversation Compiler). Zero LLM calls — extraction + formatting. Splits at last user message; everything after stays intact; older portion summarized into bracketed sections (Session Goal / Files And Changes / Commits / Outstanding Context / User Preferences) plus a rolling brief transcript with `(#N)` tool refs. Bounded merge across compactions: sticky sections (Goal, Preferences) carry forward, volatile sections (Outstanding Context) replace, accumulating sections (Files, Commits) union without duplicates, transcript rolls. Lossless `vcc_recall` tool reads raw JSONL; supports regex + BM25-style OR ranking; default scope=active lineage. `overrideDefaultCompaction` toggle routes Pi's `/compact` and auto-threshold paths through vcc too. `/pi-vcc` and `/pi-vcc-recall` slash commands. **Packaging-hygiene caveat:** no LICENSE file present in the repo and `license` is null in `package.json` — the README is open and the maintainer accepts PRs, but the missing license is a blocker for commercial/policy-gated installs until fixed."
   - id: pi-observational-memory
     name: pi-observational-memory
     repo: elpapi42/pi-observational-memory
@@ -121,6 +123,19 @@ sessions.
 
 The ecosystem has converged on a small handful of structural answers,
 each replacing or augmenting a different part of the default path.
+
+## What Pi core does since 0.86
+
+Three core features narrow what extensions are for. `ContextEditEntry`
+lets extensions omit or replace one earlier message for future requests
+without touching raw history; system-prompt and tool changes are
+recorded in the transcript so the cached prefix survives them on
+supported models. Compaction budgets (`reserveTokens`,
+`keepRecentTokens`) are configurable per model through
+`compaction.modelOverrides`. Summarization requests skip prompt-cache
+writes ([pi-coding-agent-changelog], [pi-compaction-docs]). None of
+this replaces the strategies below; it moves the plumbing they build
+on.
 
 ## Picking the right layer
 

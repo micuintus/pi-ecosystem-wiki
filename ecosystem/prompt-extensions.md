@@ -3,7 +3,9 @@ title: Pi Prompt Extensions
 type: ecosystem
 updated: 2026-10-14
 sources:
+  - pi-cache-optimizer
   - pi-mono
+  - pi-coding-agent-changelog
   - pi-sticky-prompt
   - pi-prompt-history
   - pi-readline-search
@@ -66,6 +68,12 @@ entries:
     npm: "@mcowger/pi-better-messages-cache"
     role: provider-cache-breakpoint
     notes: "Provider-level: implements the **dual cache-breakpoint** strategy for Anthropic-API-compatible providers, marking *both* the last assistant `tool_use` block and the last user message block with `cache_control` (built-in only marks the user message). Same shape as OpenCode / Kilo Code / Roo Code. Enforces Anthropic's 4-breakpoint hard cap (keeps system markers + newest, drops oldest). Also fixes a streaming control-character bug where raw `\\t` / `\\n` inside tool-call JSON crashed `JSON.parse` and left tool args as `{}` — replaces SDK `stream()` with `create().asResponse()` + `parseJsonWithRepair`. Reported impact on MiniMax / Kimi: near-zero cache hits → 80%+. Implements [`badlogic/pi-mono#1737`](https://github.com/badlogic/pi-mono/pull/1737), declined upstream. Registers via `pi.registerProvider(\"anthropic\", { api: \"anthropic-messages\", streamSimple })`, transparent to model definitions. Broken on Pi 0.86 and later: its `streamSimple` reads `context.tools` and `context.systemPrompt` with no transcript fold; fold with the `getCurrent` helpers."
+  - id: pi-cache-optimizer
+    name: pi-cache-optimizer
+    repo: jiangge/pi-cache-optimizer
+    npm: pi-cache-optimizer
+    role: cache-key-stability
+    notes: "Catalog-level, not code-read. Stable prompts plus OpenAI-compatible cache keys for provider KV-cache hits: cuts cost and latency with zero workflow change."
   - id: pi-cache-graph
     name: pi-cache-graph
     repo: championswimmer/pi-cache-graph
@@ -241,6 +249,14 @@ decide *when* it's ready for the next input.
 
 ## 4. Prompt-cache layer
 
+Pi warms its own caches since v0.86: cost-aware refreshes keep eligible
+provider prompt caches alive during long tool runs, and optionally
+while idle (`cacheWarming: "streaming"` by default, `"idle"` or
+`"off"`; `showCacheMissNotices` surfaces big misses). Extensions
+decide through the `cache_warming_decision` event
+([pi-coding-agent-changelog]). The extensions below work the markers
+and the observability around that.
+
 The "prompt" sent to the provider on each turn is the entire
 conversation prefix. Provider-side caches reuse that prefix only up
 to the most recent `cache_control` marker, so cache hit rate is
@@ -284,6 +300,13 @@ Anthropic-style providers report `cacheWrite` separately;
 OpenAI-style providers report `cacheWrite = 0` and the formula
 behaves identically.
 
+### `pi-cache-optimizer`: stable prompts for KV-cache hits
+
+[`jiangge/pi-cache-optimizer`](https://github.com/jiangge/pi-cache-optimizer)
+keeps prompts stable and manages OpenAI-compatible cache keys so the
+provider reuses KV-cache entries across turns. No workflow change:
+install it and pay less per turn. Catalog-level, not code-read.
+
 ## Recommendation matrix
 
 | Situation | Default pick |
@@ -296,6 +319,7 @@ behaves identically.
 | **You want the model to drive the queue (TaskSync-style)** | [`pi-copilot-queue`](https://github.com/ayagmar/pi-copilot-queue) — `ask_user` tool + forced tool_choice |
 | **MiniMax / Kimi / other Anthropic-compatible providers wasting cache** | [`pi-better-messages-cache`](https://github.com/mcowger/pi-better-messages-cache) — dual cache_control markers |
 | **You don't know if your cache is actually hitting** | [`pi-cache-graph`](https://github.com/championswimmer/pi-cache-graph) — `/cache graph`, `/cache stats`, `/cache export` |
+| **You want cheaper turns with no workflow change** | [`pi-cache-optimizer`](https://github.com/jiangge/pi-cache-optimizer) — stable prompts plus cache keys |
 
 ## See also
 

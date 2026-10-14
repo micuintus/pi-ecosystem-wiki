@@ -1227,3 +1227,14 @@ schema validation. Details per page in the entries; full report at
   ecosystem/loop-extensions.md, ecosystem/slack-extensions.md,
   ecosystem/tool-rendering-extensions.md, raw-sources/index.md, log.md
 - Registered: ekil1100-pi-auto, ayagmar-pi-copilot-queue
+
+## [2026-10-14] rewrite | MCP, theme, compaction, prompt pages; checkpoints and code-health surveys; hot finds
+
+- `mcp-integration.md`: restructured around built-in MCP (0.99); adapters kept for pre-0.99 and the proxy pattern.
+- `theme-extensions.md`: `system` theme default (0.99), schema validation (1.1); October sweep validated all 173 tracked theme files.
+- `compaction-extensions.md`: fixed frontmatter YAML (unescaped quotes); core context edits and per-model budgets section.
+- `prompt-extensions.md`: core cache-warming section; `pi-cache-optimizer` entry.
+- New: `checkpoint-extensions.md` (Pi `/tree`/`/fork` vs Claude Code `/rewind`, file-checkpoint gap) and `code-health-extensions.md` (`pi-lens`).
+- Ingested: `cc-safety-net` (permission), `pi-antigravity` (provider), `pi-web-search` (web search). All catalog-level.
+- Registered: pi-lens, cc-safety-net, pi-antigravity, pi-web-search, pi-cache-optimizer, pi-sessions-docs, claude-code-checkpointing, nicobailon-pi-rewind-hook, prateekmedia-pi-hooks, pi-compaction-docs.
+- Updated: index.md, README.md, raw-sources/index.md, log.md.

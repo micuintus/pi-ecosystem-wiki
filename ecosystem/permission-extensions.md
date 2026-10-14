@@ -1,8 +1,10 @@
 ---
 title: Pi Permission and Guard Extensions
 type: ecosystem
-updated: 2026-08-21
+updated: 2026-10-14
 sources:
+  - cc-safety-net
+
   - masurii-pi-permission-system
   - gotgenes-pi-permission-system
   - jdiamond-pi-guard
@@ -39,6 +41,12 @@ entries:
     name: "@inobit/pi-permission"
     role: lightweight-guard
     notes: "Lighter enforcement: sensitive-file guard, read/write-aware project boundary, dangerous-operation confirmation, and a plan/build read-only mode."
+  - id: cc-safety-net
+    name: cc-safety-net
+    repo: kenryu42/cc-safety-net
+    npm: cc-safety-net
+    role: pre-execution-guard
+    notes: "Pre-execution guard that blocks destructive commands and secret-file access before they run. Highest-star guard found in an October 2026 scan. Catalog-level, not code-read."
 ---
 
 # Pi Permission and Guard Extensions
@@ -91,6 +99,7 @@ insufficient, because a permission layer is only as good as its worst bypass.
 | Trustworthy bash gating specifically | `jdiamond/pi-guard` (AST-based) |
 | Claude-Code-style mode switching, plus subagent handling | `pi-permission-suite` |
 | Just stop the obvious disasters | `@inobit/pi-permission` or `confirm-destructive` |
+| Block destructive commands before they run | `cc-safety-net` |
 | Read-only exploration phase | a plan/build mode from the suite or `@inobit` |
 
 ## Caveats

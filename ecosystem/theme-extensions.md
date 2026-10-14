@@ -1,9 +1,10 @@
 ---
 title: Pi Theme Extensions
 type: ecosystem
-updated: 2026-05-08
+updated: 2026-10-14
 sources:
   - pi-themes-docs
+  - pi-coding-agent-changelog
   - leblancfg-pi-ansi-themes
   - juanibiapina-pi-tokyonight
   - danielcherubini-pi-dracula
@@ -95,8 +96,11 @@ entries:
 - [Theme-specific quality signal](#theme-specific-quality-signal)
 - [See also](#see-also)
 
-Pi ships only `dark` and `light` as built-in themes. Everything else
-comes from the community. The `awesome-pi.site` catalog tracks **131
+Pi ships `dark` and `light` as built-in themes, plus `system` since
+v0.99.0, which derives Pi's colors from the terminal's own foreground,
+background and ANSI palette and is now the default
+([pi-coding-agent-changelog]). Everything else comes from the
+community. The `awesome-pi.site` catalog tracks **131
 themes** in this category, so this page does not try to enumerate
 every single-author colour palette — it covers the distinct
 *approaches* to theming and names representative implementations of
@@ -210,6 +214,13 @@ signal is theme-specific and worth calling out here: the **dependency
 footprint should be ~zero**. A theme that pulls runtime dependencies
 is a smell. Most themes in this survey ship only JSON files plus a
 thin loader.
+
+Since v1.1.0, theme files validate against a published schema:
+unknown top-level properties and unknown properties under `colors`
+or `export` are rejected at load, and reusable custom colors go under
+`vars` ([pi-coding-agent-changelog]). An October 2026 sweep validated
+all 173 theme files this survey tracks: all pass. Stale palettes may
+still drift from their upstream scheme; that is cosmetic, not breakage.
 
 ## See also
 

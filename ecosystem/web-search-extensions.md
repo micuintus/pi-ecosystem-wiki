@@ -3,6 +3,8 @@ title: Pi Web Search Extensions
 type: ecosystem
 updated: 2026-10-14
 sources:
+  - pi-web-search
+
   - pi-web-access
   - pi-codex-web-search
   - pi-free-web-search
@@ -24,6 +26,12 @@ entries:
     npm: pi-web-access
     role: full-featured-extension
     notes: "Multi-provider (Exa, Perplexity, Gemini). Video/PDF/GitHub. Dominant by usage. Engineering caveats: large monolith, no CI."
+  - id: pi-web-search
+    name: pi-web-search
+    repo: ttttmr/pi-web-search
+    npm: pi-web-search
+    role: provider-native-search
+    notes: "Provider-native search through Gemini URL Context, Grok and OpenAI Responses: uses models already paid for, no Brave or Tavily key. Catalog-level, not code-read."
   - id: pi-codex-web-search
     name: pi-codex-web-search
     repo: ayagmar/pi-codex-web-search
@@ -152,6 +160,7 @@ counts do. For current vital signs see
 | **`@benvargas/pi-firecrawl`** | Firecrawl (scrape, map, search) | Firecrawl structured extraction | Designed for known URLs and site-crawl patterns, not open-web search. CI and tests. |
 | **`native-web-search` (mitsuhiko/agent-stuff)** | Model’s native web search (when available) | — | No API key. Uses whatever native search the active model exposes. Falls back gracefully. Skill pattern, not an extension. |
 | **`brave-search` (skill)** | Brave Search API | Readability+Turndown | Lightweight, headless, requires API key |
+| **`pi-web-search`** | Gemini URL Context, Grok, OpenAI Responses | Provider-native | No search API key; uses model subscriptions already paid for |
 
 ## Market structure
 

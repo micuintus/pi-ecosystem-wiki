@@ -40,24 +40,21 @@ entries:
 
 # Pi MCP Integration
 
-Survey of Pi extensions that connect to [Model Context Protocol](https://modelcontextprotocol.io/)
-(MCP) servers — the standardized way to expose tools, resources, and
-prompts to LLMs.
+Pi ships MCP as a built-in extension since v0.99.0 (2026-09-29): stdio
+and streamable HTTP servers from `mcp.json` (global, or per project
+once trusted) or `pi.registerMcpServer()`, OAuth, `/mcp`, and
+`pi mcp add|remove|list|login|logout`. Server tools are registered as
+`mcp__<server>__<tool>`; with the default `codemode` exposure they stay
+undeclared, and Pi turns on `codemode` when such a server connects, so
+scripts reach them. `deferred` exposure goes through `tool_search`,
+`direct` declares a tool like a built-in ([pi-mcp-docs],
+[pi-coding-agent-changelog]). `--no-mcp` turns it off for one run. An
+extension that registers `codemode`, `tool_search` or `/mcp` replaces
+the built-in one.
 
-### Correction: Pi has built-in MCP since v0.99.0
-
-This survey predates Pi 0.99.0 (2026-09-29), which added MCP as a
-built-in extension: stdio and streamable HTTP servers from `mcp.json`
-(global, or per project once trusted) or `pi.registerMcpServer()`,
-OAuth, `/mcp`, and `pi mcp add|remove|list|login|logout`. Server tools
-are registered as `mcp__<server>__<tool>`; with the default `codemode`
-exposure they stay undeclared, and Pi turns on `codemode` when such a
-server connects, so scripts reach them. `deferred` exposure goes through
-`tool_search`, `direct` declares a tool like a built-in
-([pi-mcp-docs], [pi-coding-agent-changelog]). An extension that
-registers `codemode`, `tool_search` or `/mcp` replaces the built-in
-one. The adapters below matter for Pi before 0.99.0 and for features
-the built-in lacks.
+This page covers when the built-in is enough and where the
+third-party adapters below still matter (Pi before 0.99.0, or
+features the built-in lacks).
 
 > **Design tension:** Pi's creator [Mario Zechner argues that many MCP
 > servers are unnecessary](https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp)
@@ -87,6 +84,13 @@ Zod and the MCP SDK have caused runtime errors in the wild.
 - **Over-generalization.** Many MCP servers expose 20+ tools to cover
 all bases; the agent uses 2–3. CLI tools expose exactly what you
 need.
+
+## Third-party adapters
+
+The built-in covers stdio and streamable HTTP servers with OAuth. The
+adapters matter where it does not reach: Pi before 0.99.0, the
+single-proxy-tool pattern that hides every server behind one tool
+declaration, and experimental sandboxed calling.
 
 ## Surveyed adapters
 
@@ -140,11 +144,12 @@ The tradeoff is interoperability — a Pi skill only works with Pi. An
 MCP server works with any MCP client. If you switch agents frequently,
 MCP amortizes the setup cost. If you stay in Pi, skills are leaner.
 
-## Picking an MCP adapter
+## Picking an MCP setup
 
 | Goal | Best choice | Why |
 |---|---|---|
-| **Production MCP on Pi** | **`nicobailon/pi-mcp-adapter`** | Most mature, highest adoption, token-efficient proxy pattern. |
+| **MCP on current Pi** | Built-in (`mcp.json`, `/mcp`) | No extension, OAuth included, per-tool exposure control. |
+| **Hide every server behind one tool declaration** | **`nicobailon/pi-mcp-adapter`** | Proxy pattern: ~200 tokens instead of one declaration per tool. |
 | **Hitting Zod/runtime errors with nicobailon's** | `steimbyte/pi-mcp-extension` | Claims to resolve version conflicts. |
 | **Experimenting with sandboxed MCP calls** | `mitsuhiko/pi-codemode-mcp` | JavaScript sandbox approach, `/mcp` management command. |
 | **MCP as part of a full composable setup** | `spences10/my-pi` | Bundled with LSP, agent chains, telemetry. |

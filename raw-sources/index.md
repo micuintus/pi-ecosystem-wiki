@@ -440,3 +440,13 @@ copied into a dated bucket file.
 | npm-pi-refusal-guard | repo | https://www.npmjs.com/package/pi-refusal-guard | extension, anthropic, refusal |
 | pi-anthropic-oauth-pr-33 | issue | https://github.com/leohenon/pi-anthropic-oauth/pull/33 | extension, anthropic, transcript-context |
 | support-usage-credits | docs | https://support.claude.com/en/articles/12429409-manage-extra-usage-for-paid-claude-plans | anthropic, usage-credits, extra-usage |
+| pi-lens | repo | https://github.com/apmantza/pi-lens | extension, lsp, diagnostics |
+| cc-safety-net | repo | https://github.com/kenryu42/cc-safety-net | extension, guard, permissions |
+| pi-antigravity | repo | https://github.com/Rahularya01/pi-antigravity | extension, provider, antigravity |
+| pi-web-search | repo | https://github.com/ttttmr/pi-web-search | extension, web-search, provider-native |
+| pi-cache-optimizer | repo | https://github.com/jiangge/pi-cache-optimizer | extension, prompt-cache |
+| pi-sessions-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/sessions.md | pi, sessions, tree, fork |
+| claude-code-checkpointing | docs | https://code.claude.com/docs/en/checkpointing | claude-code, checkpoints, rewind |
+| nicobailon-pi-rewind-hook | repo | https://github.com/nicobailon/pi-rewind-hook | extension, checkpoint, rewind |
+| prateekmedia-pi-hooks | repo | https://github.com/prateekmedia/pi-hooks | extension, hooks, checkpoint |
+| pi-compaction-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/compaction.md | pi, compaction |

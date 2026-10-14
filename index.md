@@ -70,7 +70,9 @@ them.
 ### 🔌 Providers and model access
 
 - [Provider Extensions](ecosystem/provider-extensions.md) — OpenCode Zen/Go, Nebius Token Factory, and EU/privacy-forward open-weight model providers
-- [Model Routing, Fallback and Usage-Limit Recovery Extensions](ecosystem/model-routing-extensions.md): virtual-model routers, provider proxies, hook switchers and wait-and-resume; which one keeps a Claude subscription working through its limits
+- [Model Routing, Fallback and Usage-Limit Recovery Extensions](ecosystem/model-routing-extensions.md)
+- [Checkpoint, Rewind and Session-Branch Extensions](ecosystem/checkpoint-extensions.md): what Pi core restores, what Claude Code restores, and the file-checkpoint gap
+- [Code Health Extensions](ecosystem/code-health-extensions.md): LSP and linter feedback in the loop: virtual-model routers, provider proxies, hook switchers and wait-and-resume; which one keeps a Claude subscription working through its limits
 
 **Claude Pro/Max subscription in Pi** — start with the survey; it names the pick. The other three pages are the foundation and the deep dives.
 
