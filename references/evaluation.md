@@ -15,9 +15,9 @@ tags: [reference, evaluation, quality, methodology]
 ## Contents
 
 - [Three tiers of signal](#three-tiers-of-signal)
-- [Tier 1 — Project health](#tier-1-project-health-highest-priority)
-- [Tier 2 — Community sentiment](#tier-2-community-sentiment)
-- [Tier 3 — Code quality signals](#tier-3-code-quality-signals)
+- [Tier 1 — Project health](#tier-1--project-health-highest-priority)
+- [Tier 2 — Community sentiment](#tier-2--community-sentiment)
+- [Tier 3 — Code quality signals](#tier-3--code-quality-signals)
 - [What this wiki does and doesn't promise](#what-this-wiki-does-and-doesnt-promise)
 - [See also](#see-also)
 
@@ -112,6 +112,12 @@ opinions — that path leads to reviewer hallucination.
 | **Inclusion in curated collections** | Named practitioners vouching for an extension with their own workflow on the line. See weighting table below. | `gh search code "<name>" --repo <collection>` per row |
 | **Mentions in other extensions' READMEs** | Peer signal. "Based on X", "fork of X", "inspired by X" = extension authors picking each other | `gh search code "<name>" --filename README.md` |
 | **HN / Reddit / X mentions** | High noise, occasional gold. Time-box and weight low. | Web search, time-boxed to 5min |
+
+Download counts game easily: a package with hundreds of thousands of
+weekly downloads on a thousand stars and hundreds of publishes in
+weeks is riding CI reinstalls or a bundle, not users. Discount the
+ratio, not just the total. No auditable repo means no listing,
+whatever the traction.
 
 ### Curated-collection inclusion weights
 

@@ -38,7 +38,7 @@ entries:
     repo: ttttmr/pi-web-search
     npm: pi-web-search
     role: provider-native-search
-    notes: "Two small tools (web search, URL context) through provider-native retrieval: Gemini URL Context, Grok, OpenAI Responses, Anthropic, DeepSeek, Ollama, OpenCode Zen/Go. No search API key. Installed October 2026; complements key-based providers."
+    notes: "Two small tools (web search, URL context) through provider-native retrieval: Gemini URL Context, Grok, OpenAI Responses, Anthropic, DeepSeek, Ollama, OpenCode Zen/Go. No search API key. Not co-installable with `pi-web-access`: both register a `web_search` tool and Pi refuses to load the second one. Pick one search tool."
   - id: pi-codex-web-search
     name: pi-codex-web-search
     repo: ayagmar/pi-codex-web-search
@@ -122,8 +122,8 @@ entries:
 - [Market structure](#market-structure)
 - [Recommendation matrix](#recommendation-matrix)
 - [Author note](#author-note)
-- [Setup notes — pi-web-access](#setup-notes-pi-web-access)
-- [Routing guidance](#routing-guidance-one-tool-internal-selection)
+- [Setup notes — pi-web-access](#setup-notes--pi-web-access)
+- [Routing guidance](#routing-guidance--one-tool-internal-selection)
 - [See also](#see-also)
 
 Comparison of published Pi web search extensions and skills.
@@ -162,6 +162,7 @@ counts do. For current vital signs see
 | **`pi-codex-web-search`** | Delegates to local `codex` CLI | Defuddle fallback | Codex auth reuse, budget tracking, fast/deep modes, settings persistence |
 | **`pi-web-extension`** | Brave (HTML scrape), DDG fallback | Turndown to temp file | Prompt steering (auto-detects URLs/search intent), token-aware |
 | **`pi-web-search`** | Gemini URL Context, Grok, OpenAI Responses, Anthropic, Zen/Go | Provider-native | Two tools, short descriptions; no search key, uses model subscriptions |
+| **`pi-web-search` vs `pi-web-access`** | — | — | Same `web_search` tool name: installing both fails to load; pick one |
 | **`pi-web-utils`** | Google, DDG, SearXNG, custom (configurable chain) | markdown.new → Readability+Turndown | GitHub clone + local `rg`/`grep` search, configurable engines |
 | **`@aemonculaba/pi-search`** | OpenAI/Codex native `web_search` only | Readability+Turndown, Playwright fallback | Policy injection (blocks bash curl/wget), auth priority chain |
 | **`@benvargas/pi-exa-mcp`** | Exa via MCP adapter | Exa content extraction | Code context search (Exa code search endpoint). CI and tests. Single-purpose, cleanly bounded. |
