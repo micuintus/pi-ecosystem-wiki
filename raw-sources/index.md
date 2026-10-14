@@ -450,3 +450,4 @@ copied into a dated bucket file.
 | nicobailon-pi-rewind-hook | repo | https://github.com/nicobailon/pi-rewind-hook | extension, checkpoint, rewind |
 | prateekmedia-pi-hooks | repo | https://github.com/prateekmedia/pi-hooks | extension, hooks, checkpoint |
 | pi-compaction-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/compaction.md | pi, compaction |
+| pi-web-search-tm | repo | https://github.com/ttttmr/pi-web-search | extension, web-search, provider-native |

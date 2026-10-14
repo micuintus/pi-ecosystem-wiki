@@ -3,6 +3,7 @@ title: Pi Web Search Extensions
 type: ecosystem
 updated: 2026-10-14
 sources:
+  - pi-web-search-tm
   - pi-web-search
 
   - pi-web-access
@@ -32,6 +33,12 @@ entries:
     npm: pi-web-search
     role: provider-native-search
     notes: "Provider-native search through Gemini URL Context, Grok and OpenAI Responses: uses models already paid for, no Brave or Tavily key. Catalog-level, not code-read."
+  - id: pi-web-search-tm
+    name: pi-web-search
+    repo: ttttmr/pi-web-search
+    npm: pi-web-search
+    role: provider-native-search
+    notes: "Two small tools (web search, URL context) through provider-native retrieval: Gemini URL Context, Grok, OpenAI Responses, Anthropic, DeepSeek, Ollama, OpenCode Zen/Go. No search API key. Installed October 2026; complements key-based providers."
   - id: pi-codex-web-search
     name: pi-codex-web-search
     repo: ayagmar/pi-codex-web-search
@@ -154,6 +161,7 @@ counts do. For current vital signs see
 | **`@coctostan/pi-exa-gh-web-tools`** | Exa only | Readability+Turndown, GitHub clone | Research cache, query enhancement, dedup, parallel batch, content offloading, standalone CLI |
 | **`pi-codex-web-search`** | Delegates to local `codex` CLI | Defuddle fallback | Codex auth reuse, budget tracking, fast/deep modes, settings persistence |
 | **`pi-web-extension`** | Brave (HTML scrape), DDG fallback | Turndown to temp file | Prompt steering (auto-detects URLs/search intent), token-aware |
+| **`pi-web-search`** | Gemini URL Context, Grok, OpenAI Responses, Anthropic, Zen/Go | Provider-native | Two tools, short descriptions; no search key, uses model subscriptions |
 | **`pi-web-utils`** | Google, DDG, SearXNG, custom (configurable chain) | markdown.new → Readability+Turndown | GitHub clone + local `rg`/`grep` search, configurable engines |
 | **`@aemonculaba/pi-search`** | OpenAI/Codex native `web_search` only | Readability+Turndown, Playwright fallback | Policy injection (blocks bash curl/wget), auth priority chain |
 | **`@benvargas/pi-exa-mcp`** | Exa via MCP adapter | Exa content extraction | Code context search (Exa code search endpoint). CI and tests. Single-purpose, cleanly bounded. |

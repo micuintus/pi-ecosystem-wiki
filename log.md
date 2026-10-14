@@ -1238,3 +1238,9 @@ schema validation. Details per page in the entries; full report at
 - Ingested: `cc-safety-net` (permission), `pi-antigravity` (provider), `pi-web-search` (web search). All catalog-level.
 - Registered: pi-lens, cc-safety-net, pi-antigravity, pi-web-search, pi-cache-optimizer, pi-sessions-docs, claude-code-checkpointing, nicobailon-pi-rewind-hook, prateekmedia-pi-hooks, pi-compaction-docs.
 - Updated: index.md, README.md, raw-sources/index.md, log.md.
+
+## [2026-10-14] ingest | pi-web-search; HarnessTax numbers
+
+- `web-search-extensions.md`: `pi-web-search` entry (provider-native search and URL context through model subscriptions, no search key; installed).
+- Noted for the record: HarnessTax (UC Berkeley Sky Lab, 2026-09-16) ran 21 model-harness pairs (Claude Code, Codex CLI, Pi) on SWE-bench Lite and Terminal-Bench 2.0. Fable 5: 97.8% in CC vs 96.7% in Pi at about twice the cost ($1.33 vs $0.67). Geometric-mean cost: CC 2.0x Pi on SWE-bench Lite, 1.5x on Terminal-Bench 2.0. Success effect within ±2% and ±5%. Alternative harness wins 9 of 12 comparisons. Predates Opus 5.5 (2026-09-22): no renowned Pi-vs-CC Opus 5.5 head-to-head exists.
+- Registered: pi-web-search-tm.
