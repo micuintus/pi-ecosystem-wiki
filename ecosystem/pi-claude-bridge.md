@@ -1,9 +1,12 @@
 ---
 title: pi-claude-bridge — Claude Code as Pi provider + sub-agent
 type: ecosystem
-updated: 2026-05-25
+updated: 2026-10-13
 sources:
   - pi-claude-bridge
+  - pi-claude-bridge-changelog
+  - pi-claude-bridge-issue-140
+  - gotgenes-pi-packages-issue-883
   - claude-agent-sdk-pi
   - anthropic-claude-agent-sdk
   - anthropic-third-party-end
@@ -122,6 +125,26 @@ Tool blocklists per mode (from `src/index.ts:146-163`):
 `mode: "none"` reduces CC to a pure reasoning call.
 
 ## Configuration
+
+### Correction: `appendSystemPrompt` and `settingSources` are gone
+
+The configuration, off-switch table and "pure subscription LLM" block
+below describe the bridge before 0.7.0 (2026-08-08). That release
+removed `provider.appendSystemPrompt` and `provider.settingSources`:
+Claude Code now receives the same global and hierarchical `AGENTS.md`
+and `CLAUDE.md` files Pi loads, and Claude Code's own copies are
+excluded (`AGENTS.md` since 0.9.2). AskClaude is opt-in since 0.7.0
+([pi-claude-bridge-changelog]). Claude Code's settings sources stay at
+the SDK default, so `~/.claude/settings.json` hooks run inside bridge
+turns; issue #140 counted 23,780 tokens for three Opus 5.5 prompts
+with those defaults, 7,928 with `settingSources: []`, and 9,397 for
+the `claude` CLI directly ([pi-claude-bridge-issue-140]). Since 0.9.0
+the bridge refuses a turn whose append carries Pi's harness text or
+both documented trigger paths ([pi-claude-bridge-changelog]), which
+Anthropic's classifier rejects even through the real binary
+([gotgenes-pi-packages-issue-883]).
+
+Pre-0.7.0 configuration, kept for older installs:
 
 `~/.pi/agent/claude-bridge.json` (global) or
 `.pi/claude-bridge.json` (project; merged over global):

@@ -1,8 +1,10 @@
 ---
 title: Pi MCP Integration
 type: ecosystem
-updated: 2026-05-10
+updated: 2026-10-13
 sources:
+  - pi-mcp-docs
+  - pi-coding-agent-changelog
   - nicobailon-pi-mcp-adapter
   - jordyvd-pi-mcp-adapter
   - steimbyte-pi-mcp-extension
@@ -41,6 +43,21 @@ entries:
 Survey of Pi extensions that connect to [Model Context Protocol](https://modelcontextprotocol.io/)
 (MCP) servers — the standardized way to expose tools, resources, and
 prompts to LLMs.
+
+### Correction: Pi has built-in MCP since v0.99.0
+
+This survey predates Pi 0.99.0 (2026-09-29), which added MCP as a
+built-in extension: stdio and streamable HTTP servers from `mcp.json`
+(global, or per project once trusted) or `pi.registerMcpServer()`,
+OAuth, `/mcp`, and `pi mcp add|remove|list|login|logout`. Server tools
+are registered as `mcp__<server>__<tool>`; with the default `codemode`
+exposure they stay undeclared, and Pi turns on `codemode` when such a
+server connects, so scripts reach them. `deferred` exposure goes through
+`tool_search`, `direct` declares a tool like a built-in
+([pi-mcp-docs], [pi-coding-agent-changelog]). An extension that
+registers `codemode`, `tool_search` or `/mcp` replaces the built-in
+one. The adapters below matter for Pi before 0.99.0 and for features
+the built-in lacks.
 
 > **Design tension:** Pi's creator [Mario Zechner argues that many MCP
 > servers are unnecessary](https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp)

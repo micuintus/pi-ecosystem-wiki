@@ -1,10 +1,18 @@
 ---
 title: Pi Year One — How the Extension Platform Arrived
 type: reference
-updated: 2026-08-21
+updated: 2026-10-13
 sources:
   - pi-mono
   - pi-releases
+  - pi-coding-agent-changelog
+  - pi-settings-manager-ts
+  - pi-sdk-ts-v0-84-2
+  - pi-cli-docs
+  - pi-mcp-docs
+  - pi-codemode-docs
+  - pi-virtual-models-doc
+  - pi-security-docs
   - pi-extensions-docs
   - bitter-frontier-pi-profile
 tags: [history, architecture, extensions]
@@ -32,6 +40,10 @@ roughly 5,650 commits, so year one is essentially the whole project life.
 | Dec 2025 | 868 | **the extension platform lands** |
 | Jan 2026 | **1,227** | peak: the unified API |
 | Feb–Aug 2026 | ~400–500/mo | consolidation: providers, compaction, telemetry, harness v2 |
+| Sep–Oct 12, 2026 | ~700 | built-in MCP, codemode, tool search and virtual models (0.99.0), then 1.0.0 and 1.2.0 |
+
+v1.0.0 shipped on 2026-10-01 and v1.2.0 on 2026-10-12 ([pi-releases]),
+at 6,898 commits ([pi-mono]).
 
 A four-month burst built the platform; everything since has been steady
 consolidation, with releases slowing from several minors a week to roughly one
@@ -75,8 +87,13 @@ The documentation tracks it exactly:
 | `setActiveTools`, plan-mode example | v0.34.0 (Jan 2026) |
 | `ExtensionAPI`, `loadExtension`, `registerTool`, `pi.events` | **v0.35.0** (Jan 2026) |
 | Provider registry (OAuth refactor) | v0.50.0 (Jan 2026) |
+| Live model catalog refresh from pi.dev, `pi update --models` | v0.80.8 (Jul 2026) |
 | **Native extension providers** | **v0.81.0** (Jul 2026) |
 | Telemetry package, harness v2 | v0.84.0 (Aug 2026) |
+| Prompt cache warming; system prompt and tool changes recorded in the transcript; `ctx.modelRegistry.stream()` | v0.86.0 (Sep 2026) |
+| `ContextEditEntry`, actionable `turn_end` and `agent_before_settle`, `context_with_system` | v0.87.0 (Sep 2026) |
+| **Built-in MCP, `codemode`, `tool_search`, `pi.registerVirtualModel()`**, classifier models | **v0.99.0** (Sep 2026) |
+| Fullscreen TUI by default | v1.0.0 (Oct 2026) |
 
 Two of these are load-bearing for this wiki:
 
@@ -108,9 +125,34 @@ also built in. The four-tool framing still describes the *philosophy*
 accurately, but not the tool list — worth correcting when you see it quoted
 (including in earlier revisions of this wiki).
 
+### Correction: four tools are enabled by default
+
+The paragraph above conflates built-in with enabled. v0.84.2 shipped
+seven built-in tools but enabled four by default (`read`, `bash`,
+`edit`, `write`); `grep`, `find` and `ls` load only when selected
+([pi-sdk-ts-v0-84-2]). Pi 1.2.0 keeps the same four in
+`DEFAULT_TOOL_NAMES` ([pi-settings-manager-ts]). `codemode` and
+`tool_search`, added in v0.99.0, are off by default too;
+`"defaultTools": ["+codemode"]` adds one without repeating the others
+([pi-cli-docs]). With codemode active, a GPT-5.6 request with the
+default tools takes about 3,300 tokens, down from about 5,300 before
+v1.0.0 ([pi-coding-agent-changelog]).
+
 ## What did not change
 
-No MCP in core. No subagents in core. No approval prompts, no permission layer,
+### Correction: MCP is in core since v0.99.0
+
+v0.99.0 added MCP as a built-in extension: stdio and streamable HTTP
+servers from `mcp.json` or `pi.registerMcpServer()`, OAuth, `/mcp`, and
+`pi mcp add|remove|list|login|logout`. `--no-mcp` turns it off for one
+run, and `-builtin:mcp` in the `extensions` setting turns it off for
+good ([pi-mcp-docs], [pi-coding-agent-changelog]). The rest of this
+section still holds for v1.2.0: the built-in extensions are `llama.cpp`,
+`codemode`, `tool-search` and `mcp` ([pi-coding-agent-changelog]), and
+Pi "does not ask for approval before every tool call"
+([pi-security-docs]).
+
+No MCP in core (until v0.99.0). No subagents in core. No approval prompts, no permission layer,
 no governance. Each is instead a crowded extension category — the
 [subagent survey](../ecosystem/subagent-extensions.md) alone tracks ~30
 implementations, and [permissions](../ecosystem/permission-extensions.md) and
@@ -125,6 +167,8 @@ something you enjoy.
 
 ## See also
 
+- [Model Routing Extensions](../ecosystem/model-routing-extensions.md): what
+  the ecosystem built on virtual models
 - [How to Evaluate a Pi Extension](evaluation.md) — the framework for judging
   what the ecosystem produced
 - [Pi Ecosystem Catalogs](catalogs.md) — where the packages are indexed
