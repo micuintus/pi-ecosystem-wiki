@@ -1,7 +1,7 @@
 ---
 title: Pi Slack Extensions
 type: ecosystem
-updated: 2026-06-23
+updated: 2026-10-14
 sources:
   - salesforce-sf-slack
   - dreki-gg-pi-slack
@@ -30,7 +30,7 @@ entries:
     repo: dreki-gg/pi-extensions
     npm: "@dreki-gg/pi-slack"
     role: agent-tools-readwrite
-    notes: "8 tools (read + post/edit/delete own messages, file download). Bot token (xoxb) for reads, user token (xoxp) only for search. Effect-based client; bot must be invited to channels"
+    notes: "8 tools (read + post/edit/delete own messages, file download). Bot token (xoxb) for reads, user token (xoxp) only for search. Effect-based client; bot must be invited to channels. Broken on Pi 1.2: past-chats `extractReferenceTokens(event.prompt)` reaches `text.matchAll` on an undefined prompt; the rest of the bundle is unaffected"
   - id: pinet-slack-bridge
     name: "@pinet/slack-bridge"
     repo: gugu91/extensions

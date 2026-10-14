@@ -1,7 +1,7 @@
 ---
 title: Pi Tool-Call Rendering Extensions
 type: ecosystem
-updated: 2026-05-08
+updated: 2026-10-14
 sources:
   - MasuRii-pi-tool-display
   - vinyroli-pi-tool-view
@@ -23,12 +23,12 @@ entries:
     name: pi-tool-view
     repo: vinyroli/pi-tool-view
     role: rendering-fork
-    notes: "Fork of pi-tool-display. Status uncertain — verify availability before installing."
+    notes: "Fork of pi-tool-display. Repository deleted; status unknown, do not install."
   - id: pi-tool-display-danielmlevans
     name: "pi-tool-display (danielmlevans)"
     repo: danielmlevans/pi-tool-display
     role: rendering-fork
-    notes: "Fork of pi-tool-display."
+    notes: "Fork of pi-tool-display. Repository deleted; status unknown, do not install."
   - id: pi-tool-display-tynanbe
     name: "pi-tool-display (tynanbe)"
     repo: tynanbe/pi-tool-display

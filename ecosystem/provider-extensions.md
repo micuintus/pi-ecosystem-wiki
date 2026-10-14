@@ -1,8 +1,10 @@
 ---
 title: Pi Provider Extensions
 type: ecosystem
-updated: 2026-09-17
+updated: 2026-10-13
 sources:
+  - pi-models-docs
+  - pi-coding-agent-changelog
   - awtotty-pi-opencode
   - lnilluv-pi-opencode-go-rotation
   - mosquito-tokenfactory-pi
@@ -135,9 +137,9 @@ entries:
 # Pi Provider Extensions
 
 Third-party provider extensions for Pi that add or augment LLM backends.
-Pi ships with built-in providers for OpenCode Zen, OpenCode Go, Nebius,
-and many others; these extensions exist when users want **runtime model
-discovery** (new models without waiting for a Pi release) or **key-management
+Pi ships with built-in providers for OpenCode Zen, OpenCode Go and many
+others, but not Nebius; these extensions exist when users want a provider
+the core lacks, **runtime model discovery**, or **key-management
 utilities** (rotation, quota bypass) that the core does not provide.
 
 > **Looking for Claude Pro/Max specifically?** This page covers the
@@ -151,8 +153,11 @@ utilities** (rotation, quota bypass) that the core does not provide.
 ## TL;DR
 
 - **Using OpenCode Zen or Go?** Pi has built-in providers — no extension
-  needed. Only install a discovery extension if you want newer models than
-  Pi's baked snapshot. Prefer `cfal/pi-models-dev` (scoped opt-in override,
+  needed. Since v0.80.8, `/model` refreshes provider catalogs from pi.dev
+  in the background and `pi update --models` forces a refresh
+  ([pi-models-docs], [pi-coding-agent-changelog]), so new models arrive
+  without a Pi release. Install a discovery extension only if pi.dev lags
+  for a provider you use. Prefer `cfal/pi-models-dev` (scoped opt-in override,
   preserves built-in compat via `models.json`); `mdsitton/pi-opencode-provider`
   works but unconditionally replaces both built-ins and ships no tests.
   `MasuRii/pi-model-discovery` is the heavy general framework, overkill for
@@ -160,10 +165,11 @@ utilities** (rotation, quota bypass) that the core does not provide.
   from Pi (see [OpenCode Zen free tier — access rules](#opencode-zen-free-tier--access-rules)).
 - **Hitting OpenCode Go rate limits with multiple keys?** Install
   `pi-opencode-go-rotation` — it rotates keys reactively; it's a
-  key-management companion, not a provider.
-- **Using Nebius Token Factory?** Pi has a built-in provider — no extension
-  needed. Only install `tokenfactory-pi` if you are on an older Pi version
-  or specifically want runtime catalog discovery.
+  key-management companion, not a provider. With a single key it has
+  nothing to rotate. For failover to another provider or model, see
+  [Model Routing Extensions](model-routing-extensions.md).
+- **Using Nebius Token Factory?** Install `tokenfactory-pi`; Pi has no
+  built-in Nebius provider (see the correction below).
 - **Want EU-hosted open-weight models via EUrouter?** Install
   `pi install npm:pi-eurouter` — live catalog fetch, thinking-level map
   for reasoning models, EU-hosted routing.
@@ -339,8 +345,17 @@ this extension.
 
 ## Built-in vs extension providers
 
-Pi's core already ships built-in providers for OpenCode Zen, OpenCode Go,
-and Nebius Token Factory (see
+### Correction: Nebius is not built in, and catalogs refresh at runtime
+
+This page said Pi ships a built-in Nebius Token Factory provider. Pi
+1.2.0 has none: no Nebius provider exists in `packages/ai`, and the
+request for one ([pi-issue-3348]) was closed without adding it.
+`tokenfactory-pi` or a `models.json` provider on Nebius's
+OpenAI-compatible endpoint is required. The "Static model list" row
+below also predates v0.80.8, which added background catalog refreshes
+from pi.dev and `pi update --models` ([pi-coding-agent-changelog]).
+
+Pi's core ships built-in providers for OpenCode Zen and OpenCode Go (see
 [`packages/coding-agent/docs/providers.md`](https://github.com/earendil-works/pi-mono/blob/main/packages/coding-agent/docs/providers.md)).
 The extensions above exist for three specific gaps:
 
@@ -361,9 +376,8 @@ OAuth flow, but replaces both built-ins unconditionally and ships no tests.
 ownership model keeps it off pi-mono-managed provider IDs by default.
 
 `tokenfactory-pi` only solves the catalog problem; you still set
-`NEBIUS_API_KEY` as an environment variable. Both extensions are
-optional on current Pi releases — if you are happy with the built-in
-static lists and manual key management, skip them.
+`NEBIUS_API_KEY` as an environment variable. It is the only packaged
+Nebius route; the alternative is a hand-written `models.json` provider.
 
 ## Comparison: OpenCode extensions
 
@@ -568,9 +582,9 @@ No dedicated Pi extension exists for any of them — the gap is real.
 |---|---|
 | Use OpenCode Zen/Go (normal case) | Pi built-in — no extension needed |
 | Want newest OpenCode Go models between Pi releases (keep built-in compat) | `pi install git:github.com/cfal/pi-models-dev` + set `PI_MODELS_DEV_OVERRIDE_PROVIDERS=opencode-go` |
-| Multiple OpenCode Go keys / hitting rate limits | `pi install npm:@lnilluv/pi-opencode-go-rotation` |
-| Use Nebius Token Factory (normal case) | Pi built-in — no extension needed |
-| Nebius on an older Pi version | `pi install npm:tokenfactory-pi` |
+| Multiple OpenCode Go keys / hitting rate limits | `pi install npm:@lnilluv/pi-opencode-go-rotation` (does nothing with one key) |
+| Use Nebius Token Factory | `pi install npm:tokenfactory-pi` (no built-in provider) |
+| Fail over to another model when a provider limit hits | See [Model Routing Extensions](model-routing-extensions.md) |
 | Need an EU provider for open-weight models | Pi generic OpenAI provider with EU `baseUrl` — no extension needed |
 | Just starting out with OpenCode | Use Pi's built-in providers; extensions are optional |
 

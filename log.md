@@ -1152,3 +1152,78 @@ and Claude-subscription clusters can.
 - Added sources: opencode-zen-docs, opencode-go-docs, opencode-issue-42500, opencode-issue-42029, opencode-issue-33318, zen-proxy
 - Updated: ecosystem/provider-extensions.md, raw-sources/index.md
 - Second ingest: verified Kilo Gateway live (18 free models, anonymous access, kilo-auto/free router, cache-warm caveat) and Cline status for the free-inference section
+
+## [2026-10-13] ingest | Model routing and fallback survey; Claude subscription status; core corrections
+
+**New page: `ecosystem/model-routing-extensions.md`.** Fifteen code-read
+routing, fallback and usage-limit extensions in four shapes
+(virtual-model router, provider proxy, event-hook switcher, wait and
+resume) plus effort-only routers, rated for a Claude-primary setup.
+`@alexeiled/pi-model-router` is the most complete pick; shuymn's
+`fallback/auto` the smallest correct one; `pi-keep-going` the Claude
+Code style wait. Core facts that shape the category: Pi retries a
+Claude `429 rate_limit_error` three times on the same model, no
+extension event sees a failed response's headers, and signed thinking
+replays only on the identical model. Five packages carry a catch for a
+Claude login, among them `@kivlor/pi-multiplexer`, whose switch never
+fires (`failed.errorMessage` versus Pi's `failed.message.errorMessage`).
+
+**`ecosystem/claude-subscription-extensions.md`.** New "Status, October
+2026" section: Anthropic's 2026 timeline (paused Agent SDK change,
+legal-page wording, monthly API credits for Max and Team) and the
+measured classifier signals (billing block, per-model `cc_version`,
+cumulative vocabulary score with two phrases of Pi's own `docs` line,
+tool names). Correction: the two Shape A patchers no longer bet on
+equal signals; `pi-anthropic-auth` alone is the pick. Ten new entries,
+entry notes refreshed, picking table rewritten.
+
+**Corrections elsewhere.**
+- `anthropic-auth-and-billing.md`: a stored login wins over
+  `ANTHROPIC_API_KEY`; detection is several signals, not prompt
+  matching alone; API-credit route added.
+- `pi-claude-bridge.md`: `appendSystemPrompt` and `settingSources`
+  were removed in 0.7.0.
+- `provider-extensions.md`: Pi has no built-in Nebius provider;
+  catalogs refresh from pi.dev since v0.80.8; key rotation needs more
+  than one key.
+- `references/pi-year-one.md`: four tools are enabled by default, not
+  seven; MCP is built in since v0.99.0; primitives through v1.0.0.
+- `mcp-integration.md`: built-in MCP since v0.99.0.
+
+- Registered: 68 sources (Pi v1.2.0 permalinks, Anthropic policy pages,
+  fingerprint issues, 23 routing and 11 Claude extension repos pinned
+  where code-read). Fixed URLs: `pi-mono`, `pi-proxy-models`.
+- Updated: ecosystem/claude-subscription-extensions.md,
+  ecosystem/anthropic-auth-and-billing.md, ecosystem/pi-claude-bridge.md,
+  ecosystem/provider-extensions.md, ecosystem/mcp-integration.md,
+  references/pi-year-one.md, index.md, README.md, raw-sources/index.md
+- Lint findings left as found: `compaction-extensions.md` frontmatter
+  does not parse as YAML (unescaped quotes in the `pi-vcc` notes); 25
+  registered sources are cited nowhere.
+- Corrected after an independent audit: `pi-anthropic-auth` does not
+  save tokens against `pi-claude-bridge` in the one published
+  measurement (issue #140), so the older "least token waste" ranking
+  now carries a correction; `pi-claude-cli` fails only in print mode
+  and nested agent loops; `pi-auto-router` reads Claude's reset times
+  for quota pacing. Registered 2 more sources (`pi-anthropic-oauth-pr-33`,
+  `support-usage-credits`).
+
+## [2026-10-14] sweep | Pi 1.2 compatibility across 220 extensions
+
+Static sweep (no code run) of every extension the wiki lists against
+Pi 1.2.0: 11 broken, 35 stale, 5 unreachable. The 1.2-specific failure
+is `before_agent_start` handlers reading `event.prompt` without gating
+on `event.messageType === "user"` (broken: `pi-auto`, shuymn `one-shot`,
+hermes-loop, dreki past-chats, NicoAvanzDev pi-web-extension). Older
+breakage: `claude-agent-sdk-pi` and `mcowger/pi-better-messages-cache`
+still read the pre-0.86 `context.tools`/`context.systemPrompt`; the
+`pi-claude-cli` forks and schwa/tycronk20 bridges are stale. Two
+tool-rendering forks have deleted repos. Theme files all pass 1.2
+schema validation. Details per page in the entries; full report at
+/tmp/pi-wiki-sweep/sweep.md (working file, not a wiki source).
+
+- Updated: ecosystem/model-routing-extensions.md,
+  ecosystem/prompt-extensions.md, ecosystem/web-search-extensions.md,
+  ecosystem/loop-extensions.md, ecosystem/slack-extensions.md,
+  ecosystem/tool-rendering-extensions.md, raw-sources/index.md, log.md
+- Registered: ekil1100-pi-auto, ayagmar-pi-copilot-queue

@@ -1,7 +1,7 @@
 ---
 title: Raw sources
 type: reference
-updated: 2026-09-17
+updated: 2026-10-13
 sources: []
 ---
 
@@ -25,7 +25,7 @@ copied into a dated bucket file.
 
 | id | kind | ref | topics |
 |---|---|---|---|
-| pi-mono | repo | https://github.com/earendil-works/pi-mono | core, monorepo |
+| pi-mono | repo | https://github.com/earendil-works/pi | core, monorepo |
 | karpathy-llm-wiki | gist | https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f | method |
 | pi-autoresearch | repo | https://github.com/davebcn87/pi-autoresearch | extension, loop, autoresearch |
 | mitsuhiko-agent-stuff | repo | https://github.com/mitsuhiko/agent-stuff | extension, loop, collection |
@@ -343,7 +343,7 @@ copied into a dated bucket file.
 | pi-claude-cli | repo | https://github.com/rchern/pi-claude-cli | extension, anthropic, claude-code, cli-subprocess, stale |
 | pi-claude-code-fractary | repo | https://github.com/fractary/pi-claude-code | extension, anthropic, claude-code, tool-name-shim |
 | pi-anthropic-messages | repo | https://github.com/BlackBeltTechnology/pi-anthropic-messages | extension, anthropic, protocol-bridge |
-| pi-proxy-models | repo | https://github.com/victormilk/pi-proxy-models | extension, provider, multi-subscription, proxy |
+| pi-proxy-models | repo | https://github.com/ovitinhooo/pi-proxy-models | extension, provider, multi-subscription, proxy |
 | pi-mono-working-indicator-example | repo | https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/examples/extensions/working-indicator.ts | extension, tui, working-indicator, reference |
 | pi-animations | repo | https://github.com/arpagon/pi-animations | extension, tui, animation, spinner |
 | pi-spinner-dustydonkey | repo | https://github.com/HarshalRathore/pi-spinner | extension, tui, spinner, shimmer, verbs |
@@ -370,3 +370,73 @@ copied into a dated bucket file.
 | korotovsky-slack-mcp-server | repo | https://github.com/korotovsky/slack-mcp-server | slack, mcp, server |
 | artale-pi-notify | repo | https://github.com/arosstale/pi-notify | extension, slack, notification, webhook |
 | merlinbr-pi-agent-notify | repo | https://github.com/merlinbr/pi-agent-notify | extension, slack, notification, planned |
+| pi-virtual-models-doc | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/virtual-models.md | pi, virtual-model, routing |
+| pi-virtual-models-ts | repo | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/src/core/virtual-models.ts | pi, virtual-model, source |
+| pi-jev-router-example | repo | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/examples/extensions/jev-router.ts | pi, virtual-model, classifier, example |
+| pi-retry-ts | repo | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/ai/src/utils/retry.ts | pi, retry, rate-limit, source |
+| pi-provider-retry-ts | repo | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/ai/src/utils/provider-retry.ts | pi, retry, source |
+| pi-settings-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/settings.md | pi, settings, retry |
+| pi-anthropic-messages-ts | repo | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/ai/src/api/anthropic-messages.ts | pi, anthropic, oauth, source |
+| pi-transform-messages-ts | repo | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/ai/src/api/transform-messages.ts | pi, thinking, replay, source |
+| pi-compat-schema-ts | repo | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/ai/src/providers/compat-schema.ts | pi, anthropic, fallback, source |
+| pi-coding-agent-changelog | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/CHANGELOG.md | pi, changelog, releases |
+| pi-models-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/models.md | pi, models, catalog, credentials |
+| pi-mcp-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/mcp.md | pi, mcp, built-in |
+| pi-codemode-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/codemode.md | pi, codemode |
+| pi-cli-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/cli.md | pi, cli, tools |
+| pi-security-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/security.md | pi, security, permissions |
+| pi-settings-manager-ts | repo | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/src/core/settings-manager.ts | pi, tools, defaults, source |
+| pi-sdk-ts-v0-84-2 | repo | https://github.com/earendil-works/pi/blob/914cf1472e715297caa30db4b9535d534a9eb718/packages/coding-agent/src/core/sdk.ts | pi, tools, defaults, source |
+| pi-interactive-mode-ts | repo | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/src/modes/interactive/interactive-mode.ts | pi, anthropic, billing, warning |
+| pi-system-prompt-ts | repo | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/src/core/system-prompt.ts | pi, system-prompt, source |
+| pi-issue-6422 | issue | https://github.com/earendil-works/pi/issues/6422 | pi, anthropic, rate-limit |
+| claude-code-changelog | docs | https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md | claude-code, changelog, usage-limit |
+| claude-code-legal | docs | https://code.claude.com/docs/en/legal-and-compliance | anthropic, oauth, policy |
+| support-agent-sdk-plan | docs | https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan | anthropic, subscription, policy |
+| support-monthly-api-credits | docs | https://support.claude.com/en/articles/17154008-monthly-api-credits-for-max-and-team-plans | anthropic, api-credits, max, team |
+| gotgenes-pi-packages-issue-883 | issue | https://github.com/gotgenes/pi-packages/issues/883 | anthropic, fingerprint, classifier |
+| hermes-agent-issue-72171 | issue | https://github.com/NousResearch/hermes-agent/issues/72171 | anthropic, fingerprint, extra-usage |
+| pi-anthropic-auth-architecture | docs | https://github.com/gotgenes/pi-anthropic-auth/blob/f648e814d479dae75f6e403d8ffa8ae5bc918783/docs/architecture.md | extension, anthropic, oauth, billing-header |
+| pi-anthropic-auth-claude-code-version | repo | https://github.com/gotgenes/pi-anthropic-auth/blob/f648e814d479dae75f6e403d8ffa8ae5bc918783/src/claude-code-version.ts | extension, anthropic, cc-version |
+| pi-anthropic-oauth-pr-23 | issue | https://github.com/leohenon/pi-anthropic-oauth/pull/23 | extension, anthropic, tool-names |
+| pi-anthropic-oauth-pr-35 | issue | https://github.com/leohenon/pi-anthropic-oauth/pull/35 | extension, anthropic, billing-header |
+| pi-claude-bridge-changelog | docs | https://github.com/elidickinson/pi-claude-bridge/blob/b2e7255ece0b8bfd3a6429fd5c147fd59984c785/CHANGELOG.md | extension, claude-agent-sdk, changelog |
+| pi-claude-bridge-issue-140 | issue | https://github.com/elidickinson/pi-claude-bridge/issues/140 | extension, claude-agent-sdk, tokens |
+| ben-vargas-pi-packages-pr-37 | issue | https://github.com/ben-vargas/pi-packages/pull/37 | extension, anthropic, tool-aliasing |
+| pi-claude-cli-issue-32 | issue | https://github.com/rchern/pi-claude-cli/issues/32 | extension, claude-code, broken |
+| pi-claude-pro | repo | https://github.com/HugoLopes45/pi-claude-pro | extension, anthropic, oauth, billing-header |
+| pi-claude-max | repo | https://github.com/bradennss/pi-claude-max | extension, anthropic, oauth, billing-header |
+| pi-claude-request-compat | repo | https://github.com/vazzma/pi-claude-request-compat | extension, anthropic, oauth, provider |
+| saccolabs-pi-claude-cli | repo | https://github.com/agustinsacco/pi-claude-cli | extension, claude-code, cli-subprocess |
+| pi-claude-agent-sdk | repo | https://github.com/pi-pod/pi-claude-agent-sdk | extension, claude-agent-sdk, fork |
+| pi-claude-code-provider | repo | https://github.com/chem/pi-claude-code-provider | extension, claude-code, cli-subprocess, archived |
+| pi-sub-anthropic | repo | https://github.com/spksoft/pi-sub-anthropic | extension, anthropic, provider-replacement |
+| pi-claude-plan | repo | https://github.com/sunipan/pi-claude-plan | extension, anthropic, provider-replacement |
+| pi-thinking-binding | repo | https://github.com/luan/agents | extension, anthropic, thinking, overhead |
+| pi-anthropic-image-cap | repo | https://github.com/ogulcancelik/pi-extensions | extension, anthropic, images, overhead |
+| pi-anthropic-vertex | repo | https://github.com/twoGiants/pi-anthropic-vertex | extension, anthropic, vertex, provider |
+| alexeiled-pi-model-router | repo | https://github.com/alexei-led/pi-model-router/tree/72ea0ad7d66d84c2a985727c6dd6c45acdf192e4 | extension, routing, fallback, provider-proxy |
+| shuymn-pi-extensions | repo | https://github.com/shuymn/pi-extensions/tree/2d9c6a19bf341435c176901bb6b0d2bddf235e76 | extension, routing, fallback, virtual-model |
+| eiei114-pi-model-fallback | repo | https://github.com/eiei114/pi-model-fallback/tree/6fc662fb4ec61451be0ed43467c1bb67791dc2bd | extension, fallback, hooks |
+| ohlulu-pi-keep-going | repo | https://github.com/ohlulu/pi-keep-going/tree/0ae1d40870af9ebfb9debc806196c84d8657fca0 | extension, usage-limit, auto-continue |
+| fatpandac-pi-auto-models | repo | https://github.com/Fatpandac/pi-auto-models/tree/73717912815a3c5c90b699de0ed77c461574a2cd | extension, fallback, hooks |
+| jiangge-pi-router | repo | https://github.com/jiangge/pi-router/tree/907b8d7ad96ea0e0910bd7752969ac0b0ee63add | extension, routing, failover, provider-proxy |
+| unrelentingfox-pi-model-fallback-alias | repo | https://github.com/unrelentingfox/pi-model-fallback-alias/tree/9b75006c1d3af39adee5ec88a739b07768d7c6bc | extension, fallback, provider-proxy |
+| danialranjha-pi-auto-router | repo | https://github.com/danialranjha/pi-auto-router/tree/77190f30bbf69c73bc28ef7ddcfbe5990c0bf41c | extension, routing, failover, provider-proxy |
+| weisanju-pi-plugins | repo | https://github.com/weisanju/pi-plugins/tree/b04b5aee93b267429d52cadb52fe8609bc56602f | extension, routing, failover |
+| kivlor-pi-multiplexer | repo | https://www.npmjs.com/package/@kivlor/pi-multiplexer/v/0.1.1 | extension, routing, virtual-model, npm-only |
+| kenbanks-peng-pi-virtual-model | repo | https://github.com/kenbanks-peng/pi-virtual-model/tree/7adf86dd144a6e673db93230330746a55932573e | extension, routing, virtual-model, classifier |
+| robertn702-reasoning-router | repo | https://github.com/robertn702/reasoning-router/tree/f976d0194533806eb90b54716523c29cd9a19110 | extension, thinking-level, virtual-model |
+| ekil1100-pi-auto | repo | https://github.com/ekil1100/pi-auto/tree/6c60ab37debc96ae48e1ca0957e777c2b3ebacc8 | extension, thinking-level, classifier |
+| chxsong-pi-auto-continue | repo | https://github.com/chxsong/pi-auto-continue/tree/1b4ff604031684164998396387e4dae2a0f7b439 | extension, usage-limit, auto-continue |
+| uzunkonak-pi-retry | repo | https://github.com/uzunkonak/pi_retry/tree/685095603e24200741514c7f2c00d7ffaed663a2 | extension, usage-limit, auto-continue |
+| gooyoung-pi-failover | repo | https://github.com/gooyoung/pi-failover | extension, failover |
+| cad0p-pi-fallback-provider | repo | https://github.com/cad0p/pi-fallback-provider | extension, fallback |
+| dev-willbird1936-pi-fallback-models | repo | https://github.com/dev-willbird1936/pi-fallback-models | extension, fallback |
+| rioliu-pi-tier-router | repo | https://github.com/rioliu/pi-tier-router | extension, routing, virtual-model |
+| npm-pi-shift-router | repo | https://www.npmjs.com/package/pi-shift-router | extension, routing |
+| kasaiarashi-pi-auto-resume | repo | https://github.com/kasaiarashi/pi-auto-resume | extension, usage-limit, auto-continue |
+| npm-pi-jev-effort | repo | https://www.npmjs.com/package/pi-jev-effort | extension, thinking-level |
+| npm-pi-refusal-guard | repo | https://www.npmjs.com/package/pi-refusal-guard | extension, anthropic, refusal |
+| pi-anthropic-oauth-pr-33 | issue | https://github.com/leohenon/pi-anthropic-oauth/pull/33 | extension, anthropic, transcript-context |
+| support-usage-credits | docs | https://support.claude.com/en/articles/12429409-manage-extra-usage-for-paid-claude-plans | anthropic, usage-credits, extra-usage |

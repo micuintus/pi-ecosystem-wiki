@@ -1,7 +1,7 @@
 ---
 title: Pi Loop and Ralph Extensions
 type: ecosystem
-updated: 2026-05-08
+updated: 2026-10-14
 sources:
   - pi-autoresearch
   - mitsuhiko-agent-stuff
@@ -93,7 +93,7 @@ entries:
     name: akijain2000/hermes-loop
     repo: akijain2000/hermes-loop
     role: self-improving
-    notes: "Skill creation, context compression, persistent memory."
+    notes: "Skill creation, context compression, persistent memory. Broken on Pi 1.2 when routing is enabled: `routePrompt(event.prompt, ...)` reaches `prompt.length` on an undefined prompt; guard `event.messageType` or default to empty."
   - id: pi-auto-continue
     name: "@latent-variable/pi-auto-continue"
     repo: latent-variable/pi-auto-continue

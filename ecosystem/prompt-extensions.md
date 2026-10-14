@@ -1,7 +1,7 @@
 ---
 title: Pi Prompt Extensions
 type: ecosystem
-updated: 2026-05-28
+updated: 2026-10-14
 sources:
   - pi-mono
   - pi-sticky-prompt
@@ -59,13 +59,13 @@ entries:
     repo: ayagmar/pi-copilot-queue
     npm: pi-copilot-queue
     role: ask-user-driven-queue
-    notes: "TaskSync-style queue gated by an `ask_user` tool. Provider-targeted (defaults to `github-copilot`): injects an `ask_user` loop policy into the system prompt for managed providers, reinforces `tool_choice: required` (OpenAI-style) / `tool_choice: { type: \"any\" }` (Anthropic-style) so the model actually calls it. FIFO queue or cycling autopilot prompts. While a managed run is active, interactive input is captured into the queue by default instead of triggering a new turn. Status line shows elapsed time, ask_user call count, direct-reply misses; hygiene warnings at configurable thresholds (default 120 min / 50 calls). Settings UI via `/copilot-queue settings`."
+    notes: "TaskSync-style queue gated by an `ask_user` tool. Provider-targeted (defaults to `github-copilot`): injects an `ask_user` loop policy into the system prompt for managed providers, reinforces `tool_choice: required` (OpenAI-style) / `tool_choice: { type: \"any\" }` (Anthropic-style) so the model actually calls it. FIFO queue or cycling autopilot prompts. While a managed run is active, interactive input is captured into the queue by default instead of triggering a new turn. Status line shows elapsed time, ask_user call count, direct-reply misses; hygiene warnings at configurable thresholds (default 120 min / 50 calls). Settings UI via `/copilot-queue settings`. Broken behavior on Pi 1.2: its `ctx.isIdle()` gate in `before_agent_start` never trips (the session counts as busy during start), so its policy injection now fires every turn; gate on `event.messageType` instead."
   - id: pi-better-messages-cache
     name: pi-better-messages-cache
     repo: mcowger/pi-better-messages-cache
     npm: "@mcowger/pi-better-messages-cache"
     role: provider-cache-breakpoint
-    notes: "Provider-level: implements the **dual cache-breakpoint** strategy for Anthropic-API-compatible providers, marking *both* the last assistant `tool_use` block and the last user message block with `cache_control` (built-in only marks the user message). Same shape as OpenCode / Kilo Code / Roo Code. Enforces Anthropic's 4-breakpoint hard cap (keeps system markers + newest, drops oldest). Also fixes a streaming control-character bug where raw `\\t` / `\\n` inside tool-call JSON crashed `JSON.parse` and left tool args as `{}` — replaces SDK `stream()` with `create().asResponse()` + `parseJsonWithRepair`. Reported impact on MiniMax / Kimi: near-zero cache hits → 80%+. Implements [`badlogic/pi-mono#1737`](https://github.com/badlogic/pi-mono/pull/1737), declined upstream. Registers via `pi.registerProvider(\"anthropic\", { api: \"anthropic-messages\", streamSimple })`, transparent to model definitions."
+    notes: "Provider-level: implements the **dual cache-breakpoint** strategy for Anthropic-API-compatible providers, marking *both* the last assistant `tool_use` block and the last user message block with `cache_control` (built-in only marks the user message). Same shape as OpenCode / Kilo Code / Roo Code. Enforces Anthropic's 4-breakpoint hard cap (keeps system markers + newest, drops oldest). Also fixes a streaming control-character bug where raw `\\t` / `\\n` inside tool-call JSON crashed `JSON.parse` and left tool args as `{}` — replaces SDK `stream()` with `create().asResponse()` + `parseJsonWithRepair`. Reported impact on MiniMax / Kimi: near-zero cache hits → 80%+. Implements [`badlogic/pi-mono#1737`](https://github.com/badlogic/pi-mono/pull/1737), declined upstream. Registers via `pi.registerProvider(\"anthropic\", { api: \"anthropic-messages\", streamSimple })`, transparent to model definitions. Broken on Pi 0.86 and later: its `streamSimple` reads `context.tools` and `context.systemPrompt` with no transcript fold; fold with the `getCurrent` helpers."
   - id: pi-cache-graph
     name: pi-cache-graph
     repo: championswimmer/pi-cache-graph

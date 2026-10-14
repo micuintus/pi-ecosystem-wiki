@@ -1,7 +1,7 @@
 ---
 title: Pi Model Routing, Fallback and Usage-Limit Recovery Extensions
 type: ecosystem
-updated: 2026-10-13
+updated: 2026-10-14
 sources:
   - pi-virtual-models-doc
   - pi-virtual-models-ts
@@ -425,8 +425,19 @@ compaction workers (`pi-blackhole`) in
 | The same with the least code | `fallback/auto` (copy its three files, or `pi install` the repo and enable only `fallback-model` in `pi config`) | Pi's retry decides eligibility; state lives on the session branch |
 | An npm package that continues the failed run on a fallback | `pi-model-fallback` with `cooldownMs` set | no prompt re-send; return to Claude is manual |
 | Claude Code's wait-and-continue | `pi-keep-going` | reads the real five-hour reset from the OAuth usage endpoint |
-| Only smarter thinking levels on Claude | `@reasoning-router/pi` or `pi-auto` | effort changes keep the cached prefix on Opus 5.5 |
+| Only smarter thinking levels on Claude | `@reasoning-router/pi` (`pi-auto` is broken on Pi 1.2, see above) | effort changes keep the cached prefix on Opus 5.5 |
 | Return to Claude exactly at the reset | a custom virtual model ([Gaps](#gaps)) | no package does it yet |
+
+## Pi 1.2 sweep, 2026-10-14
+
+A static sweep of 220 extensions found two breakages in this
+category. `pi-auto` passes `task: event.prompt` into `input.task.length`,
+which throws on 1.2 custom runs; gate on `event.messageType === "user"`
+first. The sibling `one-shot` extension in `shuymn/pi-extensions` reads
+`event.prompt.indexOf` unguarded with the same failure; `fallback/auto`
+itself is unaffected. Prefer `@reasoning-router/pi` for effort-only
+routing until `pi-auto` is fixed. Everything else here is green or
+unaffected.
 
 ## See also
 

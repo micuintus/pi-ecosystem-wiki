@@ -1,7 +1,7 @@
 ---
 title: Pi Web Search Extensions
 type: ecosystem
-updated: 2026-05-08
+updated: 2026-10-14
 sources:
   - pi-web-access
   - pi-codex-web-search
@@ -41,7 +41,7 @@ entries:
     repo: NicoAvanzDev/pi-web-extension
     npm: pi-web-extension
     role: free-minimal
-    notes: "Brave HTML scrape + DDG fallback. Token-aware, prompt steering. Minimal but linted/tested."
+    notes: "Brave HTML scrape + DDG fallback. Token-aware, prompt steering. Minimal but linted/tested. Broken on Pi 1.2: `looksLikeWebSearchPrompt(prompt)` calls `prompt.toLowerCase()` on `event.prompt`, undefined on custom runs; default the prompt and gate on `messageType`."
   - id: pi-exa-gh-web-tools
     name: "@coctostan/pi-exa-gh-web-tools"
     repo: coctostan/pi-exa-gh-web-tools
