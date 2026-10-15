@@ -451,3 +451,13 @@ copied into a dated bucket file.
 | prateekmedia-pi-hooks | repo | https://github.com/prateekmedia/pi-hooks | extension, hooks, checkpoint |
 | pi-compaction-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/compaction.md | pi, compaction |
 | pi-web-search-tm | repo | https://github.com/ttttmr/pi-web-search | extension, web-search, provider-native |
+| pi-voice | repo | https://github.com/earendil-works/pi-voice | extension, voice, stt, first-party |
+| pi-voice-npm | repo | https://www.npmjs.com/package/@earendil-works/pi-voice | extension, voice, npm |
+| pi-voice-catalog | repo | https://github.com/earendil-works/pi-voice/blob/5e12a8146aaa8e6bad474a9284abe3b8af0010c3/catalog/catalog.json | extension, voice, models, benchmark |
+| pi-voice-recommendations | repo | https://github.com/earendil-works/pi-voice/blob/5e12a8146aaa8e6bad474a9284abe3b8af0010c3/catalog/recommendations.json | extension, voice, benchmark, accuracy |
+| open-asr-leaderboard | repo | https://huggingface.co/spaces/hf-audio/open_asr_leaderboard | benchmark, asr, leaderboard |
+| s1m0n38-pi-voice | repo | https://github.com/S1M0N38/pi-voice | extension, voice, tts |
+| privateer-speak | repo | https://github.com/privateer-agent/privateer-speak | extension, voice, tts |
+| pi-voicekit | repo | https://github.com/CyFeng16/pi-voicekit | extension, voice, stt, tts |
+| picrophone | repo | https://www.npmjs.com/package/picrophone | extension, voice, on-device |
+| pi-voice-stt | repo | https://github.com/cgarrot/pi-voice-stt | extension, voice, dictation |

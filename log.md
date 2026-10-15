@@ -1244,3 +1244,9 @@ schema validation. Details per page in the entries; full report at
 - `web-search-extensions.md`: `pi-web-search` entry (provider-native search and URL context through model subscriptions, no search key; installed).
 - Noted for the record: HarnessTax (UC Berkeley Sky Lab, 2026-09-16) ran 21 model-harness pairs (Claude Code, Codex CLI, Pi) on SWE-bench Lite and Terminal-Bench 2.0. Fable 5: 97.8% in CC vs 96.7% in Pi at about twice the cost ($1.33 vs $0.67). Geometric-mean cost: CC 2.0x Pi on SWE-bench Lite, 1.5x on Terminal-Bench 2.0. Success effect within ±2% and ±5%. Alternative harness wins 9 of 12 comparisons. Predates Opus 5.5 (2026-09-22): no renowned Pi-vs-CC Opus 5.5 head-to-head exists.
 - Registered: pi-web-search-tm.
+
+## [2026-10-15] ingest | voice and speech extensions survey
+
+- New: `ecosystem/voice-extensions.md`. First-party `pi-voice` (local dictation plus `transcribe_file`, Silero VAD plus `transcribe-cpp`, HF model catalog) against five voice-out and dictation contenders. STT model table with the catalog's per-language errors, aligned against the HF Open ASR board (63 models): Cohere 6.26 and Parakeet TDT 6.43 sit together ahead of Whisper Large 7.84; the board has no German split, so the catalog's per-language figures decide German (Voxtral 4.24, Cohere 5.06, Parakeet TDT v3 5.24). Distinguishes the Parakeet `unified-en` build (English only) from TDT v3 (25 languages).
+- Registered: 10 sources (repo, npm, pinned catalog and benchmark files, contenders).
+- Updated: index.md, raw-sources/index.md, log.md.
