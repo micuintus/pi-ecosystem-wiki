@@ -461,3 +461,18 @@ copied into a dated bucket file.
 | pi-voicekit | repo | https://github.com/CyFeng16/pi-voicekit | extension, voice, stt, tts |
 | picrophone | repo | https://www.npmjs.com/package/picrophone | extension, voice, on-device |
 | pi-voice-stt | repo | https://github.com/cgarrot/pi-voice-stt | extension, voice, dictation |
+| pi-markdown-preview | repo | https://github.com/omaclaren/pi-markdown-preview | extension, math, preview, latex |
+| pi-studio | repo | https://github.com/omaclaren/pi-studio | extension, math, workspace, browser |
+| pi-better-render | repo | https://github.com/JeffeyChou/pi-better-render | extension, math, tui, streaming |
+| pi-better-math | repo | https://github.com/ZhenHuangLab/pi-extensions | extension, math, unicode, latex |
+| pi-formula | repo | https://github.com/yasuhito/pi-formula | extension, math, latex, mathjax |
+| monotykamary-pi-math | repo | https://github.com/monotykamary/pi-math | extension, math, kitty, images |
+| fadouse-pi-math | repo | https://github.com/Fadouse/pi-math | extension, math, kitty, images |
+| pi-sixel-math | repo | https://github.com/GuChongAn/pi-sixel-math | extension, math, sixel |
+| azarai-pi-math | repo | https://github.com/AzarAI-TOP/pi-math | extension, math, matplotlib |
+| pi-typst | repo | https://github.com/iharuya/pi-typst | extension, typst, images |
+| pi-bridges | repo | https://www.npmjs.com/package/@artale/pi-bridges | extension, latex, openrouter |
+| pi-rich-renderer | repo | https://github.com/dbydd/pi-rich-renderer | extension, math, superseded |
+| pi-terminal-math | repo | https://github.com/ryan-ressmeyer/pi-terminal-math | extension, math, superseded |
+| maaamahahh-pi-math-sixel | repo | https://github.com/maaamahAhh/pi-math-sixel | extension, math, sixel |
+| pi-claude-code-ui-math | repo | https://github.com/FammasMaz/pi-cc-tools | extension, ui, math-claim |

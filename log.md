@@ -1250,3 +1250,8 @@ schema validation. Details per page in the entries; full report at
 - New: `ecosystem/voice-extensions.md`. First-party `pi-voice` (local dictation plus `transcribe_file`, Silero VAD plus `transcribe-cpp`, HF model catalog) against five voice-out and dictation contenders. STT model table with the catalog's per-language errors, aligned against the HF Open ASR board (63 models): Cohere 6.26 and Parakeet TDT 6.43 sit together ahead of Whisper Large 7.84; the board has no German split, so the catalog's per-language figures decide German (Voxtral 4.24, Cohere 5.06, Parakeet TDT v3 5.24). Distinguishes the Parakeet `unified-en` build (English only) from TDT v3 (25 languages).
 - Registered: 10 sources (repo, npm, pinned catalog and benchmark files, contenders).
 - Updated: index.md, raw-sources/index.md, log.md.
+
+## [2026-10-19] ingest | math rendering survey (16 packages)
+
+- New: `ecosystem/math-rendering-extensions.md`. 16 packages code-fingerprinted from npm tarballs plus repo health (stars, pushes, downloads): full-document surfaces (`pi-markdown-preview`, `pi-studio`), in-chat renderers (`pi-better-render`, `pi-better-math`, `pi-formula`, the two `pi-math` twins, `pi-sixel-math`), adjacent workflow tools (`pi-typst`, `@azarai/pi-math`, `@artale/pi-bridges /latex`). Five code-read with display-only proofs; rest catalog-level. No package in the niche ships tests. Flags: `pi-better-math` is GPL-3.0-or-later and logs to /tmp; `pi-markdown-preview` does not redact secrets; `pi-claude-code-ui` math claim unverified. Superseded: `pi-rich-renderer`, `pi-terminal-math`.
+- Registered: 13 sources. Updated: index.md, raw-sources/index.md, log.md.
