@@ -69,7 +69,7 @@ to pick a model, which downloads from HuggingFace
 
 Two builds share the Pi-voice name and are easy to confuse. The
 Parakeet `unified-en` build lists exactly one language (English); the
-Parakeet TDT v3 build covers 26, German included. "Parakeet for
+Parakeet TDT v3 build covers 25, German included. "Parakeet for
 German" means the TDT build.
 
 ## Which model
@@ -81,9 +81,9 @@ better ([pi-voice-recommendations]):
 |---|---|---|---|---|
 | Parakeet unified-en 0.6B | 731 MB | 3.99% | no data (English only) | Best English dictation |
 | Parakeet TDT v3 0.6B | 740 MB | 4.83% | 5.24% (25 languages) | The bilingual Parakeet; the v2 build is English-only |
-| Cohere Transcribe 03-2026 | 2.4 GB | 5.08% | 5.06% | Fastest balanced bilingual, Apache-2.0 |
+| Cohere Transcribe 03-2026 | 2.4 GB | 5.08% | 5.06% | Balanced bilingual, Apache-2.0 |
 | Canary 180m Flash | 218 MB | 5.98% | 7.33% | Tiny and fast, both languages |
-| Whisper Medium | 830 MB | — | multilingual | The fallback default |
+| Whisper Medium | 830 MB | 4.64% | 6.23% (99 languages) | The fallback default |
 | Voxtral Mini 4B realtime | 4.7 GB | 6.27% | 4.24% | Best bilingual accuracy, slower than realtime |
 
 The independent HF Open ASR board (63 models, 7 datasets) agrees on
@@ -113,7 +113,7 @@ attribution, not OSI FOSS).
 
 | If you want | Use | Why |
 |---|---|---|
-| Dictate English prompts, transcribe files, nothing leaves the machine | `pi-voice` with Parakeet | Best English numbers, first-party maintenance |
+| Dictate English prompts, transcribe files, nothing leaves the machine | `pi-voice` with Parakeet unified-en | Best English numbers, first-party maintenance |
 | German in the mix | `pi-voice` with Parakeet TDT v3 or Cohere | TDT keeps the Parakeet family at full speed; Cohere matches it within 0.2 points in both languages |
 | Replies read aloud | add `privateer-speak` | Most recently updated voice-out option verified (October 2026) |
 | Smallest download that covers both languages | Canary 180m Flash | 218 MB, both languages, fastest |
