@@ -8,6 +8,11 @@ sources:
   - pi-better-render
   - pi-better-math
   - pi-formula
+  - pi-mermaid-gurpartap
+  - pi-mermaid-iamwrm
+  - pi-mermaid-tui
+  - pi-mermaid-validator
+  - pi-diagram-mcuste
   - monotykamary-pi-math
   - fadouse-pi-math
   - pi-sixel-math
@@ -16,6 +21,14 @@ sources:
   - azarai-pi-math
   - pi-typst
   - pi-bridges
+  - geminixiang-pi-mermaid
+  - fyeeme-pi-mermaid-viewer
+  - tifan-pi-mermaid-open
+  - pi-mermaid-server
+  - 96ems-pi-mermaid-extra
+  - irfansofyana-pi-mermaid-studio
+  - tzssangglass-pi-diagram
+  - wunluv-pi-mermaid-render
   - pi-rich-renderer
   - pi-terminal-math
 tags: [extension, math, latex, rendering, tui, preview]
@@ -43,7 +56,37 @@ entries:
     repo: ZhenHuangLab/pi-extensions
     npm: pi-better-math
     role: unicode-display-math
-    notes: "Display math as multi-line Unicode art through `registerMarkdownTransformer` and libtexprintf (WASM), in a worker thread with caching and fallback to Pi's built-in handling. Display-only, verified in source. GPL-3.0-or-later, the only copyleft license in this niche."
+    notes: "Display math as multi-line Unicode art through `registerMarkdownTransformer` and libtexprintf (WASM), in a worker thread with caching and fallback to Pi's built-in handling. Display-only, verified in source, but it also monkey-patches `Markdown.prototype.render` (defensive, documented, fragile across Pi upgrades). GPL-3.0-or-later, the only copyleft license in this niche."
+  - id: pi-mermaid-gurpartap
+    name: pi-mermaid
+    repo: Gurpartap/pi-mermaid
+    npm: pi-mermaid
+    role: ancestor-unmaintained
+    notes: "Code-read (structure only). The original in-chat Mermaid renderer, 89 stars, stale since February with 11 open issues. Two open reports describe an `agent_end` hook that re-triggers the model into an infinite Mermaid loop and pollutes context. Do not install; its forks are the live line."
+  - id: pi-mermaid-iamwrm
+    name: iamwrm/pi-mermaid
+    repo: iamwrm/pi-mermaid
+    npm: iamwrm/pi-mermaid
+    role: unicode-mermaid
+    notes: "Catalog-level, not code-read. Keeps the Mermaid source visible and inserts a Unicode box-drawing preview below the block. Apache-2.0. A Gurpartap fork that switched to the proper renderer hook."
+  - id: pi-mermaid-tui
+    name: "@ramtinj95/pi-mermaid-tui"
+    repo: ramtinJ95/pi-mermaid-tui
+    npm: "@ramtinj95/pi-mermaid-tui"
+    role: tested-mermaid
+    notes: "Catalog-level, not code-read. Terminal-native Unicode Mermaid with zero dependencies. The only package in either niche that ships a real test suite (five files including golden terminal tests). Apache-2.0."
+  - id: pi-mermaid-validator
+    name: pi-mermaid-validator
+    repo: Sereinxm/pi-mermaid-validator
+    npm: pi-mermaid-validator
+    role: mermaid-lint
+    notes: "Catalog-level, not code-read. 63 lines plus one test: annotates Mermaid blocks that fail to render, through the renderer hook. A complement to any renderer, not a renderer itself."
+  - id: pi-diagram-mcuste
+    name: "@mcuste/pi-diagram"
+    repo: mcuste/pi-diagram
+    npm: "@mcuste/pi-diagram"
+    role: d2-diagrams
+    notes: "Catalog-level, not code-read. Diagrams in D2 instead of Mermaid, on Pi and Oh My Pi, with CI. The model writes compact declarative D2; an open issue tracks keeping diagram images out of model context. The pick where Mermaid syntax is the problem."
   - id: pi-formula
     name: pi-formula
     repo: yasuhito/pi-formula
@@ -113,12 +156,13 @@ entries:
 
 # Pi Math Rendering Extensions
 
-Pi's built-in LaTeX handling flattens math to single-line Unicode.
-Fifteen packages try to do better, in three shapes: separate
-document surfaces, automatic in-chat rendering, and adjacent tools
-that change the workflow instead of the display. Code-read: the four
-with `notes` not marked catalog-level. Nothing in this niche ships
-tests.
+Pi's built-in LaTeX handling flattens math to single-line Unicode,
+and Mermaid fences sit as inert code. Twenty-eight packages try to
+do better, in four shapes: separate document surfaces, automatic
+in-chat rendering, Mermaid renderers, and adjacent tools that
+change the workflow instead of the display. Code-read: the five
+with `notes` not marked catalog-level. One Mermaid package ships a
+real test suite; nothing in the math niche ships tests.
 
 ## Separate surfaces (best readability)
 
@@ -148,7 +192,56 @@ per-formula failure limits no rival bothers with.
 `@monotykamary/pi-math` beats its independent twin
 `@fadouse/pi-math` on freshness and downloads. `pi-sixel-math` is
 for Windows Terminal, with `@maaamahahh/pi-math-sixel` its weaker
-twin. `pi-rich-renderer` and `pi-terminal-math`
+twin.
+
+## Mermaid diagrams
+
+`pi-better-render` covers Mermaid itself: fences become Unicode
+box-drawing through `beautiful-mermaid` (elkjs), downloaded lazily
+on the first diagram (~11 MB into
+`~/.pi/agent/better-render/deps`, off with
+`PI_BETTER_RENDER_MERMAID_INSTALL=0`). Flowchart, state, sequence,
+class and ER diagrams; anything else stays a code block.
+Standalone alternatives: `iamwrm/pi-mermaid` (Unicode preview below
+an undisturbed source block), `@ramtinj95/pi-mermaid-tui`
+(terminal-native Unicode, zero dependencies),
+`@mcuste/pi-diagram` (D2 instead of Mermaid, on Pi and Oh My Pi,
+with CI). `pi-mermaid-validator` is not a renderer: it annotates
+blocks that fail to render, beside any of the above. Do not install
+`Gurpartap/pi-mermaid`: the 89-star original is stale since
+February and open issues describe its `agent_end` hook
+re-triggering the model into an infinite Mermaid loop.
+Also in the niche, catalog-level and unverified:
+`@geminixiang/pi-mermaid`, `@fyeeme/pi-mermaid-viewer`
+(browser surface), `@tifan/pi-mermaid-open` (external image
+viewer fallback), `pi-mermaid-server` (tabbed editor plus live
+preview, ships a 600k-line bundle), `96Ems/pi-mermaid-extra` (28
+diagram types), `irfansofyana/pi-mermaid-studio` (stateful
+workbench), `@tzssangglass/pi-diagram` (JSON-declared diagrams).
+`wunluv/pi-mermaid-render` ships no code in its tarball and is
+listed for the record only.
+
+## Code quality across both niches
+
+Hook discipline decides upgrade survival. Clean
+(`registerMarkdownTransformer`, verified in source): `pi-formula`,
+`iamwrm/pi-mermaid`, `pi-mermaid-validator`. Component swap with a
+safety net: `pi-better-render`. Prototype patch
+(`Markdown.prototype.render`, defensive and documented, fragile
+across Pi upgrades): `pi-better-math`. Tests exist only at
+`@ramtinj95/pi-mermaid-tui` (five files, golden terminal tests)
+plus one token test each in `pi-mermaid-server` and
+`pi-mermaid-validator`. CI badges only on `pi-typst` and
+`@mcuste/pi-diagram`. External weight ranges from zero
+(`@ramtinj95/pi-mermaid-tui`) through vendored WASM and fonts
+(`pi-better-render`, `pi-better-math`) to full toolchain demands
+(Pandoc, Chromium, TeX Live for `pi-markdown-preview`). Network at
+runtime: `pi-markdown-preview` (CDN fallbacks), `pi-better-render`
+(one-time `beautiful-mermaid` install). Secrets: `pi-markdown-preview`
+redacts nothing. Sentiment: the Gurpartap loop reports are the
+sharpest warning in either niche; `pi-formula` and
+`@mcuste/pi-diagram` show healthy maintenance (dependency bumps,
+substantive design issues, nothing structural). `pi-rich-renderer` and `pi-terminal-math`
 are superseded and listed for the record only.
 
 Two flags: `pi-better-math` is GPL-3.0-or-later, the only copyleft
@@ -173,6 +266,8 @@ unverified.
 | Nicer math without leaving the chat | `pi-better-render` | Streaming images, display-only by construction |
 | Selectable formulas in prose | `pi-formula` | Unicode inline stays searchable; documented failure limits |
 | No image-capable terminal | `pi-better-math` | Pure Unicode art; accept the GPL license and the debug log |
+| Diagrams as Unicode, no images ever | `pi-better-render` plus `@ramtinj95/pi-mermaid-tui` | Mermaid without the image path; validator on top catches dead blocks |
+| Diagrams where Mermaid syntax is the problem | `@mcuste/pi-diagram` | D2 instead of Mermaid, CI-backed |
 
 ## See also
 

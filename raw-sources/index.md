@@ -476,3 +476,16 @@ copied into a dated bucket file.
 | pi-terminal-math | repo | https://github.com/ryan-ressmeyer/pi-terminal-math | extension, math, superseded |
 | maaamahahh-pi-math-sixel | repo | https://github.com/maaamahAhh/pi-math-sixel | extension, math, sixel |
 | pi-claude-code-ui-math | repo | https://github.com/FammasMaz/pi-cc-tools | extension, ui, math-claim |
+| pi-mermaid-gurpartap | repo | https://github.com/Gurpartap/pi-mermaid | extension, mermaid, ascii |
+| pi-mermaid-iamwrm | repo | https://github.com/iamwrm/pi-mermaid | extension, mermaid, unicode |
+| pi-mermaid-tui | repo | https://github.com/ramtinJ95/pi-mermaid-tui | extension, mermaid, tests |
+| pi-mermaid-validator | repo | https://github.com/Sereinxm/pi-mermaid-validator | extension, mermaid, lint |
+| pi-diagram-mcuste | repo | https://github.com/mcuste/pi-diagram | extension, d2, diagrams |
+| geminixiang-pi-mermaid | repo | https://github.com/geminixiang/pi-stuff | extension, mermaid |
+| fyeeme-pi-mermaid-viewer | repo | https://github.com/fyeeme/pi-packages | extension, mermaid, browser |
+| tifan-pi-mermaid-open | repo | https://github.com/tifandotme/pi-extensions | extension, mermaid, viewer |
+| pi-mermaid-server | repo | https://github.com/wdyky/mermaid-server | extension, mermaid, server |
+| 96ems-pi-mermaid-extra | repo | https://www.npmjs.com/package/96Ems/pi-mermaid-extra | extension, mermaid |
+| irfansofyana-pi-mermaid-studio | repo | https://github.com/irfansofyana/pi-mermaid-studio | extension, mermaid, workbench |
+| tzssangglass-pi-diagram | repo | https://github.com/tzssangglass/pi-diagram | extension, diagrams, json |
+| wunluv-pi-mermaid-render | repo | https://www.npmjs.com/package/wunluv/pi-mermaid-render | extension, mermaid, unverified |
