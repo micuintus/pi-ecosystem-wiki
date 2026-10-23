@@ -1260,3 +1260,11 @@ schema validation. Details per page in the entries; full report at
 
 - Extended: `ecosystem/math-rendering-extensions.md` from 15 to 28 packages. New Mermaid section (13 packages fingerprinted from tarballs): `pi-better-render` renders fences to Unicode via lazily installed `beautiful-mermaid`; standalone picks `iamwrm/pi-mermaid`, `@ramtinj95/pi-mermaid-tui`, `@mcuste/pi-diagram` (D2); `pi-mermaid-validator` as complement; `Gurpartap/pi-mermaid` flagged do-not-install (stale, open infinite-loop reports). New quality section ranks hook discipline, tests (only ramtin ships a suite), CI, dependency weight, runtime network and secrets. Corrected the record: `pi-better-math` also patches `Markdown.prototype.render`.
 - Registered: 18 sources (13 repos plus npm fallbacks). Updated: index unchanged (page already listed), raw-sources/index.md, log.md.
+
+## [2026-10-23] sweep | subagent clients, pi-effort, Pi 1.4 notes
+
+- `subagent-extensions.md`: 8 new entries (Herdr batches, durable identity, task graphs, steerable threads, fleet, tested workflows, personas, markdown agents) plus 3 picking rows. Subagent clients fingerprinted from tarballs: `pi-gauntlet` is the only tested option (19 test files); `@hheei/pi-subagents` stale since July; three guessed repo URLs 404 (packages catalog-level until verified).
+- `model-routing-extensions.md`: `pi-effort` entry (`/effort` min/max aliases plus `/fast`, manual only) and a Pi 1.4 notes section (standalone-digit retry matching, ChatGPT Business limits, pointers to compaction).
+- `math-rendering-extensions.md`: Pi 1.4.0 fixed unclosed `$$` swallowing later tables.
+- `compaction-extensions.md`: Pi 1.4.0 summaries use the model output limit; `reserveTokens` only starts compaction.
+- Registered: 9 sources. No new pages; index unchanged.

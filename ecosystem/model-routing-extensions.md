@@ -1,7 +1,7 @@
 ---
 title: Pi Model Routing, Fallback and Usage-Limit Recovery Extensions
 type: ecosystem
-updated: 2026-10-14
+updated: 2026-10-23
 sources:
   - pi-virtual-models-doc
   - pi-virtual-models-ts
@@ -115,6 +115,12 @@ entries:
     npm: "@reasoning-router/pi"
     role: effort-router
     notes: "One virtual model per Claude model; a classifier picks only the thinking level. On models with mid-conversation effort, Pi sends effort changes as messages, so the cached prefix survives."
+  - id: pi-effort
+    name: pi-effort
+    repo: ricardofrantz/pi-effort
+    npm: pi-effort
+    role: effort-aliases
+    notes: "Catalog-level, not code-read. `/effort` with adaptive min/max aliases per model class plus `/fast` for OpenAI/Codex fast mode. A command surface, not a router: it sets the level you ask for, nothing automatic."
   - id: ekil1100-pi-auto
     name: pi-auto
     repo: ekil1100/pi-auto
@@ -426,7 +432,12 @@ compaction workers (`pi-blackhole`) in
 | An npm package that continues the failed run on a fallback | `pi-model-fallback` with `cooldownMs` set | no prompt re-send; return to Claude is manual |
 | Claude Code's wait-and-continue | `pi-keep-going` | reads the real five-hour reset from the OAuth usage endpoint |
 | Only smarter thinking levels on Claude | `@reasoning-router/pi` (`pi-auto` is broken on Pi 1.2, see above) | effort changes keep the cached prefix on Opus 5.5 |
+| A manual effort picker with min/max aliases | `pi-effort` | `/effort` plus `/fast`; sets what you ask, routes nothing |
 | Return to Claude exactly at the reset | a custom virtual model ([Gaps](#gaps)) | no package does it yet |
+
+## Pi 1.4 notes, 2026-10-23
+
+Pi 1.4.0 (2026-10-21) changes little in this category: retry now matches status codes as standalone numbers only (error text containing digits no longer misfires), and ChatGPT Business workspace limit errors are not retried. The `/compact <instructions>` split-turn fix and the uncapped summary output live on the [compaction page](compaction-extensions.md). Nothing here broke; the 1.2 sweep findings below stand.
 
 ## Pi 1.2 sweep, 2026-10-14
 

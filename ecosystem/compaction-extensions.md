@@ -1,7 +1,7 @@
 ---
 title: Pi Compaction Extensions
 type: ecosystem
-updated: 2026-10-14
+updated: 2026-10-23
 sources:
   - pi-mono
   - pi-coding-agent-changelog
@@ -132,7 +132,10 @@ without touching raw history; system-prompt and tool changes are
 recorded in the transcript so the cached prefix survives them on
 supported models. Compaction budgets (`reserveTokens`,
 `keepRecentTokens`) are configurable per model through
-`compaction.modelOverrides`. Summarization requests skip prompt-cache
+`compaction.modelOverrides`. Since Pi 1.4.0 the summary request
+uses the model's output limit instead of a fixed cap, so long
+reasoning no longer fails the summary; `reserveTokens` only
+controls when compaction starts. Summarization requests skip prompt-cache
 writes ([pi-coding-agent-changelog], [pi-compaction-docs]). None of
 this replaces the strategies below; it moves the plumbing they build
 on.

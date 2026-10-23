@@ -1,7 +1,7 @@
 ---
 title: Pi Subagent Extensions
 type: ecosystem
-updated: 2026-08-21
+updated: 2026-10-23
 sources:
   - pi-subagent-example
   - mjakl-pi-subagent
@@ -24,6 +24,14 @@ sources:
   - hamdimaz-pi-sub-agent
   - jerryan-pi-subagent-lite
   - ross-jill-ws-pi-subagent-in-memory
+  - maxiaochao-pi-herdr-subagents
+  - hheei-pi-subagents
+  - henryqw-pi-subagent
+  - pi-subagent-manager
+  - pi-herdsman
+  - pi-gauntlet
+  - casualjim-pi-pstack
+  - thoth-pi-subagents
   - tmustier-pi-agent-teams
   - melihmucuk-pi-crew
   - tiziano-pi-multiagent
@@ -195,6 +203,54 @@ entries:
     repo: cmf/pi-subagent
     role: experimental-reference
     notes: "~1.3k LOC. Single-commit experiment, never published to npm. Pattern reference (recursive step composition, tree progress UI) — not a dependency target."
+  - id: maxiaochao-pi-herdr-subagents
+    name: "@maxiaochao/pi-herdr-subagents"
+    repo: chaochaoxiaochao/pi-toolkit
+    npm: "@maxiaochao/pi-herdr-subagents"
+    role: herdr-batches
+    notes: "Catalog-level, not code-read. Inspectable interactive subagent batches through Herdr. The Herdr-native answer to HazAT's mux panes."
+  - id: hheei-pi-subagents
+    name: "@hheei/pi-subagents"
+    repo: hheei/hepi-mono
+    npm: "@hheei/pi-subagents"
+    role: durable-identity
+    notes: "Catalog-level, not code-read. Independent background sessions with durable identity and RPC control. Stale since July; the idea (addressable children) outlives the package."
+  - id: henryqw-pi-subagent
+    name: "@henryqw/pi-subagent"
+    repo: HenryQW/pi-harness
+    npm: "@henryqw/pi-subagent"
+    role: task-graphs
+    notes: "Catalog-level, not code-read. Bounded direct delegation or durable checked isolated task graphs, inside a larger harness monorepo. Date-based versioning."
+  - id: pi-subagent-manager
+    name: pi-subagent-manager
+    repo: championswimmer/pi-subagent-manager
+    npm: pi-subagent-manager
+    role: steerable-threads
+    notes: "Catalog-level, not code-read. Hierarchical, steerable subagent threads."
+  - id: pi-herdsman
+    name: pi-herdsman
+    repo: boadij/pi-herdsman
+    npm: pi-herdsman
+    role: fleet
+    notes: "Catalog-level, not code-read. Asynchronous subagents and fleet orchestration for parallel coding."
+  - id: pi-gauntlet
+    name: pi-gauntlet
+    repo: jjuraszek/pi-gauntlet
+    npm: pi-gauntlet
+    role: tested-workflows
+    notes: "Catalog-level, not code-read. Gated workflow skills plus subagent personas. The only subagent option with a real test suite (19 test files in the repo)."
+  - id: casualjim-pi-pstack
+    name: "@casualjim/pi-pstack"
+    repo: casualjim/pi-mimir
+    npm: "@casualjim/pi-pstack"
+    role: poteto-agents
+    notes: "Catalog-level, not code-read. Pi-native fork of pstack skills with Poteto Mode and bundled agents."
+  - id: thoth-pi-subagents
+    name: "@thoth-agents/pi-subagents"
+    repo: EremesNG/thoth-agents
+    npm: "@thoth-agents/pi-subagents"
+    role: markdown-agents
+    notes: "Catalog-level, not code-read. Markdown-defined subagents with delegated tasks."
 ---
 
 # Pi Subagent Extensions
@@ -480,6 +536,9 @@ the field:
 | **Subprocess with bundled experts** | `HamdiMaz/pi-sub-agent` | 9 bundled expert agents; confirmation gate for project agents. |
 | **Skill complement** (when/how, not the mechanism) | `obra/superpowers` | Cross-agent skills (`subagent-driven-development`, `dispatching-parallel-agents`); works with whichever extension you install. |
 | **Reference for building your own** | `pi-mono/examples/extensions/subagent` | Re-renders child `Message[]` inline using Pi's exported components. |
+| **Inspectable batches on Herdr** | `@maxiaochao/pi-herdr-subagents` | Interactive children through Herdr instead of tmux panes. |
+| **Tested workflow runtime** | `pi-gauntlet` | Gated skills plus personas, with a test suite no rival has. |
+| **Durable child identity** | `@hheei/pi-subagents` | Addressable background sessions; stale, adopt the idea not the package. |
 
 ### Running two systems at once
 

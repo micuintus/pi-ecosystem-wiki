@@ -489,3 +489,12 @@ copied into a dated bucket file.
 | irfansofyana-pi-mermaid-studio | repo | https://github.com/irfansofyana/pi-mermaid-studio | extension, mermaid, workbench |
 | tzssangglass-pi-diagram | repo | https://github.com/tzssangglass/pi-diagram | extension, diagrams, json |
 | wunluv-pi-mermaid-render | repo | https://www.npmjs.com/package/wunluv/pi-mermaid-render | extension, mermaid, unverified |
+| maxiaochao-pi-herdr-subagents | repo | https://github.com/chaochaoxiaochao/pi-toolkit | extension, subagent, herdr |
+| hheei-pi-subagents | repo | https://github.com/hheei/hepi-mono | extension, subagent, identity |
+| henryqw-pi-subagent | repo | https://github.com/HenryQW/pi-harness | extension, subagent, task-graph |
+| pi-subagent-manager | repo | https://github.com/championswimmer/pi-subagent-manager | extension, subagent, threads |
+| pi-herdsman | repo | https://github.com/boadij/pi-herdsman | extension, subagent, fleet |
+| pi-gauntlet | repo | https://github.com/jjuraszek/pi-gauntlet | extension, subagent, workflows, tests |
+| casualjim-pi-pstack | repo | https://github.com/casualjim/pi-mimir | extension, subagent, personas |
+| thoth-pi-subagents | repo | https://github.com/EremesNG/thoth-agents | extension, subagent, markdown |
+| pi-effort | repo | https://github.com/ricardofrantz/pi-effort | extension, effort, thinking |

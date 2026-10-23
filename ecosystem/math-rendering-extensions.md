@@ -1,7 +1,7 @@
 ---
 title: Pi Math Rendering Extensions
 type: ecosystem
-updated: 2026-10-19
+updated: 2026-10-23
 sources:
   - pi-markdown-preview
   - pi-studio
@@ -246,7 +246,9 @@ are superseded and listed for the record only.
 
 Two flags: `pi-better-math` is GPL-3.0-or-later, the only copyleft
 license in the niche. It also appends a debug log to
-`/tmp/pi-better-math.log`.
+`/tmp/pi-better-math.log`. Pi 1.4.0 fixed an unclosed `$$` block
+swallowing later Markdown tables in the built-in renderer, which
+helps every entry here that falls back to it.
 
 ## Adjacent (different workflow)
 
