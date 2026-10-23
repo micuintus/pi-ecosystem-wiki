@@ -85,11 +85,11 @@ entry points; `index.md` covers everything.
 1. **[`nicobailon/pi-web-access`](ecosystem/web-search-extensions.md)** — web search + content fetch. Single tool, sensible defaults.
 2. **[`nicobailon/pi-powerline-footer`](ecosystem/footer-extensions.md#pi-powerline-footer-nicobailon)** — at-a-glance status bar (model, cost, branch, dir). The footer you stop noticing because it's right.
 3. **[`MasuRii/pi-tool-display`](ecosystem/tool-rendering-extensions.md)** — compact tool-call rendering. Stops tool output from burying the conversation.
-4. **[`@earendil-works/pi-voice`](ecosystem/voice-extensions.md)** — local dictation into the prompt plus file transcription. Parakeet TDT v3 covers German and English on-device.
-5. **[`edxeth/pi-subagents`](ecosystem/subagent-extensions.md)** — delegation with mux-pane or headless children, parent model inheritance, orchestrator mode. The most feature-complete subagent system.
 
 **Nice to have:**
 
+- **[`edxeth/pi-subagents`](ecosystem/subagent-extensions.md)** — delegation with mux-pane or headless children, parent model inheritance, orchestrator mode. The most feature-complete subagent system.
+- **[`@earendil-works/pi-voice`](ecosystem/voice-extensions.md)** — local dictation into the prompt plus file transcription. Parakeet TDT v3 covers German and English on-device.
 - **[`tintinweb/pi-manage-todo-list`](ecosystem/todo-extensions.md)** — the moment you need to track what Pi is doing across multiple turns, you want this. It mirrors the Copilot `manage_todo_list` shape that LLMs already know.
 
 **Environment-dependent:**
