@@ -4,6 +4,7 @@ type: ecosystem
 updated: 2026-05-27
 sources:
   - pi-mono-todo-example
+  - micuintus-enforced-todo
   - pi-todo-md
   - patriceckhart-pi-todo
   - jayshah-pi-agent-extensions
@@ -291,6 +292,12 @@ shape on Pi — `before_agent_start` is the right hook for deferred
 compaction between TODO cycles, header-injected state flag is more
 reliable than session-entry parsing for state detection.
 
+`micuintus/enforced-todo` (author's own) is a loop rather than a
+list: after every agent run, while `manage_todo_list` still has items,
+it sends a hidden prompt to reassess the list, then work the top item,
+and stays idle on an empty list, an abort, queued input or a provider
+error. It requires `tintinweb/pi-manage-todo-list`.
+
 ## Picking a TODO extension
 
 | Goal | Best choice | Why |
@@ -302,6 +309,7 @@ reliable than session-entry parsing for state detection.
 | **Reference for building your own** | `pi-mono/examples/extensions/todo.ts` | The canonical branching-safe `details`-based pattern. 297 LOC. |
 | **Sync with macOS Reminders** | `patriceckhart/pi-todo` | Bidirectional Apple Reminders integration. macOS only. |
 | **Plain markdown the human edits too** | `forjd/pi-todo-md` | One file in the repo root. No DAG, no widget. |
+| **Agent follows through until the list is empty** | `micuintus/enforced-todo` (author's own) | Reassess-then-work prompt after every run; on top of `manage_todo_list`. |
 
 ## Why no Pi extension matches Claude Code's `TodoWrite` polish
 

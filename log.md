@@ -1268,3 +1268,10 @@ schema validation. Details per page in the entries; full report at
 - `math-rendering-extensions.md`: Pi 1.4.0 fixed unclosed `$$` swallowing later tables.
 - `compaction-extensions.md`: Pi 1.4.0 summaries use the model output limit; `reserveTokens` only starts compaction.
 - Registered: 9 sources. No new pages; index unchanged.
+
+## [2026-10-25] update | author's own packages after the pi-dacmicu split
+
+- `loop-extensions.md`: LedgerEvolve entry and recommendation row (evolutionary search with lineages, one agent session per candidate).
+- `todo-extensions.md`: EnforcedTodo entry (reassess-then-work loop on top of `manage_todo_list`) and picking row.
+- `llm-chat-ingestion.md`: `ingest-web-chat` as the browser-automation option, now its own package.
+- All three marked author's own. Registered: 3 sources.

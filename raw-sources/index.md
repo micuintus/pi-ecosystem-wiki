@@ -498,3 +498,6 @@ copied into a dated bucket file.
 | casualjim-pi-pstack | repo | https://github.com/casualjim/pi-mimir | extension, subagent, personas |
 | thoth-pi-subagents | repo | https://github.com/EremesNG/thoth-agents | extension, subagent, markdown |
 | pi-effort | repo | https://github.com/ricardofrantz/pi-effort | extension, effort, thinking |
+| micuintus-ledgerevolve | repo | https://github.com/micuintus/ledgerevolve | extension, evolve, author-own |
+| micuintus-enforced-todo | repo | https://github.com/micuintus/enforced-todo | extension, todo, loop, author-own |
+| micuintus-ingest-web-chat | repo | https://github.com/micuintus/ingest-web-chat | skill, chat-ingestion, author-own |

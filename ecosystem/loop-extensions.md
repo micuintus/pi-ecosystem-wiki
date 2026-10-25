@@ -4,6 +4,7 @@ type: ecosystem
 updated: 2026-10-14
 sources:
   - pi-autoresearch
+  - micuintus-ledgerevolve
   - mitsuhiko-agent-stuff
   - tmustier-pi-extensions
   - pi-ralph-wiggum
@@ -21,6 +22,12 @@ sources:
   - ghuntley-ralph
 tags: [extension, loop, ralph, autoresearch]
 entries:
+  - id: micuintus-ledgerevolve
+    name: LedgerEvolve
+    repo: micuintus/ledgerevolve
+    npm: "@micuintus/ledgerevolve"
+    role: evolve-driver
+    notes: "Author's own. One Markdown experiment, a ledger of lineages (refine, combine, diverge), one git branch and one subagent per candidate, gates before benchmarks, optional per-row model set. Runs iterations through edxeth/pi-subagents. Technical report in the repo."
   - id: pi-autoresearch
     name: pi-autoresearch
     repo: davebcn87/pi-autoresearch
@@ -309,6 +316,7 @@ Wiki and blog citations frequently get these wrong. Verified paths
 | Goal | Best extension | Why |
 |---|---|---|
 | Deterministic improvement loops with metrics (test speed, bundle size, LLM training) | **pi-autoresearch** | Most adopted in this niche; production-grade; compaction-aware; confidence scoring; dashboard |
+| Evolutionary search on a real codebase: lineages, recombination, a full agent session per candidate | **micuintus/ledgerevolve** (author's own) | Ledger plus one branch per candidate; agent judgement instead of a genetic operator; deep candidates, so expensive per row |
 | Single-context loop (visible iterations, compaction-safe) | **mitsuhiko/agent-stuff `loop.ts`** | The canonical pattern. Compaction-safe via `session_before_compact`. |
 | Closest to Huntley's Ralph (fresh context every iteration, prompt file based) | **rahulmutt/pi-ralph** | Branches new session per iter; clean cold start; minimal LOC; closest to bash `while :; do cat PROMPT.md \| pi -p; done` semantics |
 | Production autonomous campaigns (guardrails, presets, completion gating, pause/resume, RALPH.md) | **lnilluv/pi-ralph-loop** | Most complete: RALPH.md frontmatter, completion_gate, required_outputs, block_commands, protected_files, signal-based pause/resume, RPC subprocess architecture |

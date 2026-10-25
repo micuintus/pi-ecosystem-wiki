@@ -9,6 +9,7 @@ sources:
   - obsidian-clipper
   - rebrowser-playwright
   - playwright
+  - micuintus-ingest-web-chat
 tags: [tool, chat-export, browser-automation]
 ---
 
@@ -53,7 +54,9 @@ file.
 
 Drive a real authenticated browser programmatically. Suitable for
 batch/CLI workflows where "give me a URL, get a markdown file" is the
-target.
+target. `micuintus/ingest-web-chat` (author's own, a Pi skill) does
+this over CDP against your own Chrome for ChatGPT, Claude.ai and
+Gemini, and refuses to save a challenge page as a chat.
 
 ## Why automation over extensions for batch use
 
