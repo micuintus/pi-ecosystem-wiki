@@ -91,6 +91,7 @@ entry points; `index.md` covers everything.
 - **[`edxeth/pi-subagents`](ecosystem/subagent-extensions.md)** — delegation with mux-pane or headless children, parent model inheritance, orchestrator mode. The most feature-complete subagent system.
 - **[`@earendil-works/pi-voice`](ecosystem/voice-extensions.md)** — local dictation into the prompt plus file transcription. Parakeet TDT v3 covers German and English on-device.
 - **[`tintinweb/pi-manage-todo-list`](ecosystem/todo-extensions.md)** — the moment you need to track what Pi is doing across multiple turns, you want this. It mirrors the Copilot `manage_todo_list` shape that LLMs already know.
+- **[`@alexeiled/pi-model-router`](ecosystem/model-routing-extensions.md)** — one chain per lane with per-tier model and thinking level, same-request failover, return to the primary next turn. The way to survive a rate limit and to run cheap models without thinking about it.
 
 **Environment-dependent:**
 
