@@ -1275,3 +1275,8 @@ schema validation. Details per page in the entries; full report at
 - `todo-extensions.md`: EnforcedTodo entry (reassess-then-work loop on top of `manage_todo_list`) and picking row.
 - `llm-chat-ingestion.md`: `ingest-web-chat` as the browser-automation option, now its own package.
 - All three marked author's own. Registered: 3 sources.
+
+## [2026-10-26] update | LedgerEvolve renamed to AIDEvolve
+
+- `loop-extensions.md`: entry id, name, repo, npm and recommendation row renamed; notes carry the new subtitle and the rename history.
+- Registered source id renamed to `micuintus-aid-evolve`.
