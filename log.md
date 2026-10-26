@@ -446,7 +446,7 @@ After the pass: source graph is complete and orphan-free — 119 cited IDs, 119 
 
 Triggered by in-session observation of tintinweb/pi-subagents subagents
 hanging at 0 tool uses (mirrors the failure mode the user saw earlier
-in scriabin-waveform-qt). Live verification at
+in another worktree session earlier this week). Live verification at
 `~/.pi/agent/npm/node_modules/@tintinweb/pi-subagents/src/default-agents.ts`
 confirmed: the built-in `general-purpose` agent omits `builtinToolNames`,
 which means "all available tools" — the trigger for issue #75.
