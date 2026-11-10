@@ -1280,3 +1280,14 @@ schema validation. Details per page in the entries; full report at
 
 - `loop-extensions.md`: entry id, name, repo, npm and recommendation row renamed; notes carry the new subtitle and the rename history.
 - Registered source id renamed to `micuintus-aid-evolve`.
+
+## [2026-11-10] update | Pi core renders Mermaid and math
+
+**`ecosystem/math-rendering-extensions.md`**: lead paragraph claimed
+core leaves Mermaid fences as inert code; core has rendered them
+through a built-in `lovely-mermaid` transformer since PR #7624, extended
+in #8158. Rewrote the lead and the Mermaid section, and recorded that
+`pi-better-render` applies core transformers before its own renderer.
+Registered `pi-mermaid-component-ts`, `pi-tui-markdown-ts`,
+`pi-pr-7624`, `pi-pr-8158`.
+

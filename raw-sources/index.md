@@ -382,6 +382,10 @@ copied into a dated bucket file.
 | pi-coding-agent-changelog | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/CHANGELOG.md | pi, changelog, releases |
 | pi-models-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/models.md | pi, models, catalog, credentials |
 | pi-mcp-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/mcp.md | pi, mcp, built-in |
+| pi-mermaid-component-ts | repo | https://github.com/earendil-works/pi/blob/a05e3a07763c38d23d50207742f7e073e35cd0f8/packages/coding-agent/src/modes/interactive/components/mermaid.ts | pi, mermaid, rendering, built-in, source |
+| pi-tui-markdown-ts | repo | https://github.com/earendil-works/pi/blob/a05e3a07763c38d23d50207742f7e073e35cd0f8/packages/tui/src/components/markdown.ts | pi, tui, markdown, latex, built-in, source |
+| pi-pr-7624 | issue | https://github.com/earendil-works/pi/pull/7624 | pi, mermaid, rendering, built-in |
+| pi-pr-8158 | issue | https://github.com/earendil-works/pi/pull/8158 | pi, mermaid, rendering, built-in |
 | pi-codemode-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/codemode.md | pi, codemode |
 | pi-cli-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/cli.md | pi, cli, tools |
 | pi-security-docs | docs | https://github.com/earendil-works/pi/blob/06a466935536f8c9bcacb2d5efc0fc021be1bdff/packages/coding-agent/docs/security.md | pi, security, permissions |

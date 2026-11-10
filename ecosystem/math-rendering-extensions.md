@@ -1,8 +1,12 @@
 ---
 title: Pi Math Rendering Extensions
 type: ecosystem
-updated: 2026-10-23
+updated: 2026-11-10
 sources:
+  - pi-mermaid-component-ts
+  - pi-tui-markdown-ts
+  - pi-pr-7624
+  - pi-pr-8158
   - pi-markdown-preview
   - pi-studio
   - pi-better-render
@@ -156,9 +160,16 @@ entries:
 
 # Pi Math Rendering Extensions
 
-Pi's built-in LaTeX handling flattens math to single-line Unicode,
-and Mermaid fences sit as inert code. Twenty-eight packages try to
-do better, in four shapes: separate document surfaces, automatic
+Pi core renders both: LaTeX becomes Unicode text inside the TUI
+`Markdown` component, and Mermaid fences become box-drawing
+diagrams through a built-in Markdown transformer on `lovely-mermaid`
+(setting `markdown.mermaid`: `off`, `final` or `streaming`, default
+`streaming`; pie charts, author styles and clickable labels since
+[#8158](https://github.com/earendil-works/pi/pull/8158)). The
+maintainer merged both rendering PRs from an outside contributor
+without debate on scope. Extensions now compete above that floor:
+typeset formula images, document previews, other diagram languages.
+Twenty-eight packages, in four shapes: separate document surfaces, automatic
 in-chat rendering, Mermaid renderers, and adjacent tools that
 change the workflow instead of the display. Code-read: the five
 with `notes` not marked catalog-level. One Mermaid package ships a
@@ -196,8 +207,14 @@ twin.
 
 ## Mermaid diagrams
 
-`pi-better-render` covers Mermaid itself: fences become Unicode
-box-drawing through `beautiful-mermaid` (elkjs), downloaded lazily
+Core draws Mermaid without any extension, so a Mermaid package
+earns its place only through diagram types, layout or surfaces core
+lacks. `pi-better-render` swaps the assistant `Markdown` component
+but applies the original component's transformers first, so core's
+Mermaid transformer handles every fence it can render; the
+extension's own renderer only sees fences core left as code (mode
+`off`, or a diagram core rejects). That renderer turns fences into
+Unicode box-drawing through `beautiful-mermaid` (elkjs), downloaded lazily
 on the first diagram (~11 MB into
 `~/.pi/agent/better-render/deps`, off with
 `PI_BETTER_RENDER_MERMAID_INSTALL=0`). Flowchart, state, sequence,
