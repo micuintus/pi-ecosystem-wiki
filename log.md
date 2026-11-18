@@ -1291,3 +1291,11 @@ in #8158. Rewrote the lead and the Mermaid section, and recorded that
 Registered `pi-mermaid-component-ts`, `pi-tui-markdown-ts`,
 `pi-pr-7624`, `pi-pr-8158`.
 
+## [2026-11-18] feat | Figma extensions survey
+
+**New page `ecosystem/figma-extensions.md`**: five packages in three
+shapes. Pick is `pi-figma-kit` (35 REST-direct tools, tests including
+fuzz, verified registering in a fresh session here); installed as
+`npm:pi-figma-kit`. `pi-mono-figma` repo is gone, marked superseded.
+Registered five sources, linked from `index.md` under Integrations.
+

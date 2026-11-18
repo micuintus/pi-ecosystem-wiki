@@ -89,6 +89,7 @@ them.
 - [Jenkins and CI Integration](ecosystem/jenkins-and-ci-integration.md) — Reading build logs without drowning the context: bash vs MCP vs native extension, the Jenkins endpoints that matter, and the huge-log trap
 - [Microsoft Teams Integration](ecosystem/microsoft-teams-integration.md) — No Pi extension exists: the CLI and MCP routes, and why every `pi-teams` package is about agent teams instead
 - [Slack Extensions](ecosystem/slack-extensions.md) — Five shapes for Slack ↔ Pi: agent tools (`sf-slack`, `@dreki-gg/pi-slack`), messenger bridges, standalone bots (`pi-mom`), the MCP route, and notifications
+- [Figma Extensions](ecosystem/figma-extensions.md) — Live-file tools (`pi-figma-kit`), MCP shims, offline builder
 - [Google Workspace Integration](ecosystem/google-workspace.md) — `gws` CLI, OAuth, GCP prerequisites, command shapes
 
 ## 📋 References and catalogs
